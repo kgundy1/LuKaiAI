@@ -4,7 +4,6 @@ import rateLimit from '@fastify/rate-limit';
 import subscribeRoutes from './routes/subscribe';
 
 const PORT = parseInt(process.env.PORT ?? '4000', 10);
-const CORS_ORIGIN = process.env.CORS_ORIGIN ?? 'http://localhost:5173';
 
 const app = Fastify({ logger: true, trustProxy: true });
 
@@ -12,12 +11,11 @@ async function build() {
   await app.register(cors, {
     origin: (origin, cb) => {
       const allowed = [
+        process.env.CORS_ORIGIN,
         'https://lukaiai.pages.dev',
-        'http://localhost',
         'http://localhost:5173',
         'http://localhost:3000',
-        CORS_ORIGIN,
-      ];
+      ].filter(Boolean);
       if (!origin || allowed.includes(origin)) {
         cb(null, true);
       } else {
@@ -25,6 +23,7 @@ async function build() {
       }
     },
     credentials: true,
+    methods: ['GET', 'POST', 'OPTIONS'],
   });
 
   await app.register(rateLimit, {
