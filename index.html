@@ -329,10 +329,11 @@ footer{border-top:1px solid var(--border);padding:44px 48px}
     <h2 class="em-h reveal d1">Your idea.<br><span class="gr">Your build.</span><br><em>Your timeline.</em></h2>
     <p class="em-sub reveal d2">The workflow exists. The proof exists. <strong>The only thing missing is you starting.</strong></p>
     <p class="em-name reveal d3">— Named for Lucas &amp; Kailer. Built for everyone.</p>
-    <form class="em-form reveal d3" onsubmit="sub(event)">
+    <form class="em-form reveal d3" onsubmit="sub(event)" id="em-form">
       <input type="email" class="em-input" placeholder="your@email.com" required autocomplete="email">
       <button type="submit" class="em-btn">I'm ready →</button>
     </form>
+    <p id="em-err" style="color:#f87171;font-size:.85rem;text-align:center;margin-top:8px;display:none">Something went wrong — try again.</p>
     <p class="em-note reveal d4">No pitch. No pressure. Just the workflow.</p>
   </div>
 </section>
@@ -355,12 +356,22 @@ footer{border-top:1px solid var(--border);padding:44px 48px}
 <script>
 const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in')}),{threshold:.08,rootMargin:'0px 0px -32px 0px'});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-function sub(e){
+window.__API_BASE__=window.__API_BASE__||'https://lukaiai-api.onrender.com';
+async function sub(e){
   e.preventDefault();
-  const b=e.target.querySelector('.em-btn'),i=e.target.querySelector('.em-input');
-  b.textContent="You're in ✓";b.style.background='var(--green)';
-  i.disabled=true;i.value='';i.placeholder='Check your inbox.';
-  setTimeout(()=>{b.textContent="I'm ready →";b.style.background='';i.disabled=false;i.placeholder='your@email.com'},5000);
+  const b=e.target.querySelector('.em-btn'),i=e.target.querySelector('.em-input'),err=document.getElementById('em-err');
+  err.style.display='none';
+  b.textContent='Sending…';b.disabled=true;
+  try{
+    const r=await fetch(window.__API_BASE__+'/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:i.value})});
+    if(!r.ok)throw new Error('bad response');
+    b.textContent="You're in ✓";b.style.background='var(--green)';
+    i.disabled=true;i.value='';i.placeholder='Check your inbox.';
+    setTimeout(()=>{b.textContent="I'm ready →";b.style.background='';b.disabled=false;i.disabled=false;i.placeholder='your@email.com'},5000);
+  }catch(_){
+    err.style.display='block';
+    b.textContent="I'm ready →";b.disabled=false;
+  }
 }
 </script>
 </body>
