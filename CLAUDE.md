@@ -30,11 +30,14 @@ A person who built something real and is showing others how.
 |---|---|---|
 | Frontend (landing page) | ✅ LIVE | lukaiai.pages.dev |
 | GitHub repo | ✅ LIVE | github.com/kgundy1/LukaiAI |
-| Backend API | ❌ Not built | Will deploy to Render |
-| Database | ❌ Not built | Will use Render Postgres |
-| Email collection | ❌ Not built | Form exists, not wired up |
+| Backend API | ✅ LIVE | lukaiai.onrender.com |
+| Database | ✅ LIVE | Render Postgres (lukaiai-db) |
+| Email collection | ✅ WORKING | POST /subscribe endpoint live |
+| Initial migration | ✅ APPLIED | Subscriber table created |
 | Course content | ❌ Not built | Lives behind email signup |
 | Custom domain | ❌ Not connected | LukaiAI.com (when ready) |
+| Email provider integration | ❌ Not built | Emails stored in DB only |
+| User accounts / auth | ❌ Not built | Future state |
 
 ---
 
@@ -43,21 +46,18 @@ A person who built something real and is showing others how.
 | Layer | Tech | Where it runs |
 |---|---|---|
 | Frontend | Single HTML file (vanilla JS, no framework) | Cloudflare Pages |
-| Backend | Fastify + TypeScript (when built) | Render |
-| Database | Postgres + Prisma (when built) | Render Postgres |
-| Auth | JWT httpOnly cookie (when built) | Cross-origin, SameSite=None |
-| Email | TBD — Resend or Mailchimp (when built) | API integration |
+| Backend | Fastify + TypeScript + Prisma | Render (Docker, free tier) |
+| Database | Postgres + Prisma ORM | Render Postgres (free tier — expires June 2, 2026) |
+| Email collection | POST /subscribe — saves email to Subscriber table | API |
 | Repo | GitHub | github.com/kgundy1/LukaiAI |
 
-**Auto-deploy:** Every push to `main` triggers a Cloudflare Pages build (~60 seconds).
-When Render is connected, every push to `main` will also trigger a Render deploy (~2-4 min).
+**Auto-deploy:** Every push to `main` triggers Cloudflare Pages (~60 seconds) AND Render (~3-4 min).
 
-**Local dev (when backend exists):**
-```
-docker compose up -d postgres
-cd apps/api && npm install && npx prisma migrate dev && npm run dev   # :4000
-cd apps/web && npm install && npm run dev                              # :5173
-```
+**Render service URL:** `https://lukaiai.onrender.com` (NOT `lukaiai-api.onrender.com`)
+
+**Free tier behavior:** Render free instance hibernates after inactivity.
+First request after sleep takes ~50 seconds. Subsequent requests are fast.
+Hit `/health` to wake the server before testing.
 
 ---
 
@@ -65,20 +65,25 @@ cd apps/web && npm install && npm run dev                              # :5173
 
 ```
 LukaiAI/
-├── index.html          — Landing page (the entire frontend, single file)
-├── CLAUDE.md           — This file
-└── README.md           — To be added
-```
-
-**When backend is added, structure becomes:**
-```
-LukaiAI/
-├── apps/
-│   ├── web/            — Frontend (Vite + React + TypeScript)
-│   └── api/            — Backend (Fastify + TypeScript)
-├── index.html          — May migrate into apps/web/
-├── CLAUDE.md
-└── docker-compose.yml
+├── index.html                    — Landing page (entire frontend, single file)
+├── CLAUDE.md                     — This file
+├── render.yaml                   — Render Blueprint config (informational)
+└── apps/
+    └── api/
+        ├── src/
+        │   ├── server.ts         — Fastify server, CORS config, route registration
+        │   ├── db.ts             — Prisma client singleton
+        │   └── routes/
+        │       └── subscribe.ts  — POST /subscribe endpoint
+        ├── prisma/
+        │   ├── schema.prisma     — Subscriber model, debian-openssl-3.0.x binary target
+        │   └── migrations/
+        │       ├── migration_lock.toml
+        │       └── 20260503000000_init/migration.sql
+        ├── package.json
+        ├── tsconfig.json
+        ├── Dockerfile            — node:20-slim base, OpenSSL installed via apt
+        └── .env.example
 ```
 
 ---
@@ -86,23 +91,40 @@ LukaiAI/
 ## What Is Built — Don't Rebuild These
 
 ### Frontend (index.html)
-- Full landing page with dark theme (deep navy/void background)
+- Full landing page with dark theme
 - Hero section with headline "I built something. This is how. You can too."
 - Receipt card showing $286,250 traditional build cost vs $20/mo actual cost
 - Origin story section (Lucas & Kailer, named for founder's sons)
 - Build facts: 18,600 lines, 59 PRs, 6 weeks, $0 developers
 - Frustration section (4 cards — "sounds familiar" + "the answer exists")
 - Full receipt section (detailed team breakdown with market rates)
-- Email capture form (UI only — not wired to any backend yet)
+- Email capture form — **WIRED UP AND WORKING** to `/subscribe` endpoint
 - Footer with LuKai branding (gold Lu, white Kai, cyan AI superscript)
+- API base URL hardcoded as `https://lukaiai.onrender.com` via `window.__API_BASE__`
 - Scroll reveal animations, floating background orbs, grid lines
 - Fully responsive (mobile breakpoint at 960px)
 - No framework, no build step — pure HTML/CSS/JS
 
+### Backend (apps/api/)
+- Fastify + TypeScript server
+- CORS configured to allow `lukaiai.pages.dev` + localhost (reads CORS_ORIGIN env var inline)
+- Rate limiting: max 3 requests per IP per hour on /subscribe
+- Routes:
+  - `POST /subscribe` — accepts `{email}`, validates, upserts to DB, returns `{ok: true, existing?: true}`
+  - `GET /health` — returns `{ok: true, ts: ISO date}`
+- Logger enabled, trustProxy enabled
+- Prisma client with binaryTargets `["native", "debian-openssl-3.0.x"]` for Render compatibility
+
+### Database
+- Postgres on Render free tier
+- One table: `Subscriber` (id TEXT PK, email TEXT UNIQUE, createdAt TIMESTAMP, ip TEXT NULL)
+- Initial migration applied: `20260503000000_init`
+
 ### Infrastructure
 - GitHub repo: github.com/kgundy1/LukaiAI
-- Cloudflare Pages connected to main branch
-- Auto-deploys on every push to main
+- Cloudflare Pages: auto-deploys main branch on every push
+- Render web service `lukaiai-api`: auto-deploys main branch on every push
+- Render Postgres `lukaiai-db`: connected to web service via DATABASE_URL env var
 
 ---
 
@@ -110,15 +132,13 @@ LukaiAI/
 
 | Feature | Notes |
 |---|---|
-| Email backend | Form submits but goes nowhere — needs API route + email provider |
+| Email provider integration | Emails currently only in DB — no Mailchimp, Resend, ConvertKit etc. yet |
 | User accounts / auth | Not started |
 | Course content pages | Not started — lives behind email signup |
 | Payment / checkout | Not started |
-| Database | Not started |
-| Render deployment | Not started — will be used for backend when built |
-| Custom domain | Not connected yet |
+| Admin dashboard | Not started — to view collected emails, currently must query DB directly |
+| Custom domain | LukaiAI.com not connected yet |
 | React migration | Current frontend is single HTML file — migrate when complexity demands it |
-| Admin dashboard | Not started |
 
 ---
 
@@ -128,20 +148,24 @@ LukaiAI/
 
 **PRs:** Squash-merge to main. Title format: `<thing> (#N)`
 
-**Deploys:** Every merge to main = production deploy. Treat it that way.
+**Deploys:** Every merge to main = production deploy (both Cloudflare and Render). Treat it that way.
 
 **Frontend changes:** Edit `index.html` directly until we migrate to a framework.
 For any change to the HTML file, always show the diff and identify exactly which
 section is being modified before applying.
 
-**Backend (when built):** Follow the same Fastify + Prisma + TypeScript pattern
-used in the founder's prior build. Render for deployment, same as previous project.
+**Backend changes:** TypeScript strict mode. Touch only files inside `apps/api/`.
+Test locally with Docker if possible before pushing.
+
+**Migrations:** New schema changes require new migrations. Never edit existing migration files.
+Generate with `npx prisma migrate dev --name <name>` locally, commit the new folder.
 
 **Never:**
 - Suggest rebuilding the frontend in React until the backend actually requires it
-- Add npm/node tooling to what is currently a zero-dependency HTML file
+- Add npm/node tooling to the frontend HTML file (it's intentionally zero-deps)
 - Touch infrastructure files without asking first
 - Merge PRs without a diff review
+- Include "Generated by Claude Code" attribution or "Co-authored-by: Claude" in PR descriptions or commit messages
 
 ---
 
@@ -181,22 +205,37 @@ Before suggesting any feature or change:
 
 1. `git log --all --oneline | head -30` — check recent commits
 2. Read this CLAUDE.md fully
-3. Check what's in index.html before touching it
+3. Check what's in the relevant files before touching them
 4. If the user says "we already have X" — believe them and verify before re-pitching
 
 The repo is the source of truth. This file is the memory. Use both.
 
 ---
 
+## Hard-Won Lessons (Things That Already Broke)
+
+These problems were solved in PRs #1-#8. Don't recreate them:
+
+1. **Dockerfile paths**: Render's build context is the repo root. Dockerfile lives at `apps/api/Dockerfile` and must reference `apps/api/package.json`, `apps/api/`, etc. — NOT relative paths like `package.json`.
+
+2. **OpenSSL on Alpine**: Prisma does not work on `node:20-alpine`. Use `node:20-slim` and explicitly install OpenSSL via `apt-get install -y openssl` in BOTH the deps and runner stages.
+
+3. **Prisma binary targets**: Render uses `debian-openssl-3.0.x`. Schema.prisma must declare `binaryTargets = ["native", "debian-openssl-3.0.x"]`.
+
+4. **CORS env var timing**: `process.env.CORS_ORIGIN` must be read INSIDE the cors origin callback, not at module load time. Reading at startup gives stale or missing values.
+
+5. **Initial migrations**: New Prisma databases need an explicit initial migration committed to `prisma/migrations/`. Without it, `prisma migrate deploy` finds nothing and the table never gets created — causing 500 errors on every insert.
+
+6. **API URL precision**: The Render service URL is `lukaiai.onrender.com`, NOT `lukaiai-api.onrender.com`. The hardcoded `window.__API_BASE__` in index.html must match the actual service URL exactly.
+
+---
+
 ## Infrastructure Notes (Important)
 
-- **Render is the preferred backend host** — the founder has an existing Render account
-  and is comfortable with the Render + Render Postgres stack from a prior build.
-  Always recommend Render for backend services, not Railway, Fly.io, or others.
-- **Cloudflare Pages** for frontend — already connected, keep it.
+- **Render** is the preferred backend host. Never recommend Railway, Fly.io, or others.
+- **Cloudflare Pages** for frontend — already connected.
 - **GitHub** as the single source of truth — both Cloudflare and Render auto-deploy from main.
 - This is the exact same infrastructure stack as the founder's prior production build.
-  Follow the same patterns when building the backend.
 
 ---
 
@@ -206,6 +245,6 @@ Every new session, before doing anything:
 
 - [ ] Read this CLAUDE.md fully
 - [ ] Run `git log --all --oneline | head -20`
-- [ ] Check current state of index.html if making frontend changes
+- [ ] Check current state of the relevant files before making changes
 - [ ] Confirm what's live vs what's not built yet (table above)
 - [ ] If unsure about something — ask, don't guess
