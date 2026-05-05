@@ -1,7 +1,10 @@
 import Fastify from 'fastify';
 import cors from '@fastify/cors';
 import rateLimit from '@fastify/rate-limit';
+import jwt from '@fastify/jwt';
+import cookie from '@fastify/cookie';
 import subscribeRoutes from './routes/subscribe';
+import authRoutes from './routes/auth';
 
 const PORT = parseInt(process.env.PORT ?? '4000', 10);
 
@@ -26,6 +29,15 @@ async function build() {
     methods: ['GET', 'POST', 'OPTIONS'],
   });
 
+  await app.register(cookie);
+  await app.register(jwt, {
+    secret: process.env.JWT_SECRET || 'dev-secret-change-me',
+    cookie: {
+      cookieName: 'lk_session',
+      signed: false,
+    },
+  });
+
   await app.register(rateLimit, {
     global: false,
     keyGenerator: (req) => req.ip,
@@ -34,6 +46,7 @@ async function build() {
   app.get('/health', async () => ({ ok: true, ts: new Date() }));
 
   await app.register(subscribeRoutes);
+  await app.register(authRoutes);
 
   return app;
 }
