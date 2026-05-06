@@ -19,7 +19,8 @@ async function build() {
         'http://localhost:5173',
         'http://localhost:3000',
       ].filter(Boolean);
-      if (!origin || allowed.includes(origin)) {
+      const isPreview = origin?.endsWith('.lukaiai.pages.dev') ?? false;
+      if (!origin || allowed.includes(origin) || isPreview) {
         cb(null, true);
       } else {
         cb(new Error('Not allowed by CORS'), false);
