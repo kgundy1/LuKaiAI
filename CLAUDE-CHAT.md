@@ -247,6 +247,15 @@ These are mistakes that have already cost time. Don't recreate them:
 - Mid-prompt second-guessing creates confusion. Write the prompt once, fully, then send.
 - Asking for many things in one prompt makes diffs hard to review. One feature, one prompt, one PR.
 
+**Workflow mistake — scope creep on simple changes:**
+Even on a one-line whitespace commit, Claude Code may try to make additional 'helpful' changes (like fixing inconsistent indentation nearby). Catch this immediately. Reply: 'That's two changes. We asked for one. Show me a diff with only X changed.' This rule applies to every diff, no matter how small.
+
+**Workflow mistake — Claude Code merging without permission:**
+Claude Code may interpret 'open the PR' as 'open and merge the PR' if instructions aren't explicit. The fix: every prompt ends with the explicit triple footer — 'Show me all diffs before applying. Do not merge the PR. Do not mark the PR ready for review. Leave it as a draft.' If Kevin explicitly says merge, that overrides the default. Default behavior is always draft.
+
+**Curriculum is a separate project from product:**
+Building LuKaiAI (the product) and writing the LuKaiAI curriculum (the content inside the product) are two different jobs. Keep them in separate chat sessions. The curriculum extraction work specifically requires both the LuKaiAI build history AND the Honda build history as source material — never try to do that work without both available. See ROADMAP.md 'Curriculum Extraction Project' section for the full plan.
+
 ---
 
 ## Session Startup Checklist for Claude Chat
@@ -287,3 +296,19 @@ These are things that have been discussed but not yet built or documented elsewh
 **"What do you think?"** → genuine question. Give a real opinion with reasoning.
 
 **"brotatochip"** → Kevin's having fun. Match the energy without losing professionalism.
+
+---
+
+## Discipline During Long Sessions
+
+When a session runs long (multiple hours, many PRs), specific failure modes get more likely:
+
+**Drift in prompt voice.** Claude Chat starts adding scaffolding, headers, surrounding commentary back into Claude Code prompts. If Kevin pushes back, lock in the correction immediately. The Honda voice is the only voice for Code prompts.
+
+**Drift in scope.** Claude Code starts making 'while I'm here' changes. Catch every diff carefully. Reject anything that wasn't explicitly asked for, no matter how small or 'helpful.'
+
+**Drift in merge discipline.** The temptation builds to merge faster. Don't. Every PR goes through Kevin's review in GitHub regardless of how confident the code looks.
+
+**Energy management.** When Kevin is pushing through, match his energy but watch for fatigue signals — typos in his messages, terse replies, asking for shorter explanations. If signals appear, suggest a stopping point honestly.
+
+**Pause to document.** Every 3-5 PRs, suggest updating CLAUDE.md, ROADMAP.md, or CLAUDE-CHAT.md to capture lessons learned. Documentation drift is the single biggest threat to long sessions.

@@ -30,6 +30,8 @@ A person who built something real and is showing others how.
 | Layer | Status | URL / Location |
 |---|---|---|
 | Frontend (landing page) | ✅ LIVE | lukaiai.pages.dev |
+| React frontend (apps/web/) | ✅ LIVE | apps/web/ — Vite + React + TypeScript + Tailwind |
+| Cloudflare Pages serving React | ✅ LIVE | lukaiai.pages.dev now serves apps/web/dist |
 | GitHub repo | ✅ LIVE | github.com/kgundy1/LukaiAI |
 | Backend API | ✅ LIVE | lukaiai.onrender.com |
 | Database | ✅ LIVE | Render Postgres (lukaiai-db) |
@@ -37,10 +39,14 @@ A person who built something real and is showing others how.
 | Initial migration | ✅ APPLIED | Subscriber table created |
 | .gitignore at repo root | ✅ IN PLACE | repo root |
 | apps/api/package-lock.json | ✅ IN PLACE | apps/api/ |
+| User accounts (signup/login/me) | ✅ LIVE | POST /signup, POST /login, GET /me, POST /logout |
+| Auth pages (/signup, /login) | ✅ LIVE | apps/web/src/pages/ |
+| Course shell (/learn) | ✅ LIVE | apps/web/src/pages/Learn.tsx — protected route |
+| AuthContext + ProtectedRoute | ✅ LIVE | apps/web/src/lib/AuthContext.tsx |
+| Cloudflare _redirects for SPA | ✅ LIVE | apps/web/public/_redirects |
 | Course content | ❌ Not built | Lives behind email signup |
 | Custom domain | ❌ Not connected | LukaiAI.com (when ready) |
 | Email provider integration | ❌ Not built | Emails stored in DB only |
-| User accounts / auth | ❌ Not built | Future state |
 
 ---
 
@@ -136,12 +142,10 @@ LukaiAI/
 | Feature | Notes |
 |---|---|
 | Email provider integration | Emails currently only in DB — no Mailchimp, Resend, ConvertKit etc. yet |
-| User accounts / auth | Not started |
-| Course content pages | Not started — lives behind email signup |
+| Course content | Not built — shell exists at /learn but modules are empty |
 | Payment / checkout | Not started |
 | Admin dashboard | Not started — to view collected emails, currently must query DB directly |
 | Custom domain | LukaiAI.com not connected yet |
-| React migration | Current frontend is single HTML file — migrate when complexity demands it |
 
 ---
 
@@ -165,7 +169,7 @@ Generate with `npx prisma migrate dev --name <name>` locally, commit the new fol
 
 **Claude Code prompts:** Use direct voice with numbered fixes and inline file paths. No scaffolding or surrounding commentary. Format follows the example in CLAUDE-CHAT.md.
 
-**Merging:** Claude Code creates PRs but never merges them. User reviews and merges in GitHub.
+**Merging:** Claude Code creates PRs but never merges them on its own initiative. User reviews and merges in GitHub. If Kevin explicitly tells Claude Code to merge a PR, Claude Code can merge. Default behavior is 'draft, never merge.' Direct user override is allowed.
 
 **Diffs:** Show all diffs before applying any change to any file.
 

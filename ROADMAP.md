@@ -14,6 +14,11 @@
 - Email collection via POST /subscribe — emails saved to Subscriber table
 - GitHub auto-deploys both frontend and backend on every push to main
 - Repository hygiene: .gitignore, package-lock.json, CLAUDE.md, CLAUDE-CHAT.md all in place
+- React frontend at apps/web/ (Vite + React + TypeScript + Tailwind)
+- Live site lukaiai.pages.dev now serves the React build
+- User accounts with email/password signup and login
+- Protected /learn route showing all six modules (Module 1 unlocked, 2-6 locked with 'Coming soon' state)
+- AuthContext managing session state across pages
 
 **What this means:** the foundation is complete. The infrastructure works. The brand is established. Now we build the actual product.
 
@@ -23,38 +28,16 @@
 
 The course is the actual product. Everything below is in order. Each phase ships before the next begins.
 
-### Phase 1 — User accounts and login flow
-The email signup creates a real user account. People can return to lukaiai.pages.dev, log in, and see their progress.
+### ✅ DONE — Phase 1: User accounts and login flow
+User table, POST /signup, POST /login, POST /logout, GET /me, JWT auth with httpOnly cookie, frontend login and signup pages.
 
-What this requires:
-- User table in the database (id, email, password hash, createdAt)
-- POST /signup endpoint that creates an account from email + password
-- POST /login endpoint that returns a session token
-- POST /logout endpoint
-- GET /me endpoint to check current user
-- JWT-based auth with httpOnly cookie
-- Frontend login and signup pages
-- Cookie domain config so it works across Cloudflare Pages (frontend) and Render (backend)
+### ✅ DONE — Phase 2: Course data structure
+Module, Lesson, and UserProgress tables in the database.
 
-### Phase 2 — Course data structure
-The database tables that hold the course itself. Empty for now, but the structure exists so future phases have somewhere to write to.
+### ✅ DONE — Phase 3: Course shell
+/learn route (protected), six module cards, Module 1 unlocked, Modules 2-6 locked with 'Coming soon' state.
 
-What this requires:
-- Module table (id, number, title, description, locked-by-default flag)
-- Lesson table (id, module_id, number, title, content, lesson type)
-- UserProgress table (id, user_id, lesson_id, completed_at)
-
-### Phase 3 — Course shell
-The logged-in page at /learn that shows the course. Empty for now — Module 1 displays as "Coming soon" — but the page exists and users can navigate to it.
-
-What this requires:
-- /learn route on frontend, only accessible when logged in
-- Visual layout showing modules in order
-- Module cards that display title, description, lock state, and progress
-- Module 1 unlocked by default, Modules 2-6 locked
-- "Coming soon" state for empty modules
-
-### Phase 4 — Interactive lesson UI
+### Phase 4 — Interactive lesson UI  ← NEXT
 The actual reading + interacting + completing experience. This is where the course content lives.
 
 What this requires:
@@ -140,3 +123,37 @@ The trigger to start marketing: Phase 5 complete. At least Module 1 must be live
 - A new course content topic gets identified → add it to the Course Content Topics section
 - The marketing trigger changes → update the Marketing section
 - Anything else that future-Kevin or future-Claude needs to know about the build plan
+
+---
+
+## Curriculum Extraction Project
+
+A separate, future project — not part of the LuKaiAI build itself. The goal: extract teachable lessons from real builds and translate them into course content.
+
+### Source material to use
+- The Honda compliance auditor build (Frank-Leta-Honda-Auditor repo and Honda chat transcripts)
+- The LuKaiAI build itself (this repo and the LuKaiAI chat session transcripts)
+
+### Why both
+Each build teaches different things:
+- Honda: OCR pipeline, AI compliance auditing, working with a real industry domain, source documents over descriptions, dealing with messy real-world data
+- LuKaiAI: React migration, auth implementation, course architecture, the documentation discipline (CLAUDE.md, CLAUDE-CHAT.md, ROADMAP.md), the standard prompt voice, recovering from errors across 8+ debug PRs
+
+Combined, they cover far more ground than either alone.
+
+### How to do this work
+This must be done in dedicated, separate chat sessions — NOT inside a LuKaiAI product session. The work is too large for shared context.
+
+Recommended sequence:
+1. **Curriculum outline session** — upload both repo zips and both chat transcripts. Goal: produce a curriculum outline with module structure, lesson breakdown, and source material references for each lesson.
+2. **Per-module content sessions** — one session per module. Goal: write the actual lesson content (text, code excerpts, prompts, tasks) for that module only.
+3. **Review and sanitize** — Kevin reviews every lesson before it gets committed to LuKaiAI. All Honda-specific references must be removed and replaced with the generic 'a compliance auditing tool for a major dealership group' framing.
+
+### Discipline rules (non-negotiable)
+- Honda code never enters the LuKaiAI repo. Ever.
+- Lesson content references the proof build only generically: 'a compliance auditing tool for a major dealership group.'
+- Never name Honda, Frank Leta, automotive, warranty, DMS, or any specific industry detail in lesson content.
+- Kevin reviews every lesson before it goes live in LuKaiAI.
+
+### Why this matters
+The product is the methodology. The curriculum is what teaches it. The two are separate work streams that converge only at review and publish time.
