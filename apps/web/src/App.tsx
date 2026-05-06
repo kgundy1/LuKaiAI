@@ -1,25 +1,29 @@
-import { useReveal } from './hooks/useReveal';
-import Nav from './components/Nav';
-import Hero from './components/Hero';
-import Story from './components/Story';
-import Frustration from './components/Frustration';
-import BigReceipt from './components/BigReceipt';
-import EmailCapture from './components/EmailCapture';
-import Footer from './components/Footer';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './lib/AuthContext';
+import ProtectedRoute from './components/ProtectedRoute';
+import Landing from './pages/Landing';
+import Signup from './pages/Signup';
+import Login from './pages/Login';
+import Learn from './pages/Learn';
 
 export default function App() {
-  useReveal();
   return (
-    <>
-      <Nav />
-      <main>
-        <Hero />
-        <Story />
-        <Frustration />
-        <BigReceipt />
-        <EmailCapture />
-      </main>
-      <Footer />
-    </>
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
+          <Route
+            path="/learn"
+            element={
+              <ProtectedRoute>
+                <Learn />
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
