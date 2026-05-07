@@ -222,6 +222,7 @@ Generate with `npx prisma migrate dev --name <name>` locally, commit the new fol
 - Include "Co-authored-by: Claude" or any Co-authored-by tag referencing Claude in PR descriptions, PR titles, commit messages, or commit bodies
 - Include claude.ai session URLs (e.g., `https://claude.ai/code/...`) in PR descriptions, PR titles, commit messages, or commit bodies
 - Include any other Anthropic, Claude, or AI-tool attribution, footer, signature, or trailer in PR descriptions, PR titles, commit messages, or commit bodies
+- Set the git commit author or committer to anything that references Claude, Anthropic, or any AI tool. Commits must be authored by the human user via their local git config. If the working environment has a Claude-named git identity, override it for the commit using `--author` set to the human's GitHub identity, or refuse to commit and ask the human to commit manually.
 
 ---
 
