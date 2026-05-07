@@ -51,3 +51,16 @@ export async function getMe() {
   const data = await res.json();
   return data.user;
 }
+
+export async function fetchModuleLessons(moduleId: string) {
+  const res = await fetch(`${API_BASE}/modules/${moduleId}/lessons`, { credentials: 'include' });
+  return res.json();
+}
+
+export async function markLessonComplete(lessonId: string) {
+  const res = await fetch(`${API_BASE}/lessons/${lessonId}/complete`, {
+    method: 'POST',
+    credentials: 'include'
+  });
+  return res.json();
+}

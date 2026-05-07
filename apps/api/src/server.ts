@@ -5,6 +5,7 @@ import jwt from '@fastify/jwt';
 import cookie from '@fastify/cookie';
 import subscribeRoutes from './routes/subscribe';
 import authRoutes from './routes/auth';
+import lessonRoutes from './routes/lessons';
 
 const PORT = parseInt(process.env.PORT ?? '4000', 10);
 
@@ -48,6 +49,7 @@ async function build() {
 
   await app.register(subscribeRoutes);
   await app.register(authRoutes);
+  await app.register(lessonRoutes);
 
   return app;
 }
