@@ -54,7 +54,7 @@ A person who built something real and is showing others how.
 
 | Layer | Tech | Where it runs |
 |---|---|---|
-| Frontend | Single HTML file (vanilla JS, no framework) | Cloudflare Pages |
+| Frontend | React + TypeScript + Vite + Tailwind (apps/web/) | Cloudflare Pages |
 | Backend | Fastify + TypeScript + Prisma | Render (Docker, free tier) |
 | Database | Postgres + Prisma ORM | Render Postgres (free tier — expires June 2, 2026) |
 | Email collection | POST /subscribe — saves email to Subscriber table | API |
@@ -74,45 +74,78 @@ Hit `/health` to wake the server before testing.
 
 ```
 LukaiAI/
-├── index.html                    — Landing page (entire frontend, single file)
+├── index.html                    — Legacy landing page (kept; Cloudflare serves apps/web/dist)
 ├── CLAUDE.md                     — This file
+├── CLAUDE-CHAT.md                — Operating manual for chat sessions
+├── ROADMAP.md                    — Build phases and deferred items
 ├── render.yaml                   — Render Blueprint config (informational)
 └── apps/
-    └── api/
+    ├── api/                      — Backend (Fastify + Prisma + Postgres)
+    │   ├── src/
+    │   │   ├── server.ts         — Fastify server, CORS config, route registration
+    │   │   ├── db.ts             — Prisma client singleton
+    │   │   ├── auth.ts           — Auth helpers (JWT, bcrypt, cookies)
+    │   │   └── routes/
+    │   │       ├── subscribe.ts  — POST /subscribe
+    │   │       └── auth.ts       — POST /signup, /login, /logout, GET /me
+    │   ├── prisma/
+    │   │   ├── schema.prisma     — Subscriber, User, Module, Lesson, UserProgress models
+    │   │   └── migrations/
+    │   │       ├── migration_lock.toml
+    │   │       ├── 20260503000000_init/migration.sql
+    │   │       ├── 20260504040000_add_users/migration.sql
+    │   │       └── 20260504050000_add_course_structure/migration.sql
+    │   ├── package.json
+    │   ├── package-lock.json
+    │   ├── tsconfig.json
+    │   ├── Dockerfile            — node:20-slim base, OpenSSL installed via apt
+    │   └── .env.example
+    └── web/                      — Frontend (Vite + React + TypeScript + Tailwind)
         ├── src/
-        │   ├── server.ts         — Fastify server, CORS config, route registration
-        │   ├── db.ts             — Prisma client singleton
-        │   └── routes/
-        │       └── subscribe.ts  — POST /subscribe endpoint
-        ├── prisma/
-        │   ├── schema.prisma     — Subscriber model, debian-openssl-3.0.x binary target
-        │   └── migrations/
-        │       ├── migration_lock.toml
-        │       └── 20260503000000_init/migration.sql
+        │   ├── main.tsx          — React entry point
+        │   ├── App.tsx           — Router + AuthProvider wiring
+        │   ├── index.css         — Tailwind layer imports
+        │   ├── pages/
+        │   │   ├── Landing.tsx   — Landing page (React port of legacy index.html)
+        │   │   ├── Signup.tsx    — Email/password signup
+        │   │   ├── Login.tsx     — Email/password login
+        │   │   └── Learn.tsx     — Protected /learn route, six module cards
+        │   ├── components/       — Hero, BigReceipt, Frustration, Footer, Nav, Story, EmailCapture, ProtectedRoute
+        │   ├── lib/
+        │   │   ├── AuthContext.tsx — Session state + useAuth hook
+        │   │   └── api.ts        — fetch wrapper for backend calls
+        │   └── hooks/
+        │       └── useReveal.ts  — Scroll reveal animations
+        ├── public/
+        │   └── _redirects        — Cloudflare SPA fallback for client-side routing
+        ├── index.html            — Vite entry HTML
         ├── package.json
+        ├── package-lock.json
         ├── tsconfig.json
-        ├── Dockerfile            — node:20-slim base, OpenSSL installed via apt
-        └── .env.example
+        ├── vite.config.ts
+        ├── tailwind.config.js
+        └── postcss.config.js
 ```
 
 ---
 
 ## What Is Built — Don't Rebuild These
 
-### Frontend (index.html)
-- Full landing page with dark theme
-- Hero section with headline "I built something. This is how. You can too."
+### Frontend (apps/web/)
+- React + TypeScript + Vite + Tailwind, deployed to Cloudflare Pages from `apps/web/dist`
+- Routes: `/` (Landing), `/signup`, `/login`, `/learn` (protected by ProtectedRoute)
+- Landing page is the React port of the legacy index.html — composed of Hero, BigReceipt, Story, Frustration, EmailCapture, Footer, Nav components
 - Receipt card showing $286,250 traditional build cost vs $20/mo actual cost
 - Origin story section (Lucas & Kailer, named for founder's sons)
 - Build facts: 18,600 lines, 59 PRs, 6 weeks, $0 developers
 - Frustration section (4 cards — "sounds familiar" + "the answer exists")
-- Full receipt section (detailed team breakdown with market rates)
-- Email capture form — **WIRED UP AND WORKING** to `/subscribe` endpoint
+- Email capture form — wired to `POST /subscribe`
 - Footer with LuKai branding (gold Lu, white Kai, cyan AI superscript)
-- API base URL hardcoded as `https://lukaiai.onrender.com` via `window.__API_BASE__`
-- Scroll reveal animations, floating background orbs, grid lines
+- AuthContext provides session state across pages; `useAuth()` hook for consumers
+- `/learn` renders six module cards — Module 1 unlocked, Modules 2-6 locked with "Coming soon"
+- `apps/web/public/_redirects` provides Cloudflare SPA fallback for client-side routing
+- Scroll reveal animations via useReveal hook, floating background orbs, grid lines
 - Fully responsive (mobile breakpoint at 960px)
-- No framework, no build step — pure HTML/CSS/JS
 
 ### Backend (apps/api/)
 - Fastify + TypeScript server
@@ -157,9 +190,7 @@ LukaiAI/
 
 **Deploys:** Every merge to main = production deploy (both Cloudflare and Render). Treat it that way.
 
-**Frontend changes:** Edit `index.html` directly until we migrate to a framework.
-For any change to the HTML file, always show the diff and identify exactly which
-section is being modified before applying.
+**Frontend changes:** Frontend lives in `apps/web/`. Touch only files inside `apps/web/`. Never modify the legacy `index.html` at the repo root. For any change, show the diff and identify exactly which file and section is being modified before applying.
 
 **Backend changes:** TypeScript strict mode. Touch only files inside `apps/api/`.
 Test locally with Docker if possible before pushing.
@@ -176,8 +207,6 @@ Generate with `npx prisma migrate dev --name <name>` locally, commit the new fol
 **Scope:** One feature per branch, one PR per session.
 
 **Never:**
-- Suggest rebuilding the frontend in React until the backend actually requires it
-- Add npm/node tooling to the frontend HTML file (it's intentionally zero-deps)
 - Touch infrastructure files without asking first
 - Merge PRs without a diff review
 - Include "Generated by Claude Code" attribution or "Co-authored-by: Claude" in PR descriptions or commit messages
