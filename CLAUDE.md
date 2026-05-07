@@ -46,6 +46,7 @@ A person who built something real and is showing others how.
 | GET /modules/:id/lessons endpoint | ✅ LIVE | Returns module + lessons + per-user completion state |
 | POST /lessons/:id/complete endpoint | ✅ LIVE | Writes to UserProgress, idempotent upsert |
 | Markdown rendering (react-markdown + @tailwindcss/typography) | ✅ LIVE | apps/web/ — prose prose-invert styling |
+| Curriculum outline (curriculum/COURSE_OUTLINE.md) | ✅ LOCKED | Six modules, thirty lessons, six deliverables — source of truth for course content |
 | AuthContext + ProtectedRoute | ✅ LIVE | apps/web/src/lib/AuthContext.tsx |
 | Cloudflare _redirects for SPA | ✅ LIVE | apps/web/public/_redirects |
 | Course content | ❌ Not built | Lives behind email signup |
@@ -83,6 +84,7 @@ LukaiAI/
 ├── CLAUDE-CHAT.md                — Operating manual for chat sessions
 ├── ROADMAP.md                    — Build phases and deferred items
 ├── render.yaml                   — Render Blueprint config (informational)
+├── curriculum/             — Course outline and lesson content (planning + source markdown)
 └── apps/
     ├── api/                      — Backend (Fastify + Prisma + Postgres)
     │   ├── src/

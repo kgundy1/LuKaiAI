@@ -163,3 +163,10 @@ Recommended sequence:
 
 ### Why this matters
 The product is the methodology. The curriculum is what teaches it. The two are separate work streams that converge only at review and publish time.
+
+## Status
+
+- ✅ Course outline locked and committed to repo at `curriculum/COURSE_OUTLINE.md` (six modules, thirty lessons, six deliverables)
+- Module 1 lesson content: not yet drafted
+- Modules 2-6 lesson content: not yet drafted
+- Per-module content sessions begin after the outline is in the repo and the LuKaiAI build is at the seeding stage (Phase 5)
