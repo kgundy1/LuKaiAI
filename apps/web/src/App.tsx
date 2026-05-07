@@ -5,6 +5,7 @@ import Landing from './pages/Landing';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Learn from './pages/Learn';
+import Lesson from './pages/Lesson';
 
 export default function App() {
   return (
@@ -19,6 +20,14 @@ export default function App() {
             element={
               <ProtectedRoute>
                 <Learn />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/learn/module/:moduleId/lesson/:lessonId"
+            element={
+              <ProtectedRoute>
+                <Lesson />
               </ProtectedRoute>
             }
           />
