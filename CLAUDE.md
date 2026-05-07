@@ -42,6 +42,10 @@ A person who built something real and is showing others how.
 | User accounts (signup/login/me) | ✅ LIVE | POST /signup, POST /login, GET /me, POST /logout |
 | Auth pages (/signup, /login) | ✅ LIVE | apps/web/src/pages/ |
 | Course shell (/learn) | ✅ LIVE | apps/web/src/pages/Learn.tsx — protected route |
+| Lesson route (/learn/module/:moduleId/lesson/:lessonId) | ✅ LIVE | apps/web/src/pages/Lesson.tsx — protected route, markdown rendering |
+| GET /modules/:id/lessons endpoint | ✅ LIVE | Returns module + lessons + per-user completion state |
+| POST /lessons/:id/complete endpoint | ✅ LIVE | Writes to UserProgress, idempotent upsert |
+| Markdown rendering (react-markdown + @tailwindcss/typography) | ✅ LIVE | apps/web/ — prose prose-invert styling |
 | AuthContext + ProtectedRoute | ✅ LIVE | apps/web/src/lib/AuthContext.tsx |
 | Cloudflare _redirects for SPA | ✅ LIVE | apps/web/public/_redirects |
 | Course content | ❌ Not built | Lives behind email signup |
@@ -153,14 +157,17 @@ LukaiAI/
 - Rate limiting: max 3 requests per IP per hour on /subscribe
 - Routes:
   - `POST /subscribe` — accepts `{email}`, validates, upserts to DB, returns `{ok: true, existing?: true}`
+  - `POST /signup`, `POST /login`, `POST /logout`, `GET /me` — auth endpoints (JWT cookie, bcrypt, rate limited)
+  - `GET /modules/:moduleId/lessons` — returns module + lessons + per-user completion state (auth required)
+  - `POST /lessons/:lessonId/complete` — writes to UserProgress, idempotent (auth required)
   - `GET /health` — returns `{ok: true, ts: ISO date}`
 - Logger enabled, trustProxy enabled
 - Prisma client with binaryTargets `["native", "debian-openssl-3.0.x"]` for Render compatibility
 
 ### Database
 - Postgres on Render free tier
-- One table: `Subscriber` (id TEXT PK, email TEXT UNIQUE, createdAt TIMESTAMP, ip TEXT NULL)
-- Initial migration applied: `20260503000000_init`
+- Tables: Subscriber, User, Module, Lesson, UserProgress
+- Migrations applied: `20260503000000_init`, `20260504040000_add_users`, `20260504050000_add_course_structure`
 
 ### Infrastructure
 - GitHub repo: github.com/kgundy1/LukaiAI

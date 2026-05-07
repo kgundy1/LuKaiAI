@@ -19,6 +19,8 @@
 - User accounts with email/password signup and login
 - Protected /learn route showing all six modules (Module 1 unlocked, 2-6 locked with 'Coming soon' state)
 - AuthContext managing session state across pages
+- Lesson rendering at /learn/module/:moduleId/lesson/:lessonId — markdown content, "Mark complete" button writing to UserProgress
+- GET /modules/:id/lessons and POST /lessons/:id/complete endpoints, both auth-protected
 
 **What this means:** the foundation is complete. The infrastructure works. The brand is established. Now we build the actual product.
 
@@ -37,21 +39,25 @@ Module, Lesson, and UserProgress tables in the database.
 ### ✅ DONE — Phase 3: Course shell
 /learn route (protected), six module cards, Module 1 unlocked, Modules 2-6 locked with 'Coming soon' state.
 
-### Phase 4 — Interactive lesson UI  ← NEXT
-The actual reading + interacting + completing experience. This is where the course content lives.
+### Phase 4 — Interactive lesson UI (split into 4a, 4b, 4c)
 
-What this requires:
-- /learn/module/:moduleId/lesson/:lessonId routes
-- Lesson content rendering (markdown or rich text)
-- Copy-to-clipboard buttons for prompts
-- Task completion checkboxes
-- "Mark lesson complete" button that writes to UserProgress
-- Visual progress bar at the top of each module
-- Module unlock animation when all lessons in the previous module are complete
-- Course completion acknowledgment when all lessons across all modules are done
+#### ✅ DONE — Phase 4a: Lesson route + markdown rendering + completion endpoint
+- /learn/module/:moduleId/lesson/:lessonId route (protected)
+- Markdown content rendering via react-markdown + @tailwindcss/typography
+- "Mark lesson complete" button at bottom of lesson, writes to UserProgress
+- GET /modules/:id/lessons endpoint — returns module + lessons + completion state
+- POST /lessons/:id/complete endpoint — idempotent upsert
 
-### Phase 5 — Module 1 content
-Write and ship the actual content for the first module.
+#### Phase 4b — Progress bar + module unlock logic (DEFERRED until after Phase 5)
+Visual progress bar at the top of each module. Logic that unlocks Module N+1 when all lessons in Module N are complete. Deferred because unlock logic is invisible polish until there's a second module of real content to unlock into. Build after Phase 5 ships.
+
+#### Phase 4c — Course completion acknowledgment (DEFERRED until after Phase 6)
+Final-state screen when all lessons across all modules are complete. Deferred until all six modules of content exist. Without content, there's nothing to complete.
+
+Note on copy-to-clipboard for code blocks: deferred. Will be added during Phase 5 if Module 1 lesson content makes the absence painful. The base markdown rendering ships first, content drives the polish.
+
+### Phase 5 — Module 1 content  ← NEXT
+Write and ship the actual content for the first module. This is curriculum work, not product build — must happen in a dedicated chat session per the Curriculum Extraction Project rules. Once lesson markdown exists, seed it to the database and click through the lessons end-to-end. Real content will surface what Phase 4b and 4c actually need to do.
 
 ### Phase 6 — Modules 2-6
 Write and ship the rest. One module at a time.
