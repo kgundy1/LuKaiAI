@@ -18,7 +18,7 @@ Each module ends with a concrete deliverable the learner has produced themselves
 
 1. **Open Claude and describe your idea.** Just type it. Conversational, not formal. Claude will ask clarifying questions or jump straight to building. The first version will be wrong. The goal of the first prompt is to get something on the screen to react to.
 
-2. **The Artifacts panel — what just happened.** When Claude builds something interactive, it appears in a panel next to the conversation. You can click it, type in it, see it work. This is the prototype.
+2. **The Claude Design canvas — what just happened.** When Claude Design builds your prototype, it appears in the canvas — the workspace next to the chat. You can click it, type in it, see it work. This is the prototype.
 
 3. **Iterate by reacting, not by planning.** You don't need to know what you want before you start. You react to what Claude built. Each round produces a closer version. Reference materials and rules surface naturally as you correct what's wrong.
 
