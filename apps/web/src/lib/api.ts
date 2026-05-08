@@ -52,8 +52,8 @@ export async function getMe() {
   return data.user;
 }
 
-export async function fetchModuleLessons(moduleId: string) {
-  const res = await fetch(`${API_BASE}/modules/${moduleId}/lessons`, { credentials: 'include' });
+export async function fetchModuleLessons(moduleNumber: string) {
+  const res = await fetch(`${API_BASE}/modules/${moduleNumber}/lessons`, { credentials: 'include' });
   return res.json();
 }
 
