@@ -1,5 +1,5 @@
 import { FastifyInstance } from 'fastify';
-import { runSeed } from '../../prisma/seed';
+import { runSeed } from '../lib/seed';
 
 export default async function adminRoutes(app: FastifyInstance) {
   app.post('/admin/seed', async (req, reply) => {

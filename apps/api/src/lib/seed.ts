@@ -12,10 +12,10 @@ const MODULE_1 = {
 };
 
 const CANDIDATE_LESSONS_PATHS = [
-  // Local dev: apps/api/prisma/seed.ts -> ../../../curriculum/
-  path.resolve(__dirname, '..', '..', '..', 'curriculum', 'module-1-lessons.md'),
-  // Prod container: /app/prisma/seed.ts -> ../curriculum/
-  path.resolve(__dirname, '..', 'curriculum', 'module-1-lessons.md'),
+  // Local dev (TypeScript via tsx): apps/api/src/lib/seed.ts -> ../../../../curriculum/
+  path.resolve(__dirname, '..', '..', '..', '..', 'curriculum', 'module-1-lessons.md'),
+  // Prod container (compiled JS at /app/dist/lib/seed.js): -> ../../curriculum/
+  path.resolve(__dirname, '..', '..', 'curriculum', 'module-1-lessons.md'),
 ];
 
 function findLessonsPath(): string {
