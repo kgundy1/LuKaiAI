@@ -3,13 +3,17 @@ import prisma from '../db';
 import { requireAuth } from '../auth';
 
 export default async function lessonRoutes(app: FastifyInstance) {
-  app.get('/modules/:moduleId/lessons', async (req, reply) => {
-    const { moduleId } = req.params as { moduleId: string };
+  app.get('/modules/:moduleNumber/lessons', async (req, reply) => {
+    const { moduleNumber } = req.params as { moduleNumber: string };
+    const num = Number(moduleNumber);
+    if (!Number.isInteger(num) || num < 1) {
+      return reply.code(400).send({ ok: false, error: 'Invalid module number' });
+    }
     const auth = await requireAuth(req, reply);
     const userId = auth.userId;
 
     const module = await prisma.module.findUnique({
-      where: { id: moduleId },
+      where: { number: num },
       include: {
         lessons: {
           orderBy: { number: 'asc' },

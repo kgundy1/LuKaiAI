@@ -19,7 +19,7 @@ type Module = {
 };
 
 export default function Lesson() {
-  const { moduleId, lessonId } = useParams<{ moduleId: string; lessonId: string }>();
+  const { moduleNumber, lessonNumber } = useParams<{ moduleNumber: string; lessonNumber: string }>();
   const [module, setModule] = useState<Module | null>(null);
   const [lesson, setLesson] = useState<Lesson | null>(null);
   const [loading, setLoading] = useState(true);
@@ -27,16 +27,16 @@ export default function Lesson() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!moduleId || !lessonId) return;
+    if (!moduleNumber || !lessonNumber) return;
     setLoading(true);
-    fetchModuleLessons(moduleId).then(data => {
+    fetchModuleLessons(moduleNumber).then(data => {
       if (!data.ok) {
         setError(data.error || 'Failed to load lesson');
         setLoading(false);
         return;
       }
       setModule(data.module);
-      const found = data.lessons.find((l: Lesson) => l.id === lessonId);
+      const found = data.lessons.find((l: Lesson) => l.number === Number(lessonNumber));
       if (!found) {
         setError('Lesson not found');
       } else {
@@ -47,7 +47,7 @@ export default function Lesson() {
       setError('Failed to load lesson');
       setLoading(false);
     });
-  }, [moduleId, lessonId]);
+  }, [moduleNumber, lessonNumber]);
 
   async function handleComplete() {
     if (!lesson) return;

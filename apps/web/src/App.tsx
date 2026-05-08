@@ -24,7 +24,7 @@ export default function App() {
             }
           />
           <Route
-            path="/learn/module/:moduleId/lesson/:lessonId"
+            path="/learn/module/:moduleNumber/lesson/:lessonNumber"
             element={
               <ProtectedRoute>
                 <Lesson />
