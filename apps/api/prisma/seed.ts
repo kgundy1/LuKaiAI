@@ -11,14 +11,23 @@ const MODULE_1 = {
     'A working interactive prototype of your idea, built in Claude Design, that you have iterated on enough that it represents what you actually want to build.'
 };
 
-const MODULE_1_LESSONS_PATH = path.resolve(
-  __dirname,
-  '..',
-  '..',
-  '..',
-  'curriculum',
-  'module-1-lessons.md'
-);
+const CANDIDATE_LESSONS_PATHS = [
+  // Local dev: apps/api/prisma/seed.ts -> ../../../curriculum/
+  path.resolve(__dirname, '..', '..', '..', 'curriculum', 'module-1-lessons.md'),
+  // Prod container: /app/prisma/seed.ts -> ../curriculum/
+  path.resolve(__dirname, '..', 'curriculum', 'module-1-lessons.md'),
+];
+
+function findLessonsPath(): string {
+  for (const candidate of CANDIDATE_LESSONS_PATHS) {
+    if (fs.existsSync(candidate)) return candidate;
+  }
+  throw new Error(
+    `Could not find module-1-lessons.md. Tried:\n  ${CANDIDATE_LESSONS_PATHS.join('\n  ')}`
+  );
+}
+
+const MODULE_1_LESSONS_PATH = findLessonsPath();
 
 type ParsedLesson = {
   number: number;
