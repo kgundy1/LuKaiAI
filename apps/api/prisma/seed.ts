@@ -27,8 +27,6 @@ function findLessonsPath(): string {
   );
 }
 
-const MODULE_1_LESSONS_PATH = findLessonsPath();
-
 type ParsedLesson = {
   number: number;
   title: string;
@@ -59,9 +57,16 @@ function parseLessons(markdown: string): ParsedLesson[] {
   });
 }
 
-async function main() {
-  console.log(`Reading lessons from ${MODULE_1_LESSONS_PATH}`);
-  const markdown = fs.readFileSync(MODULE_1_LESSONS_PATH, 'utf-8');
+export type SeedResult = {
+  moduleNumber: number;
+  moduleTitle: string;
+  lessons: { number: number; title: string }[];
+};
+
+export async function runSeed(): Promise<SeedResult> {
+  const lessonsPath = findLessonsPath();
+  console.log(`Reading lessons from ${lessonsPath}`);
+  const markdown = fs.readFileSync(lessonsPath, 'utf-8');
   const lessons = parseLessons(markdown);
 
   if (lessons.length === 0) {
@@ -70,7 +75,7 @@ async function main() {
 
   console.log(`Parsed ${lessons.length} lessons.`);
 
-  await prisma.$transaction(async (tx) => {
+  const result = await prisma.$transaction(async (tx) => {
     const module = await tx.module.upsert({
       where: { number: MODULE_1.number },
       update: { title: MODULE_1.title, description: MODULE_1.description },
@@ -78,8 +83,9 @@ async function main() {
     });
     console.log(`Upserted Module ${module.number}: ${module.title}`);
 
+    const upsertedLessons: { number: number; title: string }[] = [];
     for (const lesson of lessons) {
-      const result = await tx.lesson.upsert({
+      const r = await tx.lesson.upsert({
         where: { moduleId_number: { moduleId: module.id, number: lesson.number } },
         update: { title: lesson.title, content: lesson.content },
         create: {
@@ -89,18 +95,29 @@ async function main() {
           content: lesson.content
         }
       });
-      console.log(`  Upserted Lesson ${result.number}: ${result.title}`);
+      console.log(`  Upserted Lesson ${r.number}: ${r.title}`);
+      upsertedLessons.push({ number: r.number, title: r.title });
     }
+
+    return {
+      moduleNumber: module.number,
+      moduleTitle: module.title,
+      lessons: upsertedLessons
+    };
   });
 
-  console.log(`\nSeed complete. Module 1 with ${lessons.length} lessons.`);
+  console.log(`\nSeed complete. Module ${result.moduleNumber} with ${result.lessons.length} lessons.`);
+  return result;
 }
 
-main()
-  .catch((e) => {
-    console.error('Seed failed:', e);
-    process.exit(1);
-  })
-  .finally(async () => {
-    await prisma.$disconnect();
-  });
+// CLI entry point — only runs when this file is executed directly, not when imported
+if (require.main === module) {
+  runSeed()
+    .catch((e) => {
+      console.error('Seed failed:', e);
+      process.exit(1);
+    })
+    .finally(async () => {
+      await prisma.$disconnect();
+    });
+}
