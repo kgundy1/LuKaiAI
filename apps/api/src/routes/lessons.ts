@@ -6,7 +6,7 @@ export default async function lessonRoutes(app: FastifyInstance) {
   app.get('/modules/:moduleNumber/lessons', async (req, reply) => {
     const { moduleNumber } = req.params as { moduleNumber: string };
     const num = Number(moduleNumber);
-    if (!Number.isInteger(num) || num < 1) {
+    if (!Number.isInteger(num) || num < 0) {
       return reply.code(400).send({ ok: false, error: 'Invalid module number' });
     }
     const auth = await requireAuth(req, reply);
