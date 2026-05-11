@@ -57,6 +57,11 @@ export async function fetchModuleLessons(moduleNumber: string) {
   return res.json();
 }
 
+export async function fetchModules() {
+  const res = await fetch(`${API_BASE}/modules`, { credentials: 'include' });
+  return res.json();
+}
+
 export async function markLessonComplete(lessonId: string) {
   const res = await fetch(`${API_BASE}/lessons/${lessonId}/complete`, {
     method: 'POST',
