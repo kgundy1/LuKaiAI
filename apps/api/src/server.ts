@@ -7,6 +7,7 @@ import subscribeRoutes from './routes/subscribe';
 import authRoutes from './routes/auth';
 import lessonRoutes from './routes/lessons';
 import adminRoutes from './routes/admin';
+import moduleRoutes from './routes/modules';
 
 const PORT = parseInt(process.env.PORT ?? '4000', 10);
 
@@ -52,6 +53,7 @@ async function build() {
   await app.register(authRoutes);
   await app.register(lessonRoutes);
   await app.register(adminRoutes);
+  await app.register(moduleRoutes);
 
   return app;
 }
