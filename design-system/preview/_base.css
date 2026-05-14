@@ -1,0 +1,58 @@
+/* Preview card base — shared by every preview/*.html
+ * Cards render in the Design System tab at ~700×{height}.
+ * Keep them quiet: no titles or framing, just the specimen.
+ */
+@import url('../colors_and_type.css');
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--void);
+  color: var(--tp);
+  font-family: var(--sans);
+}
+
+.card-wrap {
+  padding: 28px 32px;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--tt);
+  text-transform: uppercase;
+}
+
+.swatch-row { display: flex; gap: 12px; flex-wrap: wrap; }
+
+.swatch {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 120px;
+}
+.swatch .chip {
+  height: 72px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+}
+.swatch .name {
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--tp);
+  font-weight: 500;
+}
+.swatch .hex {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--tt);
+}
+.swatch .role {
+  font-family: var(--sans);
+  font-size: 11px;
+  color: var(--tt);
+  line-height: 1.45;
+}

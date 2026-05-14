@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LuKaiAI — Screenshot Annotator</title>
+<link rel="stylesheet" href="../ui_kits/web/styles.css">
+<link rel="stylesheet" href="builder.css">
+<style>
+  /* Annotator-specific overrides on top of the builder chrome */
+  .ann-stage {
+    position: relative;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    user-select: none;
+  }
+  .ann-stage img {
+    display: block;
+    width: 100%;
+    pointer-events: none;
+  }
+  .ann-empty {
+    aspect-ratio: 16 / 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    color: var(--tt);
+    font-size: 14px;
+    text-align: center;
+    padding: 32px;
+  }
+  .ann-empty.drag-over { background: rgba(0,200,240,0.05); color: var(--cyan); }
+  .ann-empty-btn {
+    background: var(--cyan);
+    color: var(--void);
+    border: none;
+    padding: 10px 22px;
+    border-radius: 8px;
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .ann-pin {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    margin-left: -16px;
+    margin-top: -16px;
+    border-radius: 50%;
+    background: var(--cyan);
+    color: var(--void);
+    border: 3px solid var(--void);
+    box-shadow: 0 0 0 2px var(--cyan), 0 4px 12px rgba(0,200,240,0.5);
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    cursor: move;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+    user-select: none;
+    touch-action: none;
+  }
+  .ann-pin.selected { box-shadow: 0 0 0 3px var(--cyan), 0 0 0 6px rgba(0,200,240,0.3), 0 4px 14px rgba(0,200,240,0.7); }
+  .ann-pin-card {
+    margin-top: 14px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    padding: 14px;
+  }
+  .ann-pin-card.selected { border-color: rgba(0,200,240,0.4); box-shadow: 0 0 0 2px rgba(0,200,240,0.1); }
+  .ann-pin-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .ann-pin-num {
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: var(--cyan);
+    color: var(--void);
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .ann-pin-coord {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--tt);
+    margin-left: auto;
+  }
+  .ann-hint {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: rgba(6,7,10,0.7);
+    backdrop-filter: blur(6px);
+    color: var(--cyan);
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    border-radius: 6px;
+    z-index: 4;
+    pointer-events: none;
+  }
+  .ann-pane-meta {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px;
+    margin-bottom: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .ann-pins-list { display: flex; flex-direction: column; gap: 10px; }
+</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel" src="annotator.jsx"></script>
+</body>
+</html>

@@ -8,21 +8,30 @@
 ## Where We Are Right Now
 
 **Live and working:**
-- Landing page on Cloudflare Pages — lukaiai.pages.dev
-- Backend API on Render — lukaiai.onrender.com
+- Landing page at lukaiai.pages.dev — Cloudflare Pages
+- Backend API at lukaiai.onrender.com — Render
 - Postgres database on Render
-- Email collection via POST /subscribe — emails saved to Subscriber table
 - GitHub auto-deploys both frontend and backend on every push to main
-- Repository hygiene: .gitignore, package-lock.json, CLAUDE.md, CLAUDE-CHAT.md all in place
+- Repository hygiene: .gitignore, package-lock.json, CLAUDE.md, CLAUDE-CHAT.md, ROADMAP.md, design-system/ all in place
 - React frontend at apps/web/ (Vite + React + TypeScript + Tailwind)
-- Live site lukaiai.pages.dev now serves the React build
 - User accounts with email/password signup and login
-- Protected /learn route showing all six modules (Module 1 unlocked, 2-6 locked with 'Coming soon' state)
-- AuthContext managing session state across pages
-- Lesson rendering at /learn/module/:moduleId/lesson/:lessonId — markdown content, "Mark complete" button writing to UserProgress
-- GET /modules/:id/lessons and POST /lessons/:id/complete endpoints, both auth-protected
+- JWT auth with httpOnly cookies, AuthContext managing session state
+- Protected /learn route — fetches modules from GET /modules API, renders clickable cards for available modules (0 and 1) and "Coming soon" cards for Modules 2-6
+- Module 0 ("Before you start" — 3 lessons) and Module 1 ("Type your idea into Claude, get something back" — 5 lessons) seeded in production database with real content
+- URL contract: /learn/module/:moduleNumber/lesson/:lessonNumber — both params are integers, looked up via Module.number and Lesson.number (NOT cuid IDs)
+- Lesson rendering at /learn/module/:moduleNumber/lesson/:lessonNumber — markdown content, "Mark complete" button writing to UserProgress
+- Public GET /modules endpoint (module index — non-sensitive)
+- Auth-protected GET /modules/:moduleNumber/lessons (lesson content)
+- Auth-protected POST /lessons/:lessonId/complete (cuid-based, idempotent upsert)
+- Temporary token-gated POST /admin/seed endpoint (gated by ADMIN_SEED_TOKEN env var; to be removed in a cleanup PR after Modules 2-6 are written and seeded)
+- Email collection via POST /subscribe — emails saved to Subscriber table
+- Landing page (index.html at repo root) widened with the "anyone with the will to build" framing — Story section + Frustration section both updated
+- Design system imported at `design-system/` — canonical brand spec (README.md), Claude Skill manifest (SKILL.md), color/type tokens, JSX UI kit, 5 new interactive lesson widgets (QuickCheck, WorkflowSorter, PromptCompare, TryWithClaude, DecisionTree), lesson-builder authoring tool, screenshot annotator, and Module 0+1 already converted to the new block format with Modules 2-6 scaffolded from COURSE_OUTLINE.md
 
-**What this means:** the foundation is complete. The infrastructure works. The brand is established. Now we build the actual product.
+**Build/deploy quirks to know about:**
+- The Cloudflare Pages build command must append `&& cp ../../index.html dist/index.html` — without this, the production landing page at the repo root never reaches the dist/ output and Cloudflare serves the React SPA shell instead. This is currently set in the Cloudflare dashboard (not in code); future PR should move it into a postbuild script in apps/web/package.json.
+
+**What this means:** the foundation, the course shell, the first two modules, and the design system are all live. The product has a working entry point and the framework to scale. Phase 6 is the meaningful product expansion.
 
 ---
 
@@ -56,11 +65,27 @@ Final-state screen when all lessons across all modules are complete. Deferred un
 
 Note on copy-to-clipboard for code blocks: deferred. Will be added during Phase 5 if Module 1 lesson content makes the absence painful. The base markdown rendering ships first, content drives the polish.
 
-### Phase 5 — Module 1 content  ← NEXT
-Write and ship the actual content for the first module. This is curriculum work, not product build — must happen in a dedicated chat session per the Curriculum Extraction Project rules. Once lesson markdown exists, seed it to the database and click through the lessons end-to-end. Real content will surface what Phase 4b and 4c actually need to do.
+### ✅ DONE — Phase 5: Module 0 + Module 1 content shipped
+Module 0 ("Before you start", 3 lessons covering what the course is, signing up for Claude, and picking the Pro plan) and Module 1 ("Type your idea into Claude, get something back", 5 lessons) are written, seeded into Postgres via the admin/seed route, and live at /learn. Module 0 was added during Phase 5 to address the onboarding gap — learners landing on Module 1 had been assumed to already have Claude accounts on Pro.
 
-### Phase 6 — Modules 2-6
-Write and ship the rest. One module at a time.
+### Phase 5b — Housekeeping (small, in any order before Phase 6 starts in earnest)
+- Move the `cp ../../index.html dist/index.html` Cloudflare build step into a postbuild script in apps/web/package.json (so the deploy fix is in code, not dashboard config)
+- Remove the temporary /admin/seed admin route (no longer needed after Modules 2-6 are seeded via the next migration)
+- Add Module 0 to curriculum/COURSE_OUTLINE.md (currently missing — outline still shows 6 modules instead of 7)
+- Add a "Next lesson →" button to Lesson.tsx for intra-module navigation (currently learners type URLs by hand)
+- Make the Module 0 and Module 1 cards on /learn use richer titles/descriptions pulled from the design system
+
+### Phase 6 — Interactive lesson content + Modules 2-6
+The design system unlocks a block-based content model: each lesson is a JSON array of blocks (prose, QuickCheck, WorkflowSorter, PromptCompare, TryWithClaude, DecisionTree). This is the right next product investment because interactivity inside lessons isn't a polish item — it's pedagogy. People learn better when they answer something before reading the answer.
+
+**Phase 6 sequence (in order — each step ships before the next begins):**
+
+1. **Schema migration.** Add a `content_blocks Json?` column to the Lesson model. Additive, non-destructive. Existing markdown content stays in the `content String` field and continues to render. This is the safest possible migration.
+2. **Frontend block renderer.** In apps/web/src/pages/Lesson.tsx, add a `<BlockRenderer>` component that dispatches on `block.type`. When `lesson.content_blocks` is present, render the blocks; otherwise fall back to the existing markdown renderer. Both code paths coexist during the transition.
+3. **Port Module 0 + Module 1 to block format.** The design system already contains drafted block versions of these lessons at design-system/ui_kits/web/lessons.jsx. Convert them into seed data and write them to the database. The /admin/seed route handles this.
+4. **Adopt interactive widgets one at a time.** Start with QuickCheck — it's the simplest widget and the one that lands the most pedagogical value. Wire it up, ship it, walk Module 0 as a learner, validate the experience before adopting the next widget. Repeat for WorkflowSorter, PromptCompare, DecisionTree in whichever order makes sense given lesson needs.
+5. **TryWithClaude integration — last, with security-critical handling.** This widget calls the live Anthropic API to give learners real-time critique of their work. The API key must NEVER live in the frontend. The architecture must be: frontend hits a backend route (POST /lessons/critique or similar) → backend holds the key as an env var → backend proxies the call to api.anthropic.com → response streams back to frontend. Rate limiting at the backend level, cost monitoring before opening to wider audience.
+6. **Modules 2-6 lesson content writing.** Scaffolds exist in the design system from COURSE_OUTLINE.md. Each module is its own curriculum-writing session in Chat — drafted in block format, then seeded. One module at a time, walked end-to-end as a learner before the next is started.
 
 ---
 

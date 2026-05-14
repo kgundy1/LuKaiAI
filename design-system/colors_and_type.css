@@ -1,0 +1,227 @@
+/* LuKaiAI Design System — Colors & Type
+ * Source of truth for color tokens, semantic vars, and typography.
+ * Imported by every card, UI kit, and slide in this design system.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital,wght@0,400;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@400;500&display=swap');
+
+:root {
+  /* ── Backgrounds (darkest → lightest) ── */
+  --void:    #06070a; /* page background, deep negative space */
+  --deep:    #090b10; /* alternate page panel */
+  --surface: #0e1118; /* section bands, story strip */
+  --card:    #131620; /* primary card surface */
+  --card2:   #181c28; /* nested card, hover state */
+
+  /* ── Borders & dividers (low-alpha whites layered over void) ── */
+  --border:  rgba(255,255,255,0.07); /* default — barely-there hairlines */
+  --border2: rgba(255,255,255,0.12); /* prominent — card edges */
+  --border3: rgba(255,255,255,0.18); /* strongest — focused inputs */
+
+  /* ── Text: primary → dim ── */
+  --tp: #e8eaf2; /* primary headings & key text */
+  --ts: #b0b8d0; /* secondary body copy */
+  --tt: #7a8299; /* tertiary — labels, captions */
+  --td: #444c65; /* disabled, placeholders, copy */
+
+  /* ── Brand accents ── */
+  --cyan:   #00c8f0; /* primary action / "AI" superscript / live-dot */
+  --cyan-s: rgba(0,200,240,0.10); /* cyan soft fill */
+  --cyan-g: rgba(0,200,240,0.20); /* cyan glow */
+  --violet: #8b5cf6; /* gradient partner with cyan */
+  --violet-s: rgba(139,92,246,0.10);
+  --gold:   #c9a84c; /* "Lu" wordmark; sentimental/founder accent */
+  --gold-s: rgba(201,168,76,0.12);
+
+  /* ── Semantic ── */
+  --green:   #34d399; /* success, "actual cost" affirmations */
+  --green-s: rgba(52,211,153,0.10);
+  --red:     #f87171; /* the cost of traditional, friction states */
+  --red-s:   rgba(248,113,113,0.04);
+
+  /* ── Type families ── */
+  --serif: 'Instrument Serif', Georgia, serif;        /* display headlines, story tone */
+  --sans:  'DM Sans', system-ui, -apple-system, sans-serif; /* UI + body */
+  --mono:  'DM Mono', ui-monospace, monospace;        /* eyebrows, numbers, AI superscript */
+
+  /* ── Type scale (clamp for fluid display) ── */
+  --t-hero:    clamp(52px, 6.5vw, 80px);
+  --t-display: clamp(40px, 5.5vw, 66px);
+  --t-h1:      clamp(36px, 4.5vw, 56px);
+  --t-h2:      32px;
+  --t-h3:      24px;
+  --t-body-lg: 18px;
+  --t-body:    16px;
+  --t-body-sm: 14px;
+  --t-caption: 13px;
+  --t-eyebrow: 10px;
+
+  /* ── Radii ── */
+  --r-sm:  4px;   /* tags, chips */
+  --r-md:  7px;   /* small buttons */
+  --r-lg:  9px;   /* primary CTA */
+  --r-xl:  11px;  /* inputs, email form */
+  --r-2xl: 14px;  /* frustration cards */
+  --r-3xl: 18px;  /* receipt / hero cards */
+  --r-pill: 100px;
+
+  /* ── Spacing ── */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 20px;
+  --s-6: 24px;
+  --s-8: 32px;
+  --s-10: 40px;
+  --s-12: 48px;
+  --s-16: 64px;
+  --s-20: 80px;
+  --s-24: 96px;
+  --s-30: 120px;
+
+  /* ── Shadow / glow system ── */
+  --glow-cyan:   0 0 18px var(--cyan-g);
+  --glow-cyan-lg: 0 10px 32px rgba(0,200,240,0.28);
+  --shadow-card:  0 1px 0 rgba(255,255,255,0.03) inset;
+
+  /* ── Motion ── */
+  --ease:     ease;
+  --d-fast:   0.2s;
+  --d-mid:    0.6s;
+  --d-slow:   0.8s;
+}
+
+/* ── Base ──────────────────────────────────────────────────────── */
+
+* , *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  background: var(--void);
+  color: var(--tp);
+  font-size: var(--t-body);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+}
+
+/* ── Semantic type styles ──────────────────────────────────────── */
+/* Use the .lk- classes directly OR copy the rules onto your own elements. */
+
+.lk-hero,
+h1.lk-display {
+  font-family: var(--serif);
+  font-size: var(--t-hero);
+  font-weight: 400;
+  line-height: 1.0;
+  letter-spacing: -0.025em;
+  color: var(--tp);
+}
+
+.lk-display {
+  font-family: var(--serif);
+  font-size: var(--t-display);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+}
+
+.lk-h1 {
+  font-family: var(--serif);
+  font-size: var(--t-h1);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+}
+
+.lk-h2 {
+  font-family: var(--serif);
+  font-size: var(--t-h2);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.lk-h3 {
+  font-family: var(--serif);
+  font-size: var(--t-h3);
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.lk-body-lg {
+  font-family: var(--sans);
+  font-size: var(--t-body-lg);
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--ts);
+}
+
+.lk-body {
+  font-family: var(--sans);
+  font-size: var(--t-body);
+  font-weight: 400;
+  line-height: 1.65;
+  color: var(--ts);
+}
+
+.lk-caption {
+  font-family: var(--sans);
+  font-size: var(--t-caption);
+  color: var(--tt);
+}
+
+.lk-mono {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--ts);
+}
+
+/* The signature "eyebrow" — uppercase mono with a short cyan rule */
+.lk-eyebrow {
+  font-family: var(--mono);
+  font-size: var(--t-eyebrow);
+  letter-spacing: 0.15em;
+  color: var(--cyan);
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.lk-eyebrow::before {
+  content: '';
+  width: 18px;
+  height: 1px;
+  background: var(--cyan);
+  flex-shrink: 0;
+}
+
+/* Gradient text used in headlines — italic cyan→violet */
+.lk-grad {
+  background: linear-gradient(135deg, var(--cyan) 20%, var(--violet) 80%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* The wordmark — used everywhere */
+.lk-wordmark {
+  font-family: var(--serif);
+  font-size: 22px;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+}
+.lk-wordmark .lu { color: var(--gold); }
+.lk-wordmark .kai { color: var(--tp); }
+.lk-wordmark .ai {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--cyan);
+  letter-spacing: 0.05em;
+  margin-left: 2px;
+  vertical-align: super;
+}
