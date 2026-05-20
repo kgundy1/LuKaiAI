@@ -232,7 +232,6 @@ echo "  in this repo overrides the dangerous defaults."
 echo ""
 
 step "1/4  Installing skill: github (steipete v1.0.0)"
-# TODO: verify `openclaw skills install` exists in official docs before running
 openclaw skills install github
 ok "github skill installed"
 
@@ -241,18 +240,15 @@ echo "       NOTE: ClawScan will flag two HIGH findings on this skill:"
 echo "         - Auto-merge after CI passes"
 echo "         - Unbounded write privileges"
 echo "       Both are overridden by openclaw/AGENTS.md approval gates."
-# TODO: verify `openclaw skills install` exists in official docs before running
 openclaw skills install github-iteration-workflow
 ok "github-iteration-workflow skill installed"
 
 step "3/4  Installing skill: self-improving-agent (pskoett v3.0.21)"
-# TODO: verify `openclaw skills install` exists in official docs before running
 openclaw skills install self-improving-agent
 ok "self-improving-agent skill installed"
 
 step "4/4  Installing plugin: @chris-openclaw/github-workflow (v0.2.0)"
-# TODO: verify `openclaw plugins install` exists in official docs before running
-openclaw plugins install @chris-openclaw/github-workflow
+openclaw plugins install clawhub:@chris-openclaw/github-workflow
 ok "@chris-openclaw/github-workflow plugin installed"
 
 echo ""
@@ -420,7 +416,6 @@ read -rp "  Press Enter once Telegram is configured..."
 banner "Phase 10 — Final Check"
 
 step "Restarting OpenClaw gateway..."
-# TODO: verify `openclaw gateway restart` exists in official docs before running
 openclaw gateway restart || warn "Gateway restart returned non-zero — check output above"
 
 echo ""
