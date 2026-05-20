@@ -1,7 +1,3 @@
-# AGENTS.md — LuKaiAI Agent Workflow Rules
-
----
-
 ## Approval Gates — Override iteration-workflow defaults
 
 The github-iteration-workflow skill, by default, will:
