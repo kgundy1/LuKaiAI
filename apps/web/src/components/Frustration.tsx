@@ -4,14 +4,16 @@ export default function Frustration() {
       <div className="max-w-[1060px] mx-auto">
         {/* Header */}
         <div className="reveal max-w-[640px] mb-16">
-          <div className="eyebrow">Why most people fail</div>
+          <div className="eyebrow">Why most ideas stay ideas</div>
           <h2 className="font-serif text-[clamp(36px,4.5vw,56px)] font-normal tracking-[-0.025em] leading-[1.08] mb-5">
-            You've probably<br />been here before.
+            It's never been about the credentials.
           </h2>
           <p className="text-[17px] text-lk-text-secondary leading-[1.8] font-light max-w-[580px]">
-            These aren't failures of effort. They're failures of workflow. There's a reason things
-            keep breaking — and once you see it,{' '}
-            <strong className="text-lk-text-primary font-semibold">everything changes.</strong>
+            I built this site with no degree, no coding background, and a Claude subscription.{' '}
+            <strong className="text-lk-text-primary font-semibold">You're looking at the proof.</strong>{' '}
+            Whatever your idea is — at work, at home, half-formed — the workflow doesn't care about
+            your résumé. It cares whether you stay with it.{' '}
+            <strong className="text-lk-text-primary font-semibold">These are the walls people hit when they try to build alone. None of them are about being qualified.</strong>
           </p>
         </div>
 
