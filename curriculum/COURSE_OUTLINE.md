@@ -1,14 +1,26 @@
 # LuKaiAI Course Outline
 
-The structural contract for the LuKaiAI course. Six modules, thirty lessons, six concrete deliverables. This file is the source of truth for what the course teaches and in what order. Per-module lesson content gets drafted in dedicated content sessions and lives in `curriculum/module-N-lessons.md`.
+The structural contract for the LuKaiAI course. Seven modules (Module 0 onboarding plus Modules 1-6), thirty-three lessons, six concrete deliverables. This file is the source of truth for what the course teaches and in what order. Per-module lesson content gets drafted in dedicated content sessions and lives in `curriculum/module-N-lessons.md`.
 
 This file does not contain lesson content. It contains module names, lesson titles, lesson purposes, and deliverables. The actual lessons are written separately.
 
 ## The Arc
 
-Module 1 produces a prototype. Module 2 puts it in a real codebase. Module 3 establishes the method. Module 4 makes it live. Module 5 makes it real. Module 6 makes it sustainable. By the end, the learner has a deployed working app of their own design and the discipline to keep building on it forever.
+Module 0 gets the learner onto Claude Pro with the right tools open. Module 1 produces a prototype. Module 2 puts it in a real codebase. Module 3 establishes the method. Module 4 makes it live. Module 5 makes it real. Module 6 makes it sustainable. By the end, the learner has a deployed working app of their own design and the discipline to keep building on it forever.
 
 Each module ends with a concrete deliverable the learner has produced themselves. If they don't have the deliverable, they don't move on. Module unlock is enforced by the LuKaiAI product itself — UserProgress tracks lesson completion, and a module unlocks only when all prior modules are complete.
+
+---
+
+## Module 0 — Before you start
+
+**Deliverable:** A working Claude account on the Pro plan, with Claude Design open in their browser, ready to start Module 1.
+
+1. **What this course is and what you'll have at the end.** A short framing of the course — what gets built, what skills carry forward, what the deliverable at the end of Module 6 actually looks like. Sets the expectation that you'll have something real at the end, not a tutorial project.
+
+2. **Make a Claude account.** Go to claude.ai, sign up, verify email, sign in. If they already have an account, use it — don't create a second one. Account fragmentation creates problems later.
+
+3. **Pick the Pro plan.** The course is built around Claude Pro features (Claude Design, longer context, file uploads at the scale the course assumes). Honest note included for learners for whom $20/month isn't the right call right now — the techniques carry to other tools, but the walkthroughs assume Pro.
 
 ---
 
