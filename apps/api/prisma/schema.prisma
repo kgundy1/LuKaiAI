@@ -34,15 +34,16 @@ model Module {
 }
 
 model Lesson {
-  id          String   @id @default(cuid())
-  moduleId    String
-  number      Int
-  title       String
-  content     String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  module      Module         @relation(fields: [moduleId], references: [id], onDelete: Cascade)
-  progress    UserProgress[]
+  id             String   @id @default(cuid())
+  moduleId       String
+  number         Int
+  title          String
+  content        String
+  content_blocks Json?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  module         Module         @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+  progress       UserProgress[]
 
   @@unique([moduleId, number])
 }
