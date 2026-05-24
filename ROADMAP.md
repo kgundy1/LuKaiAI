@@ -69,7 +69,7 @@ Note on copy-to-clipboard for code blocks: deferred. Will be added during Phase 
 Module 0 ("Before you start", 3 lessons covering what the course is, signing up for Claude, and picking the Pro plan) and Module 1 ("Type your idea into Claude, get something back", 5 lessons) are written, seeded into Postgres via the admin/seed route, and live at /learn. Module 0 was added during Phase 5 to address the onboarding gap — learners landing on Module 1 had been assumed to already have Claude accounts on Pro.
 
 ### Phase 5b — Housekeeping (small, in any order before Phase 6 starts in earnest)
-- Move the `cp ../../index.html dist/index.html` Cloudflare build step into a postbuild script in apps/web/package.json (so the deploy fix is in code, not dashboard config)
+- Done: the `cp ../../index.html dist/index.html` step was removed entirely (no postbuild script needed) once the React Landing.tsx replaced the legacy index.html. See the "Build/deploy quirks" section above for full context.
 - Remove the temporary /admin/seed admin route (no longer needed after Modules 2-6 are seeded via the next migration)
 - Add Module 0 to curriculum/COURSE_OUTLINE.md (currently missing — outline still shows 6 modules instead of 7)
 - Add a "Next lesson →" button to Lesson.tsx for intra-module navigation (currently learners type URLs by hand)
