@@ -29,7 +29,7 @@
 - Design system imported at `design-system/` — canonical brand spec (README.md), Claude Skill manifest (SKILL.md), color/type tokens, JSX UI kit, 5 new interactive lesson widgets (QuickCheck, WorkflowSorter, PromptCompare, TryWithClaude, DecisionTree), lesson-builder authoring tool, screenshot annotator, and Module 0+1 already converted to the new block format with Modules 2-6 scaffolded from COURSE_OUTLINE.md
 
 **Build/deploy quirks to know about:**
-- The Cloudflare Pages build command must append `&& cp ../../index.html dist/index.html` — without this, the production landing page at the repo root never reaches the dist/ output and Cloudflare serves the React SPA shell instead. This is currently set in the Cloudflare dashboard (not in code); future PR should move it into a postbuild script in apps/web/package.json.
+- Resolved: an earlier `cp ../../index.html dist/index.html` postbuild step (originally documented as required) was removed once the React app's `Landing.tsx` replaced the legacy `index.html`. The workaround had silently broken client-side routes (`/login`, `/signup`, `/learn`) by overwriting the React SPA's `index.html`. The Cloudflare SPA fallback is now handled cleanly by `apps/web/public/_redirects` with the rule `/* /index.html 200`. Future workaround notes in this file should be re-verified whenever underlying code changes; this one stayed stale for an unknown period after it became unnecessary.
 
 **What this means:** the foundation, the course shell, the first two modules, and the design system are all live. The product has a working entry point and the framework to scale. Phase 6 is the meaningful product expansion.
 
@@ -69,7 +69,7 @@ Note on copy-to-clipboard for code blocks: deferred. Will be added during Phase 
 Module 0 ("Before you start", 3 lessons covering what the course is, signing up for Claude, and picking the Pro plan) and Module 1 ("Type your idea into Claude, get something back", 5 lessons) are written, seeded into Postgres via the admin/seed route, and live at /learn. Module 0 was added during Phase 5 to address the onboarding gap — learners landing on Module 1 had been assumed to already have Claude accounts on Pro.
 
 ### Phase 5b — Housekeeping (small, in any order before Phase 6 starts in earnest)
-- Move the `cp ../../index.html dist/index.html` Cloudflare build step into a postbuild script in apps/web/package.json (so the deploy fix is in code, not dashboard config)
+- Done: the `cp ../../index.html dist/index.html` step was removed entirely (no postbuild script needed) once the React Landing.tsx replaced the legacy index.html. See the "Build/deploy quirks" section above for full context.
 - Remove the temporary /admin/seed admin route (no longer needed after Modules 2-6 are seeded via the next migration)
 - Add Module 0 to curriculum/COURSE_OUTLINE.md (currently missing — outline still shows 6 modules instead of 7)
 - Add a "Next lesson →" button to Lesson.tsx for intra-module navigation (currently learners type URLs by hand)
