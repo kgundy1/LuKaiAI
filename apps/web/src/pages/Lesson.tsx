@@ -2,12 +2,14 @@ import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import { fetchModuleLessons, markLessonComplete } from '../lib/api';
+import BlockRenderer from '../components/lesson/BlockRenderer';
 
 type Lesson = {
   id: string;
   number: number;
   title: string;
   content: string;
+  content_blocks: any[] | null;
   completed: boolean;
 };
 
@@ -75,9 +77,13 @@ export default function Lesson() {
         <div className="mt-6 mb-2 text-lk-text-tertiary text-sm">Module {module.number} · {module.title}</div>
         <h1 className="text-3xl font-bold text-lk-text-primary mb-8">Lesson {lesson.number}: {lesson.title}</h1>
 
-        <article className="prose prose-invert max-w-none">
-          <ReactMarkdown>{lesson.content}</ReactMarkdown>
-        </article>
+        {lesson.content_blocks && lesson.content_blocks.length > 0 ? (
+          <BlockRenderer blocks={lesson.content_blocks} />
+        ) : (
+          <article className="prose prose-invert max-w-none">
+            <ReactMarkdown>{lesson.content}</ReactMarkdown>
+          </article>
+        )}
 
         <div className="mt-12 pt-8 border-t border-white/10 flex flex-wrap items-center gap-4">
           {lesson.completed ? (
