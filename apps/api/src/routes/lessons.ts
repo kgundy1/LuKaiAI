@@ -17,7 +17,7 @@ export default async function lessonRoutes(app: FastifyInstance) {
       include: {
         lessons: {
           orderBy: { number: 'asc' },
-          select: { id: true, number: true, title: true, content: true }
+          select: { id: true, number: true, title: true, content: true, content_blocks: true }
         }
       }
     });
