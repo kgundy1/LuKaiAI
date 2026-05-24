@@ -330,6 +330,7 @@ The Cloudflare project is configured to build apps/web/ (the React app) and publ
 - **Cloudflare Pages** for frontend — already connected.
 - **GitHub** as the single source of truth — both Cloudflare and Render auto-deploy from main.
 - This is the exact same infrastructure stack as the founder's prior production build.
+- Production routing: the React SPA at apps/web/ is served via Cloudflare Pages with SPA fallback configured in apps/web/public/_redirects (`/* /index.html 200`). The repo-root index.html is legacy and is no longer copied into the build output. All client-side routes (/login, /signup, /learn) work via React Router.
 
 ---
 
