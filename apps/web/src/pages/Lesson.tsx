@@ -21,6 +21,7 @@ type Module = {
 export default function Lesson() {
   const { moduleNumber, lessonNumber } = useParams<{ moduleNumber: string; lessonNumber: string }>();
   const [module, setModule] = useState<Module | null>(null);
+  const [lessons, setLessons] = useState<Lesson[]>([]);
   const [lesson, setLesson] = useState<Lesson | null>(null);
   const [loading, setLoading] = useState(true);
   const [marking, setMarking] = useState(false);
@@ -36,6 +37,7 @@ export default function Lesson() {
         return;
       }
       setModule(data.module);
+      setLessons(data.lessons);
       const found = data.lessons.find((l: Lesson) => l.number === Number(lessonNumber));
       if (!found) {
         setError('Lesson not found');
@@ -63,6 +65,9 @@ export default function Lesson() {
   if (error) return <div className="p-8 text-lk-red">{error}</div>;
   if (!module || !lesson) return null;
 
+  const nextLesson = lessons.find(l => l.number === lesson.number + 1) ?? null;
+  const isLastLesson = !nextLesson;
+
   return (
     <div className="min-h-screen bg-void">
       <div className="max-w-3xl mx-auto px-6 py-12">
@@ -74,7 +79,7 @@ export default function Lesson() {
           <ReactMarkdown>{lesson.content}</ReactMarkdown>
         </article>
 
-        <div className="mt-12 pt-8 border-t border-white/10">
+        <div className="mt-12 pt-8 border-t border-white/10 flex flex-wrap items-center gap-4">
           {lesson.completed ? (
             <div className="text-lk-green font-medium">✓ Lesson complete</div>
           ) : (
@@ -85,6 +90,22 @@ export default function Lesson() {
             >
               {marking ? 'Marking...' : 'Mark lesson complete'}
             </button>
+          )}
+          {nextLesson && (
+            <Link
+              to={`/learn/module/${module.number}/lesson/${nextLesson.number}`}
+              className="px-6 py-3 border border-white/20 hover:border-white/40 text-lk-text-secondary hover:text-lk-text-primary font-medium rounded-lg"
+            >
+              Next lesson →
+            </Link>
+          )}
+          {isLastLesson && lesson.completed && (
+            <Link
+              to="/learn"
+              className="px-6 py-3 border border-white/20 hover:border-white/40 text-lk-text-secondary hover:text-lk-text-primary font-medium rounded-lg"
+            >
+              Back to modules →
+            </Link>
           )}
         </div>
       </div>
