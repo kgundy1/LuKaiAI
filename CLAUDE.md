@@ -25,6 +25,14 @@ A person who built something real and is showing others how.
 
 ---
 
+## Working Notes — Recent Lessons
+
+**Roadmap workaround notes go stale and need re-verification.** A `cp ../../index.html dist/index.html` postbuild step was documented in ROADMAP.md as a required Cloudflare workaround. Long after the React `Landing.tsx` made the legacy `index.html` unnecessary, the workaround was still in the Cloudflare build command — and the roadmap note still said it was required. The leftover copy silently overwrote the React SPA's `index.html` in production, which broke `/login`, `/signup`, and `/learn`. It only got caught when Kevin tried to log in.
+
+Rule going forward: workaround notes in ROADMAP.md are not write-once. When the underlying need disappears, update the note in the same PR that removes the workaround. The original PR that committed the note should reference it in the commit message so future-you can find it when the workaround is no longer needed.
+
+---
+
 ## Current Status
 
 | Layer | Status | URL / Location |
@@ -45,7 +53,10 @@ A person who built something real and is showing others how.
 | Lesson route (/learn/module/:moduleId/lesson/:lessonId) | ✅ LIVE | apps/web/src/pages/Lesson.tsx — protected route, markdown rendering |
 | GET /modules/:id/lessons endpoint | ✅ LIVE | Returns module + lessons + per-user completion state |
 | POST /lessons/:id/complete endpoint | ✅ LIVE | Writes to UserProgress, idempotent upsert |
-| Markdown rendering (react-markdown + @tailwindcss/typography) | ✅ LIVE | apps/web/ — prose prose-invert styling |
+| Markdown rendering (react-markdown + @tailwindcss/typography) | ✅ LIVE | apps/web/ — prose prose-invert styling (fallback path when content_blocks is null) |
+| Interactive lesson blocks (BlockRenderer + 5 widgets) | ✅ LIVE | apps/web/src/components/lesson/ — QuickCheck, WorkflowSorter, PromptCompare, TryWithClaude, DecisionTree |
+| Content blocks in DB (Modules 0 + 1) | ✅ LIVE | 8 lessons populated via POST /admin/seed-blocks |
+| Admin block seed route | ✅ LIVE | POST /admin/seed-blocks, token-gated by ADMIN_SEED_TOKEN |
 | Curriculum outline (curriculum/COURSE_OUTLINE.md) | ✅ LOCKED | Six modules, thirty lessons, six deliverables — source of truth for course content |
 | AuthContext + ProtectedRoute | ✅ LIVE | apps/web/src/lib/AuthContext.tsx |
 | Cloudflare _redirects for SPA | ✅ LIVE | apps/web/public/_redirects |
