@@ -1,4 +1,4 @@
-export const API_BASE = 'https://lukaiai.onrender.com';
+export const API_BASE = (import.meta.env.VITE_API_BASE as string | undefined) || 'https://lukaiai.onrender.com';
 
 export async function subscribe(email: string) {
   const res = await fetch(API_BASE + '/subscribe', {
