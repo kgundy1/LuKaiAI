@@ -369,8 +369,9 @@ const BLOCK_ENTRIES: BlockEntry[] = [
         type: 'screenshot',
         payload: {
           slotId: "gh-signup",
-          placeholder: "Drop a screenshot of GitHub.com/signup here",
-          caption: "GitHub sign-up page — github.com/signup. Drag a screenshot of the page you see when you click \"Sign up\" so learners can confirm they're in the right place.",
+          src: "/images/lessons/gh-signup.png",
+          alt: "GitHub signup page at github.com/signup, with email, password, username, and country fields visible on the right side of the screen.",
+          caption: "GitHub signup page at github.com/signup. The form on the right is where you create your account.",
         },
       },
       {
