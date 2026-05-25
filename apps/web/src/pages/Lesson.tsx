@@ -78,7 +78,7 @@ export default function Lesson() {
         <h1 className="text-3xl font-bold text-lk-text-primary mb-8">Lesson {lesson.number}: {lesson.title}</h1>
 
         {lesson.content_blocks && lesson.content_blocks.length > 0 ? (
-          <BlockRenderer blocks={lesson.content_blocks} />
+          <BlockRenderer blocks={lesson.content_blocks} lessonId={lesson.id} />
         ) : (
           <article className="prose prose-invert max-w-none">
             <ReactMarkdown>{lesson.content}</ReactMarkdown>
