@@ -582,6 +582,170 @@ const BLOCK_ENTRIES: BlockEntry[] = [
       },
     ],
   },
+  {
+    moduleNumber: 3,
+    lessonNumber: 1,
+    blocks: [
+      {
+        type: 'markdown',
+        payload: {
+          md: "## What 'too long' looks like\n\nYou have one Claude Code session open. You ask it to add a feature. It works. You ask it to fix something. It works. You ask it to refactor a section. It mostly works, but it touched two other files. You ask it to undo just *part* of what it did — and it makes things worse.\n\n**This is what 'too long' looks like.** Not a clock. Not a token count. The session piled up requests until each new change is touching the old ones in ways neither of you can predict.",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "## Why this happens\n\nClaude Code is reading the *whole conversation* every time it acts. Every prompt you've sent. Every file it's read. Every error it's seen. The longer a session goes, the more it has to keep track of — and the more chances there are for it to confuse what you asked five minutes ago with what you asked just now.\n\nThe surface symptom: scope creep. Things change that you didn't ask to change. **The real cause: too much state in one place.** The model is doing its best to honor everything you've said and the everything is now too big.",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "## The mechanical fix\n\nOne task per session. Then close it.\n\nThat's the whole rule. *One thing.* When you finish, close the session and start a fresh one for the next thing. The new session is empty — no memory of what you just did, which means no chance of accidentally undoing it. **Short sessions ship cleanly. Long sessions tangle.**\n\nThis feels wasteful the first few times. It isn't. The cost of restarting is five seconds; the cost of unsnarling a tangled session is an hour.",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "## What 'one task' actually means\n\nA task is: *one thing you could describe in a single sentence and verify in under a minute.*\n\n- *\"Add a search bar to the header\"* — one task.\n- *\"Add a search bar, fix the date format, and refactor the user model\"* — three tasks. Three sessions.\n- *\"Make the login work\"* — too vague to be one task. Break it down first in Chat.\n\nIf you can't write it in one sentence, you're not ready to hand it to Code. Lesson 2 is about why that matters.",
+        },
+      },
+    ],
+  },
+  {
+    moduleNumber: 3,
+    lessonNumber: 2,
+    blocks: [
+      {
+        type: 'markdown',
+        payload: {
+          md: "## Two tools, two jobs\n\nYou have two tools open right now: Claude Chat in your browser, Claude Code on your desktop. They share the same brain — same model, same training — but they do different jobs in the workflow.\n\n**Chat is your project manager.** It plans, it discusses, it writes the prompts. It doesn't touch your code. Its job is to think.\n\n**Code is your builder.** It executes the prompts Chat wrote. It edits files, runs commands, pushes commits. Its job is to type.",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "## Why splitting them works\n\nIn one shot, the same Claude can plan and build. You've probably done that in Claude Code already — typed a vague request and watched it figure things out. It works for tiny tasks.\n\nFor anything bigger, it stops working. Chat's planning brain and Code's execution brain are doing different jobs that benefit from different conditions. **Planning wants room to wander.** Execution wants tight scope. Trying to do both in one session is what causes the tangling you read about in Lesson 1.\n\nThe split is what fixes it. **Plan in Chat with no pressure to ship. Execute in Code with no pressure to think.**",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "## How a session looks\n\nA typical loop, end to end:\n\n1. **Open Claude Chat.** Describe what you want to add or fix. Have a conversation. Let Chat ask clarifying questions. End with a *prompt* — three or four sentences telling Code exactly what to do.\n2. **Open Claude Code.** Paste the prompt. Watch Code execute. **When Code finishes, copy whatever it reports back** — the diff, the test output, any errors, the final summary.\n3. **Bring Code's output back to Chat.** Paste what Code told you. Ask *\"did this work?\"* or *\"what's next?\"* Chat reviews what happened, catches any mistakes Code made, and writes the next prompt.\n4. **Repeat.**\n\nThat's it. Chat → prompt → Code → output → back to Chat → next prompt. **You'll do this ten times today, a thousand times this year.** The carrying back and forth is the discipline. Get the loop in your bones now.",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "## What you don't do\n\nYou don't paste raw thoughts into Code. You don't \"just try things\" in Code. You don't let Code make architectural decisions.\n\nIf you find yourself in Code asking *\"how should I do X?\"* — stop. **That's a Chat question.** Close the Code session, take the question to Chat, work it out there, come back to Code with a precise prompt.\n\nThe discipline is staying on this loop even when it's tempting to skip ahead.",
+        },
+      },
+    ],
+  },
+  {
+    moduleNumber: 3,
+    lessonNumber: 3,
+    blocks: [
+      {
+        type: 'markdown',
+        payload: {
+          md: "## The handoff\n\nClaude Chat and Claude Code don't talk to each other. They can't see each other's conversations. **The connection between them is you** — copying a prompt from one window, pasting it into the other, then carrying the result back.\n\nThis sounds inefficient. It's the opposite. **It's the safety mechanism.** Bad prompts get caught at the bridge. Bad output gets caught coming back. Every time you carry something across, you read it. Reading is the review.",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "## What you're actually doing\n\nWhen a Chat session ends with a polished prompt, you read it before you paste it into Code. *Does this say what I want? Is the scope tight? Does it mention which file? Does it say what not to touch?* **Five seconds of reading saves an hour of debugging.**\n\nWhen Code finishes a change, you read the diff before approving it. *Did it only touch the file I asked about? Are there unexpected changes? Does the actual code look like what I asked for?* Reading is the entire discipline.\n\nThe model is doing the work. You're the editor.",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "## Build the habit early\n\nThe first ten times you carry a prompt across, you'll feel like you're slowing yourself down. **You're not.** You're building the habit that keeps you out of the mess Lesson 1 described.\n\nAfter twenty times, the carry becomes automatic. You stop thinking about it. The reading-on-the-way happens in your head without effort, and your sessions ship cleanly without you noticing why.",
+        },
+      },
+    ],
+  },
+  {
+    moduleNumber: 3,
+    lessonNumber: 4,
+    blocks: [
+      {
+        type: 'markdown',
+        payload: {
+          md: "## Capture is the skill\n\nThis is the most important sentence in the whole course: **capture is the skill, not understanding.**\n\nWhen Claude Code shows you an error, you don't need to know what it means. You need to *capture* it — screenshot it, copy-paste it, save the log — and bring it to Chat. Chat reads it and tells you what to do.\n\nWhen Cloudflare's deploy fails, same thing. When Render's database won't connect, same thing. **You don't have to understand any of it.** You have to capture what's there.",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "## What 'capture' includes\n\n- **Error messages** — screenshot the full window, even the parts you don't think matter.\n- **Build logs** — when a deploy fails, the logs are scrollable; screenshot the section that shows red text or the word *error*.\n- **Console output** — in your browser, right-click → Inspect → Console tab. Screenshot whatever's there.\n- **The page itself** — if something *looks* wrong, screenshot the page. Claude can see it.\n- **Configuration screens** — dashboards, settings pages, the thing you're confused about. Screenshot it.\n\nThe format doesn't matter. PNG is fine. Screenshots get pasted directly into Chat by dragging or hitting paste. **Claude can read them.**",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "## The screenshot habit at scale\n\nEvery dashboard you'll touch in the rest of this course — GitHub, Render, Cloudflare — has settings pages you don't fully understand. The fastest path is always the same: **screenshot, paste into Chat, ask.** Don't read the docs. Don't Google the option names. Show Chat what you're looking at and ask *\"is this set up right?\"*\n\nThe time you save with this habit, over the course of building one real project, is measured in days. It's that big.",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "## Practice now\n\nFlip to any tab in your browser. Take a screenshot of it. Drag the screenshot into Claude Chat. Type: *\"what is this page for?\"* Send.\n\nWhatever Chat says, you've just done the most-used move in the rest of the workflow. **Build the muscle now and it's there when you need it later.**",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "## The rule that ends every stuck moment\n\nMemorize this and the rest of the work is downhill from here:\n\n> **You do not have to understand errors. You do not have to guess. You just have to capture.**\n\nScreenshot. Paste into Chat. Ask. Every time. **I have not hit an obstacle in this entire workflow that this loop did not solve.** Neither will you.",
+        },
+      },
+    ],
+  },
+  {
+    moduleNumber: 3,
+    lessonNumber: 5,
+    blocks: [
+      {
+        type: 'markdown',
+        payload: {
+          md: "## What CLAUDE.md is\n\nA single markdown file. Named exactly `CLAUDE.md` — capital letters, no spaces, dot-md extension. Sitting at the top level of your repository, right next to `package.json`.\n\nEvery time Claude Code opens your project, it reads this file first — before anything else. **It's how Code remembers your project across sessions.**\n\nWithout it, every new session starts from zero. You spend the first ten minutes re-explaining what the project is, what's built, what the rules are. With it, those ten minutes never happen.",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "## What goes in it\n\nA good CLAUDE.md has six sections:\n\n- **What this is** — one paragraph. The project's name, who it's for, the core idea.\n- **Current Status** — a table of what's live, what's in progress, what's not built.\n- **Architecture** — the stack. *Frontend in X, backend in Y, deployed on Z.*\n- **Repo Layout** — the file tree with one-line annotations per major folder.\n- **What's built / not built** — explicit, so Code doesn't suggest rebuilding things that already exist.\n- **Conventions** — branch names, commit format, deploy behavior, any hard rules.\n\nThe length isn't the point. **Specificity is.** A 200-line CLAUDE.md full of facts beats a 600-line one full of waffle.",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "## Have Chat write the first draft\n\nGo to Claude Chat. Type:\n\n> *\"I have a project at <github URL>. I want you to help me write the first version of CLAUDE.md — a project memory file that lives at the root of the repo and that Claude Code reads at the start of every session. Ask me whatever questions you need to understand the project, then propose a CLAUDE.md.\"*\n\nChat will ask 5-10 questions. Answer them casually. **End the conversation with a CLAUDE.md you can copy.**\n\nThen open Claude Code. Tell it: *\"Create a file called CLAUDE.md at the project root with the following contents:\"* and paste what Chat gave you. Code creates the file. Commit it. Push it. **You now have project memory.**",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "## Keep it current\n\nThe value of CLAUDE.md decays if it lies. If the file says one thing and the code says another, future Code sessions get contradictory advice.\n\nThe habit: after every feature you ship, end the Chat session with *\"propose the CLAUDE.md update for what we just did.\"* Push the update to main directly — no PR, no review, it's a documentation update. **Drift is the enemy of CLAUDE.md.** Keep it honest, keep it short, keep it updated.",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: '---\n\n## Module 3 — Your deliverable\n\nWhen you can check this off, Module 3 is done.',
+        },
+      },
+      {
+        type: 'checklist',
+        payload: {
+          items: [
+            { id: 'module-3-deliverable', label: 'CLAUDE.md exists in my repo and describes what the project is, what is built, what is next, and the rules.' },
+          ],
+        },
+      },
+    ],
+  },
 ];
 
 export async function runSeedBlocks(): Promise<{ updated: number }> {
