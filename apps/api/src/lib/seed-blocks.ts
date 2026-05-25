@@ -384,8 +384,9 @@ const BLOCK_ENTRIES: BlockEntry[] = [
         type: 'screenshot',
         payload: {
           slotId: "gh-new-repo",
-          placeholder: "Drop a screenshot of the \"Create a new repository\" page",
-          caption: "GitHub → top-right \"+\" → \"New repository\". The page where you name the repo + click Create.",
+          src: "/images/lessons/gh-new-repo.png",
+          alt: "GitHub's Create a new repository page with fields for repository name, owner dropdown, public/private radio buttons, and the three initialization checkboxes (Add a README, Add .gitignore, Choose a license).",
+          caption: "GitHub's Create a new repository page. The form is where you name your repo and pick public or private. Leave the three init checkboxes at the bottom unchecked.",
         },
       },
       {
@@ -477,8 +478,9 @@ const BLOCK_ENTRIES: BlockEntry[] = [
         type: 'screenshot',
         payload: {
           slotId: "cc-github-auth",
-          placeholder: "Drop a screenshot of the Claude Code → GitHub authorization screen",
-          caption: "The GitHub \"Authorize Claude Code\" page. Drag a screenshot here so learners know what to expect when the OAuth window opens.",
+          src: "/images/lessons/cc-github-auth.png",
+          alt: "GitHub's authorization page showing 'Claude by Anthropic would like permission to' with three permissions listed: verify GitHub identity, know which resources you can access, and act on your behalf. A green Authorize Claude button is at the bottom.",
+          caption: "The 'Authorize Claude' page on GitHub. After you type 'Connect to GitHub' in Claude Code, this is what opens in your browser. Click the green Authorize Claude button to connect.",
         },
       },
       {
@@ -543,8 +545,9 @@ const BLOCK_ENTRIES: BlockEntry[] = [
         type: 'screenshot',
         payload: {
           slotId: "gh-first-push",
-          placeholder: "Drop a screenshot of your repo page after first push",
-          caption: "GitHub repository page right after the first push — files visible, commit count = 1. The \"this is what success looks like\" reference.",
+          src: "/images/lessons/gh-first-push.png",
+          alt: "A GitHub repository page right after the first push, showing the repo name, branch indicator (main), '1 Commit' badge, and a README.md file with the initial commit message.",
+          caption: "Your GitHub repo right after the first push. The '1 Commit' badge and the file list mean your prototype is now on GitHub.",
         },
       },
       {
