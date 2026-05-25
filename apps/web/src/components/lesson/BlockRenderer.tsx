@@ -5,6 +5,7 @@ import PromptCompare from './widgets/PromptCompare';
 import TryWithClaude, { type TryWithClaudePayload } from './widgets/TryWithClaude';
 import DecisionTree from './widgets/DecisionTree';
 import Checklist, { type ChecklistPayload } from './widgets/Checklist';
+import Screenshot, { type ScreenshotPayload } from './widgets/Screenshot';
 
 type ContentBlock =
   | { type: 'markdown';       payload: { md: string } }
@@ -13,7 +14,8 @@ type ContentBlock =
   | { type: 'prompt_compare'; payload: Record<string, never> }
   | { type: 'try_with_claude'; payload: TryWithClaudePayload }
   | { type: 'decision_tree';  payload: Record<string, never> }
-  | { type: 'checklist';      payload: ChecklistPayload };
+  | { type: 'checklist';      payload: ChecklistPayload }
+  | { type: 'screenshot';     payload: ScreenshotPayload };
 
 interface Props {
   blocks: ContentBlock[];
@@ -54,6 +56,8 @@ export default function BlockRenderer({ blocks, lessonId }: Props) {
                       blockId={`checklist-${i}`}
                     />
                   );
+                case 'screenshot':
+                  return <Screenshot {...block.payload} />;
                 default: {
                   const exhaustive = block as { type: string };
                   return (
