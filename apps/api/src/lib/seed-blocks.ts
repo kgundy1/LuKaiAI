@@ -5,7 +5,8 @@ const prisma = new PrismaClient();
 type ContentBlock =
   | { type: 'markdown';        payload: { md: string } }
   | { type: 'quick_check';     payload: { question: string; choices: string[]; correctIndex: number; explain: string } }
-  | { type: 'workflow_sorter'; payload: { tasks?: { id: string; label: string; answer: string; why: string }[]; bucketLeft?: { id: string; label: string }; bucketRight?: { id: string; label: string } } };
+  | { type: 'workflow_sorter'; payload: { tasks?: { id: string; label: string; answer: string; why: string }[]; bucketLeft?: { id: string; label: string }; bucketRight?: { id: string; label: string } } }
+  | { type: 'checklist';       payload: { items: { id: string; label: string }[] } };
 
 type BlockEntry = {
   moduleNumber: number;

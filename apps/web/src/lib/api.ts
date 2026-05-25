@@ -69,3 +69,25 @@ export async function markLessonComplete(lessonId: string) {
   });
   return res.json();
 }
+
+export async function fetchChecklistState(lessonId: string) {
+  const res = await fetch(`${API_BASE}/lessons/${lessonId}/checklist-state`, {
+    credentials: 'include',
+  });
+  return res.json();
+}
+
+export async function toggleChecklistItem(
+  lessonId: string,
+  blockId: string,
+  itemId: string,
+  completed: boolean,
+) {
+  const res = await fetch(`${API_BASE}/lessons/${lessonId}/checklist-toggle`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    credentials: 'include',
+    body: JSON.stringify({ blockId, itemId, completed }),
+  });
+  return res.json();
+}

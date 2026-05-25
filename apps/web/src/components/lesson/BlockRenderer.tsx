@@ -4,6 +4,7 @@ import WorkflowSorter, { type WorkflowSorterPayload } from './widgets/WorkflowSo
 import PromptCompare from './widgets/PromptCompare';
 import TryWithClaude, { type TryWithClaudePayload } from './widgets/TryWithClaude';
 import DecisionTree from './widgets/DecisionTree';
+import Checklist, { type ChecklistPayload } from './widgets/Checklist';
 
 type ContentBlock =
   | { type: 'markdown';       payload: { md: string } }
@@ -11,13 +12,15 @@ type ContentBlock =
   | { type: 'workflow_sorter'; payload: WorkflowSorterPayload }
   | { type: 'prompt_compare'; payload: Record<string, never> }
   | { type: 'try_with_claude'; payload: TryWithClaudePayload }
-  | { type: 'decision_tree';  payload: Record<string, never> };
+  | { type: 'decision_tree';  payload: Record<string, never> }
+  | { type: 'checklist';      payload: ChecklistPayload };
 
 interface Props {
   blocks: ContentBlock[];
+  lessonId: string;
 }
 
-export default function BlockRenderer({ blocks }: Props) {
+export default function BlockRenderer({ blocks, lessonId }: Props) {
   return (
     <div>
       {blocks.map((block, i) => {
@@ -43,6 +46,14 @@ export default function BlockRenderer({ blocks }: Props) {
                   return <TryWithClaude {...block.payload} />;
                 case 'decision_tree':
                   return <DecisionTree />;
+                case 'checklist':
+                  return (
+                    <Checklist
+                      {...block.payload}
+                      lessonId={lessonId}
+                      blockId={`checklist-${i}`}
+                    />
+                  );
                 default: {
                   const exhaustive = block as { type: string };
                   return (
