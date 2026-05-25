@@ -23,6 +23,12 @@ const MODULES: ModuleConfig[] = [
     title: 'Type your idea into Claude, get something back',
     description: 'A working interactive prototype of your idea, built in Claude Design, that you have iterated on enough that it represents what you actually want to build.',
     lessonsFilename: 'module-1-lessons.md'
+  },
+  {
+    number: 2,
+    title: 'Take your prototype out of chat and into a real codebase',
+    description: 'A GitHub repository containing your prototype, with Claude Code connected and able to make changes.',
+    lessonsFilename: 'module-2-lessons.md'
   }
 ];
 
