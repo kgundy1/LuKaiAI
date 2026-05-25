@@ -31,6 +31,10 @@ A person who built something real and is showing others how.
 
 Rule going forward: workaround notes in ROADMAP.md are not write-once. When the underlying need disappears, update the note in the same PR that removes the workaround. The original PR that committed the note should reference it in the commit message so future-you can find it when the workaround is no longer needed.
 
+**Render deploys don't auto-seed; markdown and block seeds are separate manual steps.** The Dockerfile runs `prisma migrate deploy && node dist/server.js` only. There is no automatic seed step. When content lands in a PR (new module rows in seed.ts, new content_blocks in seed-blocks.ts), the production database is unchanged by the deploy itself. Two manual admin calls fill the gap: `POST /admin/seed` creates/updates Module and Lesson rows from the markdown source, then `POST /admin/seed-blocks` populates content_blocks. Both gated by ADMIN_SEED_TOKEN.
+
+Rule going forward: every content PR description should explicitly call out which admin endpoints must run after merge. The deploy completing successfully is not the same as the content being live. Module 2 (PR #39) cost about 8 minutes of polling because the PR body claimed Render auto-runs the markdown seed; it doesn't.
+
 ---
 
 ## Current Status
