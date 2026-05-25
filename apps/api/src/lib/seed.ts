@@ -29,6 +29,12 @@ const MODULES: ModuleConfig[] = [
     title: 'Take your prototype out of chat and into a real codebase',
     description: 'A GitHub repository containing your prototype, with Claude Code connected and able to make changes.',
     lessonsFilename: 'module-2-lessons.md'
+  },
+  {
+    number: 3,
+    title: 'The method that keeps you from getting stuck',
+    description: 'A working CLAUDE.md in the repo that describes what your project is, what is built, what is next, and the rules you operate by.',
+    lessonsFilename: 'module-3-lessons.md'
   }
 ];
 
