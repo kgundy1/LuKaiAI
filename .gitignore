@@ -6,9 +6,11 @@ build/
 **/build/
 .env
 .env.local
+.env.development
 .env.*.local
 **/.env
 **/.env.local
+**/.env.development
 **/.env.*.local
 *.log
 npm-debug.log*
