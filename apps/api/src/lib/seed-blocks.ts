@@ -393,6 +393,16 @@ const BLOCK_ENTRIES: BlockEntry[] = [
           md: "## What you see now\n\nThe page that loads is mostly empty — a header with your repo's URL, some setup instructions you can ignore, and a big code block titled *Quick setup*. **Ignore all of it.** Claude Code is going to handle the pushing in Lesson 5; you don't run any of these commands by hand.\n\nLeave this tab open. Move to Lesson 3.",
         },
       },
+      {
+        type: 'checklist',
+        payload: {
+          items: [
+            { id: 'signed-up', label: 'Signed up at github.com' },
+            { id: 'verified-email', label: 'Verified your email' },
+            { id: 'created-repo', label: 'Created a new repository with all three checkboxes unchecked' },
+          ],
+        },
+      },
     ],
   },
   {
@@ -427,6 +437,15 @@ const BLOCK_ENTRIES: BlockEntry[] = [
         type: 'markdown',
         payload: {
           md: "## What you have so far\n\nClaude Code is installed and signed in. Module 1's ZIP is on your computer as a backup. The next two lessons connect Code to GitHub (Lesson 4) and push your prototype up for the first time (Lesson 5). **After that, you'll never think about the ZIP or the local folder again.**",
+        },
+      },
+      {
+        type: 'checklist',
+        payload: {
+          items: [
+            { id: 'downloaded-code', label: 'Downloaded Claude Code from claude.com/code' },
+            { id: 'signed-in', label: 'Signed in with your Claude Pro account' },
+          ],
         },
       },
     ],
@@ -471,6 +490,16 @@ const BLOCK_ENTRIES: BlockEntry[] = [
         type: 'markdown',
         payload: {
           md: "## Confirmation\n\nGitHub redirects you somewhere — usually a blank-ish page that says \"Authorization successful\" or sends you back to Claude Code automatically. Go back to your Claude Code window. **You should see a confirmation message** — something like *\"GitHub connected as @yourusername.\"*\n\nIf you don't see that confirmation, type *\"Did the GitHub connection work?\"* into Claude Code. It'll tell you. If something's wrong, Claude will walk you through fixing it.",
+        },
+      },
+      {
+        type: 'checklist',
+        payload: {
+          items: [
+            { id: 'typed-connect', label: 'Typed "Connect to GitHub" in Claude Code' },
+            { id: 'authorized', label: 'Clicked the green Authorize button on github.com' },
+            { id: 'saw-confirmation', label: 'Saw the GitHub-connected confirmation back in Claude Code' },
+          ],
         },
       },
     ],
@@ -521,6 +550,30 @@ const BLOCK_ENTRIES: BlockEntry[] = [
         type: 'markdown',
         payload: {
           md: "## What you've done\n\nFour hours ago, your idea was a Claude Design chat tab. Now it's a repository on GitHub that Claude Code can iterate on. **That's a real project.** It looks like every other one shipped this year.\n\nFrom this point forward you never think about the ZIP again. Every change happens in Claude Code, gets committed to GitHub automatically, and stays there. **The ZIP is just insurance you won't need.**",
+        },
+      },
+      {
+        type: 'checklist',
+        payload: {
+          items: [
+            { id: 'told-code-zip-path', label: 'Told Claude Code where the ZIP file is' },
+            { id: 'watched-code-push', label: 'Watched Claude Code unzip, init, commit, and push' },
+            { id: 'saw-files-on-github', label: 'Refreshed your GitHub tab and saw your files there' },
+          ],
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: '---\n\n## Module 2 — Your deliverable\n\nWhen you can check this off, Module 2 is done.',
+        },
+      },
+      {
+        type: 'checklist',
+        payload: {
+          items: [
+            { id: 'module-2-deliverable', label: 'My prototype lives at github.com/<my-username>/<my-repo> and Claude Code can read and write to it.' },
+          ],
         },
       },
     ],
