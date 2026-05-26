@@ -36,11 +36,11 @@ It's free for everything we're doing. You don't need a paid plan, ever, for the 
 
 > **Don't guess. Capture.**
 >
-> If something goes wrong — a deploy fails, a button isn't where the lesson said it would be, an error you don't recognize shows up — **you do not need to understand any of it.** You don't need to know what the error means. You don't need to guess if you're in the right place. You don't need to Google.
+> Anytime you're not sure — a deploy failed, a button isn't where the lesson said it would be, an error popped up you don't recognize, **or you're just looking at a page and not sure what to click** — *you do not need to understand any of it.* You don't need to know what the error means. You don't need to guess if you're in the right place. You don't need to Google.
 >
-> Take a screenshot of whatever is on your screen. Drag it into Claude Chat. Type one line: *"is this right?"* or *"what is this error?"* — Chat will tell you exactly what to fix and exactly what prompt to send Claude Code (or which field to change in GitHub / Render / Cloudflare).
+> Take a screenshot of whatever is on your screen. Drag it into Claude Chat. Type one line: *"is this right?"* or *"what is this error?"* or *"what should I click here?"* — Chat will tell you exactly what to fix, exactly what to click, or exactly what prompt to send Claude Code.
 >
-> I have not hit a single obstacle that this loop didn't solve. **Use it every time.**
+> Use this loop *anytime you're unsure, not just when something is broken.* I have not hit a single obstacle this loop didn't solve. **Use it every time.**
 
 ## Sign up at github.com
 
@@ -120,11 +120,11 @@ Claude Code needs permission from you to do anything with GitHub — push files,
 
 > **Don't guess. Capture.**
 >
-> If something goes wrong — a deploy fails, a button isn't where the lesson said it would be, an error you don't recognize shows up — **you do not need to understand any of it.** You don't need to know what the error means. You don't need to guess if you're in the right place. You don't need to Google.
+> Anytime you're not sure — a deploy failed, a button isn't where the lesson said it would be, an error popped up you don't recognize, **or you're just looking at a page and not sure what to click** — *you do not need to understand any of it.* You don't need to know what the error means. You don't need to guess if you're in the right place. You don't need to Google.
 >
-> Take a screenshot of whatever is on your screen. Drag it into Claude Chat. Type one line: *"is this right?"* or *"what is this error?"* — Chat will tell you exactly what to fix and exactly what prompt to send Claude Code (or which field to change in GitHub / Render / Cloudflare).
+> Take a screenshot of whatever is on your screen. Drag it into Claude Chat. Type one line: *"is this right?"* or *"what is this error?"* or *"what should I click here?"* — Chat will tell you exactly what to fix, exactly what to click, or exactly what prompt to send Claude Code.
 >
-> I have not hit a single obstacle that this loop didn't solve. **Use it every time.**
+> Use this loop *anytime you're unsure, not just when something is broken.* I have not hit a single obstacle this loop didn't solve. **Use it every time.**
 
 ## Start the connection
 

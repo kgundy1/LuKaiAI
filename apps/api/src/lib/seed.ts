@@ -35,6 +35,12 @@ const MODULES: ModuleConfig[] = [
     title: 'The method that keeps you from getting stuck',
     description: 'A working CLAUDE.md in the repo that describes what your project is, what is built, what is next, and the rules you operate by.',
     lessonsFilename: 'module-3-lessons.md'
+  },
+  {
+    number: 4,
+    title: 'Get your prototype on the internet',
+    description: 'Your prototype, deployed to the internet at a live URL you can open in any browser and share with anyone.',
+    lessonsFilename: 'module-4-lessons.md'
   }
 ];
 
