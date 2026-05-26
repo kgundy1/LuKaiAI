@@ -649,6 +649,30 @@ const BLOCK_ENTRIES: BlockEntry[] = [
       {
         type: 'markdown',
         payload: {
+          md: "## What AI actually is\n\nMost people think AI is a vending machine — put in a question, get out an answer. **That mental model is wrong, and it's the biggest reason people get frustrated.**\n\nAI is a *learning system.* It adapts to what you show it. The Claude you're talking to today is shaped by every prompt you've sent it, every correction you've made, every preference you've stated. The version of Claude you have in six months will be different from the version someone else has — even though it's the same underlying model — because you'll have trained yours differently.\n\nThis works in both directions. If you feed it sloppy prompts, vague descriptions, and incorrect framing, **it learns that's how you communicate** — and responds in kind. If you train it on what you actually want, how you actually work, what you actually know and don't know, it gets sharper over time.\n\nThe whole methodology in this course assumes you understand this. Without it, the workflow breaks.",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "## Calibrate it deliberately\n\nDon't leave the calibration to chance. Tell your Claude:\n\n- **What your skill level is.** \"I'm not a professional developer. Explain technical terms when you use them. Don't assume I know the difference between concepts unless I've shown I do.\"\n- **How you want to be talked to.** \"Don't pad responses with disclaimers. Don't ask follow-up questions when context already exists. Be direct.\"\n- **What your patterns are.** \"I push hard and don't always know when to stop. Flag when I'm working past what's sustainable.\"\n- **What success looks like.** \"I'd rather ship something imperfect than over-engineer something perfect.\"\n\nThese aren't suggestions or wishes. They're *instructions*, and Claude will hold them. **The Claude you train this way is a fundamentally different tool than the Claude you ask vague questions of.**",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "## The relationship compounds\n\nThe first conversation you have with Claude about a project is the worst it'll ever be. By the tenth conversation, Claude knows your project, your style, what you care about, what you're trying to build, what you've already tried. **The signal-to-noise ratio in your prompts goes up because Claude needs less context every time.**\n\nThis is why the Chat/Code split works. Chat is the relationship layer — you build context with it over time, and that context makes every Code session sharper. **The investment in calibrating Claude pays back every single time you use it after.**\n\nBad prompts beget bad responses. Good calibration begets a tool that gets better with use. *That's not magic, that's the system working as designed.* You are training your AI. Train it well.",
+        },
+      },
+    ],
+  },
+  {
+    moduleNumber: 3,
+    lessonNumber: 4,
+    blocks: [
+      {
+        type: 'markdown',
+        payload: {
           md: "## The handoff\n\nClaude Chat and Claude Code don't talk to each other. They can't see each other's conversations. **The connection between them is you** — copying a prompt from one window, pasting it into the other, then carrying the result back.\n\nThis sounds inefficient. It's the opposite. **It's the safety mechanism.** Bad prompts get caught at the bridge. Bad output gets caught coming back. Every time you carry something across, you read it. Reading is the review.",
         },
       },
@@ -668,7 +692,7 @@ const BLOCK_ENTRIES: BlockEntry[] = [
   },
   {
     moduleNumber: 3,
-    lessonNumber: 4,
+    lessonNumber: 5,
     blocks: [
       {
         type: 'markdown',
@@ -704,7 +728,7 @@ const BLOCK_ENTRIES: BlockEntry[] = [
   },
   {
     moduleNumber: 3,
-    lessonNumber: 5,
+    lessonNumber: 6,
     blocks: [
       {
         type: 'markdown',

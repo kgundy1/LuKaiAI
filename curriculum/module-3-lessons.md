@@ -71,7 +71,40 @@ The discipline is staying on this loop even when it's tempting to skip ahead.
 
 ---
 
-## Lesson 3 — Why you are the bridge between the two
+## Lesson 3 — AI learns. So train it for you.
+
+## What AI actually is
+
+Most people think AI is a vending machine — put in a question, get out an answer. **That mental model is wrong, and it's the biggest reason people get frustrated.**
+
+AI is a *learning system.* It adapts to what you show it. The Claude you're talking to today is shaped by every prompt you've sent it, every correction you've made, every preference you've stated. The version of Claude you have in six months will be different from the version someone else has — even though it's the same underlying model — because you'll have trained yours differently.
+
+This works in both directions. If you feed it sloppy prompts, vague descriptions, and incorrect framing, **it learns that's how you communicate** — and responds in kind. If you train it on what you actually want, how you actually work, what you actually know and don't know, it gets sharper over time.
+
+The whole methodology in this course assumes you understand this. Without it, the workflow breaks.
+
+## Calibrate it deliberately
+
+Don't leave the calibration to chance. Tell your Claude:
+
+- **What your skill level is.** "I'm not a professional developer. Explain technical terms when you use them. Don't assume I know the difference between concepts unless I've shown I do."
+- **How you want to be talked to.** "Don't pad responses with disclaimers. Don't ask follow-up questions when context already exists. Be direct."
+- **What your patterns are.** "I push hard and don't always know when to stop. Flag when I'm working past what's sustainable."
+- **What success looks like.** "I'd rather ship something imperfect than over-engineer something perfect."
+
+These aren't suggestions or wishes. They're *instructions*, and Claude will hold them. **The Claude you train this way is a fundamentally different tool than the Claude you ask vague questions of.**
+
+## The relationship compounds
+
+The first conversation you have with Claude about a project is the worst it'll ever be. By the tenth conversation, Claude knows your project, your style, what you care about, what you're trying to build, what you've already tried. **The signal-to-noise ratio in your prompts goes up because Claude needs less context every time.**
+
+This is why the Chat/Code split works. Chat is the relationship layer — you build context with it over time, and that context makes every Code session sharper. **The investment in calibrating Claude pays back every single time you use it after.**
+
+Bad prompts beget bad responses. Good calibration begets a tool that gets better with use. *That's not magic, that's the system working as designed.* You are training your AI. Train it well.
+
+---
+
+## Lesson 4 — Why you are the bridge between the two
 
 ## The handoff
 
@@ -95,7 +128,7 @@ After twenty times, the carry becomes automatic. You stop thinking about it. The
 
 ---
 
-## Lesson 4 — Bring everything you see to Chat — text, screenshots, errors, anything
+## Lesson 5 — Bring everything you see to Chat — text, screenshots, errors, anything
 
 ## Capture is the skill
 
@@ -137,7 +170,7 @@ Screenshot. Paste into Chat. Ask. Every time. **I have not hit an obstacle in th
 
 ---
 
-## Lesson 5 — Write your CLAUDE.md — the file every session reads first
+## Lesson 6 — Write your CLAUDE.md — the file every session reads first
 
 ## What CLAUDE.md is
 
