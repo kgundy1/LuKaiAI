@@ -942,6 +942,242 @@ const BLOCK_ENTRIES: BlockEntry[] = [
       },
     ],
   },
+  {
+    moduleNumber: 5,
+    lessonNumber: 1,
+    blocks: [
+      {
+        type: 'markdown',
+        payload: {
+          md: "## The signal you need a backend\n\nUp through Module 4, your app has been *frontend only* — HTML, CSS, JavaScript, running in someone's browser. That works for a lot of ideas. A calculator, a chart viewer, a tool that takes input and shows output — none of those need a backend.\n\n**The moment your app needs to remember anything between visits, you need a backend.** Users coming back to find their data still there. Anything that survives a browser refresh. Anything that gets saved.\n\nIf your idea has none of that, you can skip Module 5. Plenty of useful prototypes ship without backends.",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "## What a backend actually is\n\nA second piece of software, running on a different computer than the user's browser, that *holds the state* — the database, the user accounts, the saved files. The frontend in the browser calls the backend over the internet whenever it needs to read or write something.\n\nThink of it like a restaurant: **the frontend is the dining room**, what the customer sees. **The backend is the kitchen** — they never go in there, but everything they eat comes from it. The database is the pantry inside the kitchen.\n\nIn this course, the kitchen is a service called Render, and the pantry is a database called Postgres. Both are free at the scale we're using.",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "## The shape of what's coming\n\nBy the end of this module, you'll have:\n\n- A Render account, free tier, with a backend service deployed\n- A Postgres database also on Render, connected to that backend\n- An environment variable (`DATABASE_URL`) holding the connection string\n- Your Cloudflare frontend pointed at the new backend\n- An app that remembers things\n\nThis is the most technical module in the course. **It's also the one where the capture-and-ask habit pays back the most.** Expect three to five failed deploys. That's the rhythm here. Don't take it personally.",
+        },
+      },
+    ],
+  },
+  {
+    moduleNumber: 5,
+    lessonNumber: 2,
+    blocks: [
+      {
+        type: 'markdown',
+        payload: {
+          md: "## Add backend code to your repo first\n\nBefore Render can deploy anything, your repo needs backend code that *can* be deployed. The repo from Module 2 holds your prototype's frontend — but unless you've added a backend already, Render has nothing to run.\n\nTake 5 minutes to add it. Open Claude Code and type:\n\n> *\"Add a minimal Node.js Express backend to this repo. Create a server.js file that runs an Express app on the port from `process.env.PORT`. Add one endpoint at `/api/health` that returns `{ ok: true }`. Update package.json with the right dependencies (express) and a `start` script that runs `node server.js`. Commit and push to main.\"*\n\nWatch Code work. It'll add a `server.js` file, update `package.json`, run `npm install`, commit, and push. When it's done, your repo has both frontend AND a tiny backend. **That's what Render is going to deploy in this lesson.**\n\nOnce Code reports the push succeeded, come back here.",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "## Make a Render account\n\nGo to **render.com** and click **Get Started**. Sign up with GitHub — \"Sign up with GitHub\" is the fastest path because you'll be connecting Render to your repo in the next step anyway.\n\nWhen you authorize Render on GitHub, give it permission to access *the repo from Module 2*. \"Only select repositories\" is fine. Click Authorize. **You bounce back to Render's dashboard.**",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "> **Don't guess. Capture.**\n>\n> Anytime you're not sure — a deploy failed, a button isn't where the lesson said it would be, an error popped up you don't recognize, **or you're just looking at a page and not sure what to click** — *you do not need to understand any of it.* You don't need to know what the error means. You don't need to guess if you're in the right place. You don't need to Google.\n>\n> Take a screenshot of whatever is on your screen. Drag it into Claude Chat. Type one line: *\"is this right?\"* or *\"what is this error?\"* or *\"what should I click here?\"* — Chat will tell you exactly what to fix, exactly what to click, or exactly what prompt to send Claude Code.\n>\n> Use this loop *anytime you're unsure, not just when something is broken.* I have not hit a single obstacle this loop didn't solve. **Use it every time.**",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "## Create a Web Service\n\nThe Render dashboard has a **+ New** button in the top-right. Click it. A dropdown shows the things Render can host. Pick **Web Service.**\n\nA two-step wizard opens.\n\n**Step 1 — Source:** Render shows you the GitHub repos it can see. Find yours. Click **Connect**.",
+        },
+      },
+      {
+        type: 'screenshot',
+        payload: {
+          slotId: 'render-new-service',
+          placeholder: 'Drop a screenshot of Render → New → Web Service',
+          caption: 'Render dashboard → "+ New" → "Web Service" → repo picker. The starting point for any backend deploy.',
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "## Configure the service\n\n**Step 2 — Configuration:** this page has a lot of fields. Most should be left at their defaults. Here's what each one means:\n\n- **Name** — what shows up in URLs. Pick something short and lowercase. *yourname-backend* works.\n- **Region** — pick the one closest to where your users live. *Oregon (US West)* or *Ohio (US East)* are the defaults.\n- **Branch** — `main`. Leave it.\n- **Root Directory** — leave empty unless your backend is in a subfolder.\n- **Runtime** — Render auto-detects this from your code. Leave it.\n- **Build Command** — usually `npm install` for Node projects. Render usually auto-fills.\n- **Start Command** — usually `npm start`. Auto-filled.\n- **Instance Type** — pick **Free**. Always free for learning.\n\nScroll to the bottom. Click **Create Web Service.**",
+        },
+      },
+      {
+        type: 'screenshot',
+        payload: {
+          slotId: 'render-service-config',
+          placeholder: 'Drop a screenshot of the Web Service config page',
+          caption: 'The page where you set Name, Region, Branch, Build Command, Start Command. Annotate the defaults that should not be changed and the ones that should.',
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "## Wait for the first deploy\n\nRender starts building your backend. The page that loads shows a log scrolling — cloning the repo, installing dependencies, starting the service. **Three to five minutes is normal.**\n\nA few likely outcomes:\n\n- **It succeeds.** You see a green *Live* badge and a URL ending in `.onrender.com`. Move to Lesson 3.\n- **It fails immediately.** Probably missing a dependency or a wrong start command. Screenshot the bottom of the log. Bring it to Chat. Fix. Re-deploy.\n- **It builds but won't start.** Usually a port binding issue — the backend needs to listen on the port Render assigns via the `PORT` environment variable. Chat will tell you the one-line fix.\n\n**The first deploy almost never succeeds first try.** That's the entire purpose of Lesson 4.",
+        },
+      },
+    ],
+  },
+  {
+    moduleNumber: 5,
+    lessonNumber: 3,
+    blocks: [
+      {
+        type: 'markdown',
+        payload: {
+          md: "## What Postgres is\n\nPostgres (sometimes \"PostgreSQL\") is a database. It holds rows of data — users, posts, anything — and your backend reads from it and writes to it.\n\nIt's the industry-standard free database. **You don't need to know SQL or how databases work internally.** You need to know how to spin one up on Render and how to connect your backend to it. That's this lesson.",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "> **Don't guess. Capture — with one rule.**\n>\n> Anytime you're not sure on these screens — *anytime* — screenshot what you see and ask Chat. Same rule as every other lesson, with one specific exception for this lesson only: **the DATABASE_URL value itself is a secret.** Anyone who has it can read or write your database. Before screenshotting the Connections section or the Environment variables tab, hover over the value, click the eye icon to hide it, OR cover it with a sticky note on your screen before capturing. Screenshot the *error or page layout*, not the actual URL string. Everything else in the standard callout still applies — capture, ask Chat, fix.",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "## Spin up the database\n\nBack on the Render dashboard, click **+ New** again. This time pick **Postgres** from the dropdown.\n\nA form opens. Fields:\n\n- **Name** — *yourname-db* or similar.\n- **Region** — **the same region you picked for your backend in Lesson 2.** This matters for speed.\n- **Database** — leave default.\n- **User** — leave default.\n- **Instance Type** — Free.\n\nClick **Create Database.** Render provisions it — takes 1-2 minutes. **When you see a green *Available* badge, it's live.**",
+        },
+      },
+      {
+        type: 'screenshot',
+        payload: {
+          slotId: 'render-new-postgres',
+          placeholder: 'Drop a screenshot of Render → New → Postgres',
+          caption: 'Render → "+ New" → "Postgres". The form for spinning up the free-tier database.',
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "## Find the connection string\n\nOn the database's page, scroll down until you see a section called **Connections.** Inside there's a field called **Internal Database URL** — something starting with `postgresql://`.\n\n**Copy the entire value.** This is your `DATABASE_URL` — the secret your backend needs to know to talk to the database.\n\nUse the Internal URL, not the External one. Internal means \"only services inside Render can use this\" — which is what you want. Faster and safer.",
+        },
+      },
+      {
+        type: 'screenshot',
+        payload: {
+          slotId: 'render-database-url',
+          placeholder: 'Drop a screenshot of the Connection details / Internal DATABASE_URL',
+          caption: 'After Postgres provisions — the page showing "Internal Database URL." This is the value learners copy into their backend service\'s env vars as DATABASE_URL.',
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "## Plug the connection into the backend\n\nGo back to your Web Service from Lesson 2. Click **Environment** in the left sidebar.\n\nYou'll see a list of environment variables (probably empty). Click **Add Environment Variable.**\n\n- **Key:** `DATABASE_URL`\n- **Value:** paste the Internal Database URL you copied.\n\nClick **Save Changes.** Render restarts your backend automatically — it has to, because the backend needs to read the new env var when it starts. **Watch the logs for the new deploy.**\n\nIf your backend code already knows to look for `DATABASE_URL` (most do), it'll just connect on startup. If it doesn't, you need a Chat conversation about adding the connection logic — paste your backend's start file and ask *\"how do I make this connect to a Postgres database at the URL in DATABASE_URL?\"*",
+        },
+      },
+      {
+        type: 'screenshot',
+        payload: {
+          slotId: 'render-env-vars',
+          placeholder: 'Drop a screenshot of the Web Service → Environment tab',
+          caption: 'The Environment tab on the backend service with DATABASE_URL pasted in. The hand-off between database and backend.',
+        },
+      },
+    ],
+  },
+  {
+    moduleNumber: 5,
+    lessonNumber: 4,
+    blocks: [
+      {
+        type: 'markdown',
+        payload: {
+          md: "## Backend deploys are harder\n\nThe Cloudflare deploys in Module 4 succeeded most of the time. Backend deploys on Render are different — **plan for the third or fourth attempt to be the one that works.**\n\nHere's why. A frontend deploy has one job: serve some HTML files. A backend deploy has to:\n\n- Install all dependencies\n- Connect to the database (with the right URL, the right credentials, the right region)\n- Listen on the right port\n- Handle the right environment variables\n- Start without crashing\n\nAny one of those failing breaks the deploy. **You'll see all five kinds of failure at some point.**",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "> **Don't guess. Capture.**\n>\n> Anytime you're not sure — a deploy failed, a button isn't where the lesson said it would be, an error popped up you don't recognize, **or you're just looking at a page and not sure what to click** — *you do not need to understand any of it.* You don't need to know what the error means. You don't need to guess if you're in the right place. You don't need to Google.\n>\n> Take a screenshot of whatever is on your screen. Drag it into Claude Chat. Type one line: *\"is this right?\"* or *\"what is this error?\"* or *\"what should I click here?\"* — Chat will tell you exactly what to fix, exactly what to click, or exactly what prompt to send Claude Code.\n>\n> Use this loop *anytime you're unsure, not just when something is broken.* I have not hit a single obstacle this loop didn't solve. **Use it every time.**",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "## The common ones\n\nThe four failures that happen most:\n\n1. **\"Cannot find module ...\"** — a dependency is missing from `package.json`. Tell Chat which module is missing and it'll patch the file.\n2. **\"Connection refused / could not connect to database\"** — the `DATABASE_URL` env var isn't set or has a typo. Re-check the Environment tab.\n3. **\"Application failed to listen on port ...\"** — the backend isn't reading the `PORT` env var Render provides. One-line fix in your server start file.\n4. **\"Permission denied\" / \"Out of memory\"** — Render free tier has limits. Usually a code fix, not a Render fix. Send the log to Chat.\n\n**Every one of these has a one-line fix.** The fix loop is the same as Module 4: screenshot the bottom of the Render log, paste into Chat, follow the instruction, redeploy.",
+        },
+      },
+      {
+        type: 'screenshot',
+        payload: {
+          slotId: 'render-build-logs',
+          placeholder: 'Drop a screenshot of Render build logs (any deploy)',
+          caption: 'The Logs tab. When a deploy fails, this is what learners screenshot and paste into Chat.',
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "## Don't switch tools\n\nThe temptation when backend deploys fail repeatedly is to *try a different host* — \"maybe Vercel is easier, maybe Railway works.\"\n\nIt isn't. They have the same problems. **Switching tools mid-debug doubles your work and resets your context.** The fix you need is probably one prompt away in Chat. Stay on Render. Push through.\n\nA backend that deploys cleanly on Render will deploy cleanly anywhere later. **Do the work once and you have it forever.**",
+        },
+      },
+    ],
+  },
+  {
+    moduleNumber: 5,
+    lessonNumber: 5,
+    blocks: [
+      {
+        type: 'markdown',
+        payload: {
+          md: "## The last wire\n\nFrontend deployed on Cloudflare. Backend deployed on Render. Database connected to the backend. **One wire left:** tell the frontend where to find the backend.\n\nRight now, your frontend doesn't know the backend exists. It has no URL to call. Lesson 5 is the moment you connect them, and it's a single environment variable on Cloudflare.",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "> **Don't guess. Capture.**\n>\n> Anytime you're not sure — a deploy failed, a button isn't where the lesson said it would be, an error popped up you don't recognize, **or you're just looking at a page and not sure what to click** — *you do not need to understand any of it.* You don't need to know what the error means. You don't need to guess if you're in the right place. You don't need to Google.\n>\n> Take a screenshot of whatever is on your screen. Drag it into Claude Chat. Type one line: *\"is this right?\"* or *\"what is this error?\"* or *\"what should I click here?\"* — Chat will tell you exactly what to fix, exactly what to click, or exactly what prompt to send Claude Code.\n>\n> Use this loop *anytime you're unsure, not just when something is broken.* I have not hit a single obstacle this loop didn't solve. **Use it every time.**",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "## Find your Render URL\n\nGo back to Render, open your Web Service, and find the URL at the top of the page — `your-service-name.onrender.com`. Copy it.\n\nIf you're not sure which URL is which: backend = ends in `.onrender.com`, frontend = ends in `.pages.dev`. You want the `.onrender.com` one here.",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "## Add the env var to Cloudflare\n\nGo to **Cloudflare → Workers & Pages → your project → Settings → Environment variables.**\n\nClick **Add variable.** The key depends on what your frontend code is looking for — common ones are `VITE_API_URL`, `REACT_APP_API_URL`, or `NEXT_PUBLIC_API_URL`. **If you're not sure which:** open Claude Chat, paste your frontend's API-calling code, and ask *\"what environment variable does this code expect for the API URL?\"* Chat tells you.\n\nValue: paste your Render URL (the `.onrender.com` one).\n\nClick **Save.**",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "## Trigger a redeploy\n\nCloudflare won't pick up the new env var until the next deploy. You can either wait for your next push or trigger one manually: **Pages → your project → Deployments tab → Retry deployment** on the most recent build.\n\n60-90 seconds later, your frontend at `.pages.dev` is talking to your backend at `.onrender.com`.\n\nGo to your `.pages.dev` URL. Trigger whatever action your app does that should save data. Refresh the page. **The data should still be there.** That's the moment the app is real.",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "## What you've built\n\nA frontend on Cloudflare. A backend on Render. A Postgres database. All of it talking, all of it deployed, all of it free for the scale you're at.\n\nThis is the same shape as every production web app shipped this year. **There is nothing more to add until you decide what to add.** Module 6 is the discipline that keeps it all running cleanly as you do.",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: '---\n\n## Module 5 — Your deliverable\n\nWhen you can check this off, Module 5 is done.',
+        },
+      },
+      {
+        type: 'checklist',
+        payload: {
+          items: [
+            { id: 'module-5-deliverable', label: 'My backend is deployed on Render with a Postgres database, the frontend on Cloudflare talks to it, and I can save data and see it persist after a refresh.' },
+          ],
+        },
+      },
+    ],
+  },
 ];
 
 export async function runSeedBlocks(): Promise<{ updated: number }> {

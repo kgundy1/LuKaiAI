@@ -41,6 +41,12 @@ const MODULES: ModuleConfig[] = [
     title: 'Get your prototype on the internet',
     description: 'Your prototype, deployed to the internet at a live URL you can open in any browser and share with anyone.',
     lessonsFilename: 'module-4-lessons.md'
+  },
+  {
+    number: 5,
+    title: 'Make your app real with a backend and database',
+    description: 'A working backend deployed to Render, a Postgres database connected to it, and the frontend talking to the backend. Your app stores and retrieves real data.',
+    lessonsFilename: 'module-5-lessons.md'
   }
 ];
 
