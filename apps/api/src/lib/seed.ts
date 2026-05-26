@@ -47,6 +47,12 @@ const MODULES: ModuleConfig[] = [
     title: 'Make your app real with a backend and database',
     description: 'A working backend deployed to Render, a Postgres database connected to it, and the frontend talking to the backend. Your app stores and retrieves real data.',
     lessonsFilename: 'module-5-lessons.md'
+  },
+  {
+    number: 6,
+    title: 'Keep building without breaking what works',
+    description: 'The discipline that keeps your app shipping cleanly forever: precise prompts, diff review, receipts not summaries, CLAUDE.md updates.',
+    lessonsFilename: 'module-6-lessons.md'
   }
 ];
 
