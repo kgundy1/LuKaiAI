@@ -48,7 +48,7 @@ In the Pages tab, the first option is **Connect to Git**. Click that button.
 
 ## Authorize Cloudflare on GitHub
 
-Cloudflare asks for permission to read your GitHub repos — same flow Claude Code went through in Module 2 Lesson 4. **Click Connect GitHub.** A GitHub authorization page opens.
+Cloudflare asks for permission to read your GitHub repos — same flow Claude Code went through in Module 2 Lesson 5. **Click Connect GitHub.** A GitHub authorization page opens.
 
 GitHub will let you choose: authorize *all repositories* or *only select repositories*. Either works. "Only select" is slightly safer — you can pick just the repo you made in Module 2. If you do that, make sure the dropdown shows the right repo selected.
 

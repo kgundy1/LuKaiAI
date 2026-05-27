@@ -4,7 +4,9 @@ const prisma = new PrismaClient();
 
 type ContentBlock =
   | { type: 'markdown';        payload: { md: string } }
-  | { type: 'quick_check';     payload: { question: string; choices: string[]; correctIndex: number; explain: string } }
+  | { type: 'quick_check';     payload:
+      | { question: string; mode?: 'graded'; choices: string[]; correctIndex: number; explain: string }
+      | { question: string; mode: 'self_assess'; options: { text: string; explain: string }[] } }
   | { type: 'workflow_sorter'; payload: { tasks?: { id: string; label: string; answer: string; why: string }[]; bucketLeft?: { id: string; label: string }; bucketRight?: { id: string; label: string } } }
   | { type: 'checklist';       payload: { items: { id: string; label: string }[] } }
   | { type: 'screenshot';      payload: { slotId?: string; placeholder?: string; caption?: string; src?: string; alt?: string; annotations?: { x: string; y: string; label: string }[] } };
@@ -332,7 +334,7 @@ const BLOCK_ENTRIES: BlockEntry[] = [
       {
         type: 'markdown',
         payload: {
-          md: "## What we're doing in Module 2\n\nIn five short lessons, you'll:\n\n1. Save the ZIP somewhere you can find it (this lesson — 30 seconds).\n2. Make a GitHub account and an empty repository (Lesson 2).\n3. Install Claude Code on your computer (Lesson 3).\n4. Connect Claude Code to GitHub (Lesson 4).\n5. Push your prototype to GitHub for the first time (Lesson 5).\n\nBy the end, your prototype lives on GitHub, and Claude Code works against the GitHub copy. **You never edit local files by hand.** Everything goes through Code, and Code syncs with GitHub.",
+          md: "## What we're doing in Module 2\n\nIn six short lessons, you'll:\n\n1. Save the ZIP somewhere you can find it (this lesson — 30 seconds).\n2. Make a GitHub account and an empty repository (Lesson 2).\n3. Open the terminal and learn the two commands you'll use constantly (Lesson 3).\n4. Get Claude Code on your computer (Lesson 4).\n5. Connect Claude Code to GitHub (Lesson 5).\n6. Put your prototype on GitHub for the first time (Lesson 6).\n\nBy the end, your prototype lives on GitHub, and Claude Code runs in your terminal — in your project folder — ready to make changes and push them up. **You drive every change by talking to Code**, and Code keeps GitHub in sync.",
         },
       },
       {
@@ -412,6 +414,60 @@ const BLOCK_ENTRIES: BlockEntry[] = [
     lessonNumber: 3,
     blocks: [
       {
+        type: 'quick_check',
+        payload: {
+          question: "How comfortable are you with the terminal (or command prompt)?",
+          mode: 'self_assess',
+          options: [
+            { text: "I've never opened it.", explain: "Perfect. The terminal is one of those things that looks scary but isn't. Read the rest of this lesson carefully — every step matters, and by the end you'll feel like you've always known how to use it." },
+            { text: "I've opened it once or twice but don't really get it.", explain: "Good — you have the lay of the land. Skim the first few sections and pay close attention to the 'Two commands you'll use constantly' block. That's where the real value lives for you." },
+            { text: "I'm comfortable with terminal.", explain: "Great. Scroll to 'Try it yourself' and confirm the commands work the way you expect. Otherwise this lesson won't teach you anything new — meet you in Lesson 4." },
+          ],
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "## What the terminal is\n\nThe terminal is a window where you type instructions to your computer instead of clicking on icons. Plain background, blinking cursor, text only. **That's the whole thing.**\n\nFor decades before computers had pretty interfaces, this was the *only* way to use them. Now it's still the fastest way to do certain kinds of work — running code, installing tools, working with git, talking to Claude Code. Anything you'll do in this course from here forward uses the terminal.\n\nYou don't need to memorize commands. You'll learn five or six and use those five or six for years. **Everything else, you'll Google or ask Chat.**",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "## Why it's not scary\n\nYou can't break your computer by typing in terminal. The worst thing that happens when you type something wrong is an error message — Claude Code, your operating system, or git will refuse to do something dangerous. They don't silently destroy things.\n\nA few rules that make the terminal feel safer:\n\n- **You're not committing to anything by pressing Enter.** Most commands are read-only or show information. Commands that change things are usually obvious about it.\n- **You can copy and paste freely.** The terminal accepts pasted text. We'll lean on this throughout the course.\n- **If you don't know what a command does, don't run it.** Same rule as anywhere else on the internet. If Chat or a friend sends you a command, ask what it does before pasting.\n\nThat's it. Terminal isn't a secret world — it's just a different door into the computer you already own.",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "## How to open it\n\n**Mac:**\n1. Press `Cmd + Space` (the keyboard shortcut for Spotlight Search)\n2. Type `terminal`\n3. Press `Enter`\n\nA window opens with text like `papabear@MacBook-Pro ~ %` — that's your prompt. The blinking cursor next to it is where you'll type.\n\n**Windows:**\n1. Press the `Windows` key (the one with the Windows logo)\n2. Type `terminal` (if \"Windows Terminal\" appears, pick that; if it doesn't, use \"Command Prompt\" — both work for this course)\n3. Press `Enter`\n\nA window opens with text like `C:\\Users\\YourName>` — that's your prompt. Same idea: cursor next to the `>` is where you type.\n\n**On both:** the part before the `%` or `>` is just identification — your username, your computer name, and your current folder. You can ignore the formatting. What matters is the space after that mark.",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "## Two commands you'll use constantly\n\nThere are two terminal commands you'll use over and over in this course. Just two. Learn them once, use them forever.\n\n**`cd` — move into a folder.** Stands for \"change directory.\" Type `cd` followed by a space and a folder name to move into that folder.\n\nCode example: `cd Documents`\n\nAfter pressing Enter, your prompt updates to show you're now inside the `Documents` folder. Your prompt becomes something like `papabear@MacBook-Pro Documents %` (Mac) or `C:\\Users\\YourName\\Documents>` (Windows).\n\nTo move *back out* of a folder, type `cd ..` (two dots). That means \"go up one level.\" Press Enter, and you're back where you were.\n\n**`pwd` (Mac) or `cd` with nothing after it (Windows) — see where you are.** Sometimes you lose track of which folder you're in. This command prints the full path so you know.\n\nCode example: `pwd`\n\nThat's the whole vocabulary for now. `cd` to move, the printout to check. The rest of the course teaches you what to do once you're in the right folder.",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "> **Don't guess. Capture.**\n>\n> Anytime you're not sure what you're looking at in the terminal — *anytime* — screenshot the window and ask Chat. Same failsafe as every other lesson. \"What does this error mean?\" \"Did this command work?\" \"Why does my prompt look different?\" — all valid questions.\n>\n> The terminal looks different from any other app on your computer. That's by design — it's an older interface. Don't try to interpret it on your own. Capture what you see, ask Chat, follow the answer.\n>\n> **This loop has solved every terminal problem I have ever had.** It will solve yours too.",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "## Try it yourself\n\nOpen your terminal right now. Try these three things in order:\n\n1. **See where you are.** Type `pwd` (Mac) or `cd` (Windows) and press Enter. Read the output. That's the folder your terminal is currently \"in.\"\n2. **Move to Documents.** Type `cd Documents` and press Enter. Your prompt updates. Now type `pwd` (or `cd`) again — confirm you're in Documents.\n3. **Move back.** Type `cd ..` and press Enter. You're back where you started.\n\n**If something didn't work** — the command did nothing, you got an error, your prompt looks different — screenshot the terminal window and drop it into Claude Chat. Type *\"is this right?\"* and Chat will tell you.\n\nThis is the muscle. The rest of Module 2 uses it.",
+        },
+      },
+    ],
+  },
+  {
+    moduleNumber: 2,
+    lessonNumber: 4,
+    blocks: [
+      {
         type: 'markdown',
         payload: {
           md: "## Two different Claudes\n\nClaude Chat — the website at claude.ai — is what you've been using. **Claude Code is different.** It's a separate app that runs on your computer and works directly with the code in a GitHub repository. Chat reads your messages; Code reads your repo.",
@@ -432,13 +488,13 @@ const BLOCK_ENTRIES: BlockEntry[] = [
       {
         type: 'markdown',
         payload: {
-          md: "## Code works from GitHub, not local files\n\nThis is the part that surprises people the first time. **Claude Code doesn't point at the folder on your Desktop.** It works against your GitHub repository directly.\n\nWhen you finish a session in Claude Code, the changes are *committed and pushed to GitHub.* When you start a new session, Code *pulls the latest from GitHub.* The local copy on your computer is automatically managed — you don't open it, you don't edit it, you don't even need to know where on disk it lives.\n\n**GitHub is the source of truth. Code is the editor. You're the conversation partner.** That's the entire shape of the workflow.",
+          md: "## How Claude Code actually works\n\nHere's the truth about Claude Code that often gets explained wrong: **Claude Code is not a separate app you click on like a normal program.** It's a tool that runs *inside your terminal*, and it works on whatever folder your terminal is currently in.\n\nThat's the whole mental model. Three pieces:\n\n1. **Your project lives in a folder on your computer.** Just like Word documents live in folders, your project does too. In Lesson 6, you'll unzip the project to a specific folder so you know exactly where it is.\n2. **You open your terminal and `cd` into that folder.** Same `cd` command from Lesson 3. Now your terminal \"is in\" your project.\n3. **You start Claude Code from there.** Type `claude` and press Enter. Claude Code starts up, reads the files in that folder, and you can now have a conversation with it about your project.\n\nClaude Code only knows about the folder you started it in. If you started it in your Documents folder by accident, it won't see the project. The terminal's location at the moment you type `claude` is what matters.\n\n**The full workflow you'll use forever, in two commands:**\n\n```\ncd Documents/lukaiai-project\nclaude\n```\n\nTwo lines. That's how every session starts. Once you have this in muscle memory, the rest of the course is downhill.",
         },
       },
       {
         type: 'markdown',
         payload: {
-          md: "## What you have so far\n\nClaude Code is installed and signed in. Module 1's ZIP is on your computer as a backup. The next two lessons connect Code to GitHub (Lesson 4) and push your prototype up for the first time (Lesson 5). **After that, you'll never think about the ZIP or the local folder again.**",
+          md: "## What you have so far\n\nClaude Code is installed and signed in. You know how to open the terminal and navigate folders. Module 1's ZIP is still on your computer — that's about to become your real project folder.\n\nThe next two lessons connect everything: Lesson 5 connects Claude Code to GitHub so it can push your code. Lesson 6 puts your project in a real folder and uses Claude Code (running in terminal, in that folder) to push it to your repo for the first time.",
         },
       },
       {
@@ -454,7 +510,7 @@ const BLOCK_ENTRIES: BlockEntry[] = [
   },
   {
     moduleNumber: 2,
-    lessonNumber: 4,
+    lessonNumber: 5,
     blocks: [
       {
         type: 'markdown',
@@ -509,36 +565,48 @@ const BLOCK_ENTRIES: BlockEntry[] = [
   },
   {
     moduleNumber: 2,
-    lessonNumber: 5,
+    lessonNumber: 6,
     blocks: [
       {
         type: 'markdown',
         payload: {
-          md: "## The first push\n\nClaude Code is installed and connected to GitHub. The repository you made in Lesson 2 is empty. Module 1's ZIP is sitting on your computer. **Lesson 5 puts them all together.**",
+          md: "## Everything is ready, now we wire it together\n\nYou have a GitHub account with an empty repo (Lesson 2). You know how to use the terminal (Lesson 3). Claude Code is installed (Lesson 4) and connected to your GitHub (Lesson 5). Module 1's ZIP is still sitting in your Downloads folder.\n\nThis lesson puts them all in the same room. By the end, your prototype lives at `github.com/<your-username>/<your-repo-name>` and Claude Code is ready to make changes to it from now on.\n\nWe do this in five steps. Each one is simple on its own.",
         },
       },
       {
         type: 'markdown',
         payload: {
-          md: "> **Don't guess. Capture.**\n>\n> If Claude Code asks a question you don't recognize — what branch to use, whether to add a `.gitignore`, how to handle a conflict — **don't guess.** Screenshot what you see, drag into Chat, ask *\"how should I answer this?\"* Chat will tell you, and tell you exactly what to type back to Code.\n>\n> Every push, every error, every weird dialog — same loop. **It always works.**",
+          md: "> **Don't guess. Capture.**\n>\n> If Claude Code asks a question you don't recognize during the push — what branch to use, whether to add a .gitignore, how to handle a conflict — don't guess. Screenshot what you see, drag it into Claude Chat, ask \"how should I answer this?\" Chat reads it and tells you exactly what to type. **It always works.**",
         },
       },
       {
         type: 'markdown',
         payload: {
-          md: "## Tell Claude Code where the ZIP is\n\nIn Claude Code, type something like this:\n\n> *\"I have a project ZIP at `<path to your ZIP>` from Claude Design. Push the contents into my GitHub repo at `<username>/<repo-name>`.\"*\n\nReplace `<path to your ZIP>` with where the ZIP lives — on Mac, `~/Downloads/your-project.zip`; on Windows, `C:\\Users\\<you>\\Downloads\\your-project.zip`. If you don't know the path, just drag the ZIP file directly into the Claude Code window — Code reads the path automatically.\n\nReplace `<username>/<repo-name>` with your GitHub username and the repo you made in Lesson 2.\n\nSend it.",
+          md: "## Step 1 — Give your project a real home\n\nRight now, your project is a `.zip` file in your Downloads folder. ZIP files are compressed — your computer can't really *use* them until they're unzipped.\n\n**Move and unzip the project to your Documents folder.** Here's exactly how:\n\n1. Open Finder (Mac) or File Explorer (Windows).\n2. Go to your Downloads folder.\n3. Find the ZIP file (probably named something like `your-project-name.zip`).\n4. Double-click it. On both Mac and Windows, this unzips the file — you'll see a new folder appear next to the ZIP.\n5. Drag the new folder (not the ZIP — the unzipped folder) into your Documents folder.\n6. **Rename the folder to `lukaiai-project`.** Right-click the folder, choose Rename, type `lukaiai-project`.\n\nYou can put your project anywhere you want and name it anything you want — but for the rest of this course we'll use `Documents/lukaiai-project` as the path. **If you use the same path, everything else in this lesson works without modification.**",
         },
       },
       {
         type: 'markdown',
         payload: {
-          md: "## What Claude Code does\n\nIn the background, Code unzips the file, initializes git, stages the files, commits them, sets the GitHub repo as the destination, and pushes. You see the output scroll past in the Claude Code window. **Watch, don't intervene.**\n\nIf Code asks a clarifying question — *\"should I use the `main` branch?\"* or *\"do you want me to add a `.gitignore`?\"* — answer casually. **\"Use `main`. Add a sensible `.gitignore`.\"** Code figures out the rest.",
+          md: "## Step 2 — Open terminal in your project folder\n\nOpen your terminal (Lesson 3 reminder — Mac: Cmd+Space, type Terminal; Windows: Windows key, type Terminal).\n\nType this command and press Enter:\n\n```\ncd Documents/lukaiai-project\n```\n\nYour prompt updates to show you're now \"in\" the project folder. **Confirm with `pwd` (Mac) or `cd` (Windows)** — the output should end with `lukaiai-project`.\n\nIf the output doesn't end with `lukaiai-project` — maybe you misspelled the folder name, maybe you put the folder somewhere else — fix it now. Use `cd ..` to go back out, look at your folder structure in Finder/File Explorer, and try the `cd` command with the correct path.\n\n**This is the moment Claude Code will live for the rest of your project.** Get it right.",
         },
       },
       {
         type: 'markdown',
         payload: {
-          md: "## Refresh your GitHub tab\n\nGo back to the browser tab you left open on your repo's empty page in Lesson 2. Hit refresh.\n\nThe page that used to say *\"Quick setup\"* is now a full repository view — file names, a commit count of 1, a green *latest commit* badge. **Your prototype now exists on GitHub.**",
+          md: "## Step 3 — Start Claude Code inside this folder\n\nWith your terminal still in `lukaiai-project` (don't open a new terminal window — use the same one from Step 2), type:\n\n```\nclaude\n```\n\nPress Enter.\n\nClaude Code starts up. You'll see a welcome message and a prompt where you can type to it. **Claude Code is now \"looking at\" your project folder.** It can see your files, read them, and make changes to them.\n\nA note on what Code shows you: the first time you start Claude Code in a new folder, it might give you a quick summary of what it sees — file names, project type, etc. That's normal. It's confirming what folder it's in.",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "## Step 4 — Tell Code to push to GitHub\n\nNow the actual push. Type this into Claude Code (replace `<username>/<repo-name>` with your real GitHub username and repo name from Lesson 2):\n\n> *\"This folder is the contents of a project I built in Claude Design. Set it up as a new git repository, commit all the files with a message saying 'Initial commit', and push it to my GitHub repo at `<username>/<repo-name>`. Use the main branch.\"*\n\n**Watch what Claude Code does.** It runs a series of git commands — initializing the repo, staging files, committing, adding GitHub as a remote, and pushing. Each command's output scrolls past in your terminal. You don't need to understand the details.\n\nIf Code asks clarifying questions (\"should I include the .git folder?\" \"should I add a .gitignore file for node_modules?\") — answer naturally. *\"Add a sensible .gitignore\"* works for most cases. **If you're not sure, screenshot the question and ask Chat.**\n\nWhen Code reports the push succeeded, move to the next step.",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "## Step 5 — See your files on GitHub\n\nOpen your browser. Go to the GitHub tab you left open from Lesson 2 (or navigate to `github.com/<your-username>/<your-repo-name>`). Refresh the page.\n\nThe empty repo from Lesson 2 is now full. You'll see your project's file names, a green \"Initial commit\" badge, and a commit count of `1`. **Your prototype now exists on GitHub.**",
         },
       },
       {
@@ -547,23 +615,13 @@ const BLOCK_ENTRIES: BlockEntry[] = [
           slotId: "gh-first-push",
           src: "/images/lessons/gh-first-push.png",
           alt: "A GitHub repository page right after the first push, showing the repo name, branch indicator (main), '1 Commit' badge, and a README.md file with the initial commit message.",
-          caption: "Your GitHub repo right after the first push. The '1 Commit' badge and the file list mean your prototype is now on GitHub.",
+          caption: "Your GitHub repo right after the first push. The \"1 Commit\" badge and the file list mean your prototype is now on GitHub.",
         },
       },
       {
         type: 'markdown',
         payload: {
-          md: "## What you've done\n\nFour hours ago, your idea was a Claude Design chat tab. Now it's a repository on GitHub that Claude Code can iterate on. **That's a real project.** It looks like every other one shipped this year.\n\nFrom this point forward you never think about the ZIP again. Every change happens in Claude Code, gets committed to GitHub automatically, and stays there. **The ZIP is just insurance you won't need.**",
-        },
-      },
-      {
-        type: 'checklist',
-        payload: {
-          items: [
-            { id: 'told-code-zip-path', label: 'Told Claude Code where the ZIP file is' },
-            { id: 'watched-code-push', label: 'Watched Claude Code unzip, init, commit, and push' },
-            { id: 'saw-files-on-github', label: 'Refreshed your GitHub tab and saw your files there' },
-          ],
+          md: "## What you've done\n\nFour hours ago, your idea was a Claude Design chat tab. Now it's a real codebase in a real GitHub repository, with Claude Code installed on your computer and pointed at the right folder.\n\n**From this point forward, the workflow never changes.** Every time you sit down to work on this project:\n\n1. Open terminal\n2. `cd Documents/lukaiai-project`\n3. `claude`\n\nThree commands. Then you describe what you want to change, Claude Code does the work, and pushes the changes to GitHub. Module 3 teaches you how to use this workflow well.",
         },
       },
       {
@@ -576,7 +634,11 @@ const BLOCK_ENTRIES: BlockEntry[] = [
         type: 'checklist',
         payload: {
           items: [
-            { id: 'module-2-deliverable', label: 'My prototype lives at github.com/<my-username>/<my-repo> and Claude Code can read and write to it.' },
+            { id: 'unzipped-project', label: 'My project is unzipped in `Documents/lukaiai-project`' },
+            { id: 'terminal-cd-works', label: 'I can open terminal and `cd` into the project folder' },
+            { id: 'claude-starts', label: 'Claude Code starts when I type `claude` in that folder' },
+            { id: 'pushed-to-github', label: 'My project files are visible at github.com/<username>/<repo-name>' },
+            { id: 'module-2-deliverable', label: 'My prototype lives at github.com/<username>/<repo-name> and Claude Code can read and write to it from `Documents/lukaiai-project`' },
           ],
         },
       },
@@ -827,7 +889,7 @@ const BLOCK_ENTRIES: BlockEntry[] = [
       {
         type: 'markdown',
         payload: {
-          md: "## Authorize Cloudflare on GitHub\n\nCloudflare asks for permission to read your GitHub repos — same flow Claude Code went through in Module 2 Lesson 4. **Click Connect GitHub.** A GitHub authorization page opens.\n\nGitHub will let you choose: authorize *all repositories* or *only select repositories*. Either works. \"Only select\" is slightly safer — you can pick just the repo you made in Module 2. If you do that, make sure the dropdown shows the right repo selected.\n\nClick **Authorize** at the bottom of GitHub's page. You bounce back to Cloudflare.",
+          md: "## Authorize Cloudflare on GitHub\n\nCloudflare asks for permission to read your GitHub repos — same flow Claude Code went through in Module 2 Lesson 5. **Click Connect GitHub.** A GitHub authorization page opens.\n\nGitHub will let you choose: authorize *all repositories* or *only select repositories*. Either works. \"Only select\" is slightly safer — you can pick just the repo you made in Module 2. If you do that, make sure the dropdown shows the right repo selected.\n\nClick **Authorize** at the bottom of GitHub's page. You bounce back to Cloudflare.",
         },
       },
       {
