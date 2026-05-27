@@ -1,14 +1,71 @@
 import { useState } from 'react';
 
-export interface QuickCheckPayload {
-  question: string;
-  choices: string[];
-  correctIndex: number;
+export interface QuickCheckOption {
+  text: string;
   explain: string;
 }
 
-export default function QuickCheck({ question, choices, correctIndex, explain }: QuickCheckPayload) {
+export type QuickCheckPayload =
+  | {
+      question: string;
+      mode?: 'graded';
+      choices: string[];
+      correctIndex: number;
+      explain: string;
+    }
+  | {
+      question: string;
+      mode: 'self_assess';
+      options: QuickCheckOption[];
+    };
+
+export default function QuickCheck(payload: QuickCheckPayload) {
   const [picked, setPicked] = useState<number | null>(null);
+
+  if (payload.mode === 'self_assess') {
+    const { question, options } = payload;
+
+    return (
+      <div className="rounded-2xl border border-white/[0.07] bg-card p-6">
+        <p className="font-mono text-xs text-lk-cyan tracking-widest uppercase mb-4">— Quick check</p>
+        <p className="text-lk-text-primary text-base font-medium mb-5">{question}</p>
+
+        <div className="space-y-3">
+          {options.map((option, i) => {
+            const isPicked = picked === i;
+
+            const borderClass = isPicked
+              ? 'border-lk-cyan/40'
+              : 'border-white/[0.07] hover:border-white/20';
+            const bgClass = isPicked ? 'bg-lk-cyan/[0.06]' : 'hover:bg-white/[0.02]';
+            const textClass = isPicked ? 'text-lk-text-primary' : 'text-lk-text-secondary';
+            const letterClass = isPicked ? 'text-lk-cyan' : 'text-lk-text-dim';
+
+            return (
+              <button
+                key={i}
+                className={`w-full flex items-center gap-4 px-4 py-3 rounded-xl border ${borderClass} ${bgClass} text-left transition`}
+                onClick={() => setPicked(i)}
+              >
+                <span className={`font-mono text-xs tracking-widest shrink-0 ${letterClass}`}>
+                  {String.fromCharCode(65 + i)}
+                </span>
+                <span className={`text-sm flex-1 ${textClass}`}>{option.text}</span>
+              </button>
+            );
+          })}
+        </div>
+
+        {picked !== null && (
+          <p className="mt-5 pt-5 border-t border-white/[0.07] text-sm text-lk-text-secondary">
+            {options[picked].explain}
+          </p>
+        )}
+      </div>
+    );
+  }
+
+  const { question, choices, correctIndex, explain } = payload;
 
   return (
     <div className="rounded-2xl border border-white/[0.07] bg-card p-6">
