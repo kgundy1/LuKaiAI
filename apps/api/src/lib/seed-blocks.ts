@@ -875,35 +875,35 @@ const BLOCK_ENTRIES: BlockEntry[] = [
       {
         type: 'markdown',
         payload: {
-          md: "## Get to Pages\n\nIn the left sidebar, click **Workers & Pages**. On the page that loads, you'll see two tabs near the top: *Overview* and a few others. Click **Create application**.\n\nA new screen appears with two tabs: **Workers** and **Pages**. You want Pages. Click the **Pages** tab.\n\nIn the Pages tab, the first option is **Connect to Git**. Click that button.",
+          md: "## Get to Pages\n\nIn the left sidebar, click **Workers & Pages**. On the page that loads, find the **Create application** button in the top-right and click it.\n\nA screen titled **Ship something new** appears. It offers a few ways to start: *Continue with GitHub*, *Connect GitLab*, *Start with Hello World!*, and *Select a template*. You're connecting the repo you made in Module 2, so you want the GitHub option.",
         },
       },
       {
         type: 'screenshot',
         payload: {
           slotId: 'cf-pages-connect',
-          placeholder: 'Drop a screenshot of Cloudflare Pages → Connect to Git',
-          caption: 'Cloudflare → Pages → "Create application" → "Pages" tab → "Connect to Git" button. The single most missed step in this whole module.',
+          src: '/images/lessons/cf-pages-connect.png',
+          caption: 'Cloudflare → Workers & Pages → "Create application" → the "Ship something new" screen. The single most missed step in this whole module.',
         },
       },
       {
         type: 'markdown',
         payload: {
-          md: "## Authorize Cloudflare on GitHub\n\nCloudflare asks for permission to read your GitHub repos — same flow Claude Code went through in Module 2 Lesson 5. **Click Connect GitHub.** A GitHub authorization page opens.\n\nGitHub will let you choose: authorize *all repositories* or *only select repositories*. Either works. \"Only select\" is slightly safer — you can pick just the repo you made in Module 2. If you do that, make sure the dropdown shows the right repo selected.\n\nClick **Authorize** at the bottom of GitHub's page. You bounce back to Cloudflare.",
+          md: "## Authorize Cloudflare on GitHub\n\nClick **Continue with GitHub.** A GitHub authorization window pops up — same flow Claude Code went through in Module 2 Lesson 5.\n\nGitHub will let you choose: authorize *all repositories* or *only select repositories*. Either works. \"Only select\" is slightly safer — you can pick just the repo you made in Module 2. If you do that, make sure the dropdown shows the right repo selected.\n\nClick **Authorize** at the bottom of GitHub's page. The popup closes and you land back on Cloudflare on a **Get started** screen with two cards: **Import an existing Git repository** and **Drag and drop your files.** Click **Get started** next to *Import an existing Git repository.*\n\nThe **Select a repository** page appears, listing the GitHub repos Cloudflare can now see.",
         },
       },
       {
         type: 'screenshot',
         payload: {
           slotId: 'cf-repo-picker',
-          placeholder: 'Drop a screenshot of the repository picker (after GitHub auth)',
+          src: '/images/lessons/cf-repo-picker.png',
           caption: "After authorizing Cloudflare on GitHub — the dropdown listing your repos. If your repo doesn't show up, you missed authorizing it — go back to GitHub settings → Applications → Cloudflare and toggle the repo on.",
         },
       },
       {
         type: 'markdown',
         payload: {
-          md: "## Pick your repo\n\nBack at Cloudflare, a list of your GitHub repositories appears. Find the one from Module 2. Click it. Click **Begin setup**.\n\nA configuration page loads with fields like *Project name*, *Production branch*, *Build settings*. **Most of these are auto-filled correctly.** Project name defaults to your repo name — keep it. Production branch is `main` — keep it. Build settings depend on what your prototype is built with — Cloudflare usually detects this; if you're not sure, leave them blank and click **Save and Deploy.**\n\nIf it fails because of build settings, you'll fix that in Lesson 3. **For now: trust the defaults.**",
+          md: "## Pick your repo\n\nOn the **Select a repository** page, find the repo from Module 2 in the list. Select it and click **Begin setup**.\n\nA configuration page loads with fields like *Project name*, *Production branch*, *Build settings*. **Most of these are auto-filled correctly.** Project name defaults to your repo name — keep it. Production branch is `main` — keep it. Build settings depend on what your prototype is built with — Cloudflare usually detects this; if you're not sure, leave them blank and click **Save and Deploy.**\n\nIf it fails because of build settings, you'll fix that in Lesson 3. **For now: trust the defaults.**",
         },
       },
     ],
@@ -928,7 +928,7 @@ const BLOCK_ENTRIES: BlockEntry[] = [
         type: 'screenshot',
         payload: {
           slotId: 'cf-deploy-success',
-          placeholder: 'Drop a screenshot of a successful Cloudflare deploy',
+          src: '/images/lessons/cf-deploy-success.png',
           caption: 'The Deployments tab on Cloudflare with a green "Success" status and your .pages.dev URL. What "the deploy worked" actually looks like.',
         },
       },
@@ -1084,7 +1084,7 @@ const BLOCK_ENTRIES: BlockEntry[] = [
         type: 'screenshot',
         payload: {
           slotId: 'render-new-service',
-          placeholder: 'Drop a screenshot of Render → New → Web Service',
+          src: '/images/lessons/render-new-service.png',
           caption: 'Render dashboard → "+ New" → "Web Service" → repo picker. The starting point for any backend deploy.',
         },
       },
@@ -1098,7 +1098,7 @@ const BLOCK_ENTRIES: BlockEntry[] = [
         type: 'screenshot',
         payload: {
           slotId: 'render-service-config',
-          placeholder: 'Drop a screenshot of the Web Service config page',
+          src: '/images/lessons/render-service-config.png',
           caption: 'The page where you set Name, Region, Branch, Build Command, Start Command. Annotate the defaults that should not be changed and the ones that should.',
         },
       },
@@ -1136,7 +1136,7 @@ const BLOCK_ENTRIES: BlockEntry[] = [
         type: 'screenshot',
         payload: {
           slotId: 'render-new-postgres',
-          placeholder: 'Drop a screenshot of Render → New → Postgres',
+          src: '/images/lessons/render-new-postgres.png',
           caption: 'Render → "+ New" → "Postgres". The form for spinning up the free-tier database.',
         },
       },
@@ -1150,7 +1150,7 @@ const BLOCK_ENTRIES: BlockEntry[] = [
         type: 'screenshot',
         payload: {
           slotId: 'render-database-url',
-          placeholder: 'Drop a screenshot of the Connection details / Internal DATABASE_URL',
+          src: '/images/lessons/render-database-url.png',
           caption: 'After Postgres provisions — the page showing "Internal Database URL." This is the value learners copy into their backend service\'s env vars as DATABASE_URL.',
         },
       },
@@ -1164,7 +1164,7 @@ const BLOCK_ENTRIES: BlockEntry[] = [
         type: 'screenshot',
         payload: {
           slotId: 'render-env-vars',
-          placeholder: 'Drop a screenshot of the Web Service → Environment tab',
+          src: '/images/lessons/render-env-vars.png',
           caption: 'The Environment tab on the backend service with DATABASE_URL pasted in. The hand-off between database and backend.',
         },
       },
@@ -1196,7 +1196,7 @@ const BLOCK_ENTRIES: BlockEntry[] = [
         type: 'screenshot',
         payload: {
           slotId: 'render-build-logs',
-          placeholder: 'Drop a screenshot of Render build logs (any deploy)',
+          src: '/images/lessons/render-build-logs.png',
           caption: 'The Logs tab. When a deploy fails, this is what learners screenshot and paste into Chat.',
         },
       },

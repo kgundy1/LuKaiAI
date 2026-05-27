@@ -38,27 +38,27 @@ When you log in, you land on a dashboard with a left sidebar. **That sidebar is 
 
 ## Get to Pages
 
-In the left sidebar, click **Workers & Pages**. On the page that loads, you'll see two tabs near the top: *Overview* and a few others. Click **Create application**.
+In the left sidebar, click **Workers & Pages**. On the page that loads, find the **Create application** button in the top-right and click it.
 
-A new screen appears with two tabs: **Workers** and **Pages**. You want Pages. Click the **Pages** tab.
+A screen titled **Ship something new** appears. It offers a few ways to start: *Continue with GitHub*, *Connect GitLab*, *Start with Hello World!*, and *Select a template*. You're connecting the repo you made in Module 2, so you want the GitHub option.
 
-In the Pages tab, the first option is **Connect to Git**. Click that button.
-
-> _[Screenshot: Cloudflare → Pages → "Create application" → "Pages" tab → "Connect to Git" button. The single most missed step in this whole module.]_
+> _[Screenshot: Cloudflare → Workers & Pages → "Create application" → the "Ship something new" screen. The single most missed step in this whole module.]_
 
 ## Authorize Cloudflare on GitHub
 
-Cloudflare asks for permission to read your GitHub repos — same flow Claude Code went through in Module 2 Lesson 5. **Click Connect GitHub.** A GitHub authorization page opens.
+Click **Continue with GitHub.** A GitHub authorization window pops up — same flow Claude Code went through in Module 2 Lesson 5.
 
 GitHub will let you choose: authorize *all repositories* or *only select repositories*. Either works. "Only select" is slightly safer — you can pick just the repo you made in Module 2. If you do that, make sure the dropdown shows the right repo selected.
 
-Click **Authorize** at the bottom of GitHub's page. You bounce back to Cloudflare.
+Click **Authorize** at the bottom of GitHub's page. The popup closes and you land back on Cloudflare on a **Get started** screen with two cards: **Import an existing Git repository** and **Drag and drop your files.** Click **Get started** next to *Import an existing Git repository.*
+
+The **Select a repository** page appears, listing the GitHub repos Cloudflare can now see.
 
 > _[Screenshot: After authorizing Cloudflare on GitHub — the dropdown listing your repos. If your repo doesn't show up, you missed authorizing it — go back to GitHub settings → Applications → Cloudflare and toggle the repo on.]_
 
 ## Pick your repo
 
-Back at Cloudflare, a list of your GitHub repositories appears. Find the one from Module 2. Click it. Click **Begin setup**.
+On the **Select a repository** page, find the repo from Module 2 in the list. Select it and click **Begin setup**.
 
 A configuration page loads with fields like *Project name*, *Production branch*, *Build settings*. **Most of these are auto-filled correctly.** Project name defaults to your repo name — keep it. Production branch is `main` — keep it. Build settings depend on what your prototype is built with — Cloudflare usually detects this; if you're not sure, leave them blank and click **Save and Deploy.**
 
