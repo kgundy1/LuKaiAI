@@ -45,7 +45,9 @@ Rule going forward: every content PR description should explicitly call out whic
 | React frontend (apps/web/) | ✅ LIVE | apps/web/ — Vite + React + TypeScript + Tailwind |
 | Cloudflare Pages serving React | ✅ LIVE | lukaiai.pages.dev now serves apps/web/dist |
 | GitHub repo | ✅ LIVE | github.com/kgundy1/LukaiAI |
-| Backend API | ✅ LIVE | lukaiai.onrender.com |
+| Backend API | ✅ LIVE | api.lukaiai.com (custom domain) — lukaiai.onrender.com kept as fallback |
+| Render plan | ✅ Starter ($7/mo) | Web service no longer hibernates; persistent instance |
+| Frontend → API base URL | ✅ LIVE | apps/web/ uses VITE_API_BASE=https://api.lukaiai.com |
 | Database | ✅ LIVE | Render Postgres (lukaiai-db) |
 | Email collection | ✅ WORKING | POST /subscribe endpoint live |
 | Initial migration | ✅ APPLIED | Subscriber table created |
@@ -64,9 +66,9 @@ Rule going forward: every content PR description should explicitly call out whic
 | Curriculum outline (curriculum/COURSE_OUTLINE.md) | ✅ LOCKED | Six modules, thirty lessons, six deliverables — source of truth for course content |
 | AuthContext + ProtectedRoute | ✅ LIVE | apps/web/src/lib/AuthContext.tsx |
 | Cloudflare _redirects for SPA | ✅ LIVE | apps/web/public/_redirects |
+| Welcome email on signup (Resend) | ✅ LIVE | Sent from hello@lukaiai.com, domain verified (PR #53) |
+| Signup spam-folder hint | ✅ LIVE | apps/web/src/pages/Signup.tsx (PR #54) |
 | Course content | ❌ Not built | Lives behind email signup |
-| Custom domain | ❌ Not connected | LukaiAI.com (when ready) |
-| Email provider integration | ❌ Not built | Emails stored in DB only |
 
 ---
 
@@ -75,18 +77,16 @@ Rule going forward: every content PR description should explicitly call out whic
 | Layer | Tech | Where it runs |
 |---|---|---|
 | Frontend | React + TypeScript + Vite + Tailwind (apps/web/) | Cloudflare Pages |
-| Backend | Fastify + TypeScript + Prisma | Render (Docker, free tier) |
+| Backend | Fastify + TypeScript + Prisma | Render (Docker, Starter plan $7/mo) |
 | Database | Postgres + Prisma ORM | Render Postgres (free tier — expires June 2, 2026) |
 | Email collection | POST /subscribe — saves email to Subscriber table | API |
 | Repo | GitHub | github.com/kgundy1/LukaiAI |
 
 **Auto-deploy:** Every push to `main` triggers Cloudflare Pages (~60 seconds) AND Render (~3-4 min).
 
-**Render service URL:** `https://lukaiai.onrender.com` (NOT `lukaiai-api.onrender.com`)
+**Render service URL:** `https://api.lukaiai.com` (custom domain, primary). `https://lukaiai.onrender.com` is kept as a fallback. NOT `lukaiai-api.onrender.com`.
 
-**Free tier behavior:** Render free instance hibernates after inactivity.
-First request after sleep takes ~50 seconds. Subsequent requests are fast.
-Hit `/health` to wake the server before testing.
+**Starter plan behavior:** The Render web service is on the Starter plan ($7/mo) and runs as a persistent instance — no hibernation, no cold-start delay. `/health` is still useful for status checks but is no longer needed as a wake call before testing.
 
 ---
 
@@ -170,7 +170,8 @@ LukaiAI/
 
 ### Backend (apps/api/)
 - Fastify + TypeScript server
-- CORS configured to allow `lukaiai.pages.dev` + localhost (reads CORS_ORIGIN env var inline)
+- CORS configured to allow `lukaiai.com`, `lukaiai.pages.dev`, and localhost — reads CORS_ORIGIN env var inline and parses it as a comma-separated list (PR #51)
+- Welcome email sent on signup via Resend, from `hello@lukaiai.com` (domain verified, PR #53)
 - Rate limiting: max 3 requests per IP per hour on /subscribe
 - Routes:
   - `POST /subscribe` — accepts `{email}`, validates, upserts to DB, returns `{ok: true, existing?: true}`
@@ -198,11 +199,9 @@ LukaiAI/
 
 | Feature | Notes |
 |---|---|
-| Email provider integration | Emails currently only in DB — no Mailchimp, Resend, ConvertKit etc. yet |
 | Course content | Not built — shell exists at /learn but modules are empty |
 | Payment / checkout | Not started |
 | Admin dashboard | Not started — to view collected emails, currently must query DB directly |
-| Custom domain | LukaiAI.com not connected yet |
 
 ---
 
@@ -332,6 +331,8 @@ These problems were solved in PRs #1-#8. Don't recreate them:
 5. **Initial migrations**: New Prisma databases need an explicit initial migration committed to `prisma/migrations/`. Without it, `prisma migrate deploy` finds nothing and the table never gets created — causing 500 errors on every insert.
 
 6. **API URL precision**: The Render service URL is `lukaiai.onrender.com`, NOT `lukaiai-api.onrender.com`. The hardcoded `window.__API_BASE__` in index.html must match the actual service URL exactly.
+
+7. **No `--ignore-scripts` in `apps/api`**: `apps/api` uses native modules (`bcrypt`) and Prisma's postinstall hook for client generation. NEVER use `npm install --ignore-scripts` in `apps/api` — it silently breaks bcrypt bindings and Prisma client, causing runtime crashes that don't show up in typecheck. Always plain `npm install`. Specific failure modes seen: `Cannot find module '.prisma/client/default'` (Prisma client not generated) and `Cannot find module '.../bcrypt/lib/binding/napi-v3/bcrypt_lib.node'` (bcrypt native binding not built). Both pass `npx tsc --noEmit` and only surface at server boot.
 
 ### Cloudflare Pages doesn't ship the root index.html by default
 
