@@ -69,6 +69,10 @@ export default function Signup() {
             <p className="text-lk-red text-sm text-center">{error}</p>
           )}
 
+          <p className="text-sm text-lk-text-tertiary text-center">
+            We'll send a welcome email — check spam if you don't see it.
+          </p>
+
           <button
             type="submit"
             disabled={loading}
