@@ -4,7 +4,7 @@ import Hero from '../components/Hero';
 import Story from '../components/Story';
 import Frustration from '../components/Frustration';
 import BigReceipt from '../components/BigReceipt';
-import EmailCapture from '../components/EmailCapture';
+import ClosingCTA from '../components/ClosingCTA';
 import Footer from '../components/Footer';
 
 export default function Landing() {
@@ -17,7 +17,7 @@ export default function Landing() {
         <Story />
         <Frustration />
         <BigReceipt />
-        <EmailCapture />
+        <ClosingCTA />
       </main>
       <Footer />
     </>
