@@ -1,6 +1,7 @@
 import { FastifyInstance } from 'fastify';
 import prisma from '../db';
 import { hashPassword, verifyPassword, requireAuth } from '../auth';
+import { sendWelcomeEmail } from '../lib/email';
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const MIN_PASSWORD = 8;
@@ -57,6 +58,12 @@ export default async function authRoutes(app: FastifyInstance) {
       path: '/',
       maxAge: 60 * 60 * 24 * 30,
     });
+
+    const frontendUrl = process.env.FRONTEND_URL || 'https://lukaiai.com';
+    const loginLink = `${frontendUrl}/login`;
+    sendWelcomeEmail(user.email, loginLink).catch((err) =>
+      req.log.error({ err, email: user.email }, 'welcome email failed')
+    );
 
     return reply.send({ ok: true, user: { id: user.id, email: user.email } });
   });
