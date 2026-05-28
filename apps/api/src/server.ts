@@ -16,12 +16,16 @@ const app = Fastify({ logger: true, trustProxy: true });
 async function build() {
   await app.register(cors, {
     origin: (origin, cb) => {
+      const corsOrigins = (process.env.CORS_ORIGIN || '')
+        .split(',')
+        .map((s) => s.trim())
+        .filter(Boolean);
       const allowed = [
-        process.env.CORS_ORIGIN,
+        ...corsOrigins,
         'https://lukaiai.pages.dev',
         'http://localhost:5173',
         'http://localhost:3000',
-      ].filter(Boolean);
+      ];
       const isPreview = origin?.endsWith('.lukaiai.pages.dev') ?? false;
       if (!origin || allowed.includes(origin) || isPreview) {
         cb(null, true);
