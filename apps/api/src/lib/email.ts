@@ -36,8 +36,13 @@ function buildWelcomeHtml(loginLink: string): string {
               </td>
             </tr>
             <tr>
-              <td style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:16px;line-height:1.7;color:#e8eaf2;padding-bottom:36px;">
+              <td style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:16px;line-height:1.7;color:#e8eaf2;padding-bottom:20px;">
                 Module 0 is short. Start when you have ten quiet minutes.
+              </td>
+            </tr>
+            <tr>
+              <td style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:16px;line-height:1.7;color:#e8eaf2;padding-bottom:36px;">
+                When you ship something, add it to the showcase at <a href="https://lukaiai.com/projects" style="color:#00c8f0;text-decoration:none;border-bottom:1px dotted #00c8f0;">lukaiai.com/projects</a>. Everyone&rsquo;s first project belongs there.
               </td>
             </tr>
             <tr>
@@ -72,6 +77,8 @@ function buildWelcomeText(loginLink: string): string {
 LuKaiAI is the workflow for building software with Claude — for people who have an idea and want to ship it.
 
 Module 0 is short. Start when you have ten quiet minutes.
+
+When you ship something, add it to the showcase at https://lukaiai.com/projects — everyone's first project belongs there.
 
 ${loginLink}
 
