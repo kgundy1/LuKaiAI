@@ -1,5 +1,45 @@
 # LuKaiAI Polish Gameplan
 
+## Current status — May 29, 2026
+
+**Sessions completed:** 2 of estimated 4-5
+
+**Items shipped (10):**
+- Tier 1: 1 (head metadata), 3 (contrast), 4 (semantic HTML/ARIA)
+- Tier 2: 6 (OG image), 7 (per-route titles), 8 (Story prose edit), 9 (Lighthouse easy wins), 10 (prefers-reduced-motion)
+
+**Lighthouse baseline (after Session 2):**
+- Mobile: Perf 79 · A11y 100 · BP 100 · SEO 100
+- Desktop: Perf 97 · A11y 100 · BP 100 · SEO 100
+
+**Infrastructure live:**
+- Google Search Console verified, sitemap.xml accepted (3 URLs in crawl queue)
+- OG image renders in social share previews
+- robots.txt + sitemap.xml served correctly
+- /me endpoint returns 200 { user: null } for anonymous (no console errors)
+- Async-loaded Google Fonts CSS
+
+**Next session — recommended starting point:**
+Item 2 (marketing-app design gap) is the last remaining Tier 1
+item and the biggest perceived-quality win available. Estimated
+4-6 hours. Should be a single-mission session.
+
+Alternative if Item 2 feels too big: Item 14 (performance pass) is
+now fully spec'd from Session 2 Lighthouse diagnostics and would
+take mobile Performance from 79 to 85+. Estimated 2-3 hours.
+
+**Items remaining by tier:**
+- Tier 1: 2 (marketing-app design gap)
+- Tier 2: 5 (pre-rendering/SSR)
+- Tier 3: 11, 12, 13, 14, 15, 16, 22
+- Tier 4: 17, 18, 19, 20, 21
+
+**Git history of polish work:**
+- 7baa038 — gameplan created
+- 0f0fa82 — Session 1 PR #57 (foundation pass)
+- 6e9e28b — Session 2 PR #58 (titles, prose, Lighthouse fixes)
+- 491b676 — Item 14 expanded with Session 2 diagnostics
+
 Multi-session work plan covering UX/UI, accessibility (a11y), SEO,
 and search quality signals. Ordered by leverage × user impact × ease.
 
@@ -47,13 +87,19 @@ Status legend: ⬜ not started · 🟡 in progress · ✅ done · ⏭️ skipped
 - ⬜ 20. Schema.org Course type once modules are real
 - ⬜ 21. Subdomain split (marketing vs app) — long-term
 
-## Session plan
+## Session log
 
-- **Session 1 (~3-4h):** Items 1, 3, 4, 6, 10 — SEO foundation + contrast + a11y basics + OG image
-- **Session 2 (~4-6h):** Item 2 — marketing-app design gap (the big one)
-- **Session 3 (~3-4h):** Items 5 (lite), 7, 8, 9, 16 — pre-rendering safety net, per-route metadata, prose edit, Lighthouse pass, form a11y
-- **Session 4+:** Tier 2 finishing + Tier 3 work
+- **Session 1 (Apr 28, 2026, ~3-4h):** Items 1, 3, 4, 6, 10 shipped as PR #57. Site foundation pass.
+- **Session 2 (May 28, 2026, ~3h):** Items 7, 8, 9 shipped as PR #58. Per-route metadata, prose polish, Lighthouse fixes. Items 22 logged.
+- **Session 3 (planned):** Item 2 — marketing-app design gap (Tier 1, 4-6h).
+- **Session 4+ (planned):** Item 14 (perf pass), then Tier 3 cleanup.
 
 ## How to use this doc
 
-When starting work on an item, change ⬜ to 🟡. When finishing, change to ✅. Mark items completed in the commit message that completes them. Add notes inline if context shifts.
+When starting a new session:
+1. Read "Current status" above to see where things stand
+2. Pick an item from the unshipped list
+3. Change ⬜ to 🟡 when starting work, ✅ when complete
+4. Update the "Current status" section at session end to reflect
+   what shipped and what the new starting point is
+5. Add a Session N entry to the Session log
