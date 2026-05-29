@@ -1,14 +1,23 @@
 # LuKaiAI Polish Gameplan
 
-## Current status — May 30, 2026
+## Current status — May 29, 2026
 
-**Sessions completed:** 2 of estimated 4-5
+**Sessions completed:** 3 of estimated 4-5
 
-**Session 3 (in progress):** Shipped-projects tracking — public showcase at /projects. See "Concrete next actions #1" in the strategic-plan section for the full spec.
+**Items shipped this session:**
+- Shipped-projects tracking infrastructure (the strategic asset from yesterday's strategic-plan section, "Concrete next action #1")
+- Phase A backend (PR #61): User model fields + migration + POST /me/project + GET /projects + frontend api.ts helpers
+- Phase B frontend (PR #62): /projects public showcase page with auth-gated submission form
+- Phase C email (PR #63): welcome email now mentions the showcase
+- Supabase project provisioned (LuKaiAI org, lukaiai-prod project) as parallel infrastructure work. Migration from Render Postgres to Supabase still pending — Render free DB expires June 2.
 
-**Items shipped (10):**
+**Total items shipped (gameplan + infrastructure):** 14 (10 tier-list items + 4 infrastructure/strategic-asset items across all 3 sessions)
+
+**Tier-list items shipped (10 of 22 enumerated):**
 - Tier 1: 1 (head metadata), 3 (contrast), 4 (semantic HTML/ARIA)
 - Tier 2: 6 (OG image), 7 (per-route titles), 8 (Story prose edit), 9 (Lighthouse easy wins), 10 (prefers-reduced-motion)
+
+Note: shipped-projects tracking (this session's work) was strategic-plan action #1, not a numbered tier item, hence not reflected in this 10 count.
 
 **Lighthouse baseline (after Session 2):**
 - Mobile: Perf 79 · A11y 100 · BP 100 · SEO 100
@@ -22,13 +31,9 @@
 - Async-loaded Google Fonts CSS
 
 **Next session — recommended starting point:**
-Item 2 (marketing-app design gap) is the last remaining Tier 1
-item and the biggest perceived-quality win available. Estimated
-4-6 hours. Should be a single-mission session.
+The Render → Supabase database migration. Free Render Postgres tier expires June 2 (within days). Phase A migration already applied to Render; same migration is idempotent on Supabase. Estimated 60-90 min.
 
-Alternative if Item 2 feels too big: Item 14 (performance pass) is
-now fully spec'd from Session 2 Lighthouse diagnostics and would
-take mobile Performance from 79 to 85+. Estimated 2-3 hours.
+Alternative next-session option: Item 2 (marketing-app design gap), still the largest remaining Tier 1 item.
 
 **Items remaining by tier:**
 - Tier 1: 2 (marketing-app design gap)
@@ -41,10 +46,6 @@ take mobile Performance from 79 to 85+. Estimated 2-3 hours.
 - 0f0fa82 — Session 1 PR #57 (foundation pass)
 - 6e9e28b — Session 2 PR #58 (titles, prose, Lighthouse fixes)
 - 491b676 — Item 14 expanded with Session 2 diagnostics
-
-**Session 3 in-progress (unmerged):**
-- Phase A backend merged in PR #61 (commit 13cc370)
-- Phase B frontend showcase page on branch `claude/session-3-phase-b-frontend` — awaiting diff review
 
 Multi-session work plan covering UX/UI, accessibility (a11y), SEO,
 and search quality signals. Ordered by leverage × user impact × ease.
@@ -226,7 +227,7 @@ proof. The risk is burnout before the curve.
 
 - **Session 1 (Apr 28, 2026, ~3-4h):** Items 1, 3, 4, 6, 10 shipped as PR #57. Site foundation pass.
 - **Session 2 (May 28, 2026, ~3h):** Items 7, 8, 9 shipped as PR #58. Per-route metadata, prose polish, Lighthouse fixes. Item 22 logged.
-- **Session 3 (in progress, May 30, 2026):** Shipped-projects tracking — public showcase at /projects. Pivoted from Item 2 (deferred) because shipped projects compound from day 1; the design gap doesn't expire.
+- **Session 3 (May 29, 2026, ~3-4h):** Shipped-projects tracking — public showcase at /projects. Three PRs: #61 (backend schema + endpoints), #62 (frontend page), #63 (welcome email update). Strategic-asset work per yesterday's plan. Supabase provisioned in parallel; DB migration deferred to Session 4 ahead of June 2 Render expiration.
 
 ## How to use this doc
 
