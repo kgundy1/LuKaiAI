@@ -29,7 +29,12 @@ Status legend: ⬜ not started · 🟡 in progress · ✅ done · ⏭️ skipped
 - ⬜ 11. Heading hierarchy audit
 - ⬜ 12. Alt text strategy for lesson screenshots
 - ⬜ 13. Schema.org structured data (EducationalOrganization JSON-LD)
-- ⬜ 14. Performance pass (font loading, image optimization, bundle size)
+- ⬜ 14. Performance pass — target mobile Performance 85+
+  - Inline critical CSS via vite-plugin-html-inline-css (eliminates
+    last render-blocking request, est. +5-8 mobile Perf)
+  - Self-host Google Fonts (removes DNS + TLS on critical path)
+  - Code-split routes via React.lazy (reduces JS parse on landing,
+    addresses 56 KiB unused-JS finding from Session 2 Lighthouse)
 - ⬜ 15. Internal linking strategy
 - ⬜ 16. Form accessibility audit (aria-live, aria-busy, autofocus)
 - ⬜ 22. Audit all <small> elements for contrast (Lighthouse only flagged one instance, but the pattern repeats — Hero.tsx:91)
