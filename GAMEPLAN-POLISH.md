@@ -1,8 +1,10 @@
 # LuKaiAI Polish Gameplan
 
-## Current status — May 29, 2026
+## Current status — May 30, 2026
 
 **Sessions completed:** 2 of estimated 4-5
+
+**Session 3 (in progress):** Shipped-projects tracking — public showcase at /projects. See "Concrete next actions #1" in the strategic-plan section for the full spec.
 
 **Items shipped (10):**
 - Tier 1: 1 (head metadata), 3 (contrast), 4 (semantic HTML/ARIA)
@@ -219,9 +221,8 @@ proof. The risk is burnout before the curve.
 ## Session log
 
 - **Session 1 (Apr 28, 2026, ~3-4h):** Items 1, 3, 4, 6, 10 shipped as PR #57. Site foundation pass.
-- **Session 2 (May 28, 2026, ~3h):** Items 7, 8, 9 shipped as PR #58. Per-route metadata, prose polish, Lighthouse fixes. Items 22 logged.
-- **Session 3 (planned):** Item 2 — marketing-app design gap (Tier 1, 4-6h).
-- **Session 4+ (planned):** Item 14 (perf pass), then Tier 3 cleanup.
+- **Session 2 (May 28, 2026, ~3h):** Items 7, 8, 9 shipped as PR #58. Per-route metadata, prose polish, Lighthouse fixes. Item 22 logged.
+- **Session 3 (in progress, May 30, 2026):** Shipped-projects tracking — public showcase at /projects. Pivoted from Item 2 (deferred) because shipped projects compound from day 1; the design gap doesn't expire.
 
 ## How to use this doc
 
