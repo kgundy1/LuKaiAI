@@ -16,9 +16,12 @@ Status legend: ⬜ not started · 🟡 in progress · ✅ done · ⏭️ skipped
 
 - ⬜ 5. Pre-rendering or SSR for crawlable content (start with `<noscript>` fallback)
 - ✅ 6. Brand-coherent OG image (1200×630)
-- ⬜ 7. Per-route titles and meta descriptions (react-helmet-async or similar)
-- ⬜ 8. Story section edit pass (cut ~40% prose)
-- ⬜ 9. Lighthouse audit and fix easy wins
+- ✅ 7. Per-route titles and meta descriptions (react-helmet-async or similar)
+- ✅ 8. Story section edit pass (cut ~40% prose)
+- ✅ 9. Lighthouse audit and fix easy wins
+  - Async-loaded Google Fonts CSS (mobile perf, ~+10-15 score)
+  - Receipt-text contrast (desktop a11y, one element)
+  - /me returns 200 { user: null } for anon (no more 401 console error)
 - ✅ 10. prefers-reduced-motion support
 
 ## Tier 3 — Worth doing (next month)
@@ -29,6 +32,7 @@ Status legend: ⬜ not started · 🟡 in progress · ✅ done · ⏭️ skipped
 - ⬜ 14. Performance pass (font loading, image optimization, bundle size)
 - ⬜ 15. Internal linking strategy
 - ⬜ 16. Form accessibility audit (aria-live, aria-busy, autofocus)
+- ⬜ 22. Audit all <small> elements for contrast (Lighthouse only flagged one instance, but the pattern repeats — Hero.tsx:91)
 
 ## Tier 4 — Backlog (nice to have)
 

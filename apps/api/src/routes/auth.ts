@@ -1,6 +1,6 @@
 import { FastifyInstance } from 'fastify';
 import prisma from '../db';
-import { hashPassword, verifyPassword, requireAuth } from '../auth';
+import { hashPassword, verifyPassword, AuthPayload } from '../auth';
 import { sendWelcomeEmail } from '../lib/email';
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -112,13 +112,18 @@ export default async function authRoutes(app: FastifyInstance) {
   });
 
   app.get('/me', async (req, reply) => {
-    const auth = await requireAuth(req, reply);
+    let payload: AuthPayload;
+    try {
+      payload = await req.jwtVerify<AuthPayload>();
+    } catch {
+      return reply.send({ ok: true, user: null });
+    }
     const user = await prisma.user.findUnique({
-      where: { id: auth.userId },
+      where: { id: payload.userId },
       select: { id: true, email: true, createdAt: true },
     });
     if (!user) {
-      return reply.status(401).send({ ok: false, error: 'User not found' });
+      return reply.send({ ok: true, user: null });
     }
     return reply.send({ ok: true, user });
   });

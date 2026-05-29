@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import ReactMarkdown from 'react-markdown';
 import { fetchModuleLessons, markLessonComplete } from '../lib/api';
 import BlockRenderer from '../components/lesson/BlockRenderer';
@@ -72,6 +73,10 @@ export default function Lesson() {
 
   return (
     <div className="min-h-screen bg-void">
+      <Helmet>
+        <title>{`Lesson ${lesson.number}: ${lesson.title} — LuKaiAI`}</title>
+        <meta name="description" content={`Module ${module.number} · ${module.title}`} />
+      </Helmet>
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-lk-cyan focus:text-void focus:px-4 focus:py-2 focus:rounded-lg focus:font-bold"

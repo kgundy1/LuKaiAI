@@ -55,30 +55,15 @@ export default function Story() {
               <strong className="text-lk-text-primary font-semibold">That turned out to be enough.</strong>
             </p>
             <p className="text-[17px] text-lk-text-secondary leading-[1.8] font-light max-w-[580px] mb-8">
-              My version was a workplace problem. I built it. It worked. Then I built this — LuKai —
-              because once you've done it once,{' '}
+              I built it. It worked. Then I built this — LuKai — because once you've done it once,{' '}
               <strong className="text-lk-text-primary font-semibold">you start seeing all the ideas that should exist and don't.</strong>
             </p>
             <p className="text-[17px] text-lk-text-secondary leading-[1.8] font-light max-w-[580px] mb-8">
-              Maybe yours is at work. Maybe it's personal. Maybe it's been sitting in your head for
-              years because every time you looked at the price of getting it built, you put it back
-              down. The age of innovation moves at the speed of a heartbeat now — internet, social,
-              video — and if your only barrier was the money it used to cost to build software, that
-              barrier is gone.{' '}
-              <strong className="text-lk-text-primary font-semibold">The course is the leg up. The cost is one subscription.</strong>
-            </p>
-            <p className="text-[17px] text-lk-text-secondary leading-[1.8] font-light max-w-[580px] mb-8">
-              <strong className="text-lk-text-primary font-semibold">I'm not selling this course. I won't ever sell it.</strong>{' '}
-              Search "AI course" right now and you'll get a hundred results. Almost all of them are
-              paid. You can't tell from outside which ones will actually help you until you've already
-              bought — and the people who'd benefit most are the ones least able to gamble money to
-              find out. I could never pull the trigger on one. I don't expect you to either.
-            </p>
-            <p className="text-[17px] text-lk-text-secondary leading-[1.8] font-light max-w-[580px] mb-8">
-              So this stays free. If LuKai ever earns anything someday, it'll be from people who want
-              to invest in where this is going — never from individuals trying to get themselves
-              unstuck.{' '}
-              <strong className="text-lk-text-primary font-semibold">If even one person who'd given up on their idea ends up bringing it to life because of this, that's enough for me.</strong>
+              Maybe yours is sitting in your head because every time you looked at the price of
+              building it, you put it back down. If cost was the only barrier,{' '}
+              <strong className="text-lk-text-primary font-semibold">that barrier is gone.</strong>{' '}
+              This stays free. If even one person who'd given up on their idea ends up bringing it
+              to life because of this, that's enough for me.
             </p>
             <div className="inline-flex items-center gap-[14px] bg-[rgba(201,168,76,0.12)] border border-[rgba(201,168,76,0.2)] rounded-xl px-5 py-4">
               <div className="text-[22px]">👦👦</div>

@@ -1,5 +1,6 @@
 import { useState, FormEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { useAuth } from '../lib/AuthContext';
 
 export default function Signup() {
@@ -26,6 +27,10 @@ export default function Signup() {
 
   return (
     <>
+      <Helmet>
+        <title>Sign up — LuKaiAI</title>
+        <meta name="description" content="Create your free LuKaiAI account." />
+      </Helmet>
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-lk-cyan focus:text-void focus:px-4 focus:py-2 focus:rounded-lg focus:font-bold"
