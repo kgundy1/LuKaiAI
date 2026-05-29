@@ -5,7 +5,13 @@ export default function Nav() {
   const { user } = useAuth();
 
   return (
-    <nav className="fixed top-0 left-0 right-0 h-16 flex items-center justify-between px-12 bg-void/80 backdrop-blur-xl border-b border-white/[0.07] z-50">
+    <nav aria-label="Primary navigation" className="fixed top-0 left-0 right-0 h-16 flex items-center justify-between px-12 bg-void/80 backdrop-blur-xl border-b border-white/[0.07] z-50">
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-lk-cyan focus:text-void focus:px-4 focus:py-2 focus:rounded-lg focus:font-bold"
+      >
+        Skip to content
+      </a>
       <Link to="/" className="font-serif text-2xl">
         <span className="text-lk-gold">Lu</span>
         <span className="text-lk-text-primary">Kai</span>

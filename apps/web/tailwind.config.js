@@ -16,7 +16,7 @@ export default {
         'lk-text-primary': '#e8eaf2',
         'lk-text-secondary': '#b0b8d0',
         'lk-text-tertiary': '#7a8299',
-        'lk-text-dim': '#444c65',
+        'lk-text-dim': '#737b97',
       },
       fontFamily: {
         serif: ['Instrument Serif', 'Georgia', 'serif'],

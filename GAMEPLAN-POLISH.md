@@ -7,19 +7,19 @@ Status legend: ⬜ not started · 🟡 in progress · ✅ done · ⏭️ skipped
 
 ## Tier 1 — Critical (this week)
 
-- ⬜ 1. Head metadata + OG tags + favicon + robots.txt + sitemap.xml
+- ✅ 1. Head metadata + OG tags + favicon + robots.txt + sitemap.xml
 - ⬜ 2. Fix marketing-app design gap (unified Nav, brand-consistent /learn and /lesson, brand texture on auth pages)
-- ⬜ 3. Fix accessibility contrast failures (text-lk-text-dim → AA compliant)
-- ⬜ 4. Semantic HTML and ARIA basics (landmarks, skip-to-content, proper roles)
+- ✅ 3. Fix accessibility contrast failures (text-lk-text-dim → AA compliant)
+- ✅ 4. Semantic HTML and ARIA basics (landmarks, skip-to-content, proper roles)
 
 ## Tier 2 — High value (next two weeks)
 
 - ⬜ 5. Pre-rendering or SSR for crawlable content (start with `<noscript>` fallback)
-- ⬜ 6. Brand-coherent OG image (1200×630)
+- ✅ 6. Brand-coherent OG image (1200×630)
 - ⬜ 7. Per-route titles and meta descriptions (react-helmet-async or similar)
 - ⬜ 8. Story section edit pass (cut ~40% prose)
 - ⬜ 9. Lighthouse audit and fix easy wins
-- ⬜ 10. prefers-reduced-motion support
+- ✅ 10. prefers-reduced-motion support
 
 ## Tier 3 — Worth doing (next month)
 

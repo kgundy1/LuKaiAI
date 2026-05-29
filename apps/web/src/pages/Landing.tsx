@@ -12,7 +12,7 @@ export default function Landing() {
   return (
     <>
       <Nav />
-      <main>
+      <main id="main">
         <Hero />
         <Story />
         <Frustration />
