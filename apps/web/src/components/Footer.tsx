@@ -44,6 +44,10 @@ export default function Footer() {
           </div>
 
           <div className="text-[13px] text-lk-text-tertiary">
+            <Link to="/projects" className="no-underline transition-colors duration-200 hover:text-lk-text-primary">
+              Projects
+            </Link>
+            <span className="mx-2 text-lk-text-dim">·</span>
             <Link to="/terms" className="no-underline transition-colors duration-200 hover:text-lk-text-primary">
               Terms
             </Link>
