@@ -104,7 +104,7 @@ export default function Hero() {
           <div className="flex items-center justify-between px-6 py-4 bg-[rgba(52,211,153,0.05)] border-t border-[rgba(52,211,153,0.15)]">
             <div className="text-[14px] font-bold text-lk-green">
               What it actually cost
-              <small className="block text-[11px] text-lk-text-tertiary font-normal mt-[1px]">Claude subscription</small>
+              <small className="block text-[11px] text-lk-text-secondary font-normal mt-[1px]">Claude subscription</small>
             </div>
             <div className="font-mono text-[20px] text-lk-green">$20/mo</div>
           </div>

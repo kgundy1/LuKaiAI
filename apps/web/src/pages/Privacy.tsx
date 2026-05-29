@@ -1,9 +1,14 @@
+import { Helmet } from 'react-helmet-async';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
 
 export default function Privacy() {
   return (
     <>
+      <Helmet>
+        <title>Privacy Policy — LuKaiAI</title>
+        <meta name="description" content="How LuKaiAI handles your information." />
+      </Helmet>
       <Nav />
       <main id="main" className="min-h-screen bg-void">
         <div className="max-w-[720px] mx-auto pt-32 pb-20 px-6">

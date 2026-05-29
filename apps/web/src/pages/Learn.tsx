@@ -1,6 +1,7 @@
 import { useAuth } from '../lib/AuthContext';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { fetchModules } from '../lib/api';
 
 type ApiModule = {
@@ -32,6 +33,10 @@ export default function Learn() {
 
   return (
     <div className="min-h-screen bg-void">
+      <Helmet>
+        <title>The workflow — LuKaiAI</title>
+        <meta name="description" content="Seven modules. Each builds on the last. Build at your pace." />
+      </Helmet>
       <nav aria-label="App navigation" className="fixed top-0 left-0 right-0 h-16 flex items-center justify-between px-12 bg-void/80 backdrop-blur-xl border-b border-white/[0.07] z-50">
         <a
           href="#main"

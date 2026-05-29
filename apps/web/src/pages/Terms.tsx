@@ -1,9 +1,14 @@
+import { Helmet } from 'react-helmet-async';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
 
 export default function Terms() {
   return (
     <>
+      <Helmet>
+        <title>Terms of Service — LuKaiAI</title>
+        <meta name="description" content="Terms of service for LuKaiAI." />
+      </Helmet>
       <Nav />
       <main id="main" className="min-h-screen bg-void">
         <div className="max-w-[720px] mx-auto pt-32 pb-20 px-6">
