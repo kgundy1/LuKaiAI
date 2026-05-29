@@ -43,7 +43,8 @@ take mobile Performance from 79 to 85+. Estimated 2-3 hours.
 - 491b676 — Item 14 expanded with Session 2 diagnostics
 
 **Session 3 in-progress (unmerged):**
-- Branch `claude/session-3-phase-a-backend` — Phase A backend foundation for shipped-projects tracking complete (Prisma schema + migration `20260529181703_add_shipped_projects_fields`, `POST /me/project`, `GET /projects`, frontend api.ts helpers). Awaiting diff review before commit.
+- Phase A backend merged in PR #61 (commit 13cc370)
+- Phase B frontend showcase page on branch `claude/session-3-phase-b-frontend` — awaiting diff review
 
 Multi-session work plan covering UX/UI, accessibility (a11y), SEO,
 and search quality signals. Ordered by leverage × user impact × ease.

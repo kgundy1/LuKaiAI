@@ -8,6 +8,7 @@ import Learn from './pages/Learn';
 import Lesson from './pages/Lesson';
 import Terms from './pages/Terms';
 import Privacy from './pages/Privacy';
+import Projects from './pages/Projects';
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/privacy" element={<Privacy />} />
+          <Route path="/projects" element={<Projects />} />
           <Route
             path="/learn"
             element={
