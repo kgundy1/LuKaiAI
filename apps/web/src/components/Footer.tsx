@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 export default function Footer() {
   return (
-    <footer className="border-t border-[rgba(255,255,255,0.07)] px-12 py-11 max-[960px]:px-6">
+    <footer aria-label="Site footer" className="border-t border-[rgba(255,255,255,0.07)] px-12 py-11 max-[960px]:px-6">
       <div className="max-w-[1060px] mx-auto">
         <div className="flex items-center justify-between flex-wrap gap-5">
           <div>

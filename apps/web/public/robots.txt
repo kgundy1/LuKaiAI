@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /learn
+Disallow: /signup
+Disallow: /login
+
+Sitemap: https://lukaiai.com/sitemap.xml

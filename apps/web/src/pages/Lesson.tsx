@@ -72,17 +72,24 @@ export default function Lesson() {
 
   return (
     <div className="min-h-screen bg-void">
-      <div className="max-w-3xl mx-auto px-6 py-12">
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-lk-cyan focus:text-void focus:px-4 focus:py-2 focus:rounded-lg focus:font-bold"
+      >
+        Skip to content
+      </a>
+      <main id="main" className="max-w-3xl mx-auto px-6 py-12">
         <Link to="/learn" className="text-lk-text-tertiary hover:text-lk-text-secondary text-sm">← Back to modules</Link>
+        <article>
         <div className="mt-6 mb-2 text-lk-text-tertiary text-sm">Module {module.number} · {module.title}</div>
-        <h1 className="text-3xl font-bold text-lk-text-primary mb-8">Lesson {lesson.number}: {lesson.title}</h1>
+        <h1 className="font-serif text-3xl text-lk-text-primary mb-8">Lesson {lesson.number}: {lesson.title}</h1>
 
         {lesson.content_blocks && lesson.content_blocks.length > 0 ? (
           <BlockRenderer blocks={lesson.content_blocks} lessonId={lesson.id} />
         ) : (
-          <article className="prose prose-invert max-w-none">
+          <div className="prose prose-invert max-w-none">
             <ReactMarkdown>{lesson.content}</ReactMarkdown>
-          </article>
+          </div>
         )}
 
         <div className="mt-12 pt-8 border-t border-white/10 flex flex-wrap items-center gap-4">
@@ -114,7 +121,8 @@ export default function Lesson() {
             </Link>
           )}
         </div>
-      </div>
+        </article>
+      </main>
     </div>
   );
 }

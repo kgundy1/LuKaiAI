@@ -5,7 +5,7 @@ export default function Terms() {
   return (
     <>
       <Nav />
-      <main className="min-h-screen bg-void">
+      <main id="main" className="min-h-screen bg-void">
         <div className="max-w-[720px] mx-auto pt-32 pb-20 px-6">
           <h1 className="font-serif text-4xl text-lk-text-primary mb-2">Terms of Service</h1>
           <p className="text-sm text-lk-text-dim mb-12">Last updated: May 28, 2026</p>

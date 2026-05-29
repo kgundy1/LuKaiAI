@@ -25,7 +25,14 @@ export default function Signup() {
   }
 
   return (
-    <div className="min-h-screen bg-void flex items-center justify-center px-6">
+    <>
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-lk-cyan focus:text-void focus:px-4 focus:py-2 focus:rounded-lg focus:font-bold"
+      >
+        Skip to content
+      </a>
+      <main id="main" className="min-h-screen bg-void flex items-center justify-center px-6">
       <div className="w-full max-w-md">
         <Link to="/" className="block text-center mb-12">
           <span className="font-serif text-3xl">
@@ -66,7 +73,7 @@ export default function Signup() {
           </div>
 
           {error && (
-            <p className="text-lk-red text-sm text-center">{error}</p>
+            <p role="alert" aria-live="polite" className="text-lk-red text-sm text-center">{error}</p>
           )}
 
           <p className="text-sm text-lk-text-tertiary text-center">
@@ -87,6 +94,7 @@ export default function Signup() {
           <Link to="/login" className="text-lk-cyan hover:text-lk-cyan/80">Log in</Link>
         </p>
       </div>
-    </div>
+      </main>
+    </>
   );
 }
