@@ -8,6 +8,7 @@ import authRoutes from './routes/auth';
 import lessonRoutes from './routes/lessons';
 import adminRoutes from './routes/admin';
 import moduleRoutes from './routes/modules';
+import projectsRoutes from './routes/projects';
 
 const PORT = parseInt(process.env.PORT ?? '4000', 10);
 
@@ -58,6 +59,7 @@ async function build() {
   await app.register(lessonRoutes);
   await app.register(adminRoutes);
   await app.register(moduleRoutes);
+  await app.register(projectsRoutes);
 
   return app;
 }

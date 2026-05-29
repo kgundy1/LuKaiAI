@@ -91,3 +91,40 @@ export async function toggleChecklistItem(
   });
   return res.json();
 }
+
+export interface SubmitProjectInput {
+  projectName: string;
+  projectUrl: string;
+  projectDescription: string;
+  builderDisplayName?: string;
+  moduleCompleted?: number;
+  isProjectPublic?: boolean;
+}
+
+export interface Project {
+  projectName: string;
+  projectUrl: string;
+  projectDescription: string;
+  builderDisplayName: string;
+  moduleCompleted: number | null;
+  submittedAt: string;
+}
+
+export async function submitProject(data: SubmitProjectInput) {
+  const res = await fetch(`${API_BASE}/me/project`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    credentials: 'include',
+    body: JSON.stringify(data),
+  });
+  const body = await res.json();
+  if (!res.ok) throw new Error(body.error || 'Project submit failed');
+  return body;
+}
+
+export async function fetchProjects(): Promise<Project[]> {
+  const res = await fetch(`${API_BASE}/projects`);
+  if (!res.ok) throw new Error('Failed to fetch projects');
+  const body = await res.json();
+  return (body.projects ?? []) as Project[];
+}
