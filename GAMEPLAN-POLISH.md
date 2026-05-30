@@ -2,23 +2,23 @@
 
 ## Current status — May 30, 2026
 
-**Sessions completed:** 5 of estimated 4-5 — Tier 1 work complete
+**Sessions completed:** 6 of estimated 4-5 — Tier 1 work complete
 
 **Items shipped this session:**
-- Item 2 (marketing-app design gap) shipped end-to-end as 2 PRs
-- PR-1 (#64): unified context-aware Nav — single component, auth-aware slots, hash anchors that work cross-route, /projects in Nav, logout in chrome, active-route indicator, route-aware wordmark target
-- PR-2 (#65): PageShell + BrandTexture components; refactored /learn, /lesson, /signup, /login to use the shared shell with subtle cyan radial-gradient brand treatment
-- 4 duplicate skip-to-content links eliminated; 2 redundant wordmarks removed; 1 duplicated nav block deleted from Learn.tsx
-- Footer hash anchors converted to cross-route Links so they work from non-landing pages
-- New gameplan item logged: Item 23 (mobile menu — Nav currently invisible under 768px)
+- Item 23 (mobile menu) shipped as PR #66 — fixes broken mobile UX where Nav had zero visibility under 768px
+- Hamburger button + slide-out drawer with three-layer z-index stack (backdrop z-30, drawer z-40, nav z-50)
+- Auth-aware drawer slot logic mirroring desktop Nav
+- Full a11y treatment: aria-expanded/controls/label, inert attribute, focus management, ESC to close, motion-safe transitions for prefers-reduced-motion users
+- No new dependencies (inline SVGs for hamburger/X icons)
+- Single-file change to apps/web/src/components/Nav.tsx
 
-**Total items shipped (gameplan + infrastructure):** 16 (11 tier-list items + 5 infrastructure/strategic-asset items across all 5 sessions)
+**Total items shipped (gameplan + infrastructure):** 17 (12 tier-list items + 5 infrastructure/strategic-asset items across all 6 sessions)
 
-**Tier-list items shipped (11 of 22 enumerated):**
+**Tier-list items shipped (12 of 23 enumerated):**
 - Tier 1: 1 (head metadata), 2 (marketing-app design gap), 3 (contrast), 4 (semantic HTML/ARIA) — ALL TIER 1 COMPLETE
-- Tier 2: 6 (OG image), 7 (per-route titles), 8 (Story prose edit), 9 (Lighthouse easy wins), 10 (prefers-reduced-motion)
+- Tier 2: 6 (OG image), 7 (per-route titles), 8 (Story prose edit), 9 (Lighthouse easy wins), 10 (prefers-reduced-motion), 23 (mobile menu)
 
-Note: shipped-projects tracking (Session 3's work) was strategic-plan action #1, not a numbered tier item, hence not reflected in this 11 count.
+Note: shipped-projects tracking (Session 3's work) was strategic-plan action #1, not a numbered tier item, hence not reflected in this 12 count.
 
 **Lighthouse baseline (after Session 2):**
 - Mobile: Perf 79 · A11y 100 · BP 100 · SEO 100
@@ -32,15 +32,14 @@ Note: shipped-projects tracking (Session 3's work) was strategic-plan action #1,
 - Async-loaded Google Fonts CSS
 
 **Next session — recommended starting point:**
-With all Tier 1 items complete, the highest-leverage remaining work is now Tier 2.
+With Item 23 (mobile menu) shipped, the next high-leverage options are:
 
 Top candidates:
 - Item 14: Performance pass — mobile Lighthouse Perf 79 → 85+. Fully spec'd from Session 2 diagnostics. ~2-3 hours.
-- Item 23: Mobile menu — Nav currently invisible under 768px. New item logged this session. ~1-2 hours.
-- The polished STRATEGY.md — turn Friday's safety capture (STRATEGY-CAPTURE.md) into the proper strategic document. 60-90 min.
+- Polished STRATEGY.md — turn Friday's safety capture (STRATEGY-CAPTURE.md) into the proper strategic document. 60-90 min.
 
-Pre-session housekeeping (carried from Session 4, still open):
-- Delete the Render Postgres database (now confirmed safe to delete — billing investigation in Session 5 showed it's costing ~$0)
+Pre-session housekeeping (carried, still open):
+- Delete the Render Postgres database (no urgency, confirmed costs ~$0)
 - Submit LuKaiAI as the first entry on /projects showcase
 - Send retroactive note to existing learners about /projects
 
@@ -208,7 +207,7 @@ proof. The risk is burnout before the curve.
   - Receipt-text contrast (desktop a11y, one element)
   - /me returns 200 { user: null } for anon (no more 401 console error)
 - ✅ 10. prefers-reduced-motion support
-- ⬜ 23. Mobile menu for Nav — currently `hidden md:flex` means no navigation under 768px viewport width. Hamburger toggle + slide-out drawer pattern. Acceptance: under 768px, a hamburger icon appears top-right; tapping opens a drawer with all the Nav links (anonymous or signed-in variant based on auth state). Logged in Session 5; deferred from PR-1.
+- ✅ 23. Mobile menu for Nav — currently `hidden md:flex` means no navigation under 768px viewport width. Hamburger toggle + slide-out drawer pattern. Acceptance: under 768px, a hamburger icon appears top-right; tapping opens a drawer with all the Nav links (anonymous or signed-in variant based on auth state). Logged in Session 5; deferred from PR-1.
 
 ## Tier 3 — Worth doing (next month)
 
@@ -240,6 +239,7 @@ proof. The risk is burnout before the curve.
 - **Session 3 (May 29, 2026, ~3-4h):** Shipped-projects tracking — public showcase at /projects. Three PRs: #61 (backend schema + endpoints), #62 (frontend page), #63 (welcome email update). Strategic-asset work per yesterday's plan. Supabase provisioned in parallel; DB migration deferred to Session 4 ahead of June 2 Render expiration.
 - **Session 4 (May 29, 2026, ~4-5h):** Render → Supabase database migration completed under the June 2 free-tier expiration deadline. Session pooler (port 5432) selected after troubleshooting through direct connection (IPv6) and transaction pooler (IPv6 hang on Render's IPv4-only container). pg_dump + psql migration path used; data verified row-count-identical across both databases. Production cutover clean. Supabase password rotated post-migration. Six learners and 35 lessons now live on Supabase. The "asset starts compounding" infrastructure layer is complete.
 - **Session 5 (May 30, 2026, ~3-4h):** Item 2 (marketing-app design gap) shipped as 2 PRs — PR #64 (unified context-aware Nav with hash-anchor cross-route navigation) and PR #65 (PageShell + BrandTexture reusable components, applied to /learn, /lesson, /signup, /login). Significant code reduction from removing duplicate nav implementation and skip-links. Item 23 (mobile menu) logged as new gameplan item. ALL TIER 1 ITEMS NOW COMPLETE.
+- **Session 6 (May 30, 2026, ~1-2h):** Item 23 (mobile menu) shipped as PR #66. Fixes the broken-mobile-UX gap where Nav was hidden md:flex with no replacement under 768px. Hamburger button + slide-out drawer with proper z-index layering (backdrop/drawer/nav as siblings, not nested). Full a11y treatment. Single-file change to Nav.tsx, no new dependencies. The Nav now works correctly at every viewport width.
 
 ## How to use this doc
 
