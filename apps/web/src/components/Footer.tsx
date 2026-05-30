@@ -6,11 +6,11 @@ export default function Footer() {
       <div className="max-w-[1060px] mx-auto">
         <div className="flex items-center justify-between flex-wrap gap-5">
           <div>
-            <a href="#" className="font-serif text-[20px] tracking-[-0.01em] no-underline">
+            <Link to="/" className="font-serif text-[20px] tracking-[-0.01em] no-underline">
               <span className="text-lk-gold">Lu</span>
               <span className="text-lk-text-primary">Kai</span>
               <span className="font-mono text-[11px] text-lk-cyan tracking-[0.05em] ml-[2px] align-super">AI</span>
-            </a>
+            </Link>
             <div className="text-[12px] text-lk-text-dim mt-[3px]">
               Named for Lucas &amp; Kailer · Built for anyone with an idea
             </div>
@@ -18,19 +18,19 @@ export default function Footer() {
 
           <ul className="flex gap-7 list-none p-0">
             <li>
-              <a href="#story" className="text-[13px] text-lk-text-tertiary no-underline transition-colors duration-200 hover:text-lk-text-primary">
+              <Link to="/#story" className="text-[13px] text-lk-text-tertiary no-underline transition-colors duration-200 hover:text-lk-text-primary">
                 Story
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#why" className="text-[13px] text-lk-text-tertiary no-underline transition-colors duration-200 hover:text-lk-text-primary">
+              <Link to="/#why" className="text-[13px] text-lk-text-tertiary no-underline transition-colors duration-200 hover:text-lk-text-primary">
                 Why it works
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#access" className="text-[13px] text-lk-text-tertiary no-underline transition-colors duration-200 hover:text-lk-text-primary">
+              <Link to="/#access" className="text-[13px] text-lk-text-tertiary no-underline transition-colors duration-200 hover:text-lk-text-primary">
                 Get access
-              </a>
+              </Link>
             </li>
           </ul>
 

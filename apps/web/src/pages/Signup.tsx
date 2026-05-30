@@ -2,6 +2,7 @@ import { useState, FormEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { useAuth } from '../lib/AuthContext';
+import PageShell from '../components/PageShell';
 
 export default function Signup() {
   const { signup } = useAuth();
@@ -26,27 +27,12 @@ export default function Signup() {
   }
 
   return (
-    <>
+    <PageShell brandTexture mainClassName="pt-24 pb-20 px-6 flex items-center justify-center">
       <Helmet>
         <title>Sign up — LuKaiAI</title>
         <meta name="description" content="Create your free LuKaiAI account." />
       </Helmet>
-      <a
-        href="#main"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-lk-cyan focus:text-void focus:px-4 focus:py-2 focus:rounded-lg focus:font-bold"
-      >
-        Skip to content
-      </a>
-      <main id="main" className="min-h-screen bg-void flex items-center justify-center px-6">
       <div className="w-full max-w-md">
-        <Link to="/" className="block text-center mb-12">
-          <span className="font-serif text-3xl">
-            <span className="text-lk-gold">Lu</span>
-            <span className="text-lk-text-primary">Kai</span>
-            <span className="text-lk-cyan font-mono text-sm align-super ml-1">AI</span>
-          </span>
-        </Link>
-
         <h1 className="font-serif text-3xl text-lk-text-primary text-center mb-2">Create your account</h1>
         <p className="text-lk-text-tertiary text-center text-sm mb-8">Start building. Your idea is ready.</p>
 
@@ -90,7 +76,7 @@ export default function Signup() {
             disabled={loading}
             className="w-full bg-lk-cyan text-void font-bold py-3 rounded-lg hover:bg-lk-cyan/90 transition disabled:opacity-50"
           >
-            {loading ? 'Creating account...' : 'Create account →'}
+            {loading ? 'Creating account…' : 'Create account →'}
           </button>
         </form>
 
@@ -99,7 +85,6 @@ export default function Signup() {
           <Link to="/login" className="text-lk-cyan hover:text-lk-cyan/80">Log in</Link>
         </p>
       </div>
-      </main>
-    </>
+    </PageShell>
   );
 }

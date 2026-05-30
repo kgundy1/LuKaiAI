@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import ReactMarkdown from 'react-markdown';
 import { fetchModuleLessons, markLessonComplete } from '../lib/api';
 import BlockRenderer from '../components/lesson/BlockRenderer';
+import PageShell from '../components/PageShell';
 
 type Lesson = {
   id: string;
@@ -64,28 +65,33 @@ export default function Lesson() {
     setMarking(false);
   }
 
-  if (loading) return <div className="p-8 text-lk-text-secondary">Loading lesson...</div>;
-  if (error) return <div className="p-8 text-lk-red">{error}</div>;
+  if (loading) {
+    return (
+      <PageShell brandTexture>
+        <div className="text-lk-text-secondary">Loading…</div>
+      </PageShell>
+    );
+  }
+  if (error) {
+    return (
+      <PageShell brandTexture>
+        <div className="text-lk-red">{error}</div>
+      </PageShell>
+    );
+  }
   if (!module || !lesson) return null;
 
   const nextLesson = lessons.find(l => l.number === lesson.number + 1) ?? null;
   const isLastLesson = !nextLesson;
 
   return (
-    <div className="min-h-screen bg-void">
+    <PageShell brandTexture mainClassName="pt-24 px-6 pb-20 max-w-3xl mx-auto">
       <Helmet>
         <title>{`Lesson ${lesson.number}: ${lesson.title} — LuKaiAI`}</title>
         <meta name="description" content={`Module ${module.number} · ${module.title}`} />
       </Helmet>
-      <a
-        href="#main"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-lk-cyan focus:text-void focus:px-4 focus:py-2 focus:rounded-lg focus:font-bold"
-      >
-        Skip to content
-      </a>
-      <main id="main" className="max-w-3xl mx-auto px-6 py-12">
-        <Link to="/learn" className="text-lk-text-tertiary hover:text-lk-text-secondary text-sm">← Back to modules</Link>
-        <article>
+      <Link to="/learn" className="text-lk-text-tertiary hover:text-lk-text-secondary text-sm">← Back to modules</Link>
+      <article>
         <div className="mt-6 mb-2 text-lk-text-tertiary text-sm">Module {module.number} · {module.title}</div>
         <h1 className="font-serif text-3xl text-lk-text-primary mb-8">Lesson {lesson.number}: {lesson.title}</h1>
 
@@ -106,7 +112,7 @@ export default function Lesson() {
               disabled={marking}
               className="px-6 py-3 bg-lk-cyan hover:bg-lk-cyan/80 text-black font-medium rounded-lg disabled:opacity-50"
             >
-              {marking ? 'Marking...' : 'Mark lesson complete'}
+              {marking ? 'Marking…' : 'Mark lesson complete'}
             </button>
           )}
           {nextLesson && (
@@ -126,8 +132,7 @@ export default function Lesson() {
             </Link>
           )}
         </div>
-        </article>
-      </main>
-    </div>
+      </article>
+    </PageShell>
   );
 }
