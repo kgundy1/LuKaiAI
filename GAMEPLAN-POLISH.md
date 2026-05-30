@@ -1,26 +1,24 @@
 # LuKaiAI Polish Gameplan
 
-## Current status — May 29, 2026
+## Current status — May 30, 2026
 
-**Sessions completed:** 4 of estimated 4-5
+**Sessions completed:** 5 of estimated 4-5 — Tier 1 work complete
 
 **Items shipped this session:**
-- Render → Supabase database migration completed end-to-end
-- postgresql@18 installed locally to match Render source version
-- Schema migrated via pg_dump (7 tables, all indexes/FKs intact)
-- Data migrated via pg_dump (6 users, 7 modules, 35 lessons, 10 progress rows, 2 subscribers — row counts verified matching across both databases)
-- Encoded URL strategy worked through three pooler iterations (direct, transaction, session) — landed on session pooler (port 5432) for IPv4 compatibility with Render's container
-- Production cutover successful: Render DATABASE_URL updated, redeploy clean, smoke tests pass (health endpoint, projects endpoint, login flow)
-- Supabase password rotated post-migration to retire credential exposed during diagnostic
-- Render Postgres database is now obsolete; can be deleted before June 2 free-tier expiration
+- Item 2 (marketing-app design gap) shipped end-to-end as 2 PRs
+- PR-1 (#64): unified context-aware Nav — single component, auth-aware slots, hash anchors that work cross-route, /projects in Nav, logout in chrome, active-route indicator, route-aware wordmark target
+- PR-2 (#65): PageShell + BrandTexture components; refactored /learn, /lesson, /signup, /login to use the shared shell with subtle cyan radial-gradient brand treatment
+- 4 duplicate skip-to-content links eliminated; 2 redundant wordmarks removed; 1 duplicated nav block deleted from Learn.tsx
+- Footer hash anchors converted to cross-route Links so they work from non-landing pages
+- New gameplan item logged: Item 23 (mobile menu — Nav currently invisible under 768px)
 
-**Total items shipped (gameplan + infrastructure):** 15 (10 tier-list items + 5 infrastructure/strategic-asset items across all 4 sessions)
+**Total items shipped (gameplan + infrastructure):** 16 (11 tier-list items + 5 infrastructure/strategic-asset items across all 5 sessions)
 
-**Tier-list items shipped (10 of 22 enumerated):**
-- Tier 1: 1 (head metadata), 3 (contrast), 4 (semantic HTML/ARIA)
+**Tier-list items shipped (11 of 22 enumerated):**
+- Tier 1: 1 (head metadata), 2 (marketing-app design gap), 3 (contrast), 4 (semantic HTML/ARIA) — ALL TIER 1 COMPLETE
 - Tier 2: 6 (OG image), 7 (per-route titles), 8 (Story prose edit), 9 (Lighthouse easy wins), 10 (prefers-reduced-motion)
 
-Note: shipped-projects tracking (Session 3's work) was strategic-plan action #1, not a numbered tier item, hence not reflected in this 10 count.
+Note: shipped-projects tracking (Session 3's work) was strategic-plan action #1, not a numbered tier item, hence not reflected in this 11 count.
 
 **Lighthouse baseline (after Session 2):**
 - Mobile: Perf 79 · A11y 100 · BP 100 · SEO 100
@@ -34,17 +32,20 @@ Note: shipped-projects tracking (Session 3's work) was strategic-plan action #1,
 - Async-loaded Google Fonts CSS
 
 **Next session — recommended starting point:**
-Item 2 (marketing-app design gap) is the last remaining Tier 1 item — the design-quality gap between the marketing site and the learn app. Estimated 4-6 hours; should be a single-mission session when energy permits.
+With all Tier 1 items complete, the highest-leverage remaining work is now Tier 2.
 
-Alternative: Item 14 (performance pass to take mobile Lighthouse Perf from 79 to 85+) — fully spec'd from Session 2 diagnostics, smaller in scope (~2-3 hours).
+Top candidates:
+- Item 14: Performance pass — mobile Lighthouse Perf 79 → 85+. Fully spec'd from Session 2 diagnostics. ~2-3 hours.
+- Item 23: Mobile menu — Nav currently invisible under 768px. New item logged this session. ~1-2 hours.
+- The polished STRATEGY.md — turn Friday's safety capture (STRATEGY-CAPTURE.md) into the proper strategic document. 60-90 min.
 
-Pre-session housekeeping for next session start:
-- Delete the Render Postgres database before June 2 expiration (if not already done)
+Pre-session housekeeping (carried from Session 4, still open):
+- Delete the Render Postgres database (now confirmed safe to delete — billing investigation in Session 5 showed it's costing ~$0)
 - Submit LuKaiAI as the first entry on /projects showcase
 - Send retroactive note to existing learners about /projects
 
 **Items remaining by tier:**
-- Tier 1: 2 (marketing-app design gap)
+- Tier 1: (none — all Tier 1 complete)
 - Tier 2: 5 (pre-rendering/SSR)
 - Tier 3: 11, 12, 13, 14, 15, 16, 22
 - Tier 4: 17, 18, 19, 20, 21
@@ -192,7 +193,7 @@ proof. The risk is burnout before the curve.
 ## Tier 1 — Critical (this week)
 
 - ✅ 1. Head metadata + OG tags + favicon + robots.txt + sitemap.xml
-- ⬜ 2. Fix marketing-app design gap (unified Nav, brand-consistent /learn and /lesson, brand texture on auth pages)
+- ✅ 2. Fix marketing-app design gap (unified Nav, brand-consistent /learn and /lesson, brand texture on auth pages)
 - ✅ 3. Fix accessibility contrast failures (text-lk-text-dim → AA compliant)
 - ✅ 4. Semantic HTML and ARIA basics (landmarks, skip-to-content, proper roles)
 
@@ -207,6 +208,7 @@ proof. The risk is burnout before the curve.
   - Receipt-text contrast (desktop a11y, one element)
   - /me returns 200 { user: null } for anon (no more 401 console error)
 - ✅ 10. prefers-reduced-motion support
+- ⬜ 23. Mobile menu for Nav — currently `hidden md:flex` means no navigation under 768px viewport width. Hamburger toggle + slide-out drawer pattern. Acceptance: under 768px, a hamburger icon appears top-right; tapping opens a drawer with all the Nav links (anonymous or signed-in variant based on auth state). Logged in Session 5; deferred from PR-1.
 
 ## Tier 3 — Worth doing (next month)
 
@@ -237,6 +239,7 @@ proof. The risk is burnout before the curve.
 - **Session 2 (May 28, 2026, ~3h):** Items 7, 8, 9 shipped as PR #58. Per-route metadata, prose polish, Lighthouse fixes. Item 22 logged.
 - **Session 3 (May 29, 2026, ~3-4h):** Shipped-projects tracking — public showcase at /projects. Three PRs: #61 (backend schema + endpoints), #62 (frontend page), #63 (welcome email update). Strategic-asset work per yesterday's plan. Supabase provisioned in parallel; DB migration deferred to Session 4 ahead of June 2 Render expiration.
 - **Session 4 (May 29, 2026, ~4-5h):** Render → Supabase database migration completed under the June 2 free-tier expiration deadline. Session pooler (port 5432) selected after troubleshooting through direct connection (IPv6) and transaction pooler (IPv6 hang on Render's IPv4-only container). pg_dump + psql migration path used; data verified row-count-identical across both databases. Production cutover clean. Supabase password rotated post-migration. Six learners and 35 lessons now live on Supabase. The "asset starts compounding" infrastructure layer is complete.
+- **Session 5 (May 30, 2026, ~3-4h):** Item 2 (marketing-app design gap) shipped as 2 PRs — PR #64 (unified context-aware Nav with hash-anchor cross-route navigation) and PR #65 (PageShell + BrandTexture reusable components, applied to /learn, /lesson, /signup, /login). Significant code reduction from removing duplicate nav implementation and skip-links. Item 23 (mobile menu) logged as new gameplan item. ALL TIER 1 ITEMS NOW COMPLETE.
 
 ## How to use this doc
 
