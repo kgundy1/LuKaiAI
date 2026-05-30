@@ -2,22 +2,25 @@
 
 ## Current status — May 29, 2026
 
-**Sessions completed:** 3 of estimated 4-5
+**Sessions completed:** 4 of estimated 4-5
 
 **Items shipped this session:**
-- Shipped-projects tracking infrastructure (the strategic asset from yesterday's strategic-plan section, "Concrete next action #1")
-- Phase A backend (PR #61): User model fields + migration + POST /me/project + GET /projects + frontend api.ts helpers
-- Phase B frontend (PR #62): /projects public showcase page with auth-gated submission form
-- Phase C email (PR #63): welcome email now mentions the showcase
-- Supabase project provisioned (LuKaiAI org, lukaiai-prod project) as parallel infrastructure work. Migration from Render Postgres to Supabase still pending — Render free DB expires June 2.
+- Render → Supabase database migration completed end-to-end
+- postgresql@18 installed locally to match Render source version
+- Schema migrated via pg_dump (7 tables, all indexes/FKs intact)
+- Data migrated via pg_dump (6 users, 7 modules, 35 lessons, 10 progress rows, 2 subscribers — row counts verified matching across both databases)
+- Encoded URL strategy worked through three pooler iterations (direct, transaction, session) — landed on session pooler (port 5432) for IPv4 compatibility with Render's container
+- Production cutover successful: Render DATABASE_URL updated, redeploy clean, smoke tests pass (health endpoint, projects endpoint, login flow)
+- Supabase password rotated post-migration to retire credential exposed during diagnostic
+- Render Postgres database is now obsolete; can be deleted before June 2 free-tier expiration
 
-**Total items shipped (gameplan + infrastructure):** 14 (10 tier-list items + 4 infrastructure/strategic-asset items across all 3 sessions)
+**Total items shipped (gameplan + infrastructure):** 15 (10 tier-list items + 5 infrastructure/strategic-asset items across all 4 sessions)
 
 **Tier-list items shipped (10 of 22 enumerated):**
 - Tier 1: 1 (head metadata), 3 (contrast), 4 (semantic HTML/ARIA)
 - Tier 2: 6 (OG image), 7 (per-route titles), 8 (Story prose edit), 9 (Lighthouse easy wins), 10 (prefers-reduced-motion)
 
-Note: shipped-projects tracking (this session's work) was strategic-plan action #1, not a numbered tier item, hence not reflected in this 10 count.
+Note: shipped-projects tracking (Session 3's work) was strategic-plan action #1, not a numbered tier item, hence not reflected in this 10 count.
 
 **Lighthouse baseline (after Session 2):**
 - Mobile: Perf 79 · A11y 100 · BP 100 · SEO 100
@@ -31,9 +34,14 @@ Note: shipped-projects tracking (this session's work) was strategic-plan action 
 - Async-loaded Google Fonts CSS
 
 **Next session — recommended starting point:**
-The Render → Supabase database migration. Free Render Postgres tier expires June 2 (within days). Phase A migration already applied to Render; same migration is idempotent on Supabase. Estimated 60-90 min.
+Item 2 (marketing-app design gap) is the last remaining Tier 1 item — the design-quality gap between the marketing site and the learn app. Estimated 4-6 hours; should be a single-mission session when energy permits.
 
-Alternative next-session option: Item 2 (marketing-app design gap), still the largest remaining Tier 1 item.
+Alternative: Item 14 (performance pass to take mobile Lighthouse Perf from 79 to 85+) — fully spec'd from Session 2 diagnostics, smaller in scope (~2-3 hours).
+
+Pre-session housekeeping for next session start:
+- Delete the Render Postgres database before June 2 expiration (if not already done)
+- Submit LuKaiAI as the first entry on /projects showcase
+- Send retroactive note to existing learners about /projects
 
 **Items remaining by tier:**
 - Tier 1: 2 (marketing-app design gap)
@@ -228,6 +236,7 @@ proof. The risk is burnout before the curve.
 - **Session 1 (Apr 28, 2026, ~3-4h):** Items 1, 3, 4, 6, 10 shipped as PR #57. Site foundation pass.
 - **Session 2 (May 28, 2026, ~3h):** Items 7, 8, 9 shipped as PR #58. Per-route metadata, prose polish, Lighthouse fixes. Item 22 logged.
 - **Session 3 (May 29, 2026, ~3-4h):** Shipped-projects tracking — public showcase at /projects. Three PRs: #61 (backend schema + endpoints), #62 (frontend page), #63 (welcome email update). Strategic-asset work per yesterday's plan. Supabase provisioned in parallel; DB migration deferred to Session 4 ahead of June 2 Render expiration.
+- **Session 4 (May 29, 2026, ~4-5h):** Render → Supabase database migration completed under the June 2 free-tier expiration deadline. Session pooler (port 5432) selected after troubleshooting through direct connection (IPv6) and transaction pooler (IPv6 hang on Render's IPv4-only container). pg_dump + psql migration path used; data verified row-count-identical across both databases. Production cutover clean. Supabase password rotated post-migration. Six learners and 35 lessons now live on Supabase. The "asset starts compounding" infrastructure layer is complete.
 
 ## How to use this doc
 
