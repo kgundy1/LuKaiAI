@@ -52,70 +52,151 @@ This is the most technical module in the course. **It's also the one where the c
 
 ## Lesson 2 — Make a Render account and deploy your backend
 
-## Add backend code to your repo first
+You have two jobs in this lesson:
 
-Before Render can deploy anything, your repo needs backend code that *can* be deployed. The repo from Module 2 holds your prototype's frontend — but unless you've added a backend already, Render has nothing to run.
+1. Add a minimal backend to your repo (your project so far has been all frontend; Render needs something to actually run).
+2. Sign up for Render and deploy that backend so it's live on the internet at a URL you can hit from a browser.
 
-Take 5 minutes to add it. Open Claude Code and type:
-
-> *"Add a minimal Node.js Express backend to this repo. Create a server.js file that runs an Express app on the port from `process.env.PORT`. Add one endpoint at `/api/health` that returns `{ ok: true }`. Update package.json with the right dependencies (express) and a `start` script that runs `node server.js`. Commit and push to main."*
-
-Watch Code work. It'll add a `server.js` file, update `package.json`, run `npm install`, commit, and push. When it's done, your repo has both frontend AND a tiny backend. **That's what Render is going to deploy in this lesson.**
-
-Once Code reports the push succeeded, come back here.
-
-## Make a Render account
-
-Go to **render.com** and click **Get Started**. Sign up with GitHub — "Sign up with GitHub" is the fastest path because you'll be connecting Render to your repo in the next step anyway.
-
-When you authorize Render on GitHub, give it permission to access *the repo from Module 2*. "Only select repositories" is fine. Click Authorize. **You bounce back to Render's dashboard.**
+The first job takes five minutes and Claude Code does the work. The second job is where most learners stall — the Render dashboard has more configurable fields than any other service in this course, and most of those fields can break the deploy in confusing ways. We're going to walk it slowly. By the end you'll have a web service name and a `.onrender.com` URL — write both down, because Lessons 3 and 5 ask you for them.
 
 > **Don't guess. Capture.**
 >
-> Anytime you're not sure — a deploy failed, a button isn't where the lesson said it would be, an error popped up you don't recognize, **or you're just looking at a page and not sure what to click** — *you do not need to understand any of it.* You don't need to know what the error means. You don't need to guess if you're in the right place. You don't need to Google.
+> Anytime you're not sure — a button isn't where this lesson said it would be, an unexpected page appears, an error you don't recognize pops up, or you're just looking at a screen and not sure what to click — *you do not need to understand any of it.*
 >
-> Take a screenshot of whatever is on your screen. Drag it into Claude Chat. Type one line: *"is this right?"* or *"what is this error?"* or *"what should I click here?"* — Chat will tell you exactly what to fix, exactly what to click, or exactly what prompt to send Claude Code.
->
-> Use this loop *anytime you're unsure, not just when something is broken.* I have not hit a single obstacle this loop didn't solve. **Use it every time.**
+> Screenshot what's on your screen. Drag it into Claude Chat. Type one line: *"is this right?"* or *"what should I click here?"* or *"what is this error?"* Chat will tell you exactly what to do next. Use this loop anytime you're unsure, not only when something is broken.
 
-## Create a Web Service
+### Step 1 — Add a backend to your repo
 
-The Render dashboard has a **+ New** button in the top-right. Click it. A dropdown shows the things Render can host. Pick **Web Service.**
+Before Render can deploy anything, your repo needs backend code that *can* be deployed. The repo from Module 2 holds your prototype's frontend — but unless you've added a backend already, Render has nothing to run.
 
-A two-step wizard opens.
+Open Claude Code and type:
 
-**Step 1 — Source:** Render shows you the GitHub repos it can see. Find yours. Click **Connect**.
+> *"Add a minimal Node.js Express backend to this repo. Create a server.js file that runs an Express app on the port from `process.env.PORT`. Add one endpoint at `/api/health` that returns `{ ok: true }`. Update package.json with the right dependencies (express) and a `start` script that runs `node server.js`. Commit and push to main."*
 
-> _[Screenshot: Render dashboard → "+ New" → "Web Service" → repo picker. The starting point for any backend deploy.]_
+Watch Code work. It'll add a `server.js` file, update `package.json`, run `npm install`, commit, and push. When it's done, your repo has both frontend AND a tiny backend.
 
-## Configure the service
+The `process.env.PORT` part of that prompt matters more than it looks. Render assigns your service a port at runtime through an environment variable called `PORT`. If your code listens on a hardcoded port — `3000`, `8080`, anything else — Render's build will succeed but the service will fail to start. The Code prompt above forces the right pattern from the beginning so you don't hit this.
 
-**Step 2 — Configuration:** this page has a lot of fields. Most should be left at their defaults. Here's what each one means:
+*If Code reports any errors during the push (auth failures, push rejected, anything red), screenshot the terminal and ask Claude Chat. Don't move on until the push has succeeded — Render needs the code to be on GitHub.*
 
-- **Name** — what shows up in URLs. Pick something short and lowercase. *yourname-backend* works.
-- **Region** — pick the one closest to where your users live. *Oregon (US West)* or *Ohio (US East)* are the defaults.
-- **Branch** — `main`. Leave it.
-- **Root Directory** — leave empty unless your backend is in a subfolder.
-- **Runtime** — Render auto-detects this from your code. Leave it.
-- **Build Command** — usually `npm install` for Node projects. Render usually auto-fills.
-- **Start Command** — usually `npm start`. Auto-filled.
-- **Instance Type** — pick **Free**. Always free for learning.
+Once Code reports the push succeeded, come back here.
+
+### Step 2 — Decide which Render account you're using
+
+Before you open render.com, decide which of these you are:
+
+- **No Render account yet** → Step 3 (sign up from scratch).
+- **You already have a Render account** → go to render.com, click **Log in**, and skip to Step 5.
+
+### Step 3 — Sign up at render.com
+
+Open **render.com** in a browser tab. Click **Get Started** (or **Start for free** — the wording moves around) in the top-right or in the hero.
+
+You'll be offered several signup methods: GitHub, GitLab, Google, or email. **Use GitHub.** You're going to connect Render to your GitHub repo in a moment anyway; signing up with GitHub does both at once and is the path the rest of this lesson assumes.
+
+Before you click *Sign up with GitHub*, do the same avatar check you did in Module 2 Lesson 5: open a new tab, go to github.com, look at the top-right corner. **The username showing there is the GitHub account Render is about to connect to.** If it's not the same username you wrote down in Module 2 Lesson 2, sign out of GitHub and sign back in with the right account first.
+
+*If Render asks for a credit card during signup — for the free tier — that's normal in some regions and account types. The free tier itself doesn't cost anything; the card is for verification and for if you ever decide to upgrade. If you don't want to enter a card, your other option is signing up with email instead and connecting GitHub later, which adds steps but works.*
+
+### Step 4 — Authorize GitHub for Render
+
+GitHub shows you an *Authorize Render* page. This is the same authorization flow you saw in Module 2 Lesson 5 — Render is asking for permission to read your repos so it can deploy from them.
+
+Near the bottom, GitHub asks which repositories Render can see:
+
+- **All repositories** — easier. Render can see everything on your account.
+- **Only select repositories** — tighter. If you pick this, **tick the repo you made in Module 2** from the list, or Render won't see it in the next step.
+
+Scroll to the bottom and click the green **Authorize Render** button.
+
+*If the Authorize button is grayed out, GitHub is waiting on a password or 2FA step above. Scroll up and complete it. If you picked "Only select repositories" and forgot to tick your repo, you can fix it later: github.com → click your avatar → **Settings** → **Applications** → find **Render** → **Configure** → toggle the repo on.*
+
+### Step 5 — Create a Web Service
+
+You should now be in the Render dashboard. If Render dropped you on a "Welcome" or workspace-setup screen, click through it with defaults until you reach the main dashboard.
+
+In the top-right, click **+ New**. A dropdown appears showing the things Render can host — Web Service, Static Site, Background Worker, Cron, and others.
+
+**Pick Web Service.** Not Static Site. Your project also has a frontend, so Static Site can look like the right answer at first — it isn't, because what you just added in Step 1 is a backend that needs to *run*, not static files to be served.
+
+*If the **+ New** button isn't where this lesson says, Render may have redesigned the dashboard since this was written. Screenshot what you see and ask Claude Chat "where do I create a new Web Service on Render?" Render redesigns the dashboard regularly; the capture-and-ask loop is the durable fallback when the screenshots don't match.*
+
+### Step 6 — Pick your repo
+
+Render shows you the GitHub repos it can see. Find the one from Module 2 and click **Connect** next to it.
+
+*If your repo doesn't appear in the list, it's almost always because Render's GitHub authorization doesn't include it. Fix: in a new tab, go to github.com → click your avatar → **Settings** → **Applications** → find **Render** → **Configure** → tick your repo → Save. Then come back to this Render page and refresh.*
+
+### Step 7 — Configure the service
+
+A configuration page opens with a lot of fields. Most of them are auto-filled and correct. A few are not. Go through them in this order:
+
+1. **Name** — what shows up in your service URL. Pick something short and lowercase: *yourname-backend*, *projectname-api*, something like that. Lowercase letters, numbers, and hyphens only. **Write this name down.** Lesson 3 asks you to find this service in the dashboard by name.
+2. **Region** — pick the one closest to you. Render usually auto-detects, but it isn't always right. **Note which region you pick.** In Lesson 3 you'll set up a database on Supabase, and you want to pick the same region there to keep them close — a database on the other side of the planet adds noticeable lag to every request.
+3. **Branch** — should be `main`. If it shows something else like `master`, that's whatever your repo's default branch is called — leave it as the default.
+4. **Root Directory** — leave empty. Your backend is at the top level of the repo, not in a subfolder.
+5. **Runtime** — Render auto-detects from your code. Should say *Node*. If it shows something else (Static Site, Bun, Docker), capture and ask before continuing.
+6. **Build Command** — should be `npm install` or `npm install && npm run build`. Either is fine for what we have. If Render didn't auto-fill anything, type `npm install`.
+7. **Start Command** — **this is the one to check carefully.** It should say exactly `npm start`. If Render auto-filled something else — `node index.js`, `node server.js`, a blank field, anything else — change it to `npm start`. The wrong start command is the #1 silent failure on this page, and you won't find out it's wrong until the deploy fails three minutes from now.
+8. **Instance Type** — pick **Free**. If Free isn't the default, scroll the instance types until you see it and click it. (Render free instances have 512MB of RAM, which is plenty for what we're doing.)
+
+There's a section further down for **Environment Variables**. Leave it empty for now. Lesson 3 is where you'll add `DATABASE_URL`; you don't need anything in there to do this first deploy.
 
 Scroll to the bottom. Click **Create Web Service.**
 
-> _[Screenshot: The page where you set Name, Region, Branch, Build Command, Start Command. Annotate the defaults that should not be changed and the ones that should.]_
+> _[Screenshot: The configuration page with Name, Region, Branch, Build Command, Start Command, Instance Type all filled in. The Start Command field is the one to verify before clicking Create.]_
 
-## Wait for the first deploy
+### Step 8 — Watch the first deploy
 
-Render starts building your backend. The page that loads shows a log scrolling — cloning the repo, installing dependencies, starting the service. **Three to five minutes is normal.**
+Render takes you to your service's page and starts building. A log scrolls — cloning the repo, installing dependencies, starting the service. **Three to five minutes is normal for a first deploy.**
 
-A few likely outcomes:
+Three things can happen:
 
-- **It succeeds.** You see a green *Live* badge and a URL ending in `.onrender.com`. Move to Lesson 3.
-- **It fails immediately.** Probably missing a dependency or a wrong start command. Screenshot the bottom of the log. Bring it to Chat. Fix. Re-deploy.
-- **It builds but won't start.** Usually a port binding issue — the backend needs to listen on the port Render assigns via the `PORT` environment variable. Chat will tell you the one-line fix.
+- **The deploy succeeds.** You see a green **Live** badge near the top of the page, and a URL ending in `.onrender.com` shown next to the service name. Move to Step 9.
+- **The deploy fails during build.** The log shows a red error before "Deploying..." Most commonly: a missing dependency or a wrong build command. Screenshot the last twenty lines of the log and ask Claude Chat *"my Render build failed, what's wrong?"* Fix what Chat tells you (usually a one-line change in your repo), push the fix, Render auto-deploys again.
+- **The build succeeds but the service won't start.** The log gets to "Build successful" then hangs or shows *"Application failed to listen on port..."* This is the PORT-binding failure mentioned in Step 1 — your server isn't listening on `process.env.PORT`. If you used the Step 1 Code prompt as written, this shouldn't happen; if it does, screenshot and ask Chat.
 
-**The first deploy almost never succeeds first try.** That's the entire purpose of Lesson 4.
+Most learners hit at least one of these. **The first deploy almost never succeeds first try** — that's what Lesson 4 is for, so don't worry if you're staring at a red log right now. Capture the log, fix what's broken, redeploy.
+
+### Step 9 — Verify the service is actually live
+
+A green *Live* badge means Render thinks your service started. To confirm the backend is actually running and reachable, open a new browser tab and visit:
+
+```
+https://yourservicename.onrender.com/api/health
+```
+
+(Replace `yourservicename` with the name you picked in Step 7.)
+
+You should see `{"ok":true}` — that's the endpoint Code added in Step 1 talking to you. If you see that, your backend is live on the internet.
+
+*If the URL loads but shows a different response, or you see an "Application failed to respond" page, or it takes thirty seconds before responding — capture the page and ask Claude Chat. The thirty-second case is usually the free-tier cold-start, covered in the next section; the other cases mean something's still wrong with the deploy.*
+
+### A note on Render's free tier
+
+Two things to know about the free tier so you're not surprised later:
+
+- **Free web services spin down after about 15 minutes of inactivity.** The first request after they sleep takes around 30 seconds to wake them up. This isn't a bug, and your service isn't broken — it's the trade-off of the free tier. If you come back to your app a few days later and the first page load is slow, that's why.
+- **The free tier has a 750-hour-per-month cap across your whole account.** One service running 24/7 fits inside the cap. Two services running 24/7 will hit the cap and one will be paused until the next month. For this course you only need one Render service, so you're fine — just don't spin up a second one without knowing this.
+
+### Step 10 — Find your way around the service page
+
+Before you leave this lesson, look at the left sidebar of your service's page. You don't need to do anything in any of these tabs right now — the rest of Module 5 will send you to them — but knowing where they are saves time later:
+
+- **Logs** — every line your service prints, including errors. Lesson 4 sends you here when a deploy fails.
+- **Environment** — where environment variables live. Lesson 3 sends you here to add the database connection string.
+- **Settings** — where you'd change the name, region, branch, or delete the service if you ever need to.
+
+> _[Screenshot: The Render web-service page with the left sidebar visible — Logs, Environment, and Settings tabs visible. The map of where the next two lessons will send the learner.]_
+
+### What you have now
+
+- A Render account, free tier, connected to your GitHub.
+- A live backend web service with a green *Live* badge.
+- A `.onrender.com` URL that responds with `{"ok":true}` when you visit `/api/health`.
+- A note somewhere with your **service name** and your **`.onrender.com` URL**. You need both in Lesson 3 (where you'll add the database) and Lesson 5 (where you'll wire the frontend up to this backend).
+
+Next lesson, you'll add a Postgres database to your backend so it can remember things between requests.
 
 ---
 
