@@ -1,3 +1,45 @@
+# Module 2 — Take your prototype out of chat and into a real codebase
+
+## Before you start
+
+Module 2 is the hardest part of this course. I'll tell you that upfront because I want you to expect it.
+
+When I built LuKaiAI myself, the dashboards in this module — GitHub, Claude Code, the terminal on my computer — took me longer than anything else. Longer than learning Claude. Longer than deploying. Longer than the database work later. The frustration was real. Most of what I struggled with wasn't hard *information* — it was that the dashboards weren't designed for someone like me.
+
+They're not designed for someone like you either. That's not your fault. It's the fact of the tools.
+
+Here's what you're walking into:
+
+- **GitHub** wants you to know what a repository is, what a commit is, what a branch is. You don't, and you don't need to. The course teaches what to click without teaching the theory underneath.
+- **The terminal** is going to look unfamiliar. It's an older interface — a text window where you type commands. Most apps on your computer don't work this way. The terminal does.
+- **Claude Code** is a tool you'll install on your computer that talks to your files directly. It's different from Claude Chat. Both exist. Both matter. The course shows you which is which.
+
+## Two rules for this module specifically
+
+**Rule 1: Use the capture-and-ask loop more here than anywhere else in the course.**
+
+Even when you think you should know what to do — when a button is "obviously" somewhere or a step "should" be simple — screenshot what you see and ask Claude Chat. A 30-second screenshot saves 20 minutes of confused clicking. The loop is your shortcut, not your last resort.
+
+If you've been clicking around for more than five minutes without progress, that's the signal to capture. Don't push through. The loop is faster.
+
+**Rule 2: If you've been stuck on one lesson for more than an hour, stop and come back tomorrow.**
+
+The breakthrough usually comes when you're not trying. Closing the laptop and coming back fresh isn't quitting — it's discipline. Every builder I know has a story about staring at the same error for an hour, walking away, coming back, and seeing the fix in thirty seconds.
+
+Coming back the next day with fresh eyes is part of how this works.
+
+## What you don't have to be
+
+You don't have to be wired like a founder to complete this module. You don't have to push through frustration with grit and willpower. You don't have to "figure things out on your own."
+
+What you have to do is trust the loop: screenshot what you see, drop it into Claude Chat, ask one short question. The loop does the work. You don't have to know the answer — you have to know how to ask.
+
+Most people who give up on building software give up here, in modules that look like this one. They blame themselves: *"I'm not technical enough."* They were stuck on something the loop could have solved in two minutes.
+
+If you use the loop, you don't get stuck.
+
+---
+
 ## Lesson 1 — What just happened — your prototype is now a folder of files
 
 ## You have a ZIP. You won't use it directly.

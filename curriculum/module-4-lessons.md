@@ -1,3 +1,18 @@
+# Module 4 — Get your prototype on the internet
+
+## Before you start
+
+Module 4 is a new dashboard — Cloudflare — and a new pattern: connecting GitHub to a hosting service so your code auto-deploys whenever you push.
+
+This module is shorter and less painful than Module 2. The dashboards are similar in shape now, and the capture-and-ask loop should feel natural by this point. But the first time you watch your code build and deploy automatically — that's a moment. The first failed deploy is also a moment. Both happen in this module.
+
+Two reminders carrying forward from Module 2:
+
+- **Use the capture-and-ask loop the moment something doesn't match the lesson.** Cloudflare redesigns its dashboard regularly. The screenshots in this course are accurate the day they were taken — they might not be accurate the day you read them. If a button isn't where the lesson says it should be, screenshot what you ARE seeing, ask Chat, follow the answer.
+- **Failed deploys are normal.** Lesson 5 of this module is entirely about failed deploys and how to recover. Don't take a red banner personally. The fix is almost always one small thing the logs will tell Chat about.
+
+---
+
 ## Lesson 1 — What "deploying" actually means
 
 ## GitHub stores. Cloudflare runs.

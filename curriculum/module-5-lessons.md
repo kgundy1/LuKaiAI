@@ -1,3 +1,21 @@
+# Module 5 — Make your app real with a backend and database
+
+## Before you start
+
+Module 5 is the most technical module in the course. You're adding two new pieces — a backend service and a database — and connecting them to the frontend you already have. That's three things talking to each other across the internet.
+
+If you've made it through Module 2 and Module 4, you have everything you need to make it through this one. The pattern is the same: new dashboard, find the right place to click, hit a wall, capture what you see, ask Chat, fix, move on.
+
+A few specific things to expect here:
+
+- **You'll deploy a backend on Render and watch it fail.** Probably three or four times. That's not a sign anything is wrong — backend deploys have more moving parts than frontend deploys, and the first attempts almost never succeed. The loop catches them all.
+- **You'll handle a `DATABASE_URL` — a string that's a secret.** Anyone who has it can read or write your database. There's a specific exception to the screenshot habit in this module: when capturing screens that show database URLs or environment variables, hide or cover the actual secret value before screenshotting. Capture the layout, the error, the page — not the secret string. Chat doesn't need the secret to help; it just needs to see what's around it.
+- **You don't need to know how databases work.** You need to know how to click "Create Database" and how to copy a connection string from one tab into another tab. That's it. Everything else is Chat's job.
+
+The capture-and-ask loop is doing the heavy lifting here. Trust it. Use it more than you think you need to. This module is where the loop saves the most time.
+
+---
+
 ## Lesson 1 — When does your app need a backend?
 
 ## The signal you need a backend
