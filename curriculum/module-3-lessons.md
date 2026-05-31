@@ -193,6 +193,32 @@ A good CLAUDE.md has six sections:
 
 The length isn't the point. **Specificity is.** A 200-line CLAUDE.md full of facts beats a 600-line one full of waffle.
 
+## What CLAUDE.md actually does — a session compared
+
+The fastest way to see why CLAUDE.md matters is to watch the same task start two different ways.
+
+**Without a CLAUDE.md.** You open Claude Code in a project that doesn't have one, sit down to work, and the first exchange looks something like this:
+
+> **You:** I need to add a new endpoint to the API for marking a task complete.
+> **Code:** Sure — can you tell me a bit about the project first? What framework is the API using, and where does the API code live in the repo?
+> **You:** It's Express. The API is in `apps/api/src`.
+> **Code:** Got it. Is the API deployed somewhere, or is this local-only? And what's the data layer — a database, files, in-memory?
+> **You:** Render. Postgres on Supabase. The connection's in `DATABASE_URL`.
+> **Code:** Are there existing endpoints I can model the new one after?
+> **You:** Yeah — look at `routes/tasks.ts`, the GET endpoint there.
+> **Code:** Looking now…
+
+You're ten minutes in and Code still hasn't written a line. Every one of those questions is a question Code *had* to ask, because nothing in the project told it the answers. Tomorrow morning you'll open a new session, and Code will ask all of them again.
+
+**With a CLAUDE.md.** Same project, same task, but now there's a CLAUDE.md sitting in the repo root with the six things from the section above — what the project is, current status, architecture, repo layout, what's built, conventions. You open Code:
+
+> **You:** I need to add a new endpoint to the API for marking a task complete.
+> **Code:** I've read your CLAUDE.md. Adding the endpoint to `apps/api/src/routes/tasks.ts`, modelled on the existing `GET /tasks/:id`, returning 204 on success per your convention. I'll have it ready to review in a moment.
+
+That's the difference. The ten minutes of orientation didn't get faster — it didn't happen. Code already knew the answers before you sat down.
+
+This is what every CLAUDE.md you'll write is buying you: a session that starts where it should start, every time, instead of restarting from zero.
+
 ## Have Chat write the first draft
 
 Go to Claude Chat. Type:
