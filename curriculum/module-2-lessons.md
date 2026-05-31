@@ -199,54 +199,113 @@ This is the muscle. The rest of Module 2 uses it.
 
 ---
 
-## Lesson 4 — Get Claude Code on your computer
+## Lesson 4 — Install Claude Code on your computer
 
-## Two different Claudes
+Two jobs in this lesson:
 
-Claude Chat — the website at claude.ai — is what you've been using. **Claude Code is different.** It's a separate app that runs on your computer and works directly with the code in a GitHub repository. Chat reads your messages; Code reads your repo.
+1. Install Claude Code by running one command in your terminal
+2. Sign in to it for the first time
 
-> **Don't guess. Capture.**
->
-> If anything in the installer looks unfamiliar — a checkbox you don't recognize, a permissions dialog, an option you've never seen — **don't guess.** Screenshot it, drag it into Claude Chat, and ask *"what is this?"* Chat will tell you exactly what to do.
->
-> Use this loop every time. **I have not hit a single obstacle it didn't solve.**
+The install is one line. The sign-in is the same Claude account you made in Module 0. This is shorter than it sounds.
 
-## Install it
+### What you're about to do
 
-Go to **claude.com/code**. You'll see download options for Mac and Windows.
+Claude Code is a tool that lives in your terminal. It's not an app you click an icon to open — it's a command you run. After this lesson, you'll have a `claude` command available in your terminal. Type `claude` from any folder and Claude Code starts up in that folder, ready to work on whatever's there.
 
-**Mac:** download the `.dmg`, double-click it, drag the Claude Code icon into your Applications folder. Open it from there.
+The install adds the `claude` command to your computer. That's it. No icons in your dock, no new app to find. The terminal you opened in Lesson 3 is where Claude Code lives.
 
-**Windows:** download the installer (`.exe`), run it, click through. It'll land in your Start menu.
+### Step 1 — Open your terminal
 
-First launch: it asks you to sign in. **Use the same Claude account as your Pro subscription.** Same email, same password. Don't make a new account. Pro covers Claude Code at no extra cost.
+If your terminal isn't already open from Lesson 3, open it now. Same instructions as before:
 
-## How Claude Code actually works
+- **Mac:** Press `Cmd + Space`, type `terminal`, press Enter.
+- **Windows:** Press the `Windows` key, type `terminal`, press Enter.
 
-Here's the truth about Claude Code that often gets explained wrong: **Claude Code is not a separate app you click on like a normal program.** It's a tool that runs *inside your terminal*, and it works on whatever folder your terminal is currently in.
+You should see a prompt — `papabear@MacBook-Pro ~ %` on Mac, `C:\Users\YourName>` on Windows. The blinking cursor next to that prompt is where you'll type.
 
-That's the whole mental model. Three pieces:
+If your terminal isn't behaving like that — screenshot what you see and ask Chat. Lesson 3 covered the terminal in depth; if you skipped it, go back.
 
-1. **Your project lives in a folder on your computer.** Just like Word documents live in folders, your project does too. In Lesson 6, you'll unzip the project to a specific folder so you know exactly where it is.
-2. **You open your terminal and `cd` into that folder.** Same `cd` command from Lesson 3. Now your terminal "is in" your project.
-3. **You start Claude Code from there.** Type `claude` and press Enter. Claude Code starts up, reads the files in that folder, and you can now have a conversation with it about your project.
+### Step 2 — Paste the install command
 
-Claude Code only knows about the folder you started it in. If you started it in your Documents folder by accident, it won't see the project. The terminal's location at the moment you type `claude` is what matters.
+You're going to paste **one line** into your terminal. Different command for each operating system. Use the one that matches your computer.
 
-**The full workflow you'll use forever, in two commands:**
+**Mac or Linux:**
 
 ```
-cd Documents/lukaiai-project
+curl -fsSL https://claude.ai/install.sh | bash
+```
+
+**Windows (PowerShell):**
+
+```
+irm https://claude.ai/install.ps1 | iex
+```
+
+*Note for Windows users: if you're using Command Prompt instead of PowerShell, switch to PowerShell. Press the Windows key, type "PowerShell," and open Windows PowerShell. Run the install command there.*
+
+Copy the command for your OS. Paste it into your terminal. **Press Enter.**
+
+### Step 3 — Watch the install happen
+
+Once you press Enter, you'll see a lot of text scroll past. That's the installer downloading files, copying them to the right places on your computer, and setting up the `claude` command.
+
+**This is normal.** Don't try to read it. Don't close the terminal. Don't press anything.
+
+The install takes 30 seconds to 2 minutes depending on your internet speed.
+
+You'll know it's done when:
+
+- The text stops scrolling
+- You see your normal prompt again (the line ending in `%` or `>`)
+- The cursor is blinking, waiting for your next command
+
+*If you see red error text scroll past, don't panic. Wait until the install finishes (cursor blinking, prompt waiting), then screenshot the whole terminal window and ask Chat: "the Claude Code install showed errors — what happened?" Chat will read the errors and tell you the fix.*
+
+### Step 4 — Verify the install worked
+
+Type this single command:
+
+```
 claude
 ```
 
-Two lines. That's how every session starts. Once you have this in muscle memory, the rest of the course is downhill.
+Press Enter.
 
-## What you have so far
+**If install worked:** Claude Code starts up. You'll see a welcome message, possibly a sign-in prompt, and a new kind of cursor that's waiting for you to talk to Claude Code.
 
-Claude Code is installed and signed in. You know how to open the terminal and navigate folders. Module 1's ZIP is still on your computer — that's about to become your real project folder.
+**If install didn't work:** You'll see something like `command not found: claude` or `'claude' is not recognized as an internal or external command`. This means the `claude` command isn't on your computer's PATH yet — a common first-install issue.
 
-The next two lessons connect everything: Lesson 5 connects Claude Code to GitHub so it can push your code. Lesson 6 puts your project in a real folder and uses Claude Code (running in terminal, in that folder) to push it to your repo for the first time.
+The fix is usually one of two things:
+
+1. **Close your terminal completely and open a new one.** Sometimes PATH changes don't take effect until you start a fresh terminal session. Try `claude` again in the new window.
+2. **If that doesn't work** — screenshot what you see and ask Chat: "I just installed Claude Code and the `claude` command isn't recognized — what do I do?" Chat will tell you the specific fix for your OS.
+
+> **Don't guess. Capture.**
+>
+> If anything during install or first launch looks unexpected — an error message, a permissions dialog, a security warning from your operating system — *don't push past it.* Screenshot what you see, drag it into Claude Chat, and ask "what is this?" Chat reads operating-system warnings and installer errors all the time. The fix is almost always one specific instruction.
+
+### Step 5 — Sign in on first launch
+
+The first time `claude` runs successfully, it asks you to sign in. The sign-in process opens a browser window automatically and walks you through it.
+
+**What you'll see:**
+
+1. A browser window opens (or Claude Code gives you a URL to paste into your browser)
+2. The page asks you to sign in to your Claude account — **use the same email and password you used in Module 0 for Claude Pro**
+3. After signing in, the page says something like "Authentication successful. You can close this window."
+4. Switch back to your terminal — Claude Code should now be signed in and ready to use
+
+**Important:** don't make a new Claude account here. Use the one from Module 0. Your Pro subscription covers Claude Code at no extra cost — but only if it's the same account.
+
+*If you accidentally create a second account, you may run into "no Pro subscription found" errors later. Easier fix: sign out of Claude Code (type `claude logout`), then `claude` again, then sign in with the right account this time.*
+
+### What you have now
+
+Claude Code is installed on your computer. The `claude` command works in your terminal. You're signed in with your Pro account.
+
+This was the hardest install in the course. Backend setup in Module 5 has more moving pieces but they're all dashboards — none of them require pasting commands into a terminal. You've now done the trickiest part.
+
+The next lesson connects Claude Code to GitHub so it can push code to your repo.
 
 ---
 
