@@ -1,6 +1,6 @@
 # LuKaiAI — Curriculum Work Handoff
 
-**Last updated:** May 30, 2026 (late-evening session — post-Module-2-Lesson-5 OAuth rewrite)
+**Last updated:** May 31, 2026 (post-Module-2-Lesson-2 GitHub-signup rewrite)
 **Purpose:** Working-state handoff for course/curriculum improvements. Read this FIRST when starting any new curriculum-focused session so you don't re-explain context or re-gather research. This complements GAMEPLAN-POLISH.md (which tracks app/code polish) — this file tracks COURSE CONTENT work.
 
 ---
@@ -32,6 +32,8 @@ Diagnosis (from May 30 evening session): the course teaches Claude well, but tre
 4. **Module 5 Supabase migration** — Module 5 Lesson 3 rewritten from Render Postgres to Supabase. Client-agnostic (course teaches a vanilla Express server, not Prisma — so no `schema.prisma`/`directUrl`/`migrate deploy` content in the lesson). Applied the navigation-rewrite template (three sections, recovery branches, capture-and-ask). Secret-handling exception callout retained at the top of Section 2 (the Supabase connection string contains the DB password). Module 5 Lesson 1 de-Renderified (Supabase named in the kitchen/pantry framing) and the Postgres definition + "you don't need to know SQL" line moved up from the deprecated Lesson 3 to the first Postgres mention. Lessons 2 and 4 audited; no `Render Postgres` references to update.
 
 5. **Module 2 Lesson 5 OAuth rewrite (commit `e2577c0`).** Rewritten to apply the navigation-rewrite template — `## Lesson` + `### Step 1-5` hierarchy matching Lesson 4, two-jobs framing, six recovery branches covering wrong default browser, multi-account picker, wrong account signed in, sudo-mode + 2FA + grayed-out Authorize button, "Only select repositories" forgot-to-tick + add-repo-later via Settings → Applications, and VPN/incognito callback failure. Center-of-gravity addition: Step 2 forces the learner to verify which GitHub account is signed in BEFORE clicking Authorize — directly addressing the silent wrong-account failure mode (~15-20% of OAuth failures in the prior version, surfacing two lessons later as inscrutable repo errors). Dismissive "It's fine" line removed; honest scope framing in its place. Same commit also fixed two pre-existing Module 2 Lesson 2 forward-references that incorrectly pointed to Lesson 5 when the push actually happens in Lesson 6 (lines 106 and 114).
+
+6. **Module 2 Lesson 2 GitHub-signup rewrite (commit `55644c5`).** Rewritten to apply the navigation-rewrite template — `## Lesson` + `### Step 1-6` hierarchy matching Lessons 4 and 5 (also fixed a pre-existing heading-hierarchy bug where sub-sections used `##` and collided with the lesson header), two-jobs opener naming wrong-account as the silent-failure trap, ten recovery branches covering: account-already-exists detection, work-vs-personal-account choice, username-taken/format-restrictions, captcha loop, missing verification email, 2FA enrollment + recovery codes, wrong-account-signed-in-from-prior-session, owner-picker org trap, repo-name collision, and slow/silent Create-repo form. Center-of-gravity addition: Step 4 forces the learner to look at the top-right avatar, read the username, and write it down — directly creating the named artifact (username) that Lesson 5's right-account check load-bears on. Step 6 ("Confirm what landed") and the new "What you have now" closer surface the `github.com/username/reponame` URL as the second named artifact Lesson 6 plugs into the push command. Forward-reference audit across Module 2 confirmed all anchors hold; three downstream references (L5 right-account check, L6 push target, L6 URL pattern) are strengthened by the rewrite.
 
 ---
 
@@ -90,7 +92,6 @@ Captured via Claude in Chrome on May 30, 2026. Fresh-user (logged-out) signup en
 
 ### HIGH — Apply navigation template to remaining nav-heavy lessons
 Using the template + research data above:
-- **Module 2 Lesson 2** (GitHub signup + first repo) — current draft is OK-ish on signup but needs explicit nav + recovery branches. Est. 30-45 min.
 - **Module 5 Lesson 2** (Render signup + web service) — most complex dashboard. Render signup IS in the current lesson (unlike Cloudflare was), so smaller gap. Est. 30-45 min.
 
 Note: Module 2 Lesson 3 (terminal) was reviewed and is GOOD as-is. Don't rewrite it.
@@ -136,7 +137,7 @@ A single markdown reference (curriculum/QUICK-NAVIGATE.md or a course page) list
 
 1. Open a NEW chat in the LuKaiAI project (don't continue an old heavy one)
 2. Say: "Read CURRICULUM-WORK.md and let's continue the course work"
-3. Pick the next item from the prioritized list (HIGH-priority nav-template lessons are next — Module 2 Lesson 2, or Module 5 Lesson 2)
+3. Module 5 Lesson 2 (Render signup + web service) is the last remaining HIGH-priority nav-template lesson
 4. The research data and template are already here — no re-gathering needed
 5. Use Claude Code's file tools for edits, not heredocs
 6. Update this file at the end of the session with what shipped + what's next
