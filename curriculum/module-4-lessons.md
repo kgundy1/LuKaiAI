@@ -35,49 +35,118 @@ The rest of this module is the mechanical setup: make a Cloudflare account, conn
 
 ---
 
-## Lesson 2 — Make a Cloudflare account and connect your GitHub repository
+## Lesson 2 — Sign up for Cloudflare and connect your GitHub repo
 
-## Make a Cloudflare account
+Two jobs in this lesson:
 
-Go to **cloudflare.com** and click **Sign up** in the top-right. Email, password, that's it. They'll send a verification email — click the link.
+1. Create a Cloudflare account from scratch
+2. Tell Cloudflare to watch your GitHub repo and deploy it
 
-When you log in, you land on a dashboard with a left sidebar. **That sidebar is your map.** Most of Cloudflare's product surface is irrelevant for what we're doing here — domains, DNS, security, all of that. The only section you care about is **Workers & Pages.**
+The first half is account setup. The second half is the connection. Both halves are dashboards you've never seen before — use the capture-and-ask loop early and often.
+
+### Sign up for Cloudflare
+
+**Step 1.** Open a new browser tab and go to **cloudflare.com**.
+
+The page that loads is Cloudflare's marketing home page. There's a lot on it. You don't need to read any of it.
+
+**Step 2.** Find the **Start building for free** button. It's the orange-colored button in the center of the hero section near the top of the page, sitting just below the headline. Click it.
+
+*If you don't see that exact button, the page may have been redesigned since this lesson was written. Look for any button or link with the words "Sign up," "Get started," or "Start free." If you can't find one — screenshot what you see and ask Claude Chat where to click.*
+
+**Step 3.** A new page loads at `dash.cloudflare.com/sign-up`. It has two fields: **Email** and **Password.**
+
+Use an email you check regularly. You'll get a verification email here in a moment.
+
+Pick a strong password. Cloudflare will let you know if it's not strong enough.
+
+Click **Sign Up.**
+
+**Step 4.** Cloudflare sends a verification email. Open your email in another tab. Find the message from Cloudflare. Click the verification link.
+
+*If you don't see the email within a minute, check spam. If it still doesn't show up after 5 minutes — screenshot what you see and ask Chat.*
+
+**Step 5.** After verifying, Cloudflare drops you on its onboarding page. The exact screen you see varies depending on what Cloudflare is promoting that week — sometimes it pushes you to add a domain, sometimes it lands on the main dashboard.
+
+**You don't have a domain. You don't need one. If Cloudflare insists you add one, look for "Skip" or "Continue without a domain" — usually a small link near the bottom of the page. If you can't find a way past that screen, screenshot it and ask Chat.**
+
+When you successfully land on a screen that has a **left sidebar with navigation items**, you're at the Cloudflare dashboard. That's where the rest of this lesson happens.
 
 > **Don't guess. Capture.**
 >
-> Anytime you're not sure — a deploy failed, a button isn't where the lesson said it would be, an error popped up you don't recognize, **or you're just looking at a page and not sure what to click** — *you do not need to understand any of it.* You don't need to know what the error means. You don't need to guess if you're in the right place. You don't need to Google.
->
-> Take a screenshot of whatever is on your screen. Drag it into Claude Chat. Type one line: *"is this right?"* or *"what is this error?"* or *"what should I click here?"* — Chat will tell you exactly what to fix, exactly what to click, or exactly what prompt to send Claude Code.
->
-> Use this loop *anytime you're unsure, not just when something is broken.* I have not hit a single obstacle this loop didn't solve. **Use it every time.**
+> Anytime you're not sure during account creation — a button isn't where the lesson said, you get an error, the page looks different from what's described — *you do not need to figure it out alone.* Take a screenshot of whatever is on your screen. Drag it into Claude Chat. Type *"I'm signing up for Cloudflare — is this right?"* Chat will tell you exactly what to do.
 
-## Get to Pages
+### Find Workers & Pages and create your first application
 
-In the left sidebar, click **Workers & Pages**. On the page that loads, find the **Create application** button in the top-right and click it.
+**Step 6.** Look at the left sidebar of the Cloudflare dashboard.
 
-A screen titled **Ship something new** appears. It offers a few ways to start: *Continue with GitHub*, *Connect GitLab*, *Start with Hello World!*, and *Select a template*. You're connecting the repo you made in Module 2, so you want the GitHub option.
+Cloudflare reorganizes this sidebar regularly. Right now, the relevant item is called **Workers & Pages.** It's usually positioned about halfway down the sidebar, sometimes grouped under a "Compute" heading.
+
+*If you can't find Workers & Pages — it might be hidden behind a "More" menu, or Cloudflare may have renamed it. Screenshot the sidebar and ask Chat "where is Workers & Pages?" Chat will tell you the current name and location.*
+
+Click **Workers & Pages.**
+
+**Step 7.** The page that loads is your Workers & Pages overview. Since you've never created anything yet, the page is mostly empty.
+
+Find the **Create application** button. It's usually in the top-right of the page.
+
+Click **Create application.**
+
+**Step 8.** A screen titled **Ship something new** appears. It offers a few ways to start your project: *Continue with GitHub*, *Connect GitLab*, *Start with Hello World!*, *Select a template.*
+
+You want **Continue with GitHub** — because your prototype already lives there from Module 2.
+
+Click **Continue with GitHub.**
 
 > _[Screenshot: Cloudflare → Workers & Pages → "Create application" → the "Ship something new" screen. The single most missed step in this whole module.]_
 
-## Authorize Cloudflare on GitHub
+### Authorize Cloudflare on GitHub
 
-Click **Continue with GitHub.** A GitHub authorization window pops up — same flow Claude Code went through in Module 2 Lesson 5.
+**Step 9.** A GitHub authorization window pops up. This is GitHub asking your permission to let Cloudflare see your repositories.
 
-GitHub will let you choose: authorize *all repositories* or *only select repositories*. Either works. "Only select" is slightly safer — you can pick just the repo you made in Module 2. If you do that, make sure the dropdown shows the right repo selected.
+GitHub gives you a choice: authorize *all repositories* or *only select repositories.* Either works for this course.
 
-Click **Authorize** at the bottom of GitHub's page. The popup closes and you land back on Cloudflare on a **Get started** screen with two cards: **Import an existing Git repository** and **Drag and drop your files.** Click **Get started** next to *Import an existing Git repository.*
+- **All repositories** — Cloudflare can see every repo you have on GitHub
+- **Only select repositories** — slightly safer, you pick which repos Cloudflare can see
 
-The **Select a repository** page appears, listing the GitHub repos Cloudflare can now see.
+If you pick "Only select," click the dropdown and make sure your project's repo from Module 2 is selected. The dropdown shows all your repos — find the one you created in Module 2 and check it.
 
-> _[Screenshot: After authorizing Cloudflare on GitHub — the dropdown listing your repos. If your repo doesn't show up, you missed authorizing it — go back to GitHub settings → Applications → Cloudflare and toggle the repo on.]_
+Scroll to the bottom of the GitHub page. Click **Authorize Cloudflare.**
 
-## Pick your repo
+*If the Authorize button is grayed out, GitHub is waiting for you to confirm your password or pass a security check. Follow whatever GitHub asks. If you're stuck — screenshot what you see and ask Chat.*
 
-On the **Select a repository** page, find the repo from Module 2 in the list. Select it and click **Begin setup**.
+**Step 10.** The popup closes. You're back on Cloudflare.
 
-A configuration page loads with fields like *Project name*, *Production branch*, *Build settings*. **Most of these are auto-filled correctly.** Project name defaults to your repo name — keep it. Production branch is `main` — keep it. Build settings depend on what your prototype is built with — Cloudflare usually detects this; if you're not sure, leave them blank and click **Save and Deploy.**
+A screen called **Get started** appears with two options: **Import an existing Git repository** and **Drag and drop your files.**
 
-If it fails because of build settings, you'll fix that in Lesson 3. **For now: trust the defaults.**
+Click **Get started** next to *Import an existing Git repository.*
+
+**Step 11.** The **Select a repository** page appears. It lists your GitHub repos.
+
+Find the repo you made in Module 2. Click on it.
+
+*If your repo doesn't show up in the list:* You missed the authorization step. Go back to GitHub: github.com → click your profile in the top-right → Settings → Applications → Cloudflare → toggle your repo on. Then come back to Cloudflare and reload this page.
+
+Click **Begin setup.**
+
+### Configure your project
+
+**Step 12.** A configuration page loads with several fields:
+
+- **Project name** — auto-filled to your repo's name. Keep it.
+- **Production branch** — should say `main`. Keep it.
+- **Framework preset** — Cloudflare tries to detect what kind of project this is. If it picked the right thing, great. If it's blank, leave it blank.
+- **Build settings** — varies by project type. Cloudflare usually auto-fills these. If you don't know what to put, leave them as Cloudflare suggests.
+
+**For now: trust the defaults.** If something breaks because of build settings, Lesson 3 will tell you how to fix it.
+
+Click **Save and Deploy.**
+
+**Step 13.** Cloudflare starts building your project. The next page shows a progress indicator with steps like *Initializing, Cloning, Building, Deploying.*
+
+Don't refresh. Don't close the tab. This takes 1-2 minutes.
+
+What happens next is Lesson 3.
 
 ---
 
