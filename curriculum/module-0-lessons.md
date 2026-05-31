@@ -26,6 +26,12 @@ Faster than you expect, and weirder than you expect. You'll describe an idea in 
 
 Take your time. Don't skip lessons. The course gets harder, not easier, but each lesson lands better when the one before it landed well.
 
+**One skill you'll keep coming back to**
+
+There's one move you'll use more than anything else in this course. It has a name — *capture, don't guess* — and you'll see it taught properly in Module 1 Lesson 4. The short version: when you're stuck, confused, or staring at something you don't recognize, you don't try to describe it in words and you don't go Googling. You screenshot what's on your screen, paste it into Claude, and ask one short question. Capture is the skill. Understanding is something Claude does on the other side.
+
+You don't need to do anything with this yet. Just know it's coming, and that every time the course later says "screenshot it and ask Chat," this is what it's pointing at.
+
 When you're ready, move on to Lesson 2.
 
 ## Lesson 2 — Sign up for Claude
