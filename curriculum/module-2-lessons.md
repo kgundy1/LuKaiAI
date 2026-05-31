@@ -103,7 +103,7 @@ In the top-right of any GitHub page there's a **+** button. Click it → **New r
 
 Fill in the name — something short, lowercase, no spaces. The name of your project from Module 1 is the right answer. Description is optional. Pick **Public** or **Private** — both work; Public means people can see your code if they find it (most learning repos are public), Private means only you.
 
-**Important:** the page has three checkboxes at the bottom — *Add a README*, *Add .gitignore*, *Choose a license*. **Leave them all unchecked.** Your prototype already has its own files, and adding these will cause headaches in Lesson 5.
+**Important:** the page has three checkboxes at the bottom — *Add a README*, *Add .gitignore*, *Choose a license*. **Leave them all unchecked.** Your prototype already has its own files, and adding these will cause headaches in Lesson 6.
 
 Click **Create repository**.
 
@@ -111,7 +111,7 @@ Click **Create repository**.
 
 ## What you see now
 
-The page that loads is mostly empty — a header with your repo's URL, some setup instructions you can ignore, and a big code block titled *Quick setup*. **Ignore all of it.** Claude Code is going to handle the pushing in Lesson 5; you don't run any of these commands by hand.
+The page that loads is mostly empty — a header with your repo's URL, some setup instructions you can ignore, and a big code block titled *Quick setup*. **Ignore all of it.** Claude Code is going to handle the pushing in Lesson 6; you don't run any of these commands by hand.
 
 Leave this tab open. Move to Lesson 3.
 
@@ -311,45 +311,101 @@ The next lesson connects Claude Code to GitHub so it can push code to your repo.
 
 ## Lesson 5 — Connect Claude Code to GitHub
 
-## Why this step exists
+You have two jobs in this lesson:
 
-Claude Code needs permission from you to do anything with GitHub — push files, read branches, see your repos. GitHub uses a standard *authorization* flow for that: a popup window where GitHub asks *"do you trust this app to do X with your account?"* and you say yes.
+1. Start the authorization flow that lets Claude Code talk to GitHub.
+2. Make sure the connection landed on the *right* GitHub account.
 
-**You do this once, ever.** After today, every push, every PR, every interaction Claude Code has with GitHub uses this same connection.
+The first job is straightforward — you type a sentence into Claude Code and it opens a GitHub page. The second job is the one people skip, and it's the single most common reason this lesson appears to succeed and then breaks a lesson or two later. We'll handle both, in order.
+
+You do this once, ever. After today, every push, every pull request, every interaction Claude Code has with GitHub uses the connection you make in the next ten minutes.
 
 > **Don't guess. Capture.**
 >
-> Anytime you're not sure — a deploy failed, a button isn't where the lesson said it would be, an error popped up you don't recognize, **or you're just looking at a page and not sure what to click** — *you do not need to understand any of it.* You don't need to know what the error means. You don't need to guess if you're in the right place. You don't need to Google.
+> Anytime you're not sure — a button isn't where this lesson said it would be, an unexpected page appears, an error you don't recognize pops up, or you're just looking at a screen and not sure what to click — *you do not need to understand any of it.*
 >
-> Take a screenshot of whatever is on your screen. Drag it into Claude Chat. Type one line: *"is this right?"* or *"what is this error?"* or *"what should I click here?"* — Chat will tell you exactly what to fix, exactly what to click, or exactly what prompt to send Claude Code.
->
-> Use this loop *anytime you're unsure, not just when something is broken.* I have not hit a single obstacle this loop didn't solve. **Use it every time.**
+> Screenshot what's on your screen. Drag it into Claude Chat. Type one line: *"is this right?"* or *"what should I click here?"* or *"what is this error?"* Chat will tell you exactly what to do next. Use this loop anytime you're unsure, not only when something is broken.
 
-## Start the connection
+### Step 1 — Start the connection from Claude Code
 
 In Claude Code, type:
 
 > *"Connect to GitHub."*
 
-That's literally what you type. Claude Code understands conversational requests. It'll respond with a short message explaining what's about to happen and then either open a browser window automatically or hand you a URL to paste in.
+That's literally what you type. Claude Code understands conversational requests. It'll respond with a short message explaining what's about to happen, then either open a browser window for you automatically or hand you a URL to paste into a browser tab.
 
-If a browser window opens — that's GitHub. If it gives you a URL, copy it and paste it into a new browser tab. Either way, you end up at a GitHub page titled **Authorize Claude Code**.
+Either way, you should end up on a GitHub page titled **Authorize Claude Code**.
 
-> _[Screenshot: The GitHub "Authorize Claude Code" page. Drag a screenshot here so learners know what to expect when the OAuth window opens.]_
+*If Claude Code opens a browser that isn't the one you usually use for GitHub — for example, Safari opens but you live in Chrome — close that window and paste the URL Claude Code gave you into the browser where you actually use GitHub. If you authorize in a browser you're not signed in to, you'll have to sign in from scratch, and it's easy to accidentally use the wrong account doing it.*
 
-## The Authorize page
+> _[Screenshot: Claude Code's terminal after typing "Connect to GitHub" — the message it sends back showing the URL or "opening browser…" line.]_
 
-GitHub lists what Claude Code is asking for — usually permission to read and write your repositories, see your email, and a few related items. It can look intimidating. **It's fine.** This is the same authorization flow you'd grant any code editor.
+### Step 2 — Before you click anything, check which GitHub account is signed in
 
-There's a section near the bottom about repository access — usually "All repositories" or "Only select repositories." If you only want Claude Code to touch the one repo you just made: pick *Only select repositories* and select the repo. If you don't care: *All repositories* is faster, and you can change it later from GitHub settings.
+This is the most important step in the lesson. Read it twice.
 
-Scroll to the bottom. Click the green **Authorize** button.
+When the Authorize Claude Code page loads, look at the **top-right corner** of the GitHub page. There's a small circle there — your avatar — and clicking it shows your username. **That username is the GitHub account this authorization will use forever.** Not the one you used to sign up. Not the one you "meant to." The one that's signed in right now.
 
-## Confirmation
+Plenty of people have more than one GitHub account — a personal account and a work account, or an old one they forgot they had. Browsers remember whichever was signed in last. The authorization will succeed against whichever one is showing in that corner, silently, and you won't notice anything is wrong until Lesson 6 when your repo isn't where you expected it.
 
-GitHub redirects you somewhere — usually a blank-ish page that says "Authorization successful" or sends you back to Claude Code automatically. Go back to your Claude Code window. **You should see a confirmation message** — something like *"GitHub connected as @yourusername."*
+So before you click anything else:
 
-If you don't see that confirmation, type *"Did the GitHub connection work?"* into Claude Code. It'll tell you. If something's wrong, Claude will walk you through fixing it.
+1. Look at the top-right avatar.
+2. Confirm the username matches the one you used to create your repo in Lesson 2.
+3. If it doesn't match — or if you see an account picker asking which one to use — sign out of GitHub entirely first (top-right avatar → Sign out), then sign back in with the right account, then return to Claude Code and type *"Connect to GitHub"* again to restart the flow.
+
+*If you don't remember which account you used in Lesson 2, open a new tab, go to github.com, and look at your repos. Whichever account owns the repo you created — that's the one you need signed in here.*
+
+> _[Screenshot: The Authorize Claude Code page with a circle highlighting the top-right avatar — the only thing the learner needs to check before clicking Authorize.]_
+
+### Step 3 — The Authorize page itself
+
+With the right account confirmed, you're ready to authorize. GitHub will list what Claude Code is asking for — typically read and write access to your repositories, your email, and a few related items.
+
+It looks like a lot. It is a lot, but it's also exactly what this tool needs to do its job: Claude Code can't push code to your repo without permission to write to your repo. This is the same authorization flow you'd grant any code editor or IDE.
+
+A few things that can happen on this page, none of which are problems:
+
+- **GitHub asks for your password again before showing the Authorize button.** This is called "sudo mode" — GitHub re-confirms it's really you before granting a new app access. Enter your password and continue.
+- **GitHub asks for a two-factor code mid-flow.** Enter the code from your authenticator app or the SMS, the flow continues from where it paused.
+- **The green Authorize button is grayed out.** GitHub is still waiting on a password or 2FA step above. Scroll up the page, complete whatever's pending, and the button will activate.
+
+*If the page looks completely different from this description — different headings, different buttons, an error banner — screenshot it and ask Claude Chat "I'm trying to authorize Claude Code on GitHub, is this right?" GitHub's pages get redesigned; the capture-and-ask loop is the durable fallback when screenshots don't match.*
+
+### Step 4 — Choose what repositories Claude Code can touch
+
+Near the bottom of the Authorize page, there's a section about repository access. The two options are usually **All repositories** and **Only select repositories.**
+
+- **All repositories** is faster — Claude Code can see every repo on your account, including any new ones you make later. Good if you're only going to use this account for LuKaiAI work.
+- **Only select repositories** is tighter — Claude Code only sees the repos you explicitly pick. If you choose this, **you have to tick the repo you made in Lesson 2 from the list,** or Claude Code won't see it and Lesson 6 will fail in a confusing way.
+
+You can change this later either way, so it's not a permanent choice. When you're decided, scroll to the bottom and click the green **Authorize** button.
+
+*If you picked "Only select repositories" and want to add or change which repos Claude Code can see later, go to github.com → click your avatar (top-right) → **Settings** → **Applications** (left sidebar) → find **Claude Code** in the list → **Configure** → toggle the repos you want. This is also the place to come if Lesson 6 fails because Claude Code can't find your repo — most of the time it's because the repo isn't ticked here.*
+
+### Step 5 — Confirm the connection landed in Claude Code
+
+After you click Authorize, GitHub redirects you somewhere — usually a page that says "Authorization successful" or a redirect that sends you back to Claude Code automatically.
+
+Go back to your Claude Code window. You should see a confirmation message — something like *"GitHub connected as @yourusername."* **Check that the username in that confirmation matches the account you intended.** This is your last chance to catch a wrong-account authorization before Lesson 6.
+
+If you don't see a confirmation message within about thirty seconds, type into Claude Code:
+
+> *"Did the GitHub connection work?"*
+
+It'll tell you. If something's wrong, it'll walk you through fixing it.
+
+*If your browser says "Authorization successful" but Claude Code never confirms — even after thirty seconds and asking it directly — you're likely on a VPN, in a privacy-strict browser (Brave's shields, Firefox strict mode), or in incognito, any of which can block the callback Claude Code needs. Turn the VPN off, switch to your regular browser window (not incognito), restart from Claude Code's prompt by typing "Connect to GitHub" again.*
+
+> _[Screenshot: The Claude Code terminal showing the "GitHub connected as @username" confirmation. The username is the proof the right account was authorized.]_
+
+### What you have now
+
+- Claude Code has GitHub access on the correct account — verified, not assumed.
+- You know how to change which repos it can touch if you need to (Settings → Applications → Claude Code).
+- You know the difference between "Authorization successful" in the browser and "GitHub connected" in Claude Code — the second one is the one that matters.
+
+Next lesson, you'll use this connection to push your first commit from Claude Code to GitHub. If anything goes sideways there, the fix is almost always in the Settings → Applications → Claude Code page you just learned about.
 
 ---
 
