@@ -1,6 +1,6 @@
 # LuKaiAI — Curriculum Work Handoff (v2)
 
-**Last updated:** May 30, 2026 (evening session, v2 — corrected)
+**Last updated:** May 31, 2026 (post-Module-5-Lesson-2 Render rewrite — all HIGH-priority nav-template lessons complete)
 **Purpose:** Working-state handoff for course/curriculum improvements. Read this FIRST when starting any new curriculum-focused session. This complements GAMEPLAN-POLISH.md (app/code polish) and STRATEGY.md (business strategy) — this file tracks COURSE CONTENT work only.
 
 ---
@@ -66,6 +66,10 @@ The emotional dimension matters as much as the navigational: people who get stuc
 2. **`75fcb10`** — Module 4 Lesson 2 rewritten (Cloudflare). THE TEMPLATE. ~350 → ~850 words. Cloudflare signup from scratch, email verification, the "do you have a domain?" trap, finding Workers & Pages, full GitHub authorization, build config. 5+ recovery branches.
 3. **`212cf29`** — Module 2 Lesson 4 rewritten (Claude Code install). Changed from outdated .dmg/.exe desktop app to the canonical curl one-liner. Old lesson was materially broken (wrong URL, wrong method).
 4. **`7ab0840`** — v1 of this handoff file (now superseded by this v2).
+5. **Module 5 Lesson 3 Supabase rewrite (commit `5f2f9e4`).** Rewritten Render Postgres → Supabase Postgres. Client-agnostic — course teaches vanilla Express, not Prisma, so no schema.prisma/directUrl/migrate content in the lesson. Applied the navigation-rewrite template (three sections, recovery branches, capture-and-ask). Secret-handling exception callout retained at the top of Section 2 (the Supabase connection string contains the DB password). Module 5 Lesson 1 de-Renderified (Supabase named in the kitchen/pantry framing) and the Postgres definition + 'you don't need to know SQL' line moved up from the deprecated Lesson 3 to the first Postgres mention. Lessons 2 and 4 audited; no Render Postgres references to update.
+6. **Module 2 Lesson 5 OAuth rewrite (commit `e2577c0`).** Rewritten to apply the navigation-rewrite template — ## Lesson + ### Step 1-5 hierarchy matching Lesson 4, two-jobs framing, six recovery branches covering wrong default browser, multi-account picker, wrong account signed in, sudo-mode + 2FA + grayed-out Authorize button, 'Only select repositories' forgot-to-tick + add-repo-later via Settings → Applications, and VPN/incognito callback failure. Center-of-gravity addition: Step 2 forces the learner to verify which GitHub account is signed in BEFORE clicking Authorize — directly addressing the silent wrong-account failure mode. Dismissive 'It's fine' line removed; honest scope framing in its place. Same commit also fixed two pre-existing Module 2 Lesson 2 forward-references that incorrectly pointed to Lesson 5 when the push actually happens in Lesson 6.
+7. **Module 2 Lesson 2 GitHub-signup rewrite (commit `55644c5`).** Rewritten to apply the navigation-rewrite template — ## Lesson + ### Step 1-6 hierarchy (also fixed a pre-existing heading-hierarchy bug where sub-sections used ## and collided with the lesson header), two-jobs opener naming wrong-account as the silent-failure trap, ten recovery branches covering: account-already-exists detection, work-vs-personal-account choice, username-taken/format-restrictions, captcha loop, missing verification email, 2FA enrollment + recovery codes, wrong-account-signed-in-from-prior-session, owner-picker org trap, repo-name collision, and slow/silent Create-repo form. Center-of-gravity addition: Step 4 forces the learner to look at the top-right avatar, read the username, and write it down — directly creating the named artifact (username) that Lesson 5's right-account check load-bears on. Step 6 ('Confirm what landed') and the new 'What you have now' closer surface the github.com/username/reponame URL as the second named artifact Lesson 6 plugs into the push command.
+8. **Module 5 Lesson 2 Render rewrite (commit `6cfe5db`).** Rewritten from ~520 to ~1,700 words to apply the navigation-rewrite template — ## Lesson + ### Step 1-10 hierarchy matching Lessons 4 and 5, two-jobs opener naming named-artifact handoff upfront (service name + .onrender.com URL for Lessons 3 and 5). Recovery branches across signup flow (credit-card requirement, dashboard redesign drift, workspace-setup interstitial), GitHub-Render OAuth (grayed-out Authorize, forgot-to-tick repo, post-hoc Settings → Applications → Render → Configure fix), Web Service vs Static Site pre-emption, configuration page (Start Command auto-fill verification flagged as the #1 silent failure), repo-not-in-picker, deploy outcomes (build failure / start failure / PORT-binding), and post-deploy verification. Center-of-gravity additions: Step 7 makes Start Command verification unmissable ('this is the one to check carefully'); Step 9 introduces a /api/health browser verification step (the canonical did-it-work check, previously absent); 'A note on Render's free tier' callout names the 15-minute spin-down + 30-second cold-start and the 750-hour monthly cap, parallel to Lesson 3's Supabase-pause honest-framing; Step 10 names the left-sidebar Logs/Environment/Settings tabs that Lessons 3 and 4 depend on. Region pick cross-referenced to Supabase region in Lesson 3 (cross-lesson coherence). Forward-reference audit across Module 5 confirmed all anchors hold; three downstream references (L3 Environment tab, L4 Logs tab + PORT error, L5 .onrender.com URL location) are strengthened by the rewrite.
 
 ---
 
@@ -139,17 +143,13 @@ Supabase free projects **pause after ~7 days of inactivity** (resumable, unlike 
 
 ## Remaining curriculum work — prioritized
 
-### URGENT — Module 5 Supabase rewrite (Lesson 3) — do first
-Rewrite Lesson 3 to teach Supabase Postgres (see technical plan above). Apply the navigation template while in there. Light touches to Lessons 1, 2, 4 to reference the change. Verify schema.prisma in the reference repo. Est. 60-90 min.
+### URGENT — Module 5 Lesson 3 Supabase rewrite complete (see What shipped #5).
 
-### HIGH — Apply navigation template to remaining nav-heavy lessons
-- **Module 2 Lesson 2** (GitHub signup + first repo) — current draft OK-ish on signup, needs explicit nav + recovery branches. ~30-45 min.
-- **Module 2 Lesson 5** (Connect Claude Code to GitHub) — the OAuth flow is the most failure-prone moment in the whole course; current lesson handles ~50% of failure modes. ~45 min.
-- **Module 5 Lesson 2** (Render signup + web service) — most complex dashboard; Render signup IS already in the lesson (smaller gap than Cloudflare was). ~30-45 min.
+### HIGH — all six nav-template rewrites complete (Module 4 Lesson 2 Cloudflare, Module 2 Lesson 4 Claude Code install, Module 2 Lesson 5 OAuth, Module 2 Lesson 2 GitHub-signup, Module 5 Lesson 3 Supabase, Module 5 Lesson 2 Render). No nav-template work remaining.
 
 Note: Module 2 Lesson 3 (terminal) was reviewed and is GOOD as-is. Do NOT rewrite it.
 
-### MEDIUM — Quick polish batch (~30 min total)
+### MEDIUM — Quick polish batch (~30 min total) — now the top of the remaining-work queue
 - **Module 0 methodology preview** (~5 min): add a paragraph to Module 0 Lesson 1 previewing "capture, don't guess" before learners hit it in Module 1 Lesson 4.
 - **Module 5 Lesson 1 Postgres definition** (~5 min): move the "Postgres is a database, you don't need to know SQL" line up from Lesson 3 to Lesson 1.
 - **Module 3 Lesson 5 CLAUDE.md improvement** (~10-15 min): add a concrete demo of what CLAUDE.md does (Code session WITH vs WITHOUT it).
@@ -167,6 +167,8 @@ Single markdown reference listing every service's canonical signup URL + CTA (fr
 4. **Chat-download UI is flaky** — files presented in chat may flash and vanish. If download fails, have Claude Code write the file directly, or deliver content via prompt.
 5. **Don't paste large content (diffs, file dumps) into the planning chat** — it can break the chat context. Claude Code does file work; reports one-line summaries.
 6. **Planning chat cannot edit the repo.** It plans; Claude Code executes. (See READ THIS FIRST #3.)
+7. **Re-downloaded files can save as `name (1).md` instead of overwriting the original.** If a draft gets 'corrected' in chat and re-downloaded, the new version may land as `name (1).md` while `name.md` stays stale on disk. Before handing a draft to Code, verify the file actually replaced the original (grep a distinctive string from the new version, or check the mtime) and clear duplicates. Caught once during the May 30 late-evening session after Code re-read an unchanged draft and flagged the mismatch.
+8. **Forward-reference audits catch real bugs.** Auditing forward references in adjacent lessons after a rewrite surfaced two pre-existing wrong-lesson-number references in Module 2 Lesson 2 that had been live for weeks. The rewrite didn't introduce them — it made them visible by changing what Lesson 5 actually is. Worth running a forward-ref grep after any structural lesson rewrite, not just contradiction checks against the rewrite itself.
 
 ---
 
@@ -199,6 +201,6 @@ This stack is the CONTEXT for curriculum work, not a target for change. The curr
 
 1. Open a NEW chat in the LuKaiAI project (don't continue a heavy old one).
 2. Upload or confirm access to THIS file (CURRICULUM-WORK.md). If the project files aren't auto-loaded, upload it.
-3. Say: **"Read CURRICULUM-WORK.md, especially the READ THIS FIRST block. This is COURSE CONTENT work — production is already on Supabase, we're only updating lessons. You plan here as text; I apply via Claude Code. Let's do [the Module 5 Lesson 3 Supabase rewrite / next item]."**
+3. MEDIUM polish items are next: Module 0 methodology preview, Module 3 Lesson 5 CLAUDE.md improvement, or the LOWER Quick-Navigate reference page.
 4. The chat plans/drafts; Claude Code executes the file edits.
 5. Update this file at the end of the session with what shipped + what's next.
