@@ -32,14 +32,16 @@ A second piece of software, running on a different computer than the user's brow
 
 Think of it like a restaurant: **the frontend is the dining room**, what the customer sees. **The backend is the kitchen** — they never go in there, but everything they eat comes from it. The database is the pantry inside the kitchen.
 
-In this course, the kitchen is a service called Render, and the pantry is a database called Postgres. Both are free at the scale we're using.
+In this course, the kitchen is a service called Render, and the pantry is a Postgres database hosted on Supabase. Both are free at the scale we're using.
+
+Postgres (sometimes "PostgreSQL") is a database — it holds rows of data like users, posts, or anything else your app saves. It's the industry-standard free database. **You don't need to know SQL or how databases work internally.** You need to know how to spin one up and how to connect your backend to it. That's Lessons 2 and 3.
 
 ## The shape of what's coming
 
 By the end of this module, you'll have:
 
 - A Render account, free tier, with a backend service deployed
-- A Postgres database also on Render, connected to that backend
+- A Postgres database on Supabase, connected to that backend
 - An environment variable (`DATABASE_URL`) holding the connection string
 - Your Cloudflare frontend pointed at the new backend
 - An app that remembers things
@@ -117,58 +119,74 @@ A few likely outcomes:
 
 ---
 
-## Lesson 3 — Add a Postgres database and connect it to your backend
+## Lesson 3 — Give your app a database with Supabase
 
-## What Postgres is
+You have two jobs in this lesson:
 
-Postgres (sometimes "PostgreSQL") is a database. It holds rows of data — users, posts, anything — and your backend reads from it and writes to it.
+1. Create a Supabase account and a database that won't disappear on you.
+2. Tell your app — the one already running on Render from the last lesson — where that database lives.
 
-It's the industry-standard free database. **You don't need to know SQL or how databases work internally.** You need to know how to spin one up on Render and how to connect your backend to it. That's this lesson.
+The first job is straightforward signup. The second is connecting them, which is the fiddly part: Supabase shows your database's connection string in a few different forms, and you need the right one. Picking the wrong one is the most common place to get stuck in this lesson. That's normal — and if you're unsure which to use, you don't guess, you capture and ask.
 
-> **Don't guess. Capture — with one rule.**
+## Section 1 — Create your account and project
+
+1. Open **supabase.com** in your browser.
+2. Click **Start your project**. It's the hero button in the center of the page, on the left of the two buttons there.
+3. You'll land on a screen titled "Welcome back." That heading is for returning users — you're new, so click **Don't have an account? Sign up** underneath the login fields.
+4. Sign up with GitHub (you already made that account back in Module 2, so this is the quickest path) or with email.
+5. Once you're in, create a new project. Give it a name, set a database password, and pick the region closest to you. **Save that database password somewhere you can find it again** — Supabase only shows it to you here.
+6. Supabase takes a minute or two to provision the database. Wait for it to finish before the next section.
+
+*If the page looks different from these steps, the dashboard has been redesigned since this was written — that happens. Screenshot what you see, paste it into Claude Chat, and ask "I'm trying to create a new Supabase project, where do I click?" Capture is the durable move when the layout shifts.*
+
+> _[Screenshot: Supabase → new project form. The name, password, and region fields learners fill in.]_
+
+## Section 2 — Get your connection string
+
+> **Don't guess. Capture — with one exception.**
 >
-> Anytime you're not sure on these screens — *anytime* — screenshot what you see and ask Chat. Same rule as every other lesson, with one specific exception for this lesson only: **the DATABASE_URL value itself is a secret.** Anyone who has it can read or write your database. Before screenshotting the Connections section or the Environment variables tab, hover over the value, click the eye icon to hide it, OR cover it with a sticky note on your screen before capturing. Screenshot the *error or page layout*, not the actual URL string. Everything else in the standard callout still applies — capture, ask Chat, fix.
+> The capture-and-ask habit applies as always, with one rule specific to this section and the next: **the Supabase connection string is a secret.** It contains your database password — anyone who has it can read or write your database. Before screenshotting the Connect panel here, or the Environment variables tab on Render in Section 3, hide the value (most dashboards offer an eye icon) or cover it on your screen. Capture the page layout, the error, the buttons — never the actual string. Chat doesn't need the secret to help; it just needs to see what's around it.
 
-## Spin up the database
+A connection string is the address your app uses to reach the database. Supabase shows you a few variations of it, which is the part that trips people up. You only need one, and you don't need to know how they differ.
 
-Back on the Render dashboard, click **+ New** again. This time pick **Postgres** from the dropdown.
+1. Find the **Connect** button at the top of your project dashboard and click it.
+2. Supabase shows several connection strings, grouped by type (a direct connection and one or two pooled ones). Copy the one that fits how your app connects — for a backend that stays running on Render, that's typically the pooled connection string.
+3. Keep it somewhere safe — it contains your database password.
 
-A form opens. Fields:
+If the panel offers options you're unsure about, this is the moment to capture, not guess. Screenshot the Connect panel, paste it into Claude Chat, and ask "which of these connection strings should I use for my Node backend on Render?" Picking the wrong one is the single most common way to get stuck here, and one screenshot settles it.
 
-- **Name** — *yourname-db* or similar.
-- **Region** — **the same region you picked for your backend in Lesson 2.** This matters for speed.
-- **Database** — leave default.
-- **User** — leave default.
-- **Instance Type** — Free.
+*If you can't find a Connect button, look along the top of the dashboard or in project settings — wording moves around. Screenshot it and ask Claude "where do I find my database connection string in Supabase?"*
 
-Click **Create Database.** Render provisions it — takes 1-2 minutes. **When you see a green *Available* badge, it's live.**
+> _[Screenshot: Supabase Connect panel showing the available connection-string types. The single screen learners screenshot when they're unsure which string to copy.]_
 
-> _[Screenshot: Render → "+ New" → "Postgres". The form for spinning up the free-tier database.]_
+## Section 3 — Point your app at the database
 
-## Find the connection string
+Your app is already running on Render from the last lesson. You're going to tell it to use the Supabase database.
 
-On the database's page, scroll down until you see a section called **Connections.** Inside there's a field called **Internal Database URL** — something starting with `postgresql://`.
+1. Go to your Render dashboard, open the web service you deployed last lesson, and click **Environment** in the left sidebar.
+2. Click **Add Environment Variable**. Set the **Key** to `DATABASE_URL` and the **Value** to the connection string you copied from Supabase.
+3. Click **Save Changes**. Render redeploys automatically — give it three to four minutes.
+4. Once the deploy is live, have Claude wire your backend to the database the same way you've asked it to build every other piece. You bring what you have — the connection string and your current server code — and Claude writes the connection code. You don't need to write it yourself.
 
-**Copy the entire value.** This is your `DATABASE_URL` — the secret your backend needs to know to talk to the database.
-
-Use the Internal URL, not the External one. Internal means "only services inside Render can use this" — which is what you want. Faster and safer.
-
-> _[Screenshot: After Postgres provisions — the page showing "Internal Database URL." This is the value learners copy into their backend service's env vars as DATABASE_URL.]_
-
-## Plug the connection into the backend
-
-Go back to your Web Service from Lesson 2. Click **Environment** in the left sidebar.
-
-You'll see a list of environment variables (probably empty). Click **Add Environment Variable.**
-
-- **Key:** `DATABASE_URL`
-- **Value:** paste the Internal Database URL you copied.
-
-Click **Save Changes.** Render restarts your backend automatically — it has to, because the backend needs to read the new env var when it starts. **Watch the logs for the new deploy.**
-
-If your backend code already knows to look for `DATABASE_URL` (most do), it'll just connect on startup. If it doesn't, you need a Chat conversation about adding the connection logic — paste your backend's start file and ask *"how do I make this connect to a Postgres database at the URL in DATABASE_URL?"*
+*If the deploy fails or the app can't reach the database, the cause is almost always the connection string in the wrong variable, or the wrong string copied from Supabase. Screenshot the Render logs, paste them into Claude Chat, and ask one question: "my app can't connect to my Supabase database, what's wrong?"*
 
 > _[Screenshot: The Environment tab on the backend service with DATABASE_URL pasted in. The hand-off between database and backend.]_
+
+## A note on free tiers, honestly
+
+Supabase free projects pause after about seven days with no activity. They don't get deleted — you resume them with one click from the dashboard — but they do go to sleep. This is better than where Render's free Postgres left you (it deleted free databases after 90 days), though it isn't nothing. If your app seems down after you've been away for a week, check your Supabase dashboard first and resume the project.
+
+> **Don't guess. Capture.**
+>
+> Dashboards get redesigned and buttons move. If a step here doesn't match what's on your screen, don't hunt around hoping you've found the right thing. Screenshot it, paste it into Claude Chat, ask one short question. Finding the right place is Claude's job; capturing what you see is yours.
+
+## What you have now
+
+- A live Postgres database on Supabase, connected to your app on Render.
+- A database that won't be deleted out from under you in 90 days.
+- The connection string your app needs, set as an environment variable on Render.
+
+Next lesson, you'll confirm everything is talking to each other end to end and see your data persist.
 
 ---
 
