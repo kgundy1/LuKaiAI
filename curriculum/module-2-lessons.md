@@ -71,49 +71,103 @@ Don't unzip it. Don't open it. **It's a backup, not a workspace.** Move on to Le
 
 ## Lesson 2 — Make a GitHub account and create your first repository
 
-## What GitHub is
+You have two jobs in this lesson:
 
-GitHub is a website where code lives — somebody else's computer, holding your project so it doesn't only exist on your laptop. Every change you make from here on gets pushed there. **If your laptop dies tomorrow, your project doesn't.**
+1. Make a GitHub account, or sign in to the one you want this course to use.
+2. Create an empty repository on that account — the home your Module 1 prototype is going to live in.
 
-It's free for everything we're doing. You don't need a paid plan, ever, for the work in this course.
+The first job has more variations than it looks like — GitHub has redesigned signup several times, asks for two-factor authentication earlier than it used to, and a lot of people already have a stale GitHub account from years ago they've half-forgotten about. The second job is short once you're on the right account, but landing on the *wrong* account at the end of this lesson is the single most common way the next few lessons silently break.
+
+By the end of this lesson, you'll know your GitHub **username** and your **repo name**. Write them down. Both lessons after this one ask you to remember and verify them.
+
+GitHub is a website where code lives — somebody else's computer, holding your project so it doesn't only exist on your laptop. Every change you make from here on gets pushed there. **If your laptop dies tomorrow, your project doesn't.** It's free for everything we're doing in this course; you don't need a paid plan, ever.
 
 > **Don't guess. Capture.**
 >
-> Anytime you're not sure — a deploy failed, a button isn't where the lesson said it would be, an error popped up you don't recognize, **or you're just looking at a page and not sure what to click** — *you do not need to understand any of it.* You don't need to know what the error means. You don't need to guess if you're in the right place. You don't need to Google.
+> Anytime you're not sure — a button isn't where this lesson said it would be, an unexpected page appears, an error you don't recognize pops up, or you're just looking at a screen and not sure what to click — *you do not need to understand any of it.*
 >
-> Take a screenshot of whatever is on your screen. Drag it into Claude Chat. Type one line: *"is this right?"* or *"what is this error?"* or *"what should I click here?"* — Chat will tell you exactly what to fix, exactly what to click, or exactly what prompt to send Claude Code.
->
-> Use this loop *anytime you're unsure, not just when something is broken.* I have not hit a single obstacle this loop didn't solve. **Use it every time.**
+> Screenshot what's on your screen. Drag it into Claude Chat. Type one line: *"is this right?"* or *"what should I click here?"* or *"what is this error?"* Chat will tell you exactly what to do next. Use this loop anytime you're unsure, not only when something is broken.
 
-## Sign up at github.com
+### Step 1 — Decide which account you're using before you go to github.com
 
-Go to **github.com**. Click **Sign up** in the top-right.
+Before you open a browser tab, decide which of these you are:
 
-You'll need three things: an email (use one you check), a password, and a username — this becomes part of your project's URL forever, so pick something you're okay with. *kgundy1*, *yourname2026*, whatever. Skip the survey GitHub asks at the end — pick any answers, it doesn't change anything.
+- **No GitHub account yet, never had one** → Step 2 (sign up from scratch).
+- **You already have a GitHub account from years ago you can sign back into** → use it. Go to github.com, click **Sign in**, and skip to Step 4.
+- **You have a GitHub account through a job or school** → make a *new personal* one for this course. Your work account often has scope restrictions you can't see, and the course assumes a regular personal account. Don't use the work one.
 
-GitHub will send you a verification email. Click the link. **You now have a GitHub account.**
+*If you can't remember whether you ever made one, type the email addresses you commonly use into github.com's password reset page — if GitHub recognizes one, the account exists. If none of them are recognized, you don't have an account yet.*
 
-> _[Screenshot: GitHub sign-up page — github.com/signup. Drag a screenshot of the page you see when you click "Sign up" so learners can confirm they're in the right place.]_
+### Step 2 — Sign up at github.com
 
-## Create your first repository
+Open **github.com** in a browser tab. Click **Sign up** in the top-right.
 
-A *repository* — "repo" for short — is one folder GitHub holds for you. One per project. We're going to make the one for what you built in Module 1.
+You'll need three things:
 
-In the top-right of any GitHub page there's a **+** button. Click it → **New repository**.
+1. **An email you actually check.** GitHub sends a verification link in a minute; if you use a throwaway, you'll be stuck waiting on an email you'll never click.
+2. **A password.** Long is more important than complicated. Use a password manager if you have one.
+3. **A username.** This becomes part of your project's URL forever — *github.com/yourusername/yourreponame* — so pick something you're okay with being public. Letters, numbers, and hyphens are allowed; spaces and most special characters are not. Hyphens can't be at the start or end. Common short names are already taken.
 
-Fill in the name — something short, lowercase, no spaces. The name of your project from Module 1 is the right answer. Description is optional. Pick **Public** or **Private** — both work; Public means people can see your code if they find it (most learning repos are public), Private means only you.
+*If GitHub says the username you tried is unavailable, it's gone — somebody has it. Add a number, a hyphen, the year, or your initials and try again. GitHub will sometimes suggest variations directly. The username doesn't need to be clever; it needs to be yours and memorable.*
 
-**Important:** the page has three checkboxes at the bottom — *Add a README*, *Add .gitignore*, *Choose a license*. **Leave them all unchecked.** Your prototype already has its own files, and adding these will cause headaches in Lesson 6.
+GitHub will walk you through a few more steps after that — country, an age confirmation, a puzzle captcha. Answer them honestly. The puzzle captcha can take a couple of tries; that's the puzzle being finicky, not you doing it wrong.
 
-Click **Create repository**.
+*If you hit a captcha loop where it never seems to accept your answer, refresh the page and try a different browser, or turn off any VPN or strict-tracking extension you have running. Captchas are often the thing those tools break.*
 
-> _[Screenshot: GitHub → top-right "+" → "New repository". The page where you name the repo + click Create.]_
+GitHub then asks a few survey questions about why you're signing up. Pick any answers — they don't change anything about your account.
 
-## What you see now
+### Step 3 — Verify your email
 
-The page that loads is mostly empty — a header with your repo's URL, some setup instructions you can ignore, and a big code block titled *Quick setup*. **Ignore all of it.** Claude Code is going to handle the pushing in Lesson 6; you don't run any of these commands by hand.
+GitHub sends a verification email to the address you used. Open it and click the link. **You now have a GitHub account.**
 
-Leave this tab open. Move to Lesson 3.
+*If the email doesn't arrive within five minutes: check your spam or promotions folder. If it's not there either, go back to github.com (you should be signed in) and look for a yellow banner near the top offering to resend the verification email. Click that. If it still doesn't arrive, screenshot what you see and ask Claude Chat "GitHub isn't sending me a verification email — what do I do?"*
+
+> _[Screenshot: GitHub's sign-up confirmation or the dashboard right after email verification — what learners should expect to land on once their account is active.]_
+
+### Step 4 — Note your username, and check it's right
+
+This is the small step everyone skips and regrets later.
+
+After you sign up (or sign in), look at the **top-right corner** of any GitHub page. There's a small circle there — your avatar — and clicking it shows your username at the top of the menu that opens.
+
+**Write that username down somewhere you'll find again** — a sticky note, your password manager, the back of an envelope. The next lesson asks you to authorize Claude Code against this exact account, and the lesson after that pushes code to a repo on this exact account. If you forget which username you used, both of those lessons break in confusing ways.
+
+*If GitHub is offering to enroll you in two-factor authentication right now, you can do it later from Settings — but if you choose to do it now, the most important thing is to save the recovery codes GitHub shows you. Screenshot them or write them down. If you ever lose access to your 2FA app and you don't have the recovery codes, GitHub cannot get your account back for you.*
+
+*If the username in the corner doesn't match what you thought you signed up as, you're probably signed in to a different account that was already in this browser. Click your avatar → **Sign out** → then sign back in with the account you just created.*
+
+### Step 5 — Create your first repository
+
+A *repository* — "repo" for short — is one folder GitHub holds for you. One per project. You're going to make the one for what you built in Module 1.
+
+1. In the top-right of any GitHub page, click the **+** button.
+2. Pick **New repository** from the dropdown.
+3. **Owner** — make sure the dropdown shows *your personal username*, not an organization. If you've ever been added to a GitHub org through work, the Owner field can default to the org and your repo will land somewhere you can't find later. Personal username, not org.
+4. **Repository name** — something short, lowercase, hyphens-okay, no spaces. The name of your project from Module 1 is the right answer.
+5. **Description** — optional. Skip it or write one sentence.
+6. **Public** or **Private** — for this course, **Public** is the simpler default. It means anyone with the URL can see your code, which is normal for learning projects and lets you share a link if you want to. Private works too, but a few things later in the course (preview links, certain free-tier features) are smoother on public repos. You can flip it later from Settings.
+7. **The three checkboxes at the bottom** — *Add a README*, *Add .gitignore*, *Choose a license* — **leave all three unchecked.** Your prototype already has its own files, and adding these will cause headaches in Lesson 6 when you try to push.
+8. Click the green **Create repository** button.
+
+*If GitHub says the repo name is already in use, you've probably got an older repo on this account with the same name from a previous attempt. Either delete the old one (Settings on that repo → Danger Zone → Delete) or pick a different name and remember the new one. If the **+** button isn't in the top-right where this lesson says, GitHub may have redesigned the create flow since this was written. Screenshot what you see and ask Claude Chat "where do I create a new repo on GitHub?"*
+
+> _[Screenshot: The "Create a new repository" form — Owner dropdown, name field, public/private toggle, the three unchecked checkboxes. The one screen where every choice on this page is visible at once.]_
+
+### Step 6 — Confirm what landed
+
+The page that loads after you click Create is mostly empty — a header with your repo's URL, some setup instructions you can ignore, and a big code block titled *Quick setup*. **Ignore all of it.** Claude Code is going to handle the pushing in Lesson 6; you don't run any of these commands by hand.
+
+Look at the very top of the page. It should say *yourusername / yourreponame*. That URL — `github.com/yourusername/yourreponame` — is what you're going to point Claude Code at two lessons from now.
+
+*If the page didn't change after you clicked Create — it just sat there — the form may have hit a slow network. Wait fifteen seconds, then refresh. If the repo still doesn't exist, scroll back up and look for a red error banner at the top of the form. Screenshot it and ask Claude Chat.*
+
+### What you have now
+
+- A GitHub account with a confirmed email, on a personal username you've written down.
+- An empty repo at `github.com/yourusername/yourreponame` — no README, no .gitignore, no license, ready for your Module 1 code to land in it.
+- A note somewhere with your **username** and **repo name**. You need both in Lesson 5 (account check) and Lesson 6 (push target).
+
+Leave this GitHub tab open. Move to Lesson 3.
 
 ---
 
