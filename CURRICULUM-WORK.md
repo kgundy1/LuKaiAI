@@ -1,6 +1,6 @@
 # LuKaiAI — Curriculum Work Handoff
 
-**Last updated:** May 30, 2026 (evening session)
+**Last updated:** May 30, 2026 (late-evening session — post-Supabase migration)
 **Purpose:** Working-state handoff for course/curriculum improvements. Read this FIRST when starting any new curriculum-focused session so you don't re-explain context or re-gather research. This complements GAMEPLAN-POLISH.md (which tracks app/code polish) — this file tracks COURSE CONTENT work.
 
 ---
@@ -28,6 +28,8 @@ Diagnosis (from May 30 evening session): the course teaches Claude well, but tre
 2. **`75fcb10`** — Module 4 Lesson 2 rewritten (Cloudflare). THE TEMPLATE for navigation rewrites. Expanded ~350 → ~850 words. Covers Cloudflare signup from scratch, email verification, the "do you have a domain?" onboarding trap, finding Workers & Pages, full GitHub authorization flow, build config. 5+ "if you can't find it" recovery branches.
 
 3. **`212cf29`** — Module 2 Lesson 4 rewritten (Claude Code install). Changed install method from outdated .dmg/.exe desktop app to the canonical curl one-liner. The old lesson was materially broken (wrong URL, wrong method).
+
+4. **Module 5 Supabase migration** — Module 5 Lesson 3 rewritten from Render Postgres to Supabase. Client-agnostic (course teaches a vanilla Express server, not Prisma — so no `schema.prisma`/`directUrl`/`migrate deploy` content in the lesson). Applied the navigation-rewrite template (three sections, recovery branches, capture-and-ask). Secret-handling exception callout retained at the top of Section 2 (the Supabase connection string contains the DB password). Module 5 Lesson 1 de-Renderified (Supabase named in the kitchen/pantry framing) and the Postgres definition + "you don't need to know SQL" line moved up from the deprecated Lesson 3 to the first Postgres mention. Lessons 2 and 4 audited; no `Render Postgres` references to update.
 
 ---
 
@@ -76,14 +78,13 @@ Captured via Claude in Chrome on May 30, 2026. Fresh-user (logged-out) signup en
 
 ---
 
+## Open production note (NOT course work)
+
+`apps/api/prisma/schema.prisma` has no `directUrl` line. Production currently runs Supabase + Prisma on a single connection string. If that string is the direct (non-pooled) URL it works, but it isn't pooler-optimized and can exhaust Postgres connections under load. Flagged here so future curriculum sessions know the production reality — **this is a production fix, not curriculum work, so it's untouched for now.** Address it in a production-focused session, not a curriculum one.
+
+---
+
 ## Remaining curriculum work — prioritized
-
-### URGENT — Module 5 Supabase migration (do first next session)
-Module 5 currently teaches Render Postgres. Two problems:
-1. Production stack moved to Supabase (Render Postgres now obsolete in production)
-2. **Render free-tier Postgres expires after 90 days** — every learner who completes Module 5 today has their database deleted in ~90 days, breaking their app
-
-Fix: rewrite Module 5 Lesson 3 to use Supabase Postgres instead of Render Postgres. Render stays as the backend (web service) host; Supabase becomes the database. Use the research data above (Supabase signup flow). Also apply the navigation-rewrite template to Lesson 3 while in there (two-for-one). Touch Lessons 1, 2, 4 lightly to reference the change. Est. 60-90 min.
 
 ### HIGH — Apply navigation template to remaining nav-heavy lessons
 Using the template + research data above:
@@ -95,7 +96,6 @@ Note: Module 2 Lesson 3 (terminal) was reviewed and is GOOD as-is. Don't rewrite
 
 ### MEDIUM — Quick polish items (batch, ~30 min total)
 - **Module 0 methodology preview** (~5 min): add a paragraph to Module 0 Lesson 1 previewing "capture, don't guess" before learners hit it in Module 1 Lesson 4. Gives them the frame before they need it.
-- **Module 5 Lesson 1 Postgres definition** (~5 min): move the "Postgres is a database, you don't need to know SQL" line up from Lesson 3 to Lesson 1 where Postgres is first mentioned.
 - **Module 3 Lesson 5 CLAUDE.md improvement** (~10-15 min): add a concrete demonstration of what CLAUDE.md does (show Code session WITH vs WITHOUT it) so learners internalize its value, not just write it mechanically.
 
 ### LOWER — Quick Navigate reference page
@@ -115,6 +115,8 @@ A single markdown reference (curriculum/QUICK-NAVIGATE.md or a course page) list
 
 5. **Don't paste large content (diffs, file dumps) into the planning chat** — it nearly broke the chat context. Have Claude Code do file work; report back one-line summaries only.
 
+6. **Re-downloaded files can save as `name (1).md` instead of overwriting the original.** If a draft gets "corrected" in chat and re-downloaded, the new version may land as `name (1).md` while `name.md` stays stale on disk. Before handing a draft to Code, verify the file actually replaced the original (grep a distinctive string from the new version, or check the mtime) and clear duplicates. Caught once tonight after Code re-read an unchanged draft and flagged the mismatch.
+
 ---
 
 ## Audience + voice reminders (for any curriculum work)
@@ -131,7 +133,7 @@ A single markdown reference (curriculum/QUICK-NAVIGATE.md or a course page) list
 
 1. Open a NEW chat in the LuKaiAI project (don't continue an old heavy one)
 2. Say: "Read CURRICULUM-WORK.md and let's continue the course work"
-3. Pick the next item from the prioritized list (Module 5 Supabase migration is first)
+3. Pick the next item from the prioritized list (HIGH-priority nav-template lessons are next — Module 2 Lesson 2, Module 2 Lesson 5, or Module 5 Lesson 2)
 4. The research data and template are already here — no re-gathering needed
 5. Use Claude Code's file tools for edits, not heredocs
 6. Update this file at the end of the session with what shipped + what's next
