@@ -1,6 +1,6 @@
 # LuKaiAI — Curriculum Work Handoff
 
-**Last updated:** May 30, 2026 (late-evening session — post-Supabase migration)
+**Last updated:** May 30, 2026 (late-evening session — post-Module-2-Lesson-5 OAuth rewrite)
 **Purpose:** Working-state handoff for course/curriculum improvements. Read this FIRST when starting any new curriculum-focused session so you don't re-explain context or re-gather research. This complements GAMEPLAN-POLISH.md (which tracks app/code polish) — this file tracks COURSE CONTENT work.
 
 ---
@@ -30,6 +30,8 @@ Diagnosis (from May 30 evening session): the course teaches Claude well, but tre
 3. **`212cf29`** — Module 2 Lesson 4 rewritten (Claude Code install). Changed install method from outdated .dmg/.exe desktop app to the canonical curl one-liner. The old lesson was materially broken (wrong URL, wrong method).
 
 4. **Module 5 Supabase migration** — Module 5 Lesson 3 rewritten from Render Postgres to Supabase. Client-agnostic (course teaches a vanilla Express server, not Prisma — so no `schema.prisma`/`directUrl`/`migrate deploy` content in the lesson). Applied the navigation-rewrite template (three sections, recovery branches, capture-and-ask). Secret-handling exception callout retained at the top of Section 2 (the Supabase connection string contains the DB password). Module 5 Lesson 1 de-Renderified (Supabase named in the kitchen/pantry framing) and the Postgres definition + "you don't need to know SQL" line moved up from the deprecated Lesson 3 to the first Postgres mention. Lessons 2 and 4 audited; no `Render Postgres` references to update.
+
+5. **Module 2 Lesson 5 OAuth rewrite (commit `e2577c0`).** Rewritten to apply the navigation-rewrite template — `## Lesson` + `### Step 1-5` hierarchy matching Lesson 4, two-jobs framing, six recovery branches covering wrong default browser, multi-account picker, wrong account signed in, sudo-mode + 2FA + grayed-out Authorize button, "Only select repositories" forgot-to-tick + add-repo-later via Settings → Applications, and VPN/incognito callback failure. Center-of-gravity addition: Step 2 forces the learner to verify which GitHub account is signed in BEFORE clicking Authorize — directly addressing the silent wrong-account failure mode (~15-20% of OAuth failures in the prior version, surfacing two lessons later as inscrutable repo errors). Dismissive "It's fine" line removed; honest scope framing in its place. Same commit also fixed two pre-existing Module 2 Lesson 2 forward-references that incorrectly pointed to Lesson 5 when the push actually happens in Lesson 6 (lines 106 and 114).
 
 ---
 
@@ -89,7 +91,6 @@ Captured via Claude in Chrome on May 30, 2026. Fresh-user (logged-out) signup en
 ### HIGH — Apply navigation template to remaining nav-heavy lessons
 Using the template + research data above:
 - **Module 2 Lesson 2** (GitHub signup + first repo) — current draft is OK-ish on signup but needs explicit nav + recovery branches. Est. 30-45 min.
-- **Module 2 Lesson 5** (Connect Claude Code to GitHub) — the OAuth flow is the most failure-prone moment in the whole course. Current lesson handles ~50% of failure modes. Est. 45 min.
 - **Module 5 Lesson 2** (Render signup + web service) — most complex dashboard. Render signup IS in the current lesson (unlike Cloudflare was), so smaller gap. Est. 30-45 min.
 
 Note: Module 2 Lesson 3 (terminal) was reviewed and is GOOD as-is. Don't rewrite it.
@@ -117,6 +118,8 @@ A single markdown reference (curriculum/QUICK-NAVIGATE.md or a course page) list
 
 6. **Re-downloaded files can save as `name (1).md` instead of overwriting the original.** If a draft gets "corrected" in chat and re-downloaded, the new version may land as `name (1).md` while `name.md` stays stale on disk. Before handing a draft to Code, verify the file actually replaced the original (grep a distinctive string from the new version, or check the mtime) and clear duplicates. Caught once tonight after Code re-read an unchanged draft and flagged the mismatch.
 
+7. **Forward-reference audits catch real bugs.** Auditing forward references in adjacent lessons after a rewrite surfaced two pre-existing wrong-lesson-number references in Module 2 Lesson 2 that had been live for weeks. The rewrite didn't introduce them — it made them visible by changing what Lesson 5 actually is. Worth running a forward-ref grep after any structural lesson rewrite, not just contradiction checks against the rewrite itself.
+
 ---
 
 ## Audience + voice reminders (for any curriculum work)
@@ -133,7 +136,7 @@ A single markdown reference (curriculum/QUICK-NAVIGATE.md or a course page) list
 
 1. Open a NEW chat in the LuKaiAI project (don't continue an old heavy one)
 2. Say: "Read CURRICULUM-WORK.md and let's continue the course work"
-3. Pick the next item from the prioritized list (HIGH-priority nav-template lessons are next — Module 2 Lesson 2, Module 2 Lesson 5, or Module 5 Lesson 2)
+3. Pick the next item from the prioritized list (HIGH-priority nav-template lessons are next — Module 2 Lesson 2, or Module 5 Lesson 2)
 4. The research data and template are already here — no re-gathering needed
 5. Use Claude Code's file tools for edits, not heredocs
 6. Update this file at the end of the session with what shipped + what's next
