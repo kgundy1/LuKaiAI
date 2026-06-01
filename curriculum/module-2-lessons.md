@@ -151,6 +151,8 @@ A *repository* — "repo" for short — is one folder GitHub holds for you. One 
 
 *If GitHub says the repo name is already in use, you've probably got an older repo on this account with the same name from a previous attempt. Either delete the old one (Settings on that repo → Danger Zone → Delete) or pick a different name and remember the new one. If the **+** button isn't in the top-right where this lesson says, GitHub may have redesigned the create flow since this was written. Screenshot what you see and ask Claude Chat "where do I create a new repo on GitHub?"*
 
+*The Quick-Navigate reference at `curriculum/reference/QUICK-NAVIGATE.md` lists GitHub's main URLs and dashboard buttons if the layout doesn't match what you're seeing.*
+
 > _[Screenshot: The "Create a new repository" form — Owner dropdown, name field, public/private toggle, the three unchecked checkboxes. The one screen where every choice on this page is visible at once.]_
 
 ### Step 6 — Confirm what landed
@@ -436,6 +438,8 @@ Near the bottom of the Authorize page, there's a section about repository access
 You can change this later either way, so it's not a permanent choice. When you're decided, scroll to the bottom and click the green **Authorize** button.
 
 *If you picked "Only select repositories" and want to add or change which repos Claude Code can see later, go to github.com → click your avatar (top-right) → **Settings** → **Applications** (left sidebar) → find **Claude Code** in the list → **Configure** → toggle the repos you want. This is also the place to come if Lesson 6 fails because Claude Code can't find your repo — most of the time it's because the repo isn't ticked here.*
+
+*The Quick-Navigate reference at `curriculum/reference/QUICK-NAVIGATE.md` lists GitHub's main URLs and dashboard buttons if the layout doesn't match what you're seeing.*
 
 ### Step 5 — Confirm the connection landed in Claude Code
 

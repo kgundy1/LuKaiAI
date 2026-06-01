@@ -121,6 +121,8 @@ In the top-right, click **+ New**. A dropdown appears showing the things Render 
 
 *If the **+ New** button isn't where this lesson says, Render may have redesigned the dashboard since this was written. Screenshot what you see and ask Claude Chat "where do I create a new Web Service on Render?" Render redesigns the dashboard regularly; the capture-and-ask loop is the durable fallback when the screenshots don't match.*
 
+*The Quick-Navigate reference at `curriculum/reference/QUICK-NAVIGATE.md` lists Render's main URLs and dashboard buttons if the layout doesn't match what you're seeing.*
+
 ### Step 6 — Pick your repo
 
 Render shows you the GitHub repos it can see. Find the one from Module 2 and click **Connect** next to it.
@@ -237,6 +239,8 @@ A connection string is the address your app uses to reach the database. Supabase
 If the panel offers options you're unsure about, this is the moment to capture, not guess. Screenshot the Connect panel, paste it into Claude Chat, and ask "which of these connection strings should I use for my Node backend on Render?" Picking the wrong one is the single most common way to get stuck here, and one screenshot settles it.
 
 *If you can't find a Connect button, look along the top of the dashboard or in project settings — wording moves around. Screenshot it and ask Claude "where do I find my database connection string in Supabase?"*
+
+*The Quick-Navigate reference at `curriculum/reference/QUICK-NAVIGATE.md` lists Supabase's main URLs and dashboard buttons if the layout doesn't match what you're seeing.*
 
 > _[Screenshot: Supabase Connect panel showing the available connection-string types. The single screen learners screenshot when they're unsure which string to copy.]_
 

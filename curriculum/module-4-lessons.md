@@ -84,6 +84,8 @@ Cloudflare reorganizes this sidebar regularly. Right now, the relevant item is c
 
 *If you can't find Workers & Pages — it might be hidden behind a "More" menu, or Cloudflare may have renamed it. Screenshot the sidebar and ask Chat "where is Workers & Pages?" Chat will tell you the current name and location.*
 
+*The Quick-Navigate reference at `curriculum/reference/QUICK-NAVIGATE.md` lists Cloudflare's main URLs and dashboard buttons if the layout doesn't match what you're seeing.*
+
 Click **Workers & Pages.**
 
 **Step 7.** The page that loads is your Workers & Pages overview. Since you've never created anything yet, the page is mostly empty.
