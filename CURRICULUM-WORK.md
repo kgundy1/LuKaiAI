@@ -1,6 +1,6 @@
 # LuKaiAI — Curriculum Work Handoff (v2)
 
-**Last updated:** May 31, 2026 (post-MEDIUM polish batch — all MEDIUM items complete)
+**Last updated:** May 31, 2026 (post-Quick-Navigate reference — all URGENT, HIGH, MEDIUM, and LOWER curriculum queue work complete)
 **Purpose:** Working-state handoff for course/curriculum improvements. Read this FIRST when starting any new curriculum-focused session. This complements GAMEPLAN-POLISH.md (app/code polish) and STRATEGY.md (business strategy) — this file tracks COURSE CONTENT work only.
 
 ---
@@ -73,6 +73,7 @@ The emotional dimension matters as much as the navigational: people who get stuc
 9. **Module 5 Lesson 1 Postgres definition move (verified, no new commit).** Recon confirmed the Postgres definition + 'you don't need to know SQL' line is in place at the first Postgres mention in M5 L1, shipped originally as part of commit 5f2f9e4 (the Supabase L3 migration). No additional code change required.
 10. **Module 0 Lesson 1 capture-don't-guess preview (commit `095f231`).** Added a new bold subheading 'One skill you'll keep coming back to' between the 'course gets harder' line and the 'move on to Lesson 2' closer. Previews the capture-don't-guess methodology before learners hit it in Module 1 Lesson 4. Names the move, points to where it's taught in full, and primes recognition of 'screenshot it and ask Chat' throughout the course. Preview, not a teaching.
 11. **Module 3 Lesson 6 CLAUDE.md WITH-vs-WITHOUT demo (commit `77a8367`).** Added a new ## subheading 'What CLAUDE.md actually does — a session compared' between the structure section and the action section. Two compact dialogue transcripts — same task, one without CLAUDE.md (six orientation exchanges before any work happens), one with (one exchange, Code already knows the answers). The 'ten minutes never happen' claim from the existing lesson now has a concrete demonstration before the learner writes their own.
+12. **Quick-Navigate reference page + inline cross-links (commit `9b9934c`).** Created curriculum/reference/QUICK-NAVIGATE.md as a learner-facing lookup reference: six services (GitHub, Cloudflare, Render, Supabase, Resend, Claude) with a consistent three-section structure each — Signup (root URL + CTA + lands-at, sourced from the research table), Dashboard entry (main URL + the buttons that get to the action the course teaches), and Where to find common things (the lookup body — env vars, logs, repo settings, connection strings, with deepest coverage on Render and Supabase). Opener and closer both name the page's own staleness risk and point to capture-and-ask as the durable fallback. Inline cross-links added to the five rewritten nav lessons at the single most failure-prone capture-and-ask moment in each: Module 2 Lesson 2 (Step 5 + button moved), Module 2 Lesson 5 (Step 4 Settings → Applications), Module 4 Lesson 2 (Workers & Pages drift), Module 5 Lesson 2 (Step 5 + New moved), Module 5 Lesson 3 (Section 2 Connect button drift). No cross-link in Module 0 Lesson 1 or Module 3 Lesson 6 — those lessons have no dashboard moments. Consistent phrasing template across all five pointers.
 
 ---
 
@@ -154,8 +155,15 @@ Note: Module 2 Lesson 3 (terminal) was reviewed and is GOOD as-is. Do NOT rewrit
 
 ### MEDIUM — all three polish items complete (see What shipped #9, #10, #11). No MEDIUM work remaining.
 
-### LOWER — Quick Navigate reference page
-Single markdown reference listing every service's canonical signup URL + CTA (from the research table). Cross-link from lessons. Update ~yearly. ~30 min.
+### LOWER — Quick-Navigate reference page shipped (see What shipped #12). No LOWER work remaining.
+
+---
+
+## Curriculum queue status — closed
+
+All URGENT, HIGH, MEDIUM, and LOWER curriculum queue items are shipped. The structural-improvement arc for the course is complete: every nav-heavy lesson is on the navigation-rewrite template, every silent-failure mode named in the gap analyses has a recovery branch, every load-bearing learner artifact (account, repo, service name, URL) is explicitly handed off between lessons, and the capture-and-ask methodology is previewed (M0 L1), taught (M1 L4), demonstrated by reference (M3 L6's CLAUDE.md WITH-vs-WITHOUT), and supported by a lookup reference (Quick-Navigate).
+
+Future curriculum work belongs to one of two categories: (1) net-new lessons or modules added because the course expands its scope, or (2) revisions driven by real learner data — places where actual learners get stuck that the speculative gap analyses didn't predict. Neither category exists yet on a queue. Open a new chat with this file when either materializes, and rebuild a queue at that point.
 
 ---
 
@@ -201,6 +209,6 @@ This stack is the CONTEXT for curriculum work, not a target for change. The curr
 
 1. Open a NEW chat in the LuKaiAI project (don't continue a heavy old one).
 2. Upload or confirm access to THIS file (CURRICULUM-WORK.md). If the project files aren't auto-loaded, upload it.
-3. Only the LOWER Quick-Navigate reference page remains. All URGENT, HIGH, and MEDIUM curriculum work is complete.
+3. If you're opening a session to address something NEW (a learner-reported issue, a course expansion, a discovered gap), describe it explicitly. The queue this file was built around is closed; new work starts from a new diagnosis, not from this file's old priorities.
 4. The chat plans/drafts; Claude Code executes the file edits.
 5. Update this file at the end of the session with what shipped + what's next.
