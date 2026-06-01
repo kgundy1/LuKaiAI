@@ -1,6 +1,6 @@
 # LuKaiAI — Curriculum Work Handoff (v2)
 
-**Last updated:** May 31, 2026 (post-Module-5-Lesson-2 Render rewrite — all HIGH-priority nav-template lessons complete)
+**Last updated:** May 31, 2026 (post-MEDIUM polish batch — all MEDIUM items complete)
 **Purpose:** Working-state handoff for course/curriculum improvements. Read this FIRST when starting any new curriculum-focused session. This complements GAMEPLAN-POLISH.md (app/code polish) and STRATEGY.md (business strategy) — this file tracks COURSE CONTENT work only.
 
 ---
@@ -70,6 +70,9 @@ The emotional dimension matters as much as the navigational: people who get stuc
 6. **Module 2 Lesson 5 OAuth rewrite (commit `e2577c0`).** Rewritten to apply the navigation-rewrite template — ## Lesson + ### Step 1-5 hierarchy matching Lesson 4, two-jobs framing, six recovery branches covering wrong default browser, multi-account picker, wrong account signed in, sudo-mode + 2FA + grayed-out Authorize button, 'Only select repositories' forgot-to-tick + add-repo-later via Settings → Applications, and VPN/incognito callback failure. Center-of-gravity addition: Step 2 forces the learner to verify which GitHub account is signed in BEFORE clicking Authorize — directly addressing the silent wrong-account failure mode. Dismissive 'It's fine' line removed; honest scope framing in its place. Same commit also fixed two pre-existing Module 2 Lesson 2 forward-references that incorrectly pointed to Lesson 5 when the push actually happens in Lesson 6.
 7. **Module 2 Lesson 2 GitHub-signup rewrite (commit `55644c5`).** Rewritten to apply the navigation-rewrite template — ## Lesson + ### Step 1-6 hierarchy (also fixed a pre-existing heading-hierarchy bug where sub-sections used ## and collided with the lesson header), two-jobs opener naming wrong-account as the silent-failure trap, ten recovery branches covering: account-already-exists detection, work-vs-personal-account choice, username-taken/format-restrictions, captcha loop, missing verification email, 2FA enrollment + recovery codes, wrong-account-signed-in-from-prior-session, owner-picker org trap, repo-name collision, and slow/silent Create-repo form. Center-of-gravity addition: Step 4 forces the learner to look at the top-right avatar, read the username, and write it down — directly creating the named artifact (username) that Lesson 5's right-account check load-bears on. Step 6 ('Confirm what landed') and the new 'What you have now' closer surface the github.com/username/reponame URL as the second named artifact Lesson 6 plugs into the push command.
 8. **Module 5 Lesson 2 Render rewrite (commit `6cfe5db`).** Rewritten from ~520 to ~1,700 words to apply the navigation-rewrite template — ## Lesson + ### Step 1-10 hierarchy matching Lessons 4 and 5, two-jobs opener naming named-artifact handoff upfront (service name + .onrender.com URL for Lessons 3 and 5). Recovery branches across signup flow (credit-card requirement, dashboard redesign drift, workspace-setup interstitial), GitHub-Render OAuth (grayed-out Authorize, forgot-to-tick repo, post-hoc Settings → Applications → Render → Configure fix), Web Service vs Static Site pre-emption, configuration page (Start Command auto-fill verification flagged as the #1 silent failure), repo-not-in-picker, deploy outcomes (build failure / start failure / PORT-binding), and post-deploy verification. Center-of-gravity additions: Step 7 makes Start Command verification unmissable ('this is the one to check carefully'); Step 9 introduces a /api/health browser verification step (the canonical did-it-work check, previously absent); 'A note on Render's free tier' callout names the 15-minute spin-down + 30-second cold-start and the 750-hour monthly cap, parallel to Lesson 3's Supabase-pause honest-framing; Step 10 names the left-sidebar Logs/Environment/Settings tabs that Lessons 3 and 4 depend on. Region pick cross-referenced to Supabase region in Lesson 3 (cross-lesson coherence). Forward-reference audit across Module 5 confirmed all anchors hold; three downstream references (L3 Environment tab, L4 Logs tab + PORT error, L5 .onrender.com URL location) are strengthened by the rewrite.
+9. **Module 5 Lesson 1 Postgres definition move (verified, no new commit).** Recon confirmed the Postgres definition + 'you don't need to know SQL' line is in place at the first Postgres mention in M5 L1, shipped originally as part of commit 5f2f9e4 (the Supabase L3 migration). No additional code change required.
+10. **Module 0 Lesson 1 capture-don't-guess preview (commit `095f231`).** Added a new bold subheading 'One skill you'll keep coming back to' between the 'course gets harder' line and the 'move on to Lesson 2' closer. Previews the capture-don't-guess methodology before learners hit it in Module 1 Lesson 4. Names the move, points to where it's taught in full, and primes recognition of 'screenshot it and ask Chat' throughout the course. Preview, not a teaching.
+11. **Module 3 Lesson 6 CLAUDE.md WITH-vs-WITHOUT demo (commit `77a8367`).** Added a new ## subheading 'What CLAUDE.md actually does — a session compared' between the structure section and the action section. Two compact dialogue transcripts — same task, one without CLAUDE.md (six orientation exchanges before any work happens), one with (one exchange, Code already knows the answers). The 'ten minutes never happen' claim from the existing lesson now has a concrete demonstration before the learner writes their own.
 
 ---
 
@@ -149,10 +152,7 @@ Supabase free projects **pause after ~7 days of inactivity** (resumable, unlike 
 
 Note: Module 2 Lesson 3 (terminal) was reviewed and is GOOD as-is. Do NOT rewrite it.
 
-### MEDIUM — Quick polish batch (~30 min total) — now the top of the remaining-work queue
-- **Module 0 methodology preview** (~5 min): add a paragraph to Module 0 Lesson 1 previewing "capture, don't guess" before learners hit it in Module 1 Lesson 4.
-- **Module 5 Lesson 1 Postgres definition** (~5 min): move the "Postgres is a database, you don't need to know SQL" line up from Lesson 3 to Lesson 1.
-- **Module 3 Lesson 5 CLAUDE.md improvement** (~10-15 min): add a concrete demo of what CLAUDE.md does (Code session WITH vs WITHOUT it).
+### MEDIUM — all three polish items complete (see What shipped #9, #10, #11). No MEDIUM work remaining.
 
 ### LOWER — Quick Navigate reference page
 Single markdown reference listing every service's canonical signup URL + CTA (from the research table). Cross-link from lessons. Update ~yearly. ~30 min.
@@ -201,6 +201,6 @@ This stack is the CONTEXT for curriculum work, not a target for change. The curr
 
 1. Open a NEW chat in the LuKaiAI project (don't continue a heavy old one).
 2. Upload or confirm access to THIS file (CURRICULUM-WORK.md). If the project files aren't auto-loaded, upload it.
-3. MEDIUM polish items are next: Module 0 methodology preview, Module 3 Lesson 5 CLAUDE.md improvement, or the LOWER Quick-Navigate reference page.
+3. Only the LOWER Quick-Navigate reference page remains. All URGENT, HIGH, and MEDIUM curriculum work is complete.
 4. The chat plans/drafts; Claude Code executes the file edits.
 5. Update this file at the end of the session with what shipped + what's next.
