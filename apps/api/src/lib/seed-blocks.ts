@@ -50,7 +50,13 @@ const BLOCK_ENTRIES: BlockEntry[] = [
       {
         type: 'markdown',
         payload: {
-          md: "## What this is going to feel like\n\nFaster than you expect, and weirder than you expect. You'll describe an idea in plain English and Claude will hand you something working in under a minute. The first few times that happens it doesn't quite register. Then it does, and the thing that changes is what you allow yourself to build. The friction that used to stop you — \"I can't build that, I'd have to learn to code\" — stops being friction. That's the actual unlock.\n\nTake your time. Don't skip lessons. The course gets harder, not easier, but each lesson lands better when the one before it landed well.\n\nWhen you're ready, move on to Lesson 2.",
+          md: "## What this is going to feel like\n\nFaster than you expect, and weirder than you expect. You'll describe an idea in plain English and Claude will hand you something working in under a minute. The first few times that happens it doesn't quite register. Then it does, and the thing that changes is what you allow yourself to build. The friction that used to stop you — \"I can't build that, I'd have to learn to code\" — stops being friction. That's the actual unlock.\n\nTake your time. Don't skip lessons. The course gets harder, not easier, but each lesson lands better when the one before it landed well.",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "## One skill you'll keep coming back to\n\nThere's one move you'll use more than anything else in this course. It has a name — *capture, don't guess* — and you'll see it taught properly in Module 1 Lesson 4. The short version: when you're stuck, confused, or staring at something you don't recognize, you don't try to describe it in words and you don't go Googling. You screenshot what's on your screen, paste it into Claude, and ask one short question. Capture is the skill. Understanding is something Claude does on the other side.\n\nYou don't need to do anything with this yet. Just know it's coming, and that every time the course later says \"screenshot it and ask Chat,\" this is what it's pointing at.\n\nWhen you're ready, move on to Lesson 2.",
         },
       },
     ],
@@ -328,6 +334,24 @@ const BLOCK_ENTRIES: BlockEntry[] = [
       {
         type: 'markdown',
         payload: {
+          md: "## Before you start\n\nModule 2 is the hardest part of this course. I'll tell you that upfront because I want you to expect it.\n\nWhen I built LuKaiAI myself, the dashboards in this module — GitHub, Claude Code, the terminal on my computer — took me longer than anything else. Longer than learning Claude. Longer than deploying. Longer than the database work later. The frustration was real. Most of what I struggled with wasn't hard *information* — it was that the dashboards weren't designed for someone like me.\n\nThey're not designed for someone like you either. That's not your fault. It's the fact of the tools.\n\nHere's what you're walking into:\n\n- **GitHub** wants you to know what a repository is, what a commit is, what a branch is. You don't, and you don't need to. The course teaches what to click without teaching the theory underneath.\n- **The terminal** is going to look unfamiliar. It's an older interface — a text window where you type commands. Most apps on your computer don't work this way. The terminal does.\n- **Claude Code** is a tool you'll install on your computer that talks to your files directly. It's different from Claude Chat. Both exist. Both matter. The course shows you which is which.",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "## Two rules for this module specifically\n\n**Rule 1: Use the capture-and-ask loop more here than anywhere else in the course.**\n\nEven when you think you should know what to do — when a button is \"obviously\" somewhere or a step \"should\" be simple — screenshot what you see and ask Claude Chat. A 30-second screenshot saves 20 minutes of confused clicking. The loop is your shortcut, not your last resort.\n\nIf you've been clicking around for more than five minutes without progress, that's the signal to capture. Don't push through. The loop is faster.\n\n**Rule 2: If you've been stuck on one lesson for more than an hour, stop and come back tomorrow.**\n\nThe breakthrough usually comes when you're not trying. Closing the laptop and coming back fresh isn't quitting — it's discipline. Every builder I know has a story about staring at the same error for an hour, walking away, coming back, and seeing the fix in thirty seconds.\n\nComing back the next day with fresh eyes is part of how this works.",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "## What you don't have to be\n\nYou don't have to be wired like a founder to complete this module. You don't have to push through frustration with grit and willpower. You don't have to \"figure things out on your own.\"\n\nWhat you have to do is trust the loop: screenshot what you see, drop it into Claude Chat, ask one short question. The loop does the work. You don't have to know the answer — you have to know how to ask.\n\nMost people who give up on building software give up here, in modules that look like this one. They blame themselves: *\"I'm not technical enough.\"* They were stuck on something the loop could have solved in two minutes.\n\nIf you use the loop, you don't get stuck.\n\n---",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
           md: "## You have a ZIP. You won't use it directly.\n\nAt the end of Module 1, Claude Design handed you a ZIP file. **You don't actually open it.** It's a backup — proof that your prototype's code exists on your computer if you ever need it.\n\nThe real flow is: GitHub holds your project, Claude Code reads it from GitHub, and you make changes through Code. The ZIP just sits in your Downloads folder as insurance.",
         },
       },
@@ -352,19 +376,25 @@ const BLOCK_ENTRIES: BlockEntry[] = [
       {
         type: 'markdown',
         payload: {
-          md: "## What GitHub is\n\nGitHub is a website where code lives — somebody else's computer, holding your project so it doesn't only exist on your laptop. Every change you make from here on gets pushed there. **If your laptop dies tomorrow, your project doesn't.**\n\nIt's free for everything we're doing. You don't need a paid plan, ever, for the work in this course.",
+          md: "You have two jobs in this lesson:\n\n1. Make a GitHub account, or sign in to the one you want this course to use.\n2. Create an empty repository on that account — the home your Module 1 prototype is going to live in.\n\nThe first job has more variations than it looks like — GitHub has redesigned signup several times, asks for two-factor authentication earlier than it used to, and a lot of people already have a stale GitHub account from years ago they've half-forgotten about. The second job is short once you're on the right account, but landing on the *wrong* account at the end of this lesson is the single most common way the next few lessons silently break.\n\nBy the end of this lesson, you'll know your GitHub **username** and your **repo name**. Write them down. Both lessons after this one ask you to remember and verify them.\n\nGitHub is a website where code lives — somebody else's computer, holding your project so it doesn't only exist on your laptop. Every change you make from here on gets pushed there. **If your laptop dies tomorrow, your project doesn't.** It's free for everything we're doing in this course; you don't need a paid plan, ever.",
         },
       },
       {
         type: 'markdown',
         payload: {
-          md: "> **Don't guess. Capture.**\n>\n> Anytime you're not sure — a deploy failed, a button isn't where the lesson said it would be, an error popped up you don't recognize, **or you're just looking at a page and not sure what to click** — *you do not need to understand any of it.* You don't need to know what the error means. You don't need to guess if you're in the right place. You don't need to Google.\n>\n> Take a screenshot of whatever is on your screen. Drag it into Claude Chat. Type one line: *\"is this right?\"* or *\"what is this error?\"* or *\"what should I click here?\"* — Chat will tell you exactly what to fix, exactly what to click, or exactly what prompt to send Claude Code.\n>\n> Use this loop *anytime you're unsure, not just when something is broken.* I have not hit a single obstacle this loop didn't solve. **Use it every time.**",
+          md: "> **Don't guess. Capture.**\n>\n> Anytime you're not sure — a button isn't where this lesson said it would be, an unexpected page appears, an error you don't recognize pops up, or you're just looking at a screen and not sure what to click — *you do not need to understand any of it.*\n>\n> Screenshot what's on your screen. Drag it into Claude Chat. Type one line: *\"is this right?\"* or *\"what should I click here?\"* or *\"what is this error?\"* Chat will tell you exactly what to do next. Use this loop anytime you're unsure, not only when something is broken.",
         },
       },
       {
         type: 'markdown',
         payload: {
-          md: "## Sign up at github.com\n\nGo to **github.com**. Click **Sign up** in the top-right.\n\nYou'll need three things: an email (use one you check), a password, and a username — this becomes part of your project's URL forever, so pick something you're okay with. *kgundy1*, *yourname2026*, whatever. Skip the survey GitHub asks at the end — pick any answers, it doesn't change anything.\n\nGitHub will send you a verification email. Click the link. **You now have a GitHub account.**",
+          md: "### Step 1 — Decide which account you're using before you go to github.com\n\nBefore you open a browser tab, decide which of these you are:\n\n- **No GitHub account yet, never had one** → Step 2 (sign up from scratch).\n- **You already have a GitHub account from years ago you can sign back into** → use it. Go to github.com, click **Sign in**, and skip to Step 4.\n- **You have a GitHub account through a job or school** → make a *new personal* one for this course. Your work account often has scope restrictions you can't see, and the course assumes a regular personal account. Don't use the work one.\n\n*If you can't remember whether you ever made one, type the email addresses you commonly use into github.com's password reset page — if GitHub recognizes one, the account exists. If none of them are recognized, you don't have an account yet.*",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "### Step 2 — Sign up at github.com\n\nOpen **github.com** in a browser tab. Click **Sign up** in the top-right.\n\nYou'll need three things:\n\n1. **An email you actually check.** GitHub sends a verification link in a minute; if you use a throwaway, you'll be stuck waiting on an email you'll never click.\n2. **A password.** Long is more important than complicated. Use a password manager if you have one.\n3. **A username.** This becomes part of your project's URL forever — *github.com/yourusername/yourreponame* — so pick something you're okay with being public. Letters, numbers, and hyphens are allowed; spaces and most special characters are not. Hyphens can't be at the start or end. Common short names are already taken.\n\n*If GitHub says the username you tried is unavailable, it's gone — somebody has it. Add a number, a hyphen, the year, or your initials and try again. GitHub will sometimes suggest variations directly. The username doesn't need to be clever; it needs to be yours and memorable.*\n\nGitHub will walk you through a few more steps after that — country, an age confirmation, a puzzle captcha. Answer them honestly. The puzzle captcha can take a couple of tries; that's the puzzle being finicky, not you doing it wrong.\n\n*If you hit a captcha loop where it never seems to accept your answer, refresh the page and try a different browser, or turn off any VPN or strict-tracking extension you have running. Captchas are often the thing those tools break.*\n\nGitHub then asks a few survey questions about why you're signing up. Pick any answers — they don't change anything about your account.",
         },
       },
       {
@@ -379,7 +409,19 @@ const BLOCK_ENTRIES: BlockEntry[] = [
       {
         type: 'markdown',
         payload: {
-          md: "## Create your first repository\n\nA *repository* — \"repo\" for short — is one folder GitHub holds for you. One per project. We're going to make the one for what you built in Module 1.\n\nIn the top-right of any GitHub page there's a **+** button. Click it → **New repository**.\n\nFill in the name — something short, lowercase, no spaces. The name of your project from Module 1 is the right answer. Description is optional. Pick **Public** or **Private** — both work; Public means people can see your code if they find it (most learning repos are public), Private means only you.\n\n**Important:** the page has three checkboxes at the bottom — *Add a README*, *Add .gitignore*, *Choose a license*. **Leave them all unchecked.** Your prototype already has its own files, and adding these will cause headaches in Lesson 5.\n\nClick **Create repository**.",
+          md: "### Step 3 — Verify your email\n\nGitHub sends a verification email to the address you used. Open it and click the link. **You now have a GitHub account.**\n\n*If the email doesn't arrive within five minutes: check your spam or promotions folder. If it's not there either, go back to github.com (you should be signed in) and look for a yellow banner near the top offering to resend the verification email. Click that. If it still doesn't arrive, screenshot what you see and ask Claude Chat \"GitHub isn't sending me a verification email — what do I do?\"*",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "### Step 4 — Note your username, and check it's right\n\nThis is the small step everyone skips and regrets later.\n\nAfter you sign up (or sign in), look at the **top-right corner** of any GitHub page. There's a small circle there — your avatar — and clicking it shows your username at the top of the menu that opens.\n\n**Write that username down somewhere you'll find again** — a sticky note, your password manager, the back of an envelope. The next lesson asks you to authorize Claude Code against this exact account, and the lesson after that pushes code to a repo on this exact account. If you forget which username you used, both of those lessons break in confusing ways.\n\n*If GitHub is offering to enroll you in two-factor authentication right now, you can do it later from Settings — but if you choose to do it now, the most important thing is to save the recovery codes GitHub shows you. Screenshot them or write them down. If you ever lose access to your 2FA app and you don't have the recovery codes, GitHub cannot get your account back for you.*\n\n*If the username in the corner doesn't match what you thought you signed up as, you're probably signed in to a different account that was already in this browser. Click your avatar → **Sign out** → then sign back in with the account you just created.*",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "### Step 5 — Create your first repository\n\nA *repository* — \"repo\" for short — is one folder GitHub holds for you. One per project. You're going to make the one for what you built in Module 1.\n\n1. In the top-right of any GitHub page, click the **+** button.\n2. Pick **New repository** from the dropdown.\n3. **Owner** — make sure the dropdown shows *your personal username*, not an organization. If you've ever been added to a GitHub org through work, the Owner field can default to the org and your repo will land somewhere you can't find later. Personal username, not org.\n4. **Repository name** — something short, lowercase, hyphens-okay, no spaces. The name of your project from Module 1 is the right answer.\n5. **Description** — optional. Skip it or write one sentence.\n6. **Public** or **Private** — for this course, **Public** is the simpler default. It means anyone with the URL can see your code, which is normal for learning projects and lets you share a link if you want to. Private works too, but a few things later in the course (preview links, certain free-tier features) are smoother on public repos. You can flip it later from Settings.\n7. **The three checkboxes at the bottom** — *Add a README*, *Add .gitignore*, *Choose a license* — **leave all three unchecked.** Your prototype already has its own files, and adding these will cause headaches in Lesson 6 when you try to push.\n8. Click the green **Create repository** button.\n\n*If GitHub says the repo name is already in use, you've probably got an older repo on this account with the same name from a previous attempt. Either delete the old one (Settings on that repo → Danger Zone → Delete) or pick a different name and remember the new one. If the **+** button isn't in the top-right where this lesson says, GitHub may have redesigned the create flow since this was written. Screenshot what you see and ask Claude Chat \"where do I create a new repo on GitHub?\"*\n\n*The Quick-Navigate reference at `curriculum/reference/QUICK-NAVIGATE.md` lists GitHub's main URLs and dashboard buttons if the layout doesn't match what you're seeing.*",
         },
       },
       {
@@ -394,7 +436,13 @@ const BLOCK_ENTRIES: BlockEntry[] = [
       {
         type: 'markdown',
         payload: {
-          md: "## What you see now\n\nThe page that loads is mostly empty — a header with your repo's URL, some setup instructions you can ignore, and a big code block titled *Quick setup*. **Ignore all of it.** Claude Code is going to handle the pushing in Lesson 5; you don't run any of these commands by hand.\n\nLeave this tab open. Move to Lesson 3.",
+          md: "### Step 6 — Confirm what landed\n\nThe page that loads after you click Create is mostly empty — a header with your repo's URL, some setup instructions you can ignore, and a big code block titled *Quick setup*. **Ignore all of it.** Claude Code is going to handle the pushing in Lesson 6; you don't run any of these commands by hand.\n\nLook at the very top of the page. It should say *yourusername / yourreponame*. That URL — `github.com/yourusername/yourreponame` — is what you're going to point Claude Code at two lessons from now.\n\n*If the page didn't change after you clicked Create — it just sat there — the form may have hit a slow network. Wait fifteen seconds, then refresh. If the repo still doesn't exist, scroll back up and look for a red error banner at the top of the form. Screenshot it and ask Claude Chat.*",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "### What you have now\n\n- A GitHub account with a confirmed email, on a personal username you've written down.\n- An empty repo at `github.com/yourusername/yourreponame` — no README, no .gitignore, no license, ready for your Module 1 code to land in it.\n- A note somewhere with your **username** and **repo name**. You need both in Lesson 5 (account check) and Lesson 6 (push target).\n\nLeave this GitHub tab open. Move to Lesson 3.",
         },
       },
       {
@@ -404,6 +452,7 @@ const BLOCK_ENTRIES: BlockEntry[] = [
             { id: 'signed-up', label: 'Signed up at github.com' },
             { id: 'verified-email', label: 'Verified your email' },
             { id: 'created-repo', label: 'Created a new repository with all three checkboxes unchecked' },
+            { id: 'noted-username', label: 'Wrote down your username and repo name' },
           ],
         },
       },
@@ -470,38 +519,63 @@ const BLOCK_ENTRIES: BlockEntry[] = [
       {
         type: 'markdown',
         payload: {
-          md: "## Two different Claudes\n\nClaude Chat — the website at claude.ai — is what you've been using. **Claude Code is different.** It's a separate app that runs on your computer and works directly with the code in a GitHub repository. Chat reads your messages; Code reads your repo.",
+          md: "Two jobs in this lesson:\n\n1. Install Claude Code by running one command in your terminal\n2. Sign in to it for the first time\n\nThe install is one line. The sign-in is the same Claude account you made in Module 0. This is shorter than it sounds.",
         },
       },
       {
         type: 'markdown',
         payload: {
-          md: "> **Don't guess. Capture.**\n>\n> If anything in the installer looks unfamiliar — a checkbox you don't recognize, a permissions dialog, an option you've never seen — **don't guess.** Screenshot it, drag it into Claude Chat, and ask *\"what is this?\"* Chat will tell you exactly what to do.\n>\n> Use this loop every time. **I have not hit a single obstacle it didn't solve.**",
+          md: "### What you're about to do\n\nClaude Code is a tool that lives in your terminal. It's not an app you click an icon to open — it's a command you run. After this lesson, you'll have a `claude` command available in your terminal. Type `claude` from any folder and Claude Code starts up in that folder, ready to work on whatever's there.\n\nThe install adds the `claude` command to your computer. That's it. No icons in your dock, no new app to find. The terminal you opened in Lesson 3 is where Claude Code lives.",
         },
       },
       {
         type: 'markdown',
         payload: {
-          md: "## Install it\n\nGo to **claude.com/code**. You'll see download options for Mac and Windows.\n\n**Mac:** download the `.dmg`, double-click it, drag the Claude Code icon into your Applications folder. Open it from there.\n\n**Windows:** download the installer (`.exe`), run it, click through. It'll land in your Start menu.\n\nFirst launch: it asks you to sign in. **Use the same Claude account as your Pro subscription.** Same email, same password. Don't make a new account. Pro covers Claude Code at no extra cost.",
+          md: "### Step 1 — Open your terminal\n\nIf your terminal isn't already open from Lesson 3, open it now. Same instructions as before:\n\n- **Mac:** Press `Cmd + Space`, type `terminal`, press Enter.\n- **Windows:** Press the `Windows` key, type `terminal`, press Enter.\n\nYou should see a prompt — `papabear@MacBook-Pro ~ %` on Mac, `C:\\Users\\YourName>` on Windows. The blinking cursor next to that prompt is where you'll type.\n\nIf your terminal isn't behaving like that — screenshot what you see and ask Chat. Lesson 3 covered the terminal in depth; if you skipped it, go back.",
         },
       },
       {
         type: 'markdown',
         payload: {
-          md: "## How Claude Code actually works\n\nHere's the truth about Claude Code that often gets explained wrong: **Claude Code is not a separate app you click on like a normal program.** It's a tool that runs *inside your terminal*, and it works on whatever folder your terminal is currently in.\n\nThat's the whole mental model. Three pieces:\n\n1. **Your project lives in a folder on your computer.** Just like Word documents live in folders, your project does too. In Lesson 6, you'll unzip the project to a specific folder so you know exactly where it is.\n2. **You open your terminal and `cd` into that folder.** Same `cd` command from Lesson 3. Now your terminal \"is in\" your project.\n3. **You start Claude Code from there.** Type `claude` and press Enter. Claude Code starts up, reads the files in that folder, and you can now have a conversation with it about your project.\n\nClaude Code only knows about the folder you started it in. If you started it in your Documents folder by accident, it won't see the project. The terminal's location at the moment you type `claude` is what matters.\n\n**The full workflow you'll use forever, in two commands:**\n\n```\ncd Documents/lukaiai-project\nclaude\n```\n\nTwo lines. That's how every session starts. Once you have this in muscle memory, the rest of the course is downhill.",
+          md: "### Step 2 — Paste the install command\n\nYou're going to paste **one line** into your terminal. Different command for each operating system. Use the one that matches your computer.\n\n**Mac or Linux:**\n\n```\ncurl -fsSL https://claude.ai/install.sh | bash\n```\n\n**Windows (PowerShell):**\n\n```\nirm https://claude.ai/install.ps1 | iex\n```\n\n*Note for Windows users: if you're using Command Prompt instead of PowerShell, switch to PowerShell. Press the Windows key, type \"PowerShell,\" and open Windows PowerShell. Run the install command there.*\n\nCopy the command for your OS. Paste it into your terminal. **Press Enter.**",
         },
       },
       {
         type: 'markdown',
         payload: {
-          md: "## What you have so far\n\nClaude Code is installed and signed in. You know how to open the terminal and navigate folders. Module 1's ZIP is still on your computer — that's about to become your real project folder.\n\nThe next two lessons connect everything: Lesson 5 connects Claude Code to GitHub so it can push your code. Lesson 6 puts your project in a real folder and uses Claude Code (running in terminal, in that folder) to push it to your repo for the first time.",
+          md: "### Step 3 — Watch the install happen\n\nOnce you press Enter, you'll see a lot of text scroll past. That's the installer downloading files, copying them to the right places on your computer, and setting up the `claude` command.\n\n**This is normal.** Don't try to read it. Don't close the terminal. Don't press anything.\n\nThe install takes 30 seconds to 2 minutes depending on your internet speed.\n\nYou'll know it's done when:\n\n- The text stops scrolling\n- You see your normal prompt again (the line ending in `%` or `>`)\n- The cursor is blinking, waiting for your next command\n\n*If you see red error text scroll past, don't panic. Wait until the install finishes (cursor blinking, prompt waiting), then screenshot the whole terminal window and ask Chat: \"the Claude Code install showed errors — what happened?\" Chat will read the errors and tell you the fix.*",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "### Step 4 — Verify the install worked\n\nType this single command:\n\n```\nclaude\n```\n\nPress Enter.\n\n**If install worked:** Claude Code starts up. You'll see a welcome message, possibly a sign-in prompt, and a new kind of cursor that's waiting for you to talk to Claude Code.\n\n**If install didn't work:** You'll see something like `command not found: claude` or `'claude' is not recognized as an internal or external command`. This means the `claude` command isn't on your computer's PATH yet — a common first-install issue.\n\nThe fix is usually one of two things:\n\n1. **Close your terminal completely and open a new one.** Sometimes PATH changes don't take effect until you start a fresh terminal session. Try `claude` again in the new window.\n2. **If that doesn't work** — screenshot what you see and ask Chat: \"I just installed Claude Code and the `claude` command isn't recognized — what do I do?\" Chat will tell you the specific fix for your OS.",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "> **Don't guess. Capture.**\n>\n> If anything during install or first launch looks unexpected — an error message, a permissions dialog, a security warning from your operating system — *don't push past it.* Screenshot what you see, drag it into Claude Chat, and ask \"what is this?\" Chat reads operating-system warnings and installer errors all the time. The fix is almost always one specific instruction.",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "### Step 5 — Sign in on first launch\n\nThe first time `claude` runs successfully, it asks you to sign in. The sign-in process opens a browser window automatically and walks you through it.\n\n**What you'll see:**\n\n1. A browser window opens (or Claude Code gives you a URL to paste into your browser)\n2. The page asks you to sign in to your Claude account — **use the same email and password you used in Module 0 for Claude Pro**\n3. After signing in, the page says something like \"Authentication successful. You can close this window.\"\n4. Switch back to your terminal — Claude Code should now be signed in and ready to use\n\n**Important:** don't make a new Claude account here. Use the one from Module 0. Your Pro subscription covers Claude Code at no extra cost — but only if it's the same account.\n\n*If you accidentally create a second account, you may run into \"no Pro subscription found\" errors later. Easier fix: sign out of Claude Code (type `claude logout`), then `claude` again, then sign in with the right account this time.*",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "### What you have now\n\nClaude Code is installed on your computer. The `claude` command works in your terminal. You're signed in with your Pro account.\n\nThis was the hardest install in the course. Backend setup in Module 5 has more moving pieces but they're all dashboards — none of them require pasting commands into a terminal. You've now done the trickiest part.\n\nThe next lesson connects Claude Code to GitHub so it can push code to your repo.",
         },
       },
       {
         type: 'checklist',
         payload: {
           items: [
-            { id: 'downloaded-code', label: 'Downloaded Claude Code from claude.com/code' },
+            { id: 'installed-code', label: 'Pasted the install command and watched it complete' },
+            { id: 'verified-claude', label: 'Typed claude in your terminal and saw it start up' },
             { id: 'signed-in', label: 'Signed in with your Claude Pro account' },
           ],
         },
@@ -515,19 +589,31 @@ const BLOCK_ENTRIES: BlockEntry[] = [
       {
         type: 'markdown',
         payload: {
-          md: "## Why this step exists\n\nClaude Code needs permission from you to do anything with GitHub — push files, read branches, see your repos. GitHub uses a standard *authorization* flow for that: a popup window where GitHub asks *\"do you trust this app to do X with your account?\"* and you say yes.\n\n**You do this once, ever.** After today, every push, every PR, every interaction Claude Code has with GitHub uses this same connection.",
+          md: "You have two jobs in this lesson:\n\n1. Start the authorization flow that lets Claude Code talk to GitHub.\n2. Make sure the connection landed on the *right* GitHub account.\n\nThe first job is straightforward — you type a sentence into Claude Code and it opens a GitHub page. The second job is the one people skip, and it's the single most common reason this lesson appears to succeed and then breaks a lesson or two later. We'll handle both, in order.\n\nYou do this once, ever. After today, every push, every pull request, every interaction Claude Code has with GitHub uses the connection you make in the next ten minutes.",
         },
       },
       {
         type: 'markdown',
         payload: {
-          md: "> **Don't guess. Capture.**\n>\n> Anytime you're not sure — a deploy failed, a button isn't where the lesson said it would be, an error popped up you don't recognize, **or you're just looking at a page and not sure what to click** — *you do not need to understand any of it.* You don't need to know what the error means. You don't need to guess if you're in the right place. You don't need to Google.\n>\n> Take a screenshot of whatever is on your screen. Drag it into Claude Chat. Type one line: *\"is this right?\"* or *\"what is this error?\"* or *\"what should I click here?\"* — Chat will tell you exactly what to fix, exactly what to click, or exactly what prompt to send Claude Code.\n>\n> Use this loop *anytime you're unsure, not just when something is broken.* I have not hit a single obstacle this loop didn't solve. **Use it every time.**",
+          md: "> **Don't guess. Capture.**\n>\n> Anytime you're not sure — a button isn't where this lesson said it would be, an unexpected page appears, an error you don't recognize pops up, or you're just looking at a screen and not sure what to click — *you do not need to understand any of it.*\n>\n> Screenshot what's on your screen. Drag it into Claude Chat. Type one line: *\"is this right?\"* or *\"what should I click here?\"* or *\"what is this error?\"* Chat will tell you exactly what to do next. Use this loop anytime you're unsure, not only when something is broken.",
         },
       },
       {
         type: 'markdown',
         payload: {
-          md: "## Start the connection\n\nIn Claude Code, type:\n\n> *\"Connect to GitHub.\"*\n\nThat's literally what you type. Claude Code understands conversational requests. It'll respond with a short message explaining what's about to happen and then either open a browser window automatically or hand you a URL to paste in.\n\nIf a browser window opens — that's GitHub. If it gives you a URL, copy it and paste it into a new browser tab. Either way, you end up at a GitHub page titled **Authorize Claude Code**.",
+          md: "### Step 1 — Start the connection from Claude Code\n\nIn Claude Code, type:\n\n> *\"Connect to GitHub.\"*\n\nThat's literally what you type. Claude Code understands conversational requests. It'll respond with a short message explaining what's about to happen, then either open a browser window for you automatically or hand you a URL to paste into a browser tab.\n\nEither way, you should end up on a GitHub page titled **Authorize Claude Code**.\n\n*If Claude Code opens a browser that isn't the one you usually use for GitHub — for example, Safari opens but you live in Chrome — close that window and paste the URL Claude Code gave you into the browser where you actually use GitHub. If you authorize in a browser you're not signed in to, you'll have to sign in from scratch, and it's easy to accidentally use the wrong account doing it.*",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "### Step 2 — Before you click anything, check which GitHub account is signed in\n\nThis is the most important step in the lesson. Read it twice.\n\nWhen the Authorize Claude Code page loads, look at the **top-right corner** of the GitHub page. There's a small circle there — your avatar — and clicking it shows your username. **That username is the GitHub account this authorization will use forever.** Not the one you used to sign up. Not the one you \"meant to.\" The one that's signed in right now.\n\nPlenty of people have more than one GitHub account — a personal account and a work account, or an old one they forgot they had. Browsers remember whichever was signed in last. The authorization will succeed against whichever one is showing in that corner, silently, and you won't notice anything is wrong until Lesson 6 when your repo isn't where you expected it.\n\nSo before you click anything else:\n\n1. Look at the top-right avatar.\n2. Confirm the username matches the one you used to create your repo in Lesson 2.\n3. If it doesn't match — or if you see an account picker asking which one to use — sign out of GitHub entirely first (top-right avatar → Sign out), then sign back in with the right account, then return to Claude Code and type *\"Connect to GitHub\"* again to restart the flow.\n\n*If you don't remember which account you used in Lesson 2, open a new tab, go to github.com, and look at your repos. Whichever account owns the repo you created — that's the one you need signed in here.*",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "### Step 3 — The Authorize page itself\n\nWith the right account confirmed, you're ready to authorize. GitHub will list what Claude Code is asking for — typically read and write access to your repositories, your email, and a few related items.\n\nIt looks like a lot. It is a lot, but it's also exactly what this tool needs to do its job: Claude Code can't push code to your repo without permission to write to your repo. This is the same authorization flow you'd grant any code editor or IDE.\n\nA few things that can happen on this page, none of which are problems:\n\n- **GitHub asks for your password again before showing the Authorize button.** This is called \"sudo mode\" — GitHub re-confirms it's really you before granting a new app access. Enter your password and continue.\n- **GitHub asks for a two-factor code mid-flow.** Enter the code from your authenticator app or the SMS, the flow continues from where it paused.\n- **The green Authorize button is grayed out.** GitHub is still waiting on a password or 2FA step above. Scroll up the page, complete whatever's pending, and the button will activate.\n\n*If the page looks completely different from this description — different headings, different buttons, an error banner — screenshot it and ask Claude Chat \"I'm trying to authorize Claude Code on GitHub, is this right?\" GitHub's pages get redesigned; the capture-and-ask loop is the durable fallback when screenshots don't match.*",
         },
       },
       {
@@ -542,13 +628,19 @@ const BLOCK_ENTRIES: BlockEntry[] = [
       {
         type: 'markdown',
         payload: {
-          md: "## The Authorize page\n\nGitHub lists what Claude Code is asking for — usually permission to read and write your repositories, see your email, and a few related items. It can look intimidating. **It's fine.** This is the same authorization flow you'd grant any code editor.\n\nThere's a section near the bottom about repository access — usually \"All repositories\" or \"Only select repositories.\" If you only want Claude Code to touch the one repo you just made: pick *Only select repositories* and select the repo. If you don't care: *All repositories* is faster, and you can change it later from GitHub settings.\n\nScroll to the bottom. Click the green **Authorize** button.",
+          md: "### Step 4 — Choose what repositories Claude Code can touch\n\nNear the bottom of the Authorize page, there's a section about repository access. The two options are usually **All repositories** and **Only select repositories.**\n\n- **All repositories** is faster — Claude Code can see every repo on your account, including any new ones you make later. Good if you're only going to use this account for LuKaiAI work.\n- **Only select repositories** is tighter — Claude Code only sees the repos you explicitly pick. If you choose this, **you have to tick the repo you made in Lesson 2 from the list,** or Claude Code won't see it and Lesson 6 will fail in a confusing way.\n\nYou can change this later either way, so it's not a permanent choice. When you're decided, scroll to the bottom and click the green **Authorize** button.\n\n*If you picked \"Only select repositories\" and want to add or change which repos Claude Code can see later, go to github.com → click your avatar (top-right) → **Settings** → **Applications** (left sidebar) → find **Claude Code** in the list → **Configure** → toggle the repos you want. This is also the place to come if Lesson 6 fails because Claude Code can't find your repo — most of the time it's because the repo isn't ticked here.*\n\n*The Quick-Navigate reference at `curriculum/reference/QUICK-NAVIGATE.md` lists GitHub's main URLs and dashboard buttons if the layout doesn't match what you're seeing.*",
         },
       },
       {
         type: 'markdown',
         payload: {
-          md: "## Confirmation\n\nGitHub redirects you somewhere — usually a blank-ish page that says \"Authorization successful\" or sends you back to Claude Code automatically. Go back to your Claude Code window. **You should see a confirmation message** — something like *\"GitHub connected as @yourusername.\"*\n\nIf you don't see that confirmation, type *\"Did the GitHub connection work?\"* into Claude Code. It'll tell you. If something's wrong, Claude will walk you through fixing it.",
+          md: "### Step 5 — Confirm the connection landed in Claude Code\n\nAfter you click Authorize, GitHub redirects you somewhere — usually a page that says \"Authorization successful\" or a redirect that sends you back to Claude Code automatically.\n\nGo back to your Claude Code window. You should see a confirmation message — something like *\"GitHub connected as @yourusername.\"* **Check that the username in that confirmation matches the account you intended.** This is your last chance to catch a wrong-account authorization before Lesson 6.\n\nIf you don't see a confirmation message within about thirty seconds, type into Claude Code:\n\n> *\"Did the GitHub connection work?\"*\n\nIt'll tell you. If something's wrong, it'll walk you through fixing it.\n\n*If your browser says \"Authorization successful\" but Claude Code never confirms — even after thirty seconds and asking it directly — you're likely on a VPN, in a privacy-strict browser (Brave's shields, Firefox strict mode), or in incognito, any of which can block the callback Claude Code needs. Turn the VPN off, switch to your regular browser window (not incognito), restart from Claude Code's prompt by typing \"Connect to GitHub\" again.*",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "### What you have now\n\n- Claude Code has GitHub access on the correct account — verified, not assumed.\n- You know how to change which repos it can touch if you need to (Settings → Applications → Claude Code).\n- You know the difference between \"Authorization successful\" in the browser and \"GitHub connected\" in Claude Code — the second one is the one that matters.\n\nNext lesson, you'll use this connection to push your first commit from Claude Code to GitHub. If anything goes sideways there, the fix is almost always in the Settings → Applications → Claude Code page you just learned about.",
         },
       },
       {
@@ -556,8 +648,9 @@ const BLOCK_ENTRIES: BlockEntry[] = [
         payload: {
           items: [
             { id: 'typed-connect', label: 'Typed "Connect to GitHub" in Claude Code' },
+            { id: 'verified-account', label: 'Checked the top-right avatar and confirmed the right GitHub account is signed in' },
             { id: 'authorized', label: 'Clicked the green Authorize button on github.com' },
-            { id: 'saw-confirmation', label: 'Saw the GitHub-connected confirmation back in Claude Code' },
+            { id: 'saw-confirmation', label: 'Saw the "GitHub connected as @yourusername" confirmation in Claude Code' },
           ],
         },
       },
@@ -807,6 +900,12 @@ const BLOCK_ENTRIES: BlockEntry[] = [
       {
         type: 'markdown',
         payload: {
+          md: "## What CLAUDE.md actually does — a session compared\n\nThe fastest way to see why CLAUDE.md matters is to watch the same task start two different ways.\n\n**Without a CLAUDE.md.** You open Claude Code in a project that doesn't have one, sit down to work, and the first exchange looks something like this:\n\n> **You:** I need to add a new endpoint to the API for marking a task complete.\n> **Code:** Sure — can you tell me a bit about the project first? What framework is the API using, and where does the API code live in the repo?\n> **You:** It's Express. The API is in `apps/api/src`.\n> **Code:** Got it. Is the API deployed somewhere, or is this local-only? And what's the data layer — a database, files, in-memory?\n> **You:** Render. Postgres on Supabase. The connection's in `DATABASE_URL`.\n> **Code:** Are there existing endpoints I can model the new one after?\n> **You:** Yeah — look at `routes/tasks.ts`, the GET endpoint there.\n> **Code:** Looking now…\n\nYou're ten minutes in and Code still hasn't written a line. Every one of those questions is a question Code *had* to ask, because nothing in the project told it the answers. Tomorrow morning you'll open a new session, and Code will ask all of them again.\n\n**With a CLAUDE.md.** Same project, same task, but now there's a CLAUDE.md sitting in the repo root with the six things from the section above — what the project is, current status, architecture, repo layout, what's built, conventions. You open Code:\n\n> **You:** I need to add a new endpoint to the API for marking a task complete.\n> **Code:** I've read your CLAUDE.md. Adding the endpoint to `apps/api/src/routes/tasks.ts`, modelled on the existing `GET /tasks/:id`, returning 204 on success per your convention. I'll have it ready to review in a moment.\n\nThat's the difference. The ten minutes of orientation didn't get faster — it didn't happen. Code already knew the answers before you sat down.\n\nThis is what every CLAUDE.md you'll write is buying you: a session that starts where it should start, every time, instead of restarting from zero.",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
           md: "## Have Chat write the first draft\n\nGo to Claude Chat. Type:\n\n> *\"I have a project at <github URL>. I want you to help me write the first version of CLAUDE.md — a project memory file that lives at the root of the repo and that Claude Code reads at the start of every session. Ask me whatever questions you need to understand the project, then propose a CLAUDE.md.\"*\n\nChat will ask 5-10 questions. Answer them casually. **End the conversation with a CLAUDE.md you can copy.**\n\nThen open Claude Code. Tell it: *\"Create a file called CLAUDE.md at the project root with the following contents:\"* and paste what Chat gave you. Code creates the file. Commit it. Push it. **You now have project memory.**",
         },
       },
@@ -839,6 +938,12 @@ const BLOCK_ENTRIES: BlockEntry[] = [
       {
         type: 'markdown',
         payload: {
+          md: "## Before you start\n\nModule 4 is a new dashboard — Cloudflare — and a new pattern: connecting GitHub to a hosting service so your code auto-deploys whenever you push.\n\nThis module is shorter and less painful than Module 2. The dashboards are similar in shape now, and the capture-and-ask loop should feel natural by this point. But the first time you watch your code build and deploy automatically — that's a moment. The first failed deploy is also a moment. Both happen in this module.\n\nTwo reminders carrying forward from Module 2:\n\n- **Use the capture-and-ask loop the moment something doesn't match the lesson.** Cloudflare redesigns its dashboard regularly. The screenshots in this course are accurate the day they were taken — they might not be accurate the day you read them. If a button isn't where the lesson says it should be, screenshot what you ARE seeing, ask Chat, follow the answer.\n- **Failed deploys are normal.** Lesson 5 of this module is entirely about failed deploys and how to recover. Don't take a red banner personally. The fix is almost always one small thing the logs will tell Chat about.\n\n---",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
           md: "## GitHub stores. Cloudflare runs.\n\nGitHub is a filing cabinet. It holds your code. It doesn't execute it. Nobody can visit your repository URL and *use* the app you built — they'd see code, not a working website.\n\n**Deploying** is the step that puts your code on a server somewhere, so anyone with the URL can use it like a normal website. Module 4 is about doing that, for free, with a service called Cloudflare Pages.",
         },
       },
@@ -863,19 +968,25 @@ const BLOCK_ENTRIES: BlockEntry[] = [
       {
         type: 'markdown',
         payload: {
-          md: "## Make a Cloudflare account\n\nGo to **cloudflare.com** and click **Sign up** in the top-right. Email, password, that's it. They'll send a verification email — click the link.\n\nWhen you log in, you land on a dashboard with a left sidebar. **That sidebar is your map.** Most of Cloudflare's product surface is irrelevant for what we're doing here — domains, DNS, security, all of that. The only section you care about is **Workers & Pages.**",
+          md: "Two jobs in this lesson:\n\n1. Create a Cloudflare account from scratch\n2. Tell Cloudflare to watch your GitHub repo and deploy it\n\nThe first half is account setup. The second half is the connection. Both halves are dashboards you've never seen before — use the capture-and-ask loop early and often.",
         },
       },
       {
         type: 'markdown',
         payload: {
-          md: "> **Don't guess. Capture.**\n>\n> Anytime you're not sure — a deploy failed, a button isn't where the lesson said it would be, an error popped up you don't recognize, **or you're just looking at a page and not sure what to click** — *you do not need to understand any of it.* You don't need to know what the error means. You don't need to guess if you're in the right place. You don't need to Google.\n>\n> Take a screenshot of whatever is on your screen. Drag it into Claude Chat. Type one line: *\"is this right?\"* or *\"what is this error?\"* or *\"what should I click here?\"* — Chat will tell you exactly what to fix, exactly what to click, or exactly what prompt to send Claude Code.\n>\n> Use this loop *anytime you're unsure, not just when something is broken.* I have not hit a single obstacle this loop didn't solve. **Use it every time.**",
+          md: "### Sign up for Cloudflare\n\n**Step 1.** Open a new browser tab and go to **cloudflare.com**.\n\nThe page that loads is Cloudflare's marketing home page. There's a lot on it. You don't need to read any of it.\n\n**Step 2.** Find the **Start building for free** button. It's the orange-colored button in the center of the hero section near the top of the page, sitting just below the headline. Click it.\n\n*If you don't see that exact button, the page may have been redesigned since this lesson was written. Look for any button or link with the words \"Sign up,\" \"Get started,\" or \"Start free.\" If you can't find one — screenshot what you see and ask Claude Chat where to click.*\n\n**Step 3.** A new page loads at `dash.cloudflare.com/sign-up`. It has two fields: **Email** and **Password.**\n\nUse an email you check regularly. You'll get a verification email here in a moment.\n\nPick a strong password. Cloudflare will let you know if it's not strong enough.\n\nClick **Sign Up.**\n\n**Step 4.** Cloudflare sends a verification email. Open your email in another tab. Find the message from Cloudflare. Click the verification link.\n\n*If you don't see the email within a minute, check spam. If it still doesn't show up after 5 minutes — screenshot what you see and ask Chat.*\n\n**Step 5.** After verifying, Cloudflare drops you on its onboarding page. The exact screen you see varies depending on what Cloudflare is promoting that week — sometimes it pushes you to add a domain, sometimes it lands on the main dashboard.\n\n**You don't have a domain. You don't need one. If Cloudflare insists you add one, look for \"Skip\" or \"Continue without a domain\" — usually a small link near the bottom of the page. If you can't find a way past that screen, screenshot it and ask Chat.**\n\nWhen you successfully land on a screen that has a **left sidebar with navigation items**, you're at the Cloudflare dashboard. That's where the rest of this lesson happens.",
         },
       },
       {
         type: 'markdown',
         payload: {
-          md: "## Get to Pages\n\nIn the left sidebar, click **Workers & Pages**. On the page that loads, find the **Create application** button in the top-right and click it.\n\nA screen titled **Ship something new** appears. It offers a few ways to start: *Continue with GitHub*, *Connect GitLab*, *Start with Hello World!*, and *Select a template*. You're connecting the repo you made in Module 2, so you want the GitHub option.",
+          md: "> **Don't guess. Capture.**\n>\n> Anytime you're not sure during account creation — a button isn't where the lesson said, you get an error, the page looks different from what's described — *you do not need to figure it out alone.* Take a screenshot of whatever is on your screen. Drag it into Claude Chat. Type *\"I'm signing up for Cloudflare — is this right?\"* Chat will tell you exactly what to do.",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "### Find Workers & Pages and create your first application\n\n**Step 6.** Look at the left sidebar of the Cloudflare dashboard.\n\nCloudflare reorganizes this sidebar regularly. Right now, the relevant item is called **Workers & Pages.** It's usually positioned about halfway down the sidebar, sometimes grouped under a \"Compute\" heading.\n\n*If you can't find Workers & Pages — it might be hidden behind a \"More\" menu, or Cloudflare may have renamed it. Screenshot the sidebar and ask Chat \"where is Workers & Pages?\" Chat will tell you the current name and location.*\n\n*The Quick-Navigate reference at `curriculum/reference/QUICK-NAVIGATE.md` lists Cloudflare's main URLs and dashboard buttons if the layout doesn't match what you're seeing.*\n\nClick **Workers & Pages.**\n\n**Step 7.** The page that loads is your Workers & Pages overview. Since you've never created anything yet, the page is mostly empty.\n\nFind the **Create application** button. It's usually in the top-right of the page.\n\nClick **Create application.**\n\n**Step 8.** A screen titled **Ship something new** appears. It offers a few ways to start your project: *Continue with GitHub*, *Connect GitLab*, *Start with Hello World!*, *Select a template.*\n\nYou want **Continue with GitHub** — because your prototype already lives there from Module 2.\n\nClick **Continue with GitHub.**",
         },
       },
       {
@@ -889,7 +1000,7 @@ const BLOCK_ENTRIES: BlockEntry[] = [
       {
         type: 'markdown',
         payload: {
-          md: "## Authorize Cloudflare on GitHub\n\nClick **Continue with GitHub.** A GitHub authorization window pops up — same flow Claude Code went through in Module 2 Lesson 5.\n\nGitHub will let you choose: authorize *all repositories* or *only select repositories*. Either works. \"Only select\" is slightly safer — you can pick just the repo you made in Module 2. If you do that, make sure the dropdown shows the right repo selected.\n\nClick **Authorize** at the bottom of GitHub's page. The popup closes and you land back on Cloudflare on a **Get started** screen with two cards: **Import an existing Git repository** and **Drag and drop your files.** Click **Get started** next to *Import an existing Git repository.*\n\nThe **Select a repository** page appears, listing the GitHub repos Cloudflare can now see.",
+          md: "### Authorize Cloudflare on GitHub\n\n**Step 9.** A GitHub authorization window pops up. This is GitHub asking your permission to let Cloudflare see your repositories.\n\nGitHub gives you a choice: authorize *all repositories* or *only select repositories.* Either works for this course.\n\n- **All repositories** — Cloudflare can see every repo you have on GitHub\n- **Only select repositories** — slightly safer, you pick which repos Cloudflare can see\n\nIf you pick \"Only select,\" click the dropdown and make sure your project's repo from Module 2 is selected. The dropdown shows all your repos — find the one you created in Module 2 and check it.\n\nScroll to the bottom of the GitHub page. Click **Authorize Cloudflare.**\n\n*If the Authorize button is grayed out, GitHub is waiting for you to confirm your password or pass a security check. Follow whatever GitHub asks. If you're stuck — screenshot what you see and ask Chat.*\n\n**Step 10.** The popup closes. You're back on Cloudflare.\n\nA screen called **Get started** appears with two options: **Import an existing Git repository** and **Drag and drop your files.**\n\nClick **Get started** next to *Import an existing Git repository.*\n\n**Step 11.** The **Select a repository** page appears. It lists your GitHub repos.\n\nFind the repo you made in Module 2. Click on it.\n\n*If your repo doesn't show up in the list:* You missed the authorization step. Go back to GitHub: github.com → click your profile in the top-right → Settings → Applications → Cloudflare → toggle your repo on. Then come back to Cloudflare and reload this page.\n\nClick **Begin setup.**",
         },
       },
       {
@@ -903,7 +1014,7 @@ const BLOCK_ENTRIES: BlockEntry[] = [
       {
         type: 'markdown',
         payload: {
-          md: "## Pick your repo\n\nOn the **Select a repository** page, find the repo from Module 2 in the list. Select it and click **Begin setup**.\n\nA configuration page loads with fields like *Project name*, *Production branch*, *Build settings*. **Most of these are auto-filled correctly.** Project name defaults to your repo name — keep it. Production branch is `main` — keep it. Build settings depend on what your prototype is built with — Cloudflare usually detects this; if you're not sure, leave them blank and click **Save and Deploy.**\n\nIf it fails because of build settings, you'll fix that in Lesson 3. **For now: trust the defaults.**",
+          md: "### Configure your project\n\n**Step 12.** A configuration page loads with several fields:\n\n- **Project name** — auto-filled to your repo's name. Keep it.\n- **Production branch** — should say `main`. Keep it.\n- **Framework preset** — Cloudflare tries to detect what kind of project this is. If it picked the right thing, great. If it's blank, leave it blank.\n- **Build settings** — varies by project type. Cloudflare usually auto-fills these. If you don't know what to put, leave them as Cloudflare suggests.\n\n**For now: trust the defaults.** If something breaks because of build settings, Lesson 3 will tell you how to fix it.\n\nClick **Save and Deploy.**\n\n**Step 13.** Cloudflare starts building your project. The next page shows a progress indicator with steps like *Initializing, Cloning, Building, Deploying.*\n\nDon't refresh. Don't close the tab. This takes 1-2 minutes.\n\nWhat happens next is Lesson 3.",
         },
       },
     ],
@@ -1035,19 +1146,31 @@ const BLOCK_ENTRIES: BlockEntry[] = [
       {
         type: 'markdown',
         payload: {
+          md: "## Before you start\n\nModule 5 is the most technical module in the course. You're adding two new pieces — a backend service and a database — and connecting them to the frontend you already have. That's three things talking to each other across the internet.\n\nIf you've made it through Module 2 and Module 4, you have everything you need to make it through this one. The pattern is the same: new dashboard, find the right place to click, hit a wall, capture what you see, ask Chat, fix, move on.",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "A few specific things to expect here:\n\n- **You'll deploy a backend on Render and watch it fail.** Probably three or four times. That's not a sign anything is wrong — backend deploys have more moving parts than frontend deploys, and the first attempts almost never succeed. The loop catches them all.\n- **You'll handle a `DATABASE_URL` — a string that's a secret.** Anyone who has it can read or write your database. There's a specific exception to the screenshot habit in this module: when capturing screens that show database URLs or environment variables, hide or cover the actual secret value before screenshotting. Capture the layout, the error, the page — not the secret string. Chat doesn't need the secret to help; it just needs to see what's around it.\n- **You don't need to know how databases work.** You need to know how to click \"Create Database\" and how to copy a connection string from one tab into another tab. That's it. Everything else is Chat's job.\n\nThe capture-and-ask loop is doing the heavy lifting here. Trust it. Use it more than you think you need to. This module is where the loop saves the most time.\n\n---",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
           md: "## The signal you need a backend\n\nUp through Module 4, your app has been *frontend only* — HTML, CSS, JavaScript, running in someone's browser. That works for a lot of ideas. A calculator, a chart viewer, a tool that takes input and shows output — none of those need a backend.\n\n**The moment your app needs to remember anything between visits, you need a backend.** Users coming back to find their data still there. Anything that survives a browser refresh. Anything that gets saved.\n\nIf your idea has none of that, you can skip Module 5. Plenty of useful prototypes ship without backends.",
         },
       },
       {
         type: 'markdown',
         payload: {
-          md: "## What a backend actually is\n\nA second piece of software, running on a different computer than the user's browser, that *holds the state* — the database, the user accounts, the saved files. The frontend in the browser calls the backend over the internet whenever it needs to read or write something.\n\nThink of it like a restaurant: **the frontend is the dining room**, what the customer sees. **The backend is the kitchen** — they never go in there, but everything they eat comes from it. The database is the pantry inside the kitchen.\n\nIn this course, the kitchen is a service called Render, and the pantry is a database called Postgres. Both are free at the scale we're using.",
+          md: "## What a backend actually is\n\nA second piece of software, running on a different computer than the user's browser, that *holds the state* — the database, the user accounts, the saved files. The frontend in the browser calls the backend over the internet whenever it needs to read or write something.\n\nThink of it like a restaurant: **the frontend is the dining room**, what the customer sees. **The backend is the kitchen** — they never go in there, but everything they eat comes from it. The database is the pantry inside the kitchen.\n\nIn this course, the kitchen is a service called Render, and the pantry is a Postgres database hosted on Supabase. Both are free at the scale we're using.\n\nPostgres (sometimes \"PostgreSQL\") is a database — it holds rows of data like users, posts, or anything else your app saves. It's the industry-standard free database. **You don't need to know SQL or how databases work internally.** You need to know how to spin one up and how to connect your backend to it. That's Lessons 2 and 3.",
         },
       },
       {
         type: 'markdown',
         payload: {
-          md: "## The shape of what's coming\n\nBy the end of this module, you'll have:\n\n- A Render account, free tier, with a backend service deployed\n- A Postgres database also on Render, connected to that backend\n- An environment variable (`DATABASE_URL`) holding the connection string\n- Your Cloudflare frontend pointed at the new backend\n- An app that remembers things\n\nThis is the most technical module in the course. **It's also the one where the capture-and-ask habit pays back the most.** Expect three to five failed deploys. That's the rhythm here. Don't take it personally.",
+          md: "## The shape of what's coming\n\nBy the end of this module, you'll have:\n\n- A Render account, free tier, with a backend service deployed\n- A Postgres database on Supabase, connected to that backend\n- An environment variable (`DATABASE_URL`) holding the connection string\n- Your Cloudflare frontend pointed at the new backend\n- An app that remembers things\n\nThis is the most technical module in the course. **It's also the one where the capture-and-ask habit pays back the most.** Expect three to five failed deploys. That's the rhythm here. Don't take it personally.",
         },
       },
     ],
@@ -1059,25 +1182,43 @@ const BLOCK_ENTRIES: BlockEntry[] = [
       {
         type: 'markdown',
         payload: {
-          md: "## Add backend code to your repo first\n\nBefore Render can deploy anything, your repo needs backend code that *can* be deployed. The repo from Module 2 holds your prototype's frontend — but unless you've added a backend already, Render has nothing to run.\n\nTake 5 minutes to add it. Open Claude Code and type:\n\n> *\"Add a minimal Node.js Express backend to this repo. Create a server.js file that runs an Express app on the port from `process.env.PORT`. Add one endpoint at `/api/health` that returns `{ ok: true }`. Update package.json with the right dependencies (express) and a `start` script that runs `node server.js`. Commit and push to main.\"*\n\nWatch Code work. It'll add a `server.js` file, update `package.json`, run `npm install`, commit, and push. When it's done, your repo has both frontend AND a tiny backend. **That's what Render is going to deploy in this lesson.**\n\nOnce Code reports the push succeeded, come back here.",
+          md: "You have two jobs in this lesson:\n\n1. Add a minimal backend to your repo (your project so far has been all frontend; Render needs something to actually run).\n2. Sign up for Render and deploy that backend so it's live on the internet at a URL you can hit from a browser.\n\nThe first job takes five minutes and Claude Code does the work. The second job is where most learners stall — the Render dashboard has more configurable fields than any other service in this course, and most of those fields can break the deploy in confusing ways. We're going to walk it slowly. By the end you'll have a web service name and a `.onrender.com` URL — write both down, because Lessons 3 and 5 ask you for them.",
         },
       },
       {
         type: 'markdown',
         payload: {
-          md: "## Make a Render account\n\nGo to **render.com** and click **Get Started**. Sign up with GitHub — \"Sign up with GitHub\" is the fastest path because you'll be connecting Render to your repo in the next step anyway.\n\nWhen you authorize Render on GitHub, give it permission to access *the repo from Module 2*. \"Only select repositories\" is fine. Click Authorize. **You bounce back to Render's dashboard.**",
+          md: "> **Don't guess. Capture.**\n>\n> Anytime you're not sure — a button isn't where this lesson said it would be, an unexpected page appears, an error you don't recognize pops up, or you're just looking at a screen and not sure what to click — *you do not need to understand any of it.*\n>\n> Screenshot what's on your screen. Drag it into Claude Chat. Type one line: *\"is this right?\"* or *\"what should I click here?\"* or *\"what is this error?\"* Chat will tell you exactly what to do next. Use this loop anytime you're unsure, not only when something is broken.",
         },
       },
       {
         type: 'markdown',
         payload: {
-          md: "> **Don't guess. Capture.**\n>\n> Anytime you're not sure — a deploy failed, a button isn't where the lesson said it would be, an error popped up you don't recognize, **or you're just looking at a page and not sure what to click** — *you do not need to understand any of it.* You don't need to know what the error means. You don't need to guess if you're in the right place. You don't need to Google.\n>\n> Take a screenshot of whatever is on your screen. Drag it into Claude Chat. Type one line: *\"is this right?\"* or *\"what is this error?\"* or *\"what should I click here?\"* — Chat will tell you exactly what to fix, exactly what to click, or exactly what prompt to send Claude Code.\n>\n> Use this loop *anytime you're unsure, not just when something is broken.* I have not hit a single obstacle this loop didn't solve. **Use it every time.**",
+          md: "### Step 1 — Add a backend to your repo\n\nBefore Render can deploy anything, your repo needs backend code that *can* be deployed. The repo from Module 2 holds your prototype's frontend — but unless you've added a backend already, Render has nothing to run.\n\nOpen Claude Code and type:\n\n> *\"Add a minimal Node.js Express backend to this repo. Create a server.js file that runs an Express app on the port from `process.env.PORT`. Add one endpoint at `/api/health` that returns `{ ok: true }`. Update package.json with the right dependencies (express) and a `start` script that runs `node server.js`. Commit and push to main.\"*\n\nWatch Code work. It'll add a `server.js` file, update `package.json`, run `npm install`, commit, and push. When it's done, your repo has both frontend AND a tiny backend.\n\nThe `process.env.PORT` part of that prompt matters more than it looks. Render assigns your service a port at runtime through an environment variable called `PORT`. If your code listens on a hardcoded port — `3000`, `8080`, anything else — Render's build will succeed but the service will fail to start. The Code prompt above forces the right pattern from the beginning so you don't hit this.\n\n*If Code reports any errors during the push (auth failures, push rejected, anything red), screenshot the terminal and ask Claude Chat. Don't move on until the push has succeeded — Render needs the code to be on GitHub.*\n\nOnce Code reports the push succeeded, come back here.",
         },
       },
       {
         type: 'markdown',
         payload: {
-          md: "## Create a Web Service\n\nThe Render dashboard has a **+ New** button in the top-right. Click it. A dropdown shows the things Render can host. Pick **Web Service.**\n\nA two-step wizard opens.\n\n**Step 1 — Source:** Render shows you the GitHub repos it can see. Find yours. Click **Connect**.",
+          md: "### Step 2 — Decide which Render account you're using\n\nBefore you open render.com, decide which of these you are:\n\n- **No Render account yet** → Step 3 (sign up from scratch).\n- **You already have a Render account** → go to render.com, click **Log in**, and skip to Step 5.",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "### Step 3 — Sign up at render.com\n\nOpen **render.com** in a browser tab. Click **Get Started** (or **Start for free** — the wording moves around) in the top-right or in the hero.\n\nYou'll be offered several signup methods: GitHub, GitLab, Google, or email. **Use GitHub.** You're going to connect Render to your GitHub repo in a moment anyway; signing up with GitHub does both at once and is the path the rest of this lesson assumes.\n\nBefore you click *Sign up with GitHub*, do the same avatar check you did in Module 2 Lesson 5: open a new tab, go to github.com, look at the top-right corner. **The username showing there is the GitHub account Render is about to connect to.** If it's not the same username you wrote down in Module 2 Lesson 2, sign out of GitHub and sign back in with the right account first.\n\n*If Render asks for a credit card during signup — for the free tier — that's normal in some regions and account types. The free tier itself doesn't cost anything; the card is for verification and for if you ever decide to upgrade. If you don't want to enter a card, your other option is signing up with email instead and connecting GitHub later, which adds steps but works.*",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "### Step 4 — Authorize GitHub for Render\n\nGitHub shows you an *Authorize Render* page. This is the same authorization flow you saw in Module 2 Lesson 5 — Render is asking for permission to read your repos so it can deploy from them.\n\nNear the bottom, GitHub asks which repositories Render can see:\n\n- **All repositories** — easier. Render can see everything on your account.\n- **Only select repositories** — tighter. If you pick this, **tick the repo you made in Module 2** from the list, or Render won't see it in the next step.\n\nScroll to the bottom and click the green **Authorize Render** button.\n\n*If the Authorize button is grayed out, GitHub is waiting on a password or 2FA step above. Scroll up and complete it. If you picked \"Only select repositories\" and forgot to tick your repo, you can fix it later: github.com → click your avatar → **Settings** → **Applications** → find **Render** → **Configure** → toggle the repo on.*",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "### Step 5 — Create a Web Service\n\nYou should now be in the Render dashboard. If Render dropped you on a \"Welcome\" or workspace-setup screen, click through it with defaults until you reach the main dashboard.\n\nIn the top-right, click **+ New**. A dropdown appears showing the things Render can host — Web Service, Static Site, Background Worker, Cron, and others.\n\n**Pick Web Service.** Not Static Site. Your project also has a frontend, so Static Site can look like the right answer at first — it isn't, because what you just added in Step 1 is a backend that needs to *run*, not static files to be served.\n\n*If the **+ New** button isn't where this lesson says, Render may have redesigned the dashboard since this was written. Screenshot what you see and ask Claude Chat \"where do I create a new Web Service on Render?\" Render redesigns the dashboard regularly; the capture-and-ask loop is the durable fallback when the screenshots don't match.*\n\n*The Quick-Navigate reference at `curriculum/reference/QUICK-NAVIGATE.md` lists Render's main URLs and dashboard buttons if the layout doesn't match what you're seeing.*",
         },
       },
       {
@@ -1091,7 +1232,13 @@ const BLOCK_ENTRIES: BlockEntry[] = [
       {
         type: 'markdown',
         payload: {
-          md: "## Configure the service\n\n**Step 2 — Configuration:** this page has a lot of fields. Most should be left at their defaults. Here's what each one means:\n\n- **Name** — what shows up in URLs. Pick something short and lowercase. *yourname-backend* works.\n- **Region** — pick the one closest to where your users live. *Oregon (US West)* or *Ohio (US East)* are the defaults.\n- **Branch** — `main`. Leave it.\n- **Root Directory** — leave empty unless your backend is in a subfolder.\n- **Runtime** — Render auto-detects this from your code. Leave it.\n- **Build Command** — usually `npm install` for Node projects. Render usually auto-fills.\n- **Start Command** — usually `npm start`. Auto-filled.\n- **Instance Type** — pick **Free**. Always free for learning.\n\nScroll to the bottom. Click **Create Web Service.**",
+          md: "### Step 6 — Pick your repo\n\nRender shows you the GitHub repos it can see. Find the one from Module 2 and click **Connect** next to it.\n\n*If your repo doesn't appear in the list, it's almost always because Render's GitHub authorization doesn't include it. Fix: in a new tab, go to github.com → click your avatar → **Settings** → **Applications** → find **Render** → **Configure** → tick your repo → Save. Then come back to this Render page and refresh.*",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "### Step 7 — Configure the service\n\nA configuration page opens with a lot of fields. Most of them are auto-filled and correct. A few are not. Go through them in this order:\n\n1. **Name** — what shows up in your service URL. Pick something short and lowercase: *yourname-backend*, *projectname-api*, something like that. Lowercase letters, numbers, and hyphens only. **Write this name down.** Lesson 3 asks you to find this service in the dashboard by name.\n2. **Region** — pick the one closest to you. Render usually auto-detects, but it isn't always right. **Note which region you pick.** In Lesson 3 you'll set up a database on Supabase, and you want to pick the same region there to keep them close — a database on the other side of the planet adds noticeable lag to every request.\n3. **Branch** — should be `main`. If it shows something else like `master`, that's whatever your repo's default branch is called — leave it as the default.\n4. **Root Directory** — leave empty. Your backend is at the top level of the repo, not in a subfolder.\n5. **Runtime** — Render auto-detects from your code. Should say *Node*. If it shows something else (Static Site, Bun, Docker), capture and ask before continuing.\n6. **Build Command** — should be `npm install` or `npm install && npm run build`. Either is fine for what we have. If Render didn't auto-fill anything, type `npm install`.\n7. **Start Command** — **this is the one to check carefully.** It should say exactly `npm start`. If Render auto-filled something else — `node index.js`, `node server.js`, a blank field, anything else — change it to `npm start`. The wrong start command is the #1 silent failure on this page, and you won't find out it's wrong until the deploy fails three minutes from now.\n8. **Instance Type** — pick **Free**. If Free isn't the default, scroll the instance types until you see it and click it. (Render free instances have 512MB of RAM, which is plenty for what we're doing.)\n\nThere's a section further down for **Environment Variables**. Leave it empty for now. Lesson 3 is where you'll add `DATABASE_URL`; you don't need anything in there to do this first deploy.\n\nScroll to the bottom. Click **Create Web Service.**",
         },
       },
       {
@@ -1099,13 +1246,37 @@ const BLOCK_ENTRIES: BlockEntry[] = [
         payload: {
           slotId: 'render-service-config',
           src: '/images/lessons/render-service-config.png',
-          caption: 'The page where you set Name, Region, Branch, Build Command, Start Command. Annotate the defaults that should not be changed and the ones that should.',
+          caption: 'The configuration page with Name, Region, Branch, Build Command, Start Command, Instance Type all filled in. The Start Command field is the one to verify before clicking Create.',
         },
       },
       {
         type: 'markdown',
         payload: {
-          md: "## Wait for the first deploy\n\nRender starts building your backend. The page that loads shows a log scrolling — cloning the repo, installing dependencies, starting the service. **Three to five minutes is normal.**\n\nA few likely outcomes:\n\n- **It succeeds.** You see a green *Live* badge and a URL ending in `.onrender.com`. Move to Lesson 3.\n- **It fails immediately.** Probably missing a dependency or a wrong start command. Screenshot the bottom of the log. Bring it to Chat. Fix. Re-deploy.\n- **It builds but won't start.** Usually a port binding issue — the backend needs to listen on the port Render assigns via the `PORT` environment variable. Chat will tell you the one-line fix.\n\n**The first deploy almost never succeeds first try.** That's the entire purpose of Lesson 4.",
+          md: "### Step 8 — Watch the first deploy\n\nRender takes you to your service's page and starts building. A log scrolls — cloning the repo, installing dependencies, starting the service. **Three to five minutes is normal for a first deploy.**\n\nThree things can happen:\n\n- **The deploy succeeds.** You see a green **Live** badge near the top of the page, and a URL ending in `.onrender.com` shown next to the service name. Move to Step 9.\n- **The deploy fails during build.** The log shows a red error before \"Deploying...\" Most commonly: a missing dependency or a wrong build command. Screenshot the last twenty lines of the log and ask Claude Chat *\"my Render build failed, what's wrong?\"* Fix what Chat tells you (usually a one-line change in your repo), push the fix, Render auto-deploys again.\n- **The build succeeds but the service won't start.** The log gets to \"Build successful\" then hangs or shows *\"Application failed to listen on port...\"* This is the PORT-binding failure mentioned in Step 1 — your server isn't listening on `process.env.PORT`. If you used the Step 1 Code prompt as written, this shouldn't happen; if it does, screenshot and ask Chat.\n\nMost learners hit at least one of these. **The first deploy almost never succeeds first try** — that's what Lesson 4 is for, so don't worry if you're staring at a red log right now. Capture the log, fix what's broken, redeploy.",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "### Step 9 — Verify the service is actually live\n\nA green *Live* badge means Render thinks your service started. To confirm the backend is actually running and reachable, open a new browser tab and visit:\n\n```\nhttps://yourservicename.onrender.com/api/health\n```\n\n(Replace `yourservicename` with the name you picked in Step 7.)\n\nYou should see `{\"ok\":true}` — that's the endpoint Code added in Step 1 talking to you. If you see that, your backend is live on the internet.\n\n*If the URL loads but shows a different response, or you see an \"Application failed to respond\" page, or it takes thirty seconds before responding — capture the page and ask Claude Chat. The thirty-second case is usually the free-tier cold-start, covered in the next section; the other cases mean something's still wrong with the deploy.*",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "### A note on Render's free tier\n\nTwo things to know about the free tier so you're not surprised later:\n\n- **Free web services spin down after about 15 minutes of inactivity.** The first request after they sleep takes around 30 seconds to wake them up. This isn't a bug, and your service isn't broken — it's the trade-off of the free tier. If you come back to your app a few days later and the first page load is slow, that's why.\n- **The free tier has a 750-hour-per-month cap across your whole account.** One service running 24/7 fits inside the cap. Two services running 24/7 will hit the cap and one will be paused until the next month. For this course you only need one Render service, so you're fine — just don't spin up a second one without knowing this.",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "### Step 10 — Find your way around the service page\n\nBefore you leave this lesson, look at the left sidebar of your service's page. You don't need to do anything in any of these tabs right now — the rest of Module 5 will send you to them — but knowing where they are saves time later:\n\n- **Logs** — every line your service prints, including errors. Lesson 4 sends you here when a deploy fails.\n- **Environment** — where environment variables live. Lesson 3 sends you here to add the database connection string.\n- **Settings** — where you'd change the name, region, branch, or delete the service if you ever need to.",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "### What you have now\n\n- A Render account, free tier, connected to your GitHub.\n- A live backend web service with a green *Live* badge.\n- A `.onrender.com` URL that responds with `{\"ok\":true}` when you visit `/api/health`.\n- A note somewhere with your **service name** and your **`.onrender.com` URL**. You need both in Lesson 3 (where you'll add the database) and Lesson 5 (where you'll wire the frontend up to this backend).\n\nNext lesson, you'll add a Postgres database to your backend so it can remember things between requests.",
         },
       },
     ],
@@ -1117,47 +1288,25 @@ const BLOCK_ENTRIES: BlockEntry[] = [
       {
         type: 'markdown',
         payload: {
-          md: "## What Postgres is\n\nPostgres (sometimes \"PostgreSQL\") is a database. It holds rows of data — users, posts, anything — and your backend reads from it and writes to it.\n\nIt's the industry-standard free database. **You don't need to know SQL or how databases work internally.** You need to know how to spin one up on Render and how to connect your backend to it. That's this lesson.",
+          md: "You have two jobs in this lesson:\n\n1. Create a Supabase account and a database that won't disappear on you.\n2. Tell your app — the one already running on Render from the last lesson — where that database lives.\n\nThe first job is straightforward signup. The second is connecting them, which is the fiddly part: Supabase shows your database's connection string in a few different forms, and you need the right one. Picking the wrong one is the most common place to get stuck in this lesson. That's normal — and if you're unsure which to use, you don't guess, you capture and ask.",
         },
       },
       {
         type: 'markdown',
         payload: {
-          md: "> **Don't guess. Capture — with one rule.**\n>\n> Anytime you're not sure on these screens — *anytime* — screenshot what you see and ask Chat. Same rule as every other lesson, with one specific exception for this lesson only: **the DATABASE_URL value itself is a secret.** Anyone who has it can read or write your database. Before screenshotting the Connections section or the Environment variables tab, hover over the value, click the eye icon to hide it, OR cover it with a sticky note on your screen before capturing. Screenshot the *error or page layout*, not the actual URL string. Everything else in the standard callout still applies — capture, ask Chat, fix.",
+          md: "## Section 1 — Create your account and project\n\n1. Open **[supabase.com](https://supabase.com)** in your browser.\n2. Click **Start your project**. It's the hero button in the center of the page, on the left of the two buttons there.\n3. You'll land on a screen titled \"Welcome back.\" That heading is for returning users — you're new, so click **Don't have an account? Sign up** underneath the login fields.\n4. Sign up with GitHub (you already made that account back in Module 2, so this is the quickest path) or with email.\n5. Once you're in, create a new project. Give it a name, set a database password, and pick the region closest to you. **Save that database password somewhere you can find it again** — Supabase only shows it to you here.\n6. Supabase takes a minute or two to provision the database. Wait for it to finish before the next section.\n\n*If the page looks different from these steps, the dashboard has been redesigned since this was written — that happens. Screenshot what you see, paste it into Claude Chat, and ask \"I'm trying to create a new Supabase project, where do I click?\" Capture is the durable move when the layout shifts.*",
         },
       },
       {
         type: 'markdown',
         payload: {
-          md: "## Spin up the database\n\nBack on the Render dashboard, click **+ New** again. This time pick **Postgres** from the dropdown.\n\nA form opens. Fields:\n\n- **Name** — *yourname-db* or similar.\n- **Region** — **the same region you picked for your backend in Lesson 2.** This matters for speed.\n- **Database** — leave default.\n- **User** — leave default.\n- **Instance Type** — Free.\n\nClick **Create Database.** Render provisions it — takes 1-2 minutes. **When you see a green *Available* badge, it's live.**",
-        },
-      },
-      {
-        type: 'screenshot',
-        payload: {
-          slotId: 'render-new-postgres',
-          src: '/images/lessons/render-new-postgres.png',
-          caption: 'Render → "+ New" → "Postgres". The form for spinning up the free-tier database.',
+          md: "## Section 2 — Get your connection string\n\n> **Don't guess. Capture — with one exception.**\n>\n> The capture-and-ask habit applies as always, with one rule specific to this section and the next: **the Supabase connection string is a secret.** It contains your database password — anyone who has it can read or write your database. Before screenshotting the Connect panel here, or the Environment variables tab on Render in Section 3, hide the value (most dashboards offer an eye icon) or cover it on your screen. Capture the page layout, the error, the buttons — never the actual string. Chat doesn't need the secret to help; it just needs to see what's around it.\n\nA connection string is the address your app uses to reach the database. Supabase shows you a few variations of it, which is the part that trips people up. You only need one, and you don't need to know how they differ.\n\n1. Find the **Connect** button at the top of your project dashboard and click it.\n2. Supabase shows several connection strings, grouped by type (a direct connection and one or two pooled ones). Copy the one that fits how your app connects — for a backend that stays running on Render, that's typically the pooled connection string.\n3. Keep it somewhere safe — it contains your database password.\n\nIf the panel offers options you're unsure about, this is the moment to capture, not guess. Screenshot the Connect panel, paste it into Claude Chat, and ask \"which of these connection strings should I use for my Node backend on Render?\" Picking the wrong one is the single most common way to get stuck here, and one screenshot settles it.\n\n*If you can't find a Connect button, look along the top of the dashboard or in project settings — wording moves around. Screenshot it and ask Claude \"where do I find my database connection string in Supabase?\"*\n\n*The Quick-Navigate reference at `curriculum/reference/QUICK-NAVIGATE.md` lists Supabase's main URLs and dashboard buttons if the layout doesn't match what you're seeing.*",
         },
       },
       {
         type: 'markdown',
         payload: {
-          md: "## Find the connection string\n\nOn the database's page, scroll down until you see a section called **Connections.** Inside there's a field called **Internal Database URL** — something starting with `postgresql://`.\n\n**Copy the entire value.** This is your `DATABASE_URL` — the secret your backend needs to know to talk to the database.\n\nUse the Internal URL, not the External one. Internal means \"only services inside Render can use this\" — which is what you want. Faster and safer.",
-        },
-      },
-      {
-        type: 'screenshot',
-        payload: {
-          slotId: 'render-database-url',
-          src: '/images/lessons/render-database-url.png',
-          caption: 'After Postgres provisions — the page showing "Internal Database URL." This is the value learners copy into their backend service\'s env vars as DATABASE_URL.',
-        },
-      },
-      {
-        type: 'markdown',
-        payload: {
-          md: "## Plug the connection into the backend\n\nGo back to your Web Service from Lesson 2. Click **Environment** in the left sidebar.\n\nYou'll see a list of environment variables (probably empty). Click **Add Environment Variable.**\n\n- **Key:** `DATABASE_URL`\n- **Value:** paste the Internal Database URL you copied.\n\nClick **Save Changes.** Render restarts your backend automatically — it has to, because the backend needs to read the new env var when it starts. **Watch the logs for the new deploy.**\n\nIf your backend code already knows to look for `DATABASE_URL` (most do), it'll just connect on startup. If it doesn't, you need a Chat conversation about adding the connection logic — paste your backend's start file and ask *\"how do I make this connect to a Postgres database at the URL in DATABASE_URL?\"*",
+          md: "## Section 3 — Point your app at the database\n\nYour app is already running on Render from the last lesson. You're going to tell it to use the Supabase database.\n\n1. Go to your [Render dashboard](https://dashboard.render.com), open the web service you deployed last lesson, and click **Environment** in the left sidebar.\n2. Click **Add Environment Variable**. Set the **Key** to `DATABASE_URL` and the **Value** to the connection string you copied from Supabase.\n3. Click **Save Changes**. Render redeploys automatically — give it three to four minutes.\n4. Once the deploy is live, have Claude wire your backend to the database the same way you've asked it to build every other piece. You bring what you have — the connection string and your current server code — and Claude writes the connection code. You don't need to write it yourself.\n\n*If the deploy fails or the app can't reach the database, the cause is almost always the connection string in the wrong variable, or the wrong string copied from Supabase. Screenshot the Render logs, paste them into Claude Chat, and ask one question: \"my app can't connect to my Supabase database, what's wrong?\"*",
         },
       },
       {
@@ -1166,6 +1315,24 @@ const BLOCK_ENTRIES: BlockEntry[] = [
           slotId: 'render-env-vars',
           src: '/images/lessons/render-env-vars.png',
           caption: 'The Environment tab on the backend service with DATABASE_URL pasted in. The hand-off between database and backend.',
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "## A note on free tiers, honestly\n\nSupabase free projects pause after about seven days with no activity. They don't get deleted — you resume them with one click from the dashboard — but they do go to sleep. This is better than where Render's free Postgres left you (it deleted free databases after 90 days), though it isn't nothing. If your app seems down after you've been away for a week, check your Supabase dashboard first and resume the project.",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "> **Don't guess. Capture.**\n>\n> Dashboards get redesigned and buttons move. If a step here doesn't match what's on your screen, don't hunt around hoping you've found the right thing. Screenshot it, paste it into Claude Chat, ask one short question. Finding the right place is Claude's job; capturing what you see is yours.",
+        },
+      },
+      {
+        type: 'markdown',
+        payload: {
+          md: "## What you have now\n\n- A live Postgres database on Supabase, connected to your app on Render.\n- A database that won't be deleted out from under you in 90 days.\n- The connection string your app needs, set as an environment variable on Render.\n\nNext lesson, you'll confirm everything is talking to each other end to end and see your data persist.",
         },
       },
     ],
