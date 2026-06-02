@@ -37,7 +37,7 @@ export default function EmailCapture() {
 
   return (
     <section
-      id="access"
+      id="get-access"
       className="email-glow py-[140px] px-12 max-[960px]:px-6 text-center relative overflow-hidden"
     >
       <div className="relative z-[1] max-w-[560px] mx-auto">

@@ -7,7 +7,7 @@ const rows = [
   },
   {
     name: 'AI Integration Specialist',
-    sub: 'LLM pipeline, OCR, audit engine',
+    sub: 'LLM pipeline, OCR, processing engine',
     rate: '$195K/yr',
     cost: '$48,750',
   },
@@ -19,7 +19,7 @@ const rows = [
   },
   {
     name: 'Domain Consultant',
-    sub: 'Industry expertise, compliance logic',
+    sub: 'Industry expertise, domain logic',
     rate: 'Project',
     cost: '$85,000',
   },
@@ -41,12 +41,12 @@ export default function BigReceipt() {
               Every idea that stays an idea has a cost. Not just the revenue it never generates —
               the money you'd have to spend to build it the way people tell you it has to be built.{' '}
               <strong className="text-lk-text-primary font-semibold">
-                This is what that actually looks like.
+                This is what that can look like.
               </strong>
             </p>
             <p className="text-[17px] text-lk-text-secondary leading-[1.8] font-light max-w-[580px]">
-              These are real market rates for a real production build — a compliance auditing tool
-              built in six weeks that would have taken a team of four nearly half a year.{' '}
+              These are illustrative market rates for a comparable custom production build — the kind
+              of work that would typically take a small team months.{' '}
               <strong className="text-lk-text-primary font-semibold">
                 One subscription changed the math entirely.
               </strong>
@@ -57,10 +57,10 @@ export default function BigReceipt() {
           <div className="reveal d2 bg-card border border-[rgba(255,255,255,0.12)] rounded-[18px] overflow-hidden">
             <div className="flex items-center justify-between px-7 py-[18px] border-b border-[rgba(255,255,255,0.07)]">
               <div className="font-mono text-[10px] tracking-[0.14em] text-lk-text-tertiary uppercase">
-                Traditional build estimate
+                Illustrative build estimate
               </div>
               <div className="text-[12px] text-lk-text-tertiary italic">
-                6-month build · 2026 market rates
+                Typical market rates · estimate only
               </div>
             </div>
 
@@ -104,6 +104,13 @@ export default function BigReceipt() {
               <div className="font-mono text-[22px] text-lk-green">$20/mo</div>
             </div>
           </div>
+
+          <p className="reveal d2 col-span-2 max-[960px]:col-span-1 text-[12px] text-lk-text-dim leading-[1.6] mt-2">
+            Illustrative estimate based on typical market rates for comparable work; figures are
+            approximate and provided for context only. Not a quote, appraisal, or guarantee of cost
+            or savings. Subscription price is set by a third party and may change; usage limits and
+            higher-priced tiers may apply.
+          </p>
         </div>
       </div>
     </section>
