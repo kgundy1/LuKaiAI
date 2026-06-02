@@ -1,3 +1,7 @@
+# Informational Blueprint only. The live Render service is configured via the Render
+# dashboard, NOT synced from this file. DATABASE_URL and CORS_ORIGIN are set in the dashboard.
+# Production database is Supabase Postgres (NOT Render Postgres) since Session 4 (late May 2026).
+# Render hosts the backend web service only; there is no Render-managed database.
 services:
   - type: web
     name: lukaiai-api
@@ -6,15 +10,11 @@ services:
     branch: main
     dockerfilePath: ./apps/api/Dockerfile
     envVars:
+      # Set in the Render dashboard to the Supabase session-pooler connection string (port 5432).
       - key: DATABASE_URL
-        fromDatabase:
-          name: lukaiai-db
-          property: connectionString
+        sync: false
       - key: PORT
         value: 4000
+      # Comma-separated allowlist; production value is set in the dashboard.
       - key: CORS_ORIGIN
-        value: https://lukaiai.pages.dev
-
-databases:
-  - name: lukaiai-db
-    plan: free
+        value: https://lukaiai.com,https://lukaiai.pages.dev

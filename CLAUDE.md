@@ -48,16 +48,18 @@ This is what caused the May 31 recovery: 10 commits over 4 days touched only ste
 
 ## Current Status
 
+> **⚠️ REALITY CHECK — reconciled 2026-06-02.** This file had drifted from the live system. Corrected facts: (1) **Database is Supabase Postgres**, not Render — migrated in Session 4 (late May 2026); Render now hosts the *backend only*. (2) **Course content: Modules 0–5 are authored in `seed-blocks.ts`** (not just 0+1); **Module 6 is written in `curriculum/module-6-lessons.md` but only ~1/3 ported into `seed-blocks.ts`** — porting + seeding is the remaining content work. (3) **TryWithClaude is a disabled UI shell (deferred), not functional.** (4) The custom domain **lukaiai.com is LIVE** (frontend + `api.lukaiai.com`). Verify seeding status against the live DB before assuming content is visible to learners. When this file conflicts with the repo, the repo wins — and update this file in the same change.
+
 | Layer | Status | URL / Location |
 |---|---|---|
-| Frontend (landing page) | ✅ LIVE | lukaiai.pages.dev |
+| Frontend (landing page) | ✅ LIVE | lukaiai.com (custom domain) + lukaiai.pages.dev |
 | React frontend (apps/web/) | ✅ LIVE | apps/web/ — Vite + React + TypeScript + Tailwind |
 | Cloudflare Pages serving React | ✅ LIVE | lukaiai.pages.dev now serves apps/web/dist |
 | GitHub repo | ✅ LIVE | github.com/kgundy1/LukaiAI |
 | Backend API | ✅ LIVE | api.lukaiai.com (custom domain) — lukaiai.onrender.com kept as fallback |
 | Render plan | ✅ Starter ($7/mo) | Web service no longer hibernates; persistent instance |
 | Frontend → API base URL | ✅ LIVE | apps/web/ uses VITE_API_BASE=https://api.lukaiai.com |
-| Database | ✅ LIVE | Render Postgres (lukaiai-db) |
+| Database | ✅ LIVE | Supabase Postgres (migrated from Render Postgres, Session 4 — late May 2026; session pooler on port 5432) |
 | Email collection | ✅ WORKING | POST /subscribe endpoint live |
 | Initial migration | ✅ APPLIED | Subscriber table created |
 | .gitignore at repo root | ✅ IN PLACE | repo root |
@@ -69,15 +71,15 @@ This is what caused the May 31 recovery: 10 commits over 4 days touched only ste
 | GET /modules/:id/lessons endpoint | ✅ LIVE | Returns module + lessons + per-user completion state |
 | POST /lessons/:id/complete endpoint | ✅ LIVE | Writes to UserProgress, idempotent upsert |
 | Markdown rendering (react-markdown + @tailwindcss/typography) | ✅ LIVE | apps/web/ — prose prose-invert styling (fallback path when content_blocks is null) |
-| Interactive lesson blocks (BlockRenderer + 5 widgets) | ✅ LIVE | apps/web/src/components/lesson/ — QuickCheck, WorkflowSorter, PromptCompare, TryWithClaude, DecisionTree |
-| Content blocks in DB (Modules 0 + 1) | ✅ LIVE | 8 lessons populated via POST /admin/seed-blocks |
+| Interactive lesson blocks (BlockRenderer + widgets) | ✅ LIVE | apps/web/src/components/lesson/ — QuickCheck + WorkflowSorter adopted in lessons; PromptCompare, DecisionTree, TryWithClaude exist but TryWithClaude is a DISABLED shell (deferred — see ROADMAP Phase 6 Step 5) |
+| Content blocks in DB (Modules 0–5) | 🟡 AUTHORED in seed-blocks.ts | Modules 0–5 fully written as content_blocks; verify they were seeded to the live Supabase DB via POST /admin/seed-blocks |
 | Admin block seed route | ✅ LIVE | POST /admin/seed-blocks, token-gated by ADMIN_SEED_TOKEN |
 | Curriculum outline (curriculum/COURSE_OUTLINE.md) | ✅ LOCKED | Six modules, thirty lessons, six deliverables — source of truth for course content |
 | AuthContext + ProtectedRoute | ✅ LIVE | apps/web/src/lib/AuthContext.tsx |
 | Cloudflare _redirects for SPA | ✅ LIVE | apps/web/public/_redirects |
 | Welcome email on signup (Resend) | ✅ LIVE | Sent from hello@lukaiai.com, domain verified (PR #53) |
 | Signup spam-folder hint | ✅ LIVE | apps/web/src/pages/Signup.tsx (PR #54) |
-| Course content | ❌ Not built | Lives behind email signup |
+| Course content | 🟡 Modules 0–5 written; Module 6 ~1/3 ported | Modules 0–5 in seed-blocks.ts; Module 6 written in curriculum/module-6-lessons.md, porting + seeding remains |
 
 ---
 
@@ -87,7 +89,7 @@ This is what caused the May 31 recovery: 10 commits over 4 days touched only ste
 |---|---|---|
 | Frontend | React + TypeScript + Vite + Tailwind (apps/web/) | Cloudflare Pages |
 | Backend | Fastify + TypeScript + Prisma | Render (Docker, Starter plan $7/mo) |
-| Database | Postgres + Prisma ORM | Render Postgres (free tier — expires June 2, 2026) |
+| Database | Postgres + Prisma ORM | Supabase Postgres (session pooler, port 5432). Render Postgres retired — old free DB dormant/unused, deletion deferred. |
 | Email collection | POST /subscribe — saves email to Subscriber table | API |
 | Repo | GitHub | github.com/kgundy1/LukaiAI |
 

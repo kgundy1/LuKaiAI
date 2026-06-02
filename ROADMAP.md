@@ -7,17 +7,19 @@
 
 ## Where We Are Right Now
 
+> **⚠️ RECONCILED 2026-06-02.** This file had drifted. Corrections below: DB is **Supabase** (not Render); **Modules 0–5 content is written** in seed-blocks.ts (not just 0+1); **Module 6 is written in markdown, ~1/3 ported** into seed-blocks.ts; **lukaiai.com custom domain is LIVE** (no longer deferred). Phase 6 Step 6 is nearly the only content work left (finish porting + seeding Module 6, verify Modules 2–5 are seeded live).
+
 **Live and working:**
 - Landing page at lukaiai.pages.dev — Cloudflare Pages
 - Backend API at lukaiai.onrender.com — Render
-- Postgres database on Render
+- Postgres database on Supabase (migrated from Render Postgres in Session 4; Render hosts the backend only)
 - GitHub auto-deploys both frontend and backend on every push to main
 - Repository hygiene: .gitignore, package-lock.json, CLAUDE.md, CLAUDE-CHAT.md, ROADMAP.md, design-system/ all in place
 - React frontend at apps/web/ (Vite + React + TypeScript + Tailwind)
 - User accounts with email/password signup and login
 - JWT auth with httpOnly cookies, AuthContext managing session state
 - Protected /learn route — fetches modules from GET /modules API, renders clickable cards for available modules (0 and 1) and "Coming soon" cards for Modules 2-6
-- Module 0 ("Before you start" — 3 lessons) and Module 1 ("Type your idea into Claude, get something back" — 5 lessons) seeded in production database with real content
+- Module 0 ("Before you start" — 3 lessons) through Module 5 are written as content_blocks in seed-blocks.ts with real content; Module 6 is written in markdown and partially ported (verify all are seeded to the live Supabase DB)
 - URL contract: /learn/module/:moduleNumber/lesson/:lessonNumber — both params are integers, looked up via Module.number and Lesson.number (NOT cuid IDs)
 - Lesson rendering at /learn/module/:moduleNumber/lesson/:lessonNumber — markdown content, "Mark complete" button writing to UserProgress
 - Public GET /modules endpoint (module index — non-sensitive)
@@ -93,7 +95,7 @@ The design system unlocks a block-based content model: each lesson is a JSON arr
    - **Frontend BYOK has its own problems.** Browser-side keys are vulnerable to localStorage attacks and browser extensions. Anthropic itself recommends against this for production apps.
 
    This is paused until either (a) a Modules 2–6 lesson genuinely needs real-time Claude critique and there's no good alternative, or (b) the right cost/security model becomes obvious from operating the course. Until then, the disabled UI shell stays in place.
-6. **Modules 2-6 lesson content writing.** Scaffolds exist in the design system from COURSE_OUTLINE.md. Each module is its own curriculum-writing session in Chat — drafted in block format, then seeded. One module at a time, walked end-to-end as a learner before the next is started.
+6. **🟡 Modules 2-6 lesson content — Modules 2–5 DONE, Module 6 in progress.** Modules 2, 3, 4, and 5 are written and ported into `seed-blocks.ts` (Module 5 includes the Supabase rewrite). **Module 6 is fully written in `curriculum/module-6-lessons.md` (5 lessons) but only ~1/3 ported into `seed-blocks.ts`** — the remaining work is porting the existing prose into block format and seeding it, not writing from scratch. **Also verify Modules 2–5 were actually seeded to the live Supabase DB** via `POST /admin/seed-blocks` (content in the file is not live until the seed is fired — this caused the May 31 recovery).
 
 ---
 
@@ -125,8 +127,7 @@ These are real items that have been considered and intentionally pushed to later
 **Admin dashboard**
 A page to view signups, traffic, revenue, support issues. Deferred because right now there's only one data source (signups), no traffic, no revenue, no support system. Build it when there's data worth viewing.
 
-**Custom domain (LukaiAI.com)**
-The site currently lives at lukaiai.pages.dev. Custom domain is fast to add but requires DNS config. Deferred until the experience is polished and we're ready to announce.
+**Custom domain (lukaiai.com)** — ✅ DONE. The site is live at lukaiai.com (frontend) with the API at api.lukaiai.com. (No longer deferred.)
 
 **Email provider integration**
 Mailchimp, Resend, or ConvertKit. Right now emails just sit in the database. Build this when we're ready to actually communicate with the list — likely after Phase 5 when there's something to send.
