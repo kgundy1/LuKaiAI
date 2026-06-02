@@ -108,6 +108,13 @@ export default function Hero() {
             </div>
             <div className="font-mono text-[20px] text-lk-green">$20/mo</div>
           </div>
+
+          <div className="px-6 py-3 border-t border-[rgba(255,255,255,0.07)]">
+            <p className="text-[10px] text-lk-text-dim leading-[1.5]">
+              Illustrative estimate · not a quote or guarantee. Subscription price set by a third
+              party; usage limits may apply.
+            </p>
+          </div>
         </div>
       </div>
     </section>

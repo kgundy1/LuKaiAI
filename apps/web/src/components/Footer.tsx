@@ -40,7 +40,12 @@ export default function Footer() {
         <div className="mt-8 pt-6 border-t border-[rgba(255,255,255,0.07)] flex items-start justify-between gap-5 max-[640px]:flex-col max-[640px]:items-center max-[640px]:text-center">
           <div>
             <div className="text-[12px] text-lk-text-dim">© 2026 LuKaiAI. All rights reserved.</div>
-            <div className="text-[12px] text-lk-text-dim mt-[3px]">No guarantees. Outcomes depend on what you put in.</div>
+            <div className="text-[12px] text-lk-text-dim mt-[3px] max-w-[520px] leading-[1.6]">
+              Educational content only — no professional advice and no guarantee of any outcome;
+              results depend on the effort you put in. Cost comparisons are illustrative estimates,
+              not guarantees. LuKaiAI is independent and is not affiliated with, endorsed by, or
+              sponsored by Anthropic. Claude is a trademark of Anthropic, PBC.
+            </div>
           </div>
 
           <div className="text-[13px] text-lk-text-tertiary">

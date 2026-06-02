@@ -9,12 +9,17 @@ export default function Signup() {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [agreed, setAgreed] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     setError('');
+    if (!agreed) {
+      setError('Please confirm you are 13 or older and agree to the Terms and Privacy Policy.');
+      return;
+    }
     setLoading(true);
     try {
       await signup(email, password);
@@ -62,6 +67,20 @@ export default function Signup() {
             />
             <p className="text-xs text-lk-text-dim mt-1">At least 8 characters</p>
           </div>
+
+          <label className="flex items-start gap-3 text-sm text-lk-text-tertiary cursor-pointer">
+            <input
+              type="checkbox"
+              checked={agreed}
+              onChange={(e) => setAgreed(e.target.checked)}
+              className="mt-0.5 h-4 w-4 shrink-0 accent-lk-cyan"
+            />
+            <span>
+              I am 13 or older and I agree to the{' '}
+              <Link to="/terms" className="text-lk-cyan hover:text-lk-cyan/80">Terms</Link> and{' '}
+              <Link to="/privacy" className="text-lk-cyan hover:text-lk-cyan/80">Privacy Policy</Link>.
+            </span>
+          </label>
 
           {error && (
             <p role="alert" aria-live="polite" className="text-lk-red text-sm text-center">{error}</p>

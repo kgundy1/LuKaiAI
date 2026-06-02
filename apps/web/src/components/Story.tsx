@@ -15,7 +15,7 @@ const facts = [
     num: '6 wks',
     color: '#c9a84c',
     label: 'From first prompt to live software',
-    sub: 'OCR, AI audit engine, role-based workflow, mobile upload',
+    sub: 'OCR, AI engine, role-based workflow, mobile upload',
   },
   {
     num: '$0',
@@ -42,15 +42,15 @@ export default function Story() {
               with an idea.
             </h2>
             <p className="text-[17px] text-lk-text-secondary leading-[1.8] font-light max-w-[580px] mb-12">
-              I watched money walk out the door every month because one person was manually
-              cross-referencing paper documents against policy requirements before submitting claims.{' '}
+              I kept watching the same slow, manual process repeat — the kind of repetitive work
+              that quietly eats hours and money, day after day.{' '}
               <strong className="text-lk-text-primary font-semibold">
-                Every error was a chargeback. Every chargeback was lost revenue.
+                I knew exactly how it should work. I just didn't have a way to build it.
               </strong>{' '}
-              The problem was obvious. The solution felt out of reach — until it wasn't.
+              The fix felt out of reach — until it wasn't.
             </p>
             <p className="text-[17px] text-lk-text-secondary leading-[1.8] font-light max-w-[580px] mb-8">
-              I had never written a line of code. I had a subscription and a problem I understood
+              I had never written a line of code. I had a subscription and a process I understood
               better than any developer ever could.{' '}
               <strong className="text-lk-text-primary font-semibold">That turned out to be enough.</strong>
             </p>
