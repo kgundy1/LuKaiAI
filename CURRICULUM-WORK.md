@@ -177,6 +177,7 @@ Future curriculum work belongs to one of two categories: (1) net-new lessons or 
 6. **Planning chat cannot edit the repo.** It plans; Claude Code executes. (See READ THIS FIRST #3.)
 7. **Re-downloaded files can save as `name (1).md` instead of overwriting the original.** If a draft gets 'corrected' in chat and re-downloaded, the new version may land as `name (1).md` while `name.md` stays stale on disk. Before handing a draft to Code, verify the file actually replaced the original (grep a distinctive string from the new version, or check the mtime) and clear duplicates. Caught once during the May 30 late-evening session after Code re-read an unchanged draft and flagged the mismatch.
 8. **Forward-reference audits catch real bugs.** Auditing forward references in adjacent lessons after a rewrite surfaced two pre-existing wrong-lesson-number references in Module 2 Lesson 2 that had been live for weeks. The rewrite didn't introduce them — it made them visible by changing what Lesson 5 actually is. Worth running a forward-ref grep after any structural lesson rewrite, not just contradiction checks against the rewrite itself.
+9. **A commit on main is not "done." Content reaching learners is "done."** Every curriculum content change has TWO required steps to reach the live site: (a) the markdown edit in curriculum/*.md, AND (b) the corresponding block entry edit in apps/api/src/lib/seed-blocks.ts. The live site renders content_blocks (JSON in Supabase), not markdown. content_blocks only updates when POST /admin/seed-blocks is fired against the live API. If you've pushed a curriculum commit to main but haven't fired the seed since that commit, the live site is NOT showing your work — it's showing the last seeded state. The four-day gap that triggered the May 31 recovery happened because this rule wasn't documented and 10 commits worked their way to main without anyone seeding. **Rule: every curriculum-work session ends with seed-blocks.ts updated AND /admin/seed-blocks fired AND a visual confirmation on the live site for at least one affected lesson. If any of those three are missing, the session is not closed.**
 
 ---
 
@@ -212,3 +213,9 @@ This stack is the CONTEXT for curriculum work, not a target for change. The curr
 3. If you're opening a session to address something NEW (a learner-reported issue, a course expansion, a discovered gap), describe it explicitly. The queue this file was built around is closed; new work starts from a new diagnosis, not from this file's old priorities.
 4. The chat plans/drafts; Claude Code executes the file edits.
 5. Update this file at the end of the session with what shipped + what's next.
+6. **Before closing the session, confirm three things on the live site, not in the repo:**
+   - apps/api/src/lib/seed-blocks.ts has been updated with the block entries for every lesson whose markdown was changed in this session.
+   - POST /admin/seed-blocks has been fired against https://api.lukaiai.com with ADMIN_SEED_TOKEN from Render's env-var UI (never pasted into chat per security rule). The response must be HTTP 200 with `{"ok":true}`.
+   - At least one updated lesson has been opened on lukaiai.com and visually confirmed to show the new content.
+
+   If any of those three are not done, the session is not closed — even if commits are on main. A commit on main without a seed fire is in-flight, not shipped.

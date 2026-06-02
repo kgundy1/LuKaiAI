@@ -31,9 +31,18 @@ A person who built something real and is showing others how.
 
 Rule going forward: workaround notes in ROADMAP.md are not write-once. When the underlying need disappears, update the note in the same PR that removes the workaround. The original PR that committed the note should reference it in the commit message so future-you can find it when the workaround is no longer needed.
 
-**Render deploys don't auto-seed; markdown and block seeds are separate manual steps.** The Dockerfile runs `prisma migrate deploy && node dist/server.js` only. There is no automatic seed step. When content lands in a PR (new module rows in seed.ts, new content_blocks in seed-blocks.ts), the production database is unchanged by the deploy itself. Two manual admin calls fill the gap: `POST /admin/seed` creates/updates Module and Lesson rows from the markdown source, then `POST /admin/seed-blocks` populates content_blocks. Both gated by ADMIN_SEED_TOKEN.
+**Curriculum content pipeline — READ BEFORE EDITING CURRICULUM:**
 
-Rule going forward: every content PR description should explicitly call out which admin endpoints must run after merge. The deploy completing successfully is not the same as the content being live. Module 2 (PR #39) cost about 8 minutes of polling because the PR body claimed Render auto-runs the markdown seed; it doesn't.
+The live LuKaiAI site does NOT render lesson markdown from `curriculum/*.md`. It renders `content_blocks` (JSON column in Supabase), which is populated ONLY when `POST /admin/seed-blocks` is fired. The block source is `apps/api/src/lib/seed-blocks.ts` (a hand-authored array, not auto-generated).
+
+**Rule: a curriculum change has THREE required steps, not two:**
+1. Edit `curriculum/*.md` (the markdown source).
+2. Edit `apps/api/src/lib/seed-blocks.ts` to mirror the markdown changes in block-entry form.
+3. Fire `POST /admin/seed-blocks` against the live API after the commit is on main and Render has redeployed.
+
+**If you push to main without step 2 or step 3, your changes are not visible to learners.** The deploy pipeline pushes code; the seed pipeline pushes content. They are separate.
+
+This is what caused the May 31 recovery: 10 commits over 4 days touched only step 1, and the live site silently kept showing pre-PR-#50 content until the seed was finally fired on June 1.
 
 ---
 
