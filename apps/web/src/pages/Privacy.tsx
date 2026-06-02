@@ -57,9 +57,10 @@ export default function Privacy() {
             <h2 className="font-serif text-xl text-lk-text-primary mb-3">Who I Share It With</h2>
             <p className="text-lk-text-secondary leading-relaxed">
               I do not sell your personal data or share it for advertising. I use a small number of
-              service providers to run LuKaiAI — Render (application and database hosting), Cloudflare
-              (website hosting and delivery), and Resend (sending email). They process data only to
-              provide these services and are bound by their own privacy terms.
+              service providers to run LuKaiAI — Render (backend application hosting), Supabase
+              (database hosting), Cloudflare (website hosting and delivery), and Resend (sending
+              email). They process data only to provide these services and are bound by their own
+              privacy terms.
             </p>
           </section>
 
