@@ -43,19 +43,24 @@ export default function Hero() {
             <strong className="text-lk-text-primary font-semibold">Six weeks later it was live.</strong>
           </p>
 
-          <div className="hero-acts flex items-center gap-5 mb-[52px]">
-            <a
-              href="#access"
-              className="inline-flex items-center gap-2 bg-lk-cyan text-void px-[26px] py-[13px] rounded-[9px] text-[15px] font-bold no-underline tracking-[0.01em] transition-all duration-200 hover:bg-[#22d3f0] hover:-translate-y-0.5 hover:shadow-[0_10px_32px_rgba(0,200,240,0.28)]"
-            >
-              I want to know how →
-            </a>
-            <a
-              href="#story"
-              className="text-[14px] font-medium text-lk-text-tertiary no-underline transition-colors duration-200 hover:text-lk-text-primary"
-            >
-              The full story ↓
-            </a>
+          <div className="hero-acts flex flex-col items-start gap-3 mb-[52px]">
+            <div className="flex items-center gap-5">
+              <a
+                href="#access"
+                className="inline-flex items-center gap-2 bg-lk-cyan text-void px-[26px] py-[13px] rounded-[9px] text-[15px] font-bold no-underline tracking-[0.01em] transition-all duration-200 hover:bg-[#22d3f0] hover:-translate-y-0.5 hover:shadow-[0_10px_32px_rgba(0,200,240,0.28)]"
+              >
+                Start free →
+              </a>
+              <a
+                href="#story"
+                className="text-[14px] font-medium text-lk-text-tertiary no-underline transition-colors duration-200 hover:text-lk-text-primary"
+              >
+                The full story ↓
+              </a>
+            </div>
+            <p className="text-[12px] text-lk-text-dim">
+              Free · no credit card · you just need your own Claude subscription.
+            </p>
           </div>
 
           <div className="hero-checks flex flex-col gap-[10px]">

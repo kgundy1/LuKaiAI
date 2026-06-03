@@ -18,6 +18,9 @@ export default function ClosingCTA() {
           >
             Start Module 0 →
           </Link>
+          <p className="mt-4 text-[12px] text-lk-text-dim">
+            Free · no credit card.
+          </p>
         </div>
       </div>
     </section>

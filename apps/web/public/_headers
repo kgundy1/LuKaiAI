@@ -6,6 +6,11 @@
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
   X-XSS-Protection: 0
   Cross-Origin-Opener-Policy: same-origin
+  Content-Security-Policy-Report-Only: default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.lukaiai.com https://lukaiai.onrender.com https://cloudflareinsights.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'
 
-# Enable after verifying nothing breaks (fonts, API, images all must be allowed):
-# Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://lukaiai.onrender.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'
+# CSP is in REPORT-ONLY mode: it logs violations to the browser console but blocks nothing.
+# Verify the console is clean on the live site (load home, signup, login, /learn, /projects), then enforce
+# by renaming the header above from "Content-Security-Policy-Report-Only" to "Content-Security-Policy".
+# NOTE before enforcing: the Google Fonts <link> in index.html uses an inline onload handler, which a strict
+# script-src would block (fonts would fail to swap from preload to stylesheet). Before enforcing, either
+# refactor that font load to remove the inline onload, or add 'unsafe-inline' to script-src.
