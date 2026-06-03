@@ -11,6 +11,43 @@
     <meta name="author" content="Kevin Gundy" />
     <link rel="canonical" href="https://lukaiai.com/" />
 
+    <!-- Structured data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://lukaiai.com/#organization",
+          "name": "LuKaiAI",
+          "url": "https://lukaiai.com/",
+          "logo": "https://lukaiai.com/apple-touch-icon.png",
+          "founder": { "@type": "Person", "name": "Kevin Gundy" }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://lukaiai.com/#website",
+          "url": "https://lukaiai.com/",
+          "name": "LuKaiAI",
+          "publisher": { "@id": "https://lukaiai.com/#organization" }
+        },
+        {
+          "@type": "Course",
+          "name": "LuKaiAI \u2014 From idea to working software",
+          "description": "A free, self-guided workflow for building real software with Claude \u2014 no coding background required.",
+          "provider": { "@id": "https://lukaiai.com/#organization" },
+          "isAccessibleForFree": true,
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock"
+          }
+        }
+      ]
+    }
+    </script>
+
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="LuKaiAI" />

@@ -14,7 +14,7 @@ export default function Landing() {
     <>
       <Helmet>
         <title>LuKaiAI — From idea to working software</title>
-        <meta name="description" content="A free workflow for building software with Claude. Bring your idea to life — no developers, no agencies, one subscription." />
+        <meta name="description" content="A free workflow for building real software with Claude — no developers, no agencies, no course fees. You only need your own Claude subscription." />
       </Helmet>
       <Nav />
       <main id="main">
