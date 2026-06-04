@@ -99,8 +99,8 @@ export default function Nav() {
           {(!user || loading) && (
             <>
               <Link to="/projects" className={linkCls('/projects')}>Projects</Link>
-              <Link to="/#story" className={`${linkBase} ${linkInactive}`}>The story</Link>
-              <Link to="/#why" className={`${linkBase} ${linkInactive}`}>Why it works</Link>
+              <Link to="/#how" className={`${linkBase} ${linkInactive}`}>How it works</Link>
+              <Link to="/#cost" className={`${linkBase} ${linkInactive}`}>Is it free?</Link>
               <Link to="/login" className={linkCls('/login')}>Log in</Link>
               <Link
                 to="/signup"
@@ -178,8 +178,8 @@ export default function Nav() {
           <div className="flex flex-col h-full">
             <div className="flex flex-col">
               <Link to="/projects" className={drawerLink}>Projects</Link>
-              <Link to="/#story" className={drawerLink}>The story</Link>
-              <Link to="/#why" className={drawerLink}>Why it works</Link>
+              <Link to="/#how" className={drawerLink}>How it works</Link>
+              <Link to="/#cost" className={drawerLink}>Is it free?</Link>
               <Link to="/login" className={drawerLink}>Log in</Link>
             </div>
             <Link
