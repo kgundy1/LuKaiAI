@@ -8,15 +8,18 @@ export default function ClosingCTA() {
     >
       <div className="relative z-[1] max-w-[560px] mx-auto">
         <h2 className="reveal font-serif text-[clamp(32px,4vw,48px)] font-normal tracking-[-0.025em] leading-[1.1]">
-          Start when you&apos;re ready.
+          Start with one idea.
         </h2>
+        <p className="reveal d2 text-[18px] text-lk-text-secondary mt-4 font-light">
+          You don&apos;t need to know how. That&apos;s what this is for.
+        </p>
 
-        <div className="reveal d2 mt-10">
+        <div className="reveal d3 mt-10">
           <Link
             to="/signup"
             className="inline-flex items-center gap-2 bg-lk-cyan text-void px-[26px] py-[13px] rounded-[9px] text-[15px] font-bold no-underline tracking-[0.01em] transition-all duration-200 hover:bg-[#22d3f0] hover:-translate-y-0.5 hover:shadow-[0_10px_32px_rgba(0,200,240,0.28)]"
           >
-            Start Module 0 →
+            Start free →
           </Link>
           <p className="mt-4 text-[12px] text-lk-text-dim">
             Free · no credit card.
