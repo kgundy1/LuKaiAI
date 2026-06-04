@@ -18,9 +18,9 @@ export default function Hero() {
             Free · build real software with AI
           </div>
 
-          <h1 className="hero-h1 font-serif text-[clamp(48px,6.5vw,78px)] font-normal leading-[1.0] tracking-[-0.025em] mb-7">
+          <h1 className="hero-h1 font-serif text-[clamp(48px,6.5vw,78px)] font-normal leading-[1.08] tracking-[-0.025em] mb-7">
             <span className="block text-lk-text-primary">Capture,</span>
-            <span className="block italic text-grad">don&apos;t guess.</span>
+            <span className="block italic text-grad pb-[0.08em]">don&apos;t guess.</span>
           </h1>
 
           <p className="hero-body text-[18px] text-lk-text-secondary leading-[1.7] font-light max-w-[500px] mb-10">
