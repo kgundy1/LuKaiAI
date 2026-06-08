@@ -18,13 +18,13 @@ export default function Footer() {
 
           <ul className="flex gap-7 list-none p-0">
             <li>
-              <Link to="/#story" className="text-[13px] text-lk-text-tertiary no-underline transition-colors duration-200 hover:text-lk-text-primary">
-                Story
+              <Link to="/#how" className="text-[13px] text-lk-text-tertiary no-underline transition-colors duration-200 hover:text-lk-text-primary">
+                How it works
               </Link>
             </li>
             <li>
-              <Link to="/#why" className="text-[13px] text-lk-text-tertiary no-underline transition-colors duration-200 hover:text-lk-text-primary">
-                Why it works
+              <Link to="/#cost" className="text-[13px] text-lk-text-tertiary no-underline transition-colors duration-200 hover:text-lk-text-primary">
+                Is it free?
               </Link>
             </li>
             <li>
