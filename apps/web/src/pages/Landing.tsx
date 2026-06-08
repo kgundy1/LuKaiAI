@@ -3,12 +3,11 @@ import { useReveal } from '../hooks/useReveal';
 import Nav from '../components/Nav';
 import Hero from '../components/Hero';
 import {
-  Problem,
+  WhatThisIs,
   Principle,
   HowItWorks,
-  WhatYouKeep,
-  WhoFor,
   Cost,
+  WhoFor,
 } from '../components/LandingSections';
 import ClosingCTA from '../components/ClosingCTA';
 import Footer from '../components/Footer';
@@ -18,18 +17,17 @@ export default function Landing() {
   return (
     <>
       <Helmet>
-        <title>LuKaiAI — Capture, don&apos;t guess</title>
-        <meta name="description" content="A free workflow for building real software with Claude — no developers, no agencies, no course fees. You only need your own Claude subscription." />
+        <title>LuKaiAI — Understand AI and build real things with it</title>
+        <meta name="description" content="Learn to use AI to build real, working software — even with zero tech background. No course fees; you just need your own Claude subscription." />
       </Helmet>
       <Nav />
       <main id="main">
         <Hero />
-        <Problem />
+        <WhatThisIs />
         <Principle />
         <HowItWorks />
-        <WhatYouKeep />
-        <WhoFor />
         <Cost />
+        <WhoFor />
         <ClosingCTA />
       </main>
       <Footer />

@@ -1,25 +1,24 @@
-// Re-sequenced landing sections, built around the "Capture, don't guess" principle.
-// Each section uses the existing .reveal scroll system and lk-* design tokens.
+// Re-sequenced landing sections. Goal: a cold visitor knows what this is in one read,
+// the cost is honest and never hidden, and it's short enough not to bore.
+// Uses the existing .reveal scroll system and lk-* tokens. Anchors #what #how #cost
+// are referenced by Nav and Footer — keep them.
 
-const sectionBase =
-  'px-12 max-[960px]:px-6 py-[96px] border-t border-white/[0.05]';
-const kicker =
-  'reveal font-mono text-[11px] tracking-[0.18em] uppercase text-lk-cyan';
+const sectionBase = 'px-12 max-[960px]:px-6 py-[88px] border-t border-white/[0.05]';
+const kicker = 'reveal font-mono text-[11px] tracking-[0.18em] uppercase text-lk-cyan';
 const h2 =
-  'reveal font-serif text-[clamp(30px,4vw,42px)] font-normal tracking-[-0.02em] leading-[1.1] mt-4 mb-5';
+  'reveal font-serif text-[clamp(28px,3.8vw,40px)] font-normal tracking-[-0.02em] leading-[1.12] mt-4 mb-5';
 const lead = 'reveal text-[18px] text-lk-text-secondary leading-[1.7] font-light';
 
-export function Problem() {
+export function WhatThisIs() {
   return (
-    <section className={sectionBase}>
-      <div className="max-w-[760px] mx-auto text-center">
-        <div className={kicker}>The real problem</div>
-        <h2 className={h2}>Why most ideas never get built</h2>
+    <section id="what" className={sectionBase}>
+      <div className="max-w-[720px] mx-auto text-center">
+        <div className={kicker}>What this is</div>
+        <h2 className={h2}>A free path to building with AI — from zero</h2>
         <p className={`${lead} max-w-[620px] mx-auto`}>
-          It was never about whether you&apos;re capable. It&apos;s that the path looked
-          impossible: learn to code (years), hire a developer (thousands), or try an AI tool and
-          watch it hand you the same generic thing it gives everyone — then leave you stranded the
-          moment something breaks. So the idea stays an idea.
+          LuKaiAI teaches you to use AI to build real, working things — an app, a tool, a site —
+          even if you&apos;ve never written a line of code or really used AI before. You learn by
+          building something real, step by step. Not theory. Not jargon. Just the path.
         </p>
       </div>
     </section>
@@ -29,17 +28,17 @@ export function Problem() {
 export function Principle() {
   return (
     <section className={sectionBase}>
-      <div className="max-w-[760px] mx-auto text-center">
-        <div className={kicker}>What it actually means</div>
+      <div className="max-w-[720px] mx-auto text-center">
+        <div className={kicker}>The core idea</div>
         <h2 className={h2}>
-          Guess, and you get <span className="text-lk-cyan">the average.</span>
+          Guess, and AI gives you <span className="text-lk-cyan">the average.</span>
         </h2>
         <p className={`${lead} max-w-[620px] mx-auto`}>
-          When you&apos;re vague, AI fills the gaps with the average — the same answer it gives
-          everyone who&apos;s vague. When you <em>capture</em> — hand it the real specifics, the
-          actual screen, your exact situation — it builds <em>yours</em>. That single shift is the
-          difference between the generic version and the thing you actually pictured. Everything
-          here is built to make capturing second nature.
+          Most people type something vague and get back the same generic answer AI hands everyone.
+          The real skill — the thing almost nobody teaches — is learning to give AI the exact
+          specifics, so it builds what <em>you</em> actually want. That&apos;s what
+          &ldquo;understanding AI&rdquo; really means, and it&apos;s the heart of everything here.
+          We call it: <span className="text-lk-text-primary font-medium">capture, don&apos;t guess.</span>
         </p>
       </div>
     </section>
@@ -50,7 +49,7 @@ const steps = [
   {
     n: '01',
     title: 'Bring your idea',
-    body: "Any idea — a tool for your job, an app for your family, a side project you've sat on for years. Nothing's too small or too ambitious.",
+    body: "Any idea — a tool for your job, an app for your family, something you've sat on for years. Nothing's too small or too ambitious.",
   },
   {
     n: '02',
@@ -59,8 +58,8 @@ const steps = [
   },
   {
     n: '03',
-    title: 'Build it and ship it',
-    body: 'Go from idea to a real, working, live thing you can use and share. Step by step. Nothing skipped, nothing assumed.',
+    title: 'Build it, and keep the skill',
+    body: 'Go from idea to a real, working thing you can use and share — and the skill to do it again, on your own, is yours to keep.',
   },
 ];
 
@@ -70,7 +69,7 @@ export function HowItWorks() {
       <div className="max-w-[1000px] mx-auto">
         <div className="text-center">
           <div className={kicker}>How it works</div>
-          <h2 className={h2}>From idea to a real, working thing</h2>
+          <h2 className={h2}>Three steps, idea to real</h2>
         </div>
         <div className="grid grid-cols-3 max-[960px]:grid-cols-1 gap-[22px] mt-12">
           {steps.map((s, i) => (
@@ -79,7 +78,7 @@ export function HowItWorks() {
               className={`reveal${i === 1 ? ' d2' : i === 2 ? ' d3' : ''} bg-card border border-white/[0.06] rounded-[14px] p-7`}
             >
               <div className="font-mono text-[12px] tracking-[0.1em] text-lk-cyan">{s.n}</div>
-              <h3 className="font-serif text-[23px] font-normal mt-3 mb-2 text-lk-text-primary">
+              <h3 className="font-serif text-[22px] font-normal mt-3 mb-2 text-lk-text-primary">
                 {s.title}
               </h3>
               <p className="text-[15px] text-lk-text-secondary leading-[1.6]">{s.body}</p>
@@ -91,33 +90,19 @@ export function HowItWorks() {
   );
 }
 
-export function WhatYouKeep() {
+export function Cost() {
   return (
-    <section className={sectionBase}>
-      <div className="max-w-[1000px] mx-auto">
-        <div className="text-center">
-          <div className={kicker}>What you walk away with</div>
-          <h2 className={h2}>Two things that are yours to keep</h2>
-        </div>
-        <div className="grid grid-cols-2 max-[960px]:grid-cols-1 gap-[22px] mt-11">
-          <div className="reveal bg-card border border-white/[0.06] rounded-[14px] p-8">
-            <h3 className="font-serif text-[25px] font-normal mb-3 text-lk-cyan">
-              A real, working thing
-            </h3>
-            <p className="text-[15px] text-lk-text-secondary leading-[1.6]">
-              Not a tutorial project. Your idea — live, usable, the thing you&apos;d actually open
-              Monday morning or hand to a friend who needs it.
-            </p>
-          </div>
-          <div className="reveal d2 bg-card border border-white/[0.06] rounded-[14px] p-8">
-            <h3 className="font-serif text-[25px] font-normal mb-3 text-lk-cyan">
-              The skill to keep building
-            </h3>
-            <p className="text-[15px] text-lk-text-secondary leading-[1.6]">
-              You won&apos;t be locked into a tool that strands you when it breaks. You&apos;ll know
-              how to do it again — on your own, for the next idea, and the one after that.
-            </p>
-          </div>
+    <section id="cost" className={sectionBase}>
+      <div className="max-w-[680px] mx-auto text-center">
+        <div className={kicker}>The honest part</div>
+        <h2 className={h2}>Free — and here&apos;s the one cost</h2>
+        <p className={`${lead} max-w-[620px] mx-auto`}>
+          Every lesson is free. The only thing you pay for is your own Claude subscription (about
+          $20/month) — the AI you&apos;ll actually build with. If you&apos;re already paying for an
+          AI tool, you&apos;re most of the way there. No course fees. No upsells. No card to start.
+        </p>
+        <div className="reveal d2 font-mono text-[13px] text-lk-green mt-5">
+          $0 to LuKaiAI · ~$20/mo to Claude · cancel anytime
         </div>
       </div>
     </section>
@@ -129,35 +114,16 @@ export function WhoFor() {
     <section className={sectionBase}>
       <div className="max-w-[720px] mx-auto text-center">
         <div className={kicker}>Who this is for</div>
-        <h2 className={h2}>Anyone with an idea and the will to see it exist</h2>
+        <h2 className={h2}>If AI feels like it&apos;s moving fast without you</h2>
         <p className={`${lead} max-w-[620px] mx-auto`}>
-          Operators, parents, hobbyists, business owners, people halfway into a career change,
-          people who had an idea last week. No coding background. No design background. No prior AI
-          experience.
+          Operators, parents, hobbyists, business owners, anyone who&apos;s watched AI change
+          everything and wondered how to actually keep up. No coding background. No design
+          background. No prior AI experience. Just an idea and the will to build it.
         </p>
         <p className="reveal d2 font-serif italic text-[20px] text-lk-text-primary max-w-[560px] mx-auto leading-[1.4] mt-8">
           &ldquo;Built by someone who started with zero coding background — which is the whole
           point. If the path only worked for engineers, it wouldn&apos;t be much of a path.&rdquo;
         </p>
-      </div>
-    </section>
-  );
-}
-
-export function Cost() {
-  return (
-    <section id="cost" className={sectionBase}>
-      <div className="max-w-[680px] mx-auto text-center">
-        <div className={kicker}>The honest part</div>
-        <h2 className={h2}>Is it really free?</h2>
-        <p className={`${lead} max-w-[620px] mx-auto`}>
-          The method, every lesson, all of it — free. The one thing you&apos;ll need is your own
-          Claude subscription (about $20/month) — that&apos;s the tool you build with. No course
-          fees. No upsells. No card to start.
-        </p>
-        <div className="reveal d2 font-mono text-[13px] text-lk-green mt-5">
-          $0 to LuKaiAI · ~$20/mo to Claude · cancel anytime
-        </div>
       </div>
     </section>
   );
