@@ -10,6 +10,7 @@ import Lesson from './pages/Lesson';
 import Terms from './pages/Terms';
 import Privacy from './pages/Privacy';
 import Projects from './pages/Projects';
+import Method from './pages/Method';
 
 function ScrollToHash() {
   const { hash } = useLocation();
@@ -35,6 +36,7 @@ export default function App() {
           <Route path="/terms" element={<Terms />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/projects" element={<Projects />} />
+          <Route path="/method" element={<Method />} />
           <Route
             path="/learn"
             element={
