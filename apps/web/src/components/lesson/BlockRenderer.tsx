@@ -6,6 +6,7 @@ import TryWithClaude, { type TryWithClaudePayload } from './widgets/TryWithClaud
 import DecisionTree from './widgets/DecisionTree';
 import Checklist, { type ChecklistPayload } from './widgets/Checklist';
 import Screenshot, { type ScreenshotPayload } from './widgets/Screenshot';
+import BeatMaker, { type BeatMakerPayload } from './widgets/BeatMaker';
 
 type ContentBlock =
   | { type: 'markdown';       payload: { md: string } }
@@ -15,7 +16,8 @@ type ContentBlock =
   | { type: 'try_with_claude'; payload: TryWithClaudePayload }
   | { type: 'decision_tree';  payload: Record<string, never> }
   | { type: 'checklist';      payload: ChecklistPayload }
-  | { type: 'screenshot';     payload: ScreenshotPayload };
+  | { type: 'screenshot';     payload: ScreenshotPayload }
+  | { type: 'beat_maker';     payload: BeatMakerPayload };
 
 interface Props {
   blocks: ContentBlock[];
@@ -58,6 +60,8 @@ export default function BlockRenderer({ blocks, lessonId }: Props) {
                   );
                 case 'screenshot':
                   return <Screenshot {...block.payload} />;
+                case 'beat_maker':
+                  return <BeatMaker {...block.payload} />;
                 default: {
                   const exhaustive = block as { type: string };
                   return (
