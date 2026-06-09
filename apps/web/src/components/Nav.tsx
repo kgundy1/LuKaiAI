@@ -99,6 +99,7 @@ export default function Nav() {
           {(!user || loading) && (
             <>
               <Link to="/projects" className={linkCls('/projects')}>Projects</Link>
+              <Link to="/method" className={linkCls('/method')}>The method</Link>
               <Link to="/#how" className={`${linkBase} ${linkInactive}`}>How it works</Link>
               <Link to="/#cost" className={`${linkBase} ${linkInactive}`}>Is it free?</Link>
               <Link to="/login" className={linkCls('/login')}>Log in</Link>
@@ -113,6 +114,7 @@ export default function Nav() {
           {user && !loading && (
             <>
               <Link to="/projects" className={linkCls('/projects')}>Projects</Link>
+              <Link to="/method" className={linkCls('/method')}>The method</Link>
               <Link to="/learn" className={linkCls('/learn')}>Learn</Link>
               <span
                 className="text-sm text-lk-text-tertiary max-w-[180px] truncate"
@@ -178,6 +180,7 @@ export default function Nav() {
           <div className="flex flex-col h-full">
             <div className="flex flex-col">
               <Link to="/projects" className={drawerLink}>Projects</Link>
+              <Link to="/method" className={drawerLink}>The method</Link>
               <Link to="/#how" className={drawerLink}>How it works</Link>
               <Link to="/#cost" className={drawerLink}>Is it free?</Link>
               <Link to="/login" className={drawerLink}>Log in</Link>
@@ -194,6 +197,7 @@ export default function Nav() {
           <div className="flex flex-col h-full">
             <div className="flex flex-col">
               <Link to="/projects" className={drawerLink}>Projects</Link>
+              <Link to="/method" className={drawerLink}>The method</Link>
               <Link to="/learn" className={drawerLink}>Learn</Link>
             </div>
             <div className="mt-auto">
