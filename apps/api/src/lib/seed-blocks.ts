@@ -9,7 +9,8 @@ type ContentBlock =
       | { question: string; mode: 'self_assess'; options: { text: string; explain: string }[] } }
   | { type: 'workflow_sorter'; payload: { tasks?: { id: string; label: string; answer: string; why: string }[]; bucketLeft?: { id: string; label: string }; bucketRight?: { id: string; label: string } } }
   | { type: 'checklist';       payload: { items: { id: string; label: string }[] } }
-  | { type: 'screenshot';      payload: { slotId?: string; placeholder?: string; caption?: string; src?: string; alt?: string; annotations?: { x: string; y: string; label: string }[] } };
+  | { type: 'screenshot';      payload: { slotId?: string; placeholder?: string; caption?: string; src?: string; alt?: string; annotations?: { x: string; y: string; label: string }[] } }
+  | { type: 'beat_maker';      payload: Record<string, never> };
 
 type BlockEntry = {
   moduleNumber: number;
@@ -22,6 +23,7 @@ const BLOCK_ENTRIES: BlockEntry[] = [
     moduleNumber: 0,
     lessonNumber: 1,
     blocks: [
+      { type: 'beat_maker', payload: {} },
       {
         type: 'markdown',
         payload: {
