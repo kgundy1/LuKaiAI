@@ -1,0 +1,22 @@
+{
+  // OpenClaw config template for LuKaiAI
+  // NOTE: This file is a template. The onboard wizard creates ~/.openclaw/openclaw.json
+  // with your model provider key already set. Do not overwrite that file with this one —
+  // merge the blocks below into your existing config instead.
+  // The setup script (setup-openclaw.sh) will guide you through the merge.
+  agents: {
+    defaults: {
+      workspace: "~/.openclaw/workspace",
+      sandbox: { mode: "non-main" },
+    },
+  },
+  plugins: {
+    "github-workflow": {
+      auth: { method: "pat", tokenEnv: "GITHUB_TOKEN" },
+      defaultRepos: ["kgundy1/LuKaiAI"],
+    },
+  },
+  // The telegram channel block is intentionally omitted here.
+  // setup-openclaw.sh will guide you through running `openclaw configure`
+  // to add it after you create your Telegram bot via @BotFather.
+}
